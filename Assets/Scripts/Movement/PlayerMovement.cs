@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float walkSpeed;
+    [SerializeField] private float backwardMultiplier = 0.6f;
+    [SerializeField] private float sidewaysMultiplier = 0.75f;
 
     private PlayerInput playerInput;
     private Vector2 moveInput;
@@ -39,6 +41,18 @@ public class PlayerMovement : MonoBehaviour
         };
 
         playerAnimator.SetFloat("Speed", 0.0f);
+
+        playerInput.Player.Sprint.performed += ctx =>
+        {
+            sprinting = true;
+            Debug.Log("Start sprinting");
+        };
+        playerInput.Player.Sprint.canceled += ctx =>
+        {
+            sprinting = false;
+            Debug.Log("Stop sprinting");
+        };
+        
     }
 
     void OnEnable() {
@@ -51,9 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate() {
         Vector3 movement = new Vector3(
-            moveInput.x,
+            moveInput.x * sidewaysMultiplier,
             0,
-            moveInput.y
+            (moveInput.y >= 0 ? moveInput.y : moveInput.y * backwardMultiplier)
         );
 
         movement = transform.TransformDirection(movement);

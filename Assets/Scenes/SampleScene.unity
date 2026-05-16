@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.256
+      value: -2.079
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalRotation.w
@@ -290,7 +290,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerAnimator: {fileID: 205169643}
   sprintSpeed: 4
-  walkSpeed: 2
+  walkSpeed: 3
+  backwardMultiplier: 0.7
+  sidewaysMultiplier: 0.8
 --- !u!114 &205169649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   cameraTransform: {fileID: 330585546}
-  sensitivity: 100
+  sensitivity: 80
   maxYRotation: 65
   minYRotation: -80
 --- !u!1 &330585543

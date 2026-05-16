@@ -23,6 +23,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "d9ff5284-6064-4ed6-bdf8-ddfcde76d86d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "c4618728-7470-4b9e-8220-c927658cec89",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -83,8 +101,8 @@
                 },
                 {
                     "name": "",
-                    "id": "b0296a6b-bb96-486b-b417-e997bffd8489",
-                    "path": "",
+                    "id": "cd82ebc2-c56f-4023-8c15-ebefe7f616a0",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -94,12 +112,23 @@
                 },
                 {
                     "name": "",
-                    "id": "cd82ebc2-c56f-4023-8c15-ebefe7f616a0",
-                    "path": "<Mouse>/delta",
+                    "id": "c4662895-9851-48c6-82d9-9d0406ed4c51",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Look",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff8dd851-0294-4ef2-a51c-30137d632585",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

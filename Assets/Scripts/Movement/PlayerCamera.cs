@@ -4,7 +4,7 @@ public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
 
-    [SerializeField] private float sensitivity = 100f;
+    [SerializeField] private float sensitivity = 60f;
     [SerializeField] private float maxYRotation = 60f;
     [SerializeField] private float minYRotation = -80f;
 
