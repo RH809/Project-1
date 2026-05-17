@@ -644,7 +644,7 @@ MonoBehaviour:
   aimAmount: 0.8
   sensitivity: 60
   maxYRotation: 55
-  minYRotation: -75
+  minYRotation: -65
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,23 +948,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.5
+      value: -0.4646502
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: -0.4646502
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.53301054
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0.53301054
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -7.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

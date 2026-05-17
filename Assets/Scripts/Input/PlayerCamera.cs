@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -12,32 +13,34 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float maxYRotation = 60f;
     [SerializeField] private float minYRotation = -80f;
 
-    private PlayerInput playerInput;
+    private PlayerControls playerControls;
     private Vector2 lookInput;
     private float xRotation;
     void Awake()
     {
-        playerInput = new PlayerInput();
-
-        playerInput.Player.Look.performed += ctx =>
-        {
-            lookInput = ctx.ReadValue<Vector2>();
-        };
-
-        playerInput.Player.Look.canceled += ctx =>
-        {
-            lookInput = Vector2.zero;
-        };
+        playerControls = new PlayerControls();
     }
 
     void OnEnable()
     {
-        playerInput.Enable();
+        playerControls.Player.Look.performed += OnLookPerformed;
+        playerControls.Player.Look.canceled += OnLookCanceled;
+        playerControls.Enable();
     }
 
     void OnDisable()
     {
-        playerInput.Disable();
+        playerControls.Player.Look.performed -= OnLookPerformed;
+        playerControls.Player.Look.canceled -= OnLookCanceled;
+        playerControls.Disable();
+    }
+
+    private void OnLookPerformed(InputAction.CallbackContext ctx) {
+        lookInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnLookCanceled(InputAction.CallbackContext ctx) {
+        lookInput = Vector2.zero;
     }
 
     void Start()

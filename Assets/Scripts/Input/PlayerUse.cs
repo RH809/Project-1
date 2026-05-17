@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerUse : MonoBehaviour
 {
+    [SerializeField] private Animator playerAnimator;
+
     public enum item {
         SWORD = 0,
         GUN = 1,
@@ -16,23 +19,35 @@ public class PlayerUse : MonoBehaviour
     //[SerializeField] private GameObject trap;
     //[SerializeField] private GameObject turret;
 
-    private PlayerInput playerInput;
+    private PlayerControls playerControls;
 
     [SerializeField] private float swordCooldown = 0.5f;
     private float cooldownTime = 0.0f;
 
     void Awake()
     {
-        playerInput = new PlayerInput();
-
-        playerInput.Player.Use.performed += ctx =>
-        {
-            Use();
-        };
+        playerControls = new PlayerControls();
     }
     void Start()
     {
         equippedItem = item.SWORD;
+    }
+
+    void OnEnable()
+    {
+        playerControls.Player.Use.performed += OnUsePerformed;
+        playerControls.Enable();
+    }
+
+    void OnDisable()
+    {
+        playerControls.Player.Use.performed -= OnUsePerformed;
+        playerControls.Disable();
+    }
+
+    private void OnUsePerformed(InputAction.CallbackContext ctx) {
+        Debug.Log("Using...");
+        Use();
     }
 
     // Update is called once per frame
@@ -59,6 +74,7 @@ public class PlayerUse : MonoBehaviour
                 case item.SWORD:
                     Debug.Log("Using sword");
                     cooldownTime = swordCooldown;
+                    playerAnimator.SetTrigger("Sword Swing 1");
                     break;
                 default:
                     Debug.Log("Default");

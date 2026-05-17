@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
 
-    private PlayerInput playerInput;
+    private PlayerControls playerControls;
     private Vector2 moveInput;
     private bool jumpInput = false;
     private float lastJumpTime = 0.0f;
@@ -31,53 +31,62 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        playerInput = new PlayerInput();
+        playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
-
-        playerInput.Player.Move.performed += ctx =>
-        {
-            moveInput = ctx.ReadValue<Vector2>();
-            moving = true;
-        };
-        playerInput.Player.Move.canceled += ctx =>
-        {
-            moveInput = Vector2.zero;
-            moving = false;
-        };
-
-        playerInput.Player.Sprint.performed += ctx =>
-        {
-            sprinting = true;
-            playerAnimator.SetFloat("Speed", 1.33f);
-            Debug.Log("Start sprinting");
-        };
-        playerInput.Player.Sprint.canceled += ctx =>
-        {
-            sprinting = false;
-            playerAnimator.SetFloat("Speed", 1.0f);
-            Debug.Log("Stop sprinting");
-        };
-
-        playerInput.Player.Jump.performed += ctx =>
-        {
-            jumpInput = true;
-            Debug.Log("Started holding jump");
-        };
-        playerInput.Player.Jump.canceled += ctx =>
-        {
-            jumpInput = false;
-            Debug.Log("Stopped holding jump");
-        };
 
         playerAnimator.SetFloat("Speed", 1.0f);
     }
 
     void OnEnable() {
-        playerInput.Enable();
+        playerControls.Player.Sprint.performed += OnSprintPerformed;
+        playerControls.Player.Sprint.canceled += OnSprintCanceled;
+        playerControls.Player.Move.performed += OnMovePerformed;
+        playerControls.Player.Move.canceled += OnMoveCanceled;
+        playerControls.Player.Jump.performed += OnJumpPerformed;
+        playerControls.Player.Jump.canceled += OnJumpCanceled;
+        playerControls.Enable();
     }
 
     void OnDisable() {
-        playerInput.Disable();
+        playerControls.Player.Sprint.performed -= OnSprintPerformed;
+        playerControls.Player.Sprint.canceled -= OnSprintCanceled;
+        playerControls.Player.Move.performed -= OnMovePerformed;
+        playerControls.Player.Move.canceled -= OnMoveCanceled;
+        playerControls.Player.Jump.performed -= OnJumpPerformed;
+        playerControls.Player.Jump.canceled -= OnJumpCanceled;
+        playerControls.Disable();
+    }
+
+    private void OnMovePerformed(InputAction.CallbackContext ctx) {
+        moveInput = ctx.ReadValue<Vector2>();
+        moving = true;
+    }
+
+    private void OnMoveCanceled(InputAction.CallbackContext ctx) {
+        moveInput = Vector2.zero;
+        moving = false;
+    }
+
+    private void OnSprintPerformed(InputAction.CallbackContext ctx) {
+        sprinting = true;
+        playerAnimator.SetFloat("Speed", 1.33f);
+        Debug.Log("Start sprinting");
+    }
+
+    private void OnSprintCanceled(InputAction.CallbackContext ctx) {
+        sprinting = false;
+        playerAnimator.SetFloat("Speed", 1.0f);
+        Debug.Log("Stop sprinting");
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext ctx) {
+        jumpInput = true;
+        Debug.Log("Started holding jump");
+    }
+
+    private void OnJumpCanceled(InputAction.CallbackContext ctx) {
+        jumpInput = false;
+        Debug.Log("Stopped holding jump");
     }
 
     void FixedUpdate() {
