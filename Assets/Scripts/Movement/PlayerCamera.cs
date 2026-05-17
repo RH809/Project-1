@@ -3,6 +3,10 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform leftShoulder;
+    [SerializeField] private Transform rightShoulder;
+    [SerializeField] private float aimAmount = 0.6f;
 
     [SerializeField] private float sensitivity = 60f;
     [SerializeField] private float maxYRotation = 60f;
@@ -11,7 +15,6 @@ public class PlayerCamera : MonoBehaviour
     private PlayerInput playerInput;
     private Vector2 lookInput;
     private float xRotation;
-
     void Awake()
     {
         playerInput = new PlayerInput();
@@ -58,4 +61,24 @@ public class PlayerCamera : MonoBehaviour
         cameraTransform.localRotation =
             Quaternion.Euler(xRotation, 0f, 0f);
     }
+
+    void LateUpdate()
+    {
+        Vector3 worldAxis = playerTransform.right;
+
+        // convert into shoulder parent space
+        Vector3 localAxis =
+            leftShoulder.parent.InverseTransformDirection(worldAxis);
+
+        Quaternion aimOffset =
+            Quaternion.AngleAxis(xRotation * aimAmount, localAxis);
+
+        Quaternion baseLeft = leftShoulder.localRotation;
+        Quaternion baseRight = rightShoulder.localRotation;
+
+        leftShoulder.localRotation = aimOffset * baseLeft;
+        rightShoulder.localRotation = aimOffset * baseRight;
+    }
+
+
 }
