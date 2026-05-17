@@ -7,6 +7,15 @@
             "id": "b85729d2-fc15-4220-8e86-4918226de0b9",
             "actions": [
                 {
+                    "name": "SelectItem",
+                    "type": "Value",
+                    "id": "091b37ce-c32e-465a-a656-c5bf63b9a141",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "2bf5f7f8-d6c3-4c70-819b-7f86195f8036",
@@ -37,6 +46,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "c4618728-7470-4b9e-8220-c927658cec89",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "4d827f2d-7b20-41fc-8ed0-f5b5cf9e6f6d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -129,6 +147,61 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5e2d5ef-cf8b-41d1-8f0a-25734833e37b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cbdd7ba-5e59-4013-9b39-2647b4036e31",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale(factor=0)",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ab16ee7-6764-45bc-9db4-4fc41cc1a605",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "985a2f0e-7ddf-4fc0-b5c8-f2b760aaa54b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82126c12-b7c0-4dcf-a844-581835764434",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "",
+                    "action": "SelectItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
