@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &10349469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
+  m_PrefabInstance: {fileID: 442958972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139501221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
@@ -524,6 +529,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
       addedObject: {fileID: 205169648}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 205169652}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 205169653}
   m_SourcePrefab: {fileID: 100100000, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
 --- !u!4 &205169640 stripped
 Transform:
@@ -645,6 +656,36 @@ MonoBehaviour:
   sensitivity: 60
   maxYRotation: 55
   minYRotation: -65
+--- !u!114 &205169652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139501221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d774b33eadb4f4387b242966fd08f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUse
+  playerAnimator: {fileID: 205169643}
+  sword: {fileID: 10349469}
+  swordCooldown: 0.5
+--- !u!114 &205169653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139501221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aecaa79afe8198419da91551bc08816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
+  swordTip: {fileID: 1040892018}
+  swordBase: {fileID: 1833666698}
+  radius: 0.15
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +1021,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1833666698}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1040892018}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9ae361db2930a49b250165865dd94b, type: 3}
 --- !u!4 &442958973 stripped
@@ -1064,6 +1111,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1040892017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040892018}
+  m_Layer: 0
+  m_Name: SwordTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1040892018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040892017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 47.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 442958973}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1161601374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1265,7 +1343,7 @@ GameObject:
   - component: {fileID: 1602824159}
   - component: {fileID: 1602824158}
   - component: {fileID: 1602824162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1571,6 +1649,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7968960796283595979, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
   m_PrefabInstance: {fileID: 205169639}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1833666697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833666698}
+  m_Layer: 0
+  m_Name: SwordBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1833666698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833666697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.98, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 442958973}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1951494632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1692,7 @@ GameObject:
   - component: {fileID: 1951494635}
   - component: {fileID: 1951494634}
   - component: {fileID: 1951494633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

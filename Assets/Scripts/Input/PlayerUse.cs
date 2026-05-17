@@ -37,6 +37,7 @@ public class PlayerUse : MonoBehaviour
     {
         playerControls.Player.Use.performed += OnUsePerformed;
         playerControls.Enable();
+        Debug.Log(playerControls + " enabled");
     }
 
     void OnDisable()
