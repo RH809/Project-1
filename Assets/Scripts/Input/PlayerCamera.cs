@@ -55,7 +55,6 @@ public class PlayerCamera : MonoBehaviour
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 
         // Rotate player left/right
-        Debug.Log(mouseX);
         transform.Rotate(Vector3.up * mouseX);
 
         // Rotate camera up/down
