@@ -75,7 +75,23 @@ public class PlayerUse : MonoBehaviour
                 case item.SWORD:
                     Debug.Log("Using sword");
                     cooldownTime = swordCooldown;
-                    playerAnimator.SetTrigger("Sword Swing 1");
+                    float rand = Random.Range(0.0f, 1.0f);
+                    if (rand <= 1 / 3.0f)
+                    {
+                        Debug.Log("1");
+                        playerAnimator.SetTrigger("Sword Swing 1");
+                    }
+                    else if (rand <= 2 / 3.0f)
+                    {
+                        Debug.Log("2");
+                        playerAnimator.SetTrigger("Sword Swing 2");
+                    }
+                    else
+                    {
+                        Debug.Log("3");
+                        playerAnimator.SetTrigger("Sword Swing 2");
+                    }
+                    
                     break;
                 default:
                     Debug.Log("Default");

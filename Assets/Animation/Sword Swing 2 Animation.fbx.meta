@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9abad908d055d7548925b71f54d7bfe4
+guid: 50c506006c4f99b419f6d20c91169c9c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sword Swing 1
+      name: Sword Swing 2
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 61
-      lastFrame: 72
+      firstFrame: 73
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -55,7 +55,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.15100674
+      - time: 0.14988816
         functionName: SwordAttackStart
         data: 
         objectReferenceParameter: {instanceID: 0}
