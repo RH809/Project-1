@@ -15,11 +15,13 @@ public class PlayerUse : MonoBehaviour
     private item equippedItem;
 
     [SerializeField] private GameObject sword;
+    [SerializeField] private Canvas swordHUD;
     //[SerializeField] private GameObject gun;
     //[SerializeField] private GameObject trap;
     //[SerializeField] private GameObject turret;
 
     private PlayerControls playerControls;
+    private PlayerCamera playerCamera;
 
     [SerializeField] private float swordCooldown = 0.5f;
     private float cooldownTime = 0.0f;
@@ -27,17 +29,18 @@ public class PlayerUse : MonoBehaviour
     void Awake()
     {
         playerControls = new PlayerControls();
+        playerCamera = GetComponent<PlayerCamera>();
     }
     void Start()
     {
         equippedItem = item.SWORD;
+        UpdateActiveItem();
     }
 
     void OnEnable()
     {
         playerControls.Player.Use.performed += OnUsePerformed;
         playerControls.Enable();
-        Debug.Log(playerControls + " enabled");
     }
 
     void OnDisable()
@@ -47,7 +50,6 @@ public class PlayerUse : MonoBehaviour
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
-        Debug.Log("Using...");
         Use();
     }
 
@@ -64,6 +66,7 @@ public class PlayerUse : MonoBehaviour
     void UpdateActiveItem()
     {
         sword.SetActive(equippedItem == item.SWORD);
+        swordHUD.enabled = (equippedItem == item.SWORD);
     }
 
     void Use()
@@ -73,28 +76,24 @@ public class PlayerUse : MonoBehaviour
             switch (equippedItem)
             {
                 case item.SWORD:
-                    Debug.Log("Using sword");
                     cooldownTime = swordCooldown;
                     float rand = Random.Range(0.0f, 1.0f);
                     if (rand <= 1 / 3.0f)
                     {
-                        Debug.Log("1");
                         playerAnimator.SetTrigger("Sword Swing 1");
                     }
                     else if (rand <= 2 / 3.0f)
                     {
-                        Debug.Log("2");
                         playerAnimator.SetTrigger("Sword Swing 2");
                     }
                     else
                     {
-                        Debug.Log("3");
-                        playerAnimator.SetTrigger("Sword Swing 2");
+                        playerAnimator.SetTrigger("Sword Swing 3");
                     }
+                    playerCamera.LockCamera();
                     
                     break;
                 default:
-                    Debug.Log("Default");
                     break;
             }
         }

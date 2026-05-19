@@ -16,6 +16,8 @@ public class PlayerCamera : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 lookInput;
     private float xRotation;
+
+    private bool lockedCamera = false;
     void Awake()
     {
         playerControls = new PlayerControls();
@@ -51,6 +53,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
+        if (lockedCamera) return;
         float mouseX = lookInput.x * sensitivity * Time.deltaTime;
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 
@@ -83,5 +86,11 @@ public class PlayerCamera : MonoBehaviour
         rightShoulder.localRotation = aimOffset * baseRight;
     }
 
+    public void LockCamera() {
+        lockedCamera = true;
+    }
 
+    public void UnlockCamera() {
+        lockedCamera = false;
+    }
 }

@@ -7,16 +7,20 @@ public class SwordHitbox : MonoBehaviour
 
     [SerializeField] private float radius = 0.15f;
 
+    private PlayerCamera playerCamera;
+
     private Vector3 prevTipPos;
     private Vector3 prevBasePos;
     private bool inAttackSwing = false;
     private int attackMask;
+
     void Start()
     {
         prevTipPos = swordTip.position;
         prevBasePos = swordBase.position;
 
         attackMask = LayerMask.GetMask("Enemy");
+        playerCamera = GetComponent<PlayerCamera>();
     }
 
     void LateUpdate()
@@ -67,6 +71,7 @@ public class SwordHitbox : MonoBehaviour
     public void SwordAttackEnd() {
         Debug.Log("Sword attack end");
         inAttackSwing = false;
+        playerCamera.UnlockCamera();
     }
 
     void OnDrawGizmos()
