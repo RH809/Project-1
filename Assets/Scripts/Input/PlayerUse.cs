@@ -24,6 +24,7 @@ public class PlayerUse : MonoBehaviour
     private PlayerCamera playerCamera;
 
     [SerializeField] private float swordCooldown = 0.5f;
+    [SerializeField] private float gunCooldown = 1f;
     private float cooldownTime = 0.0f;
 
     void Awake()
@@ -124,6 +125,8 @@ public class PlayerUse : MonoBehaviour
                     
                     break;
                 case item.GUN:
+                    cooldownTime = gunCooldown;
+                    playerAnimator.SetTrigger("Shoot");
                     break;
                 default:
                     break;
