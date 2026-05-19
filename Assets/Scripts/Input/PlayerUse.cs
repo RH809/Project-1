@@ -14,9 +14,9 @@ public class PlayerUse : MonoBehaviour
 
     private item equippedItem;
 
+    [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
-    [SerializeField] private Canvas swordHUD;
-    //[SerializeField] private GameObject gun;
+    [SerializeField] private GameObject gun;
     //[SerializeField] private GameObject trap;
     //[SerializeField] private GameObject turret;
 
@@ -40,17 +40,46 @@ public class PlayerUse : MonoBehaviour
     void OnEnable()
     {
         playerControls.Player.Use.performed += OnUsePerformed;
+        playerControls.Player.SelectItem.performed += OnSelectItemPerformed;
         playerControls.Enable();
     }
 
     void OnDisable()
     {
         playerControls.Player.Use.performed -= OnUsePerformed;
+        playerControls.Player.SelectItem.performed -= OnSelectItemPerformed;
         playerControls.Disable();
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
         Use();
+    }
+
+    private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
+        int value = (int)ctx.ReadValue<float>();
+        if ((value == 0 && equippedItem == item.SWORD) ||
+            (value == 1 && equippedItem == item.GUN) ||
+            (value == 2 && equippedItem == item.TRAP) ||
+            (value == 3 && equippedItem == item.TURRET)) {
+            return;
+        }
+        switch (value) {
+            case 0:
+                playerAnimator.SetTrigger("Equip Sword");
+                equippedItem = item.SWORD;
+                break;
+            case 1:
+                playerAnimator.SetTrigger("Equip Gun");
+                equippedItem = item.GUN;
+                break;
+            case 2:
+
+            case 3:
+
+            default:
+                break;
+        }
+        Debug.Log(value + " " + (int)equippedItem);
     }
 
     // Update is called once per frame
@@ -66,7 +95,8 @@ public class PlayerUse : MonoBehaviour
     void UpdateActiveItem()
     {
         sword.SetActive(equippedItem == item.SWORD);
-        swordHUD.enabled = (equippedItem == item.SWORD);
+        gun.SetActive(equippedItem == item.GUN);
+        aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN);
     }
 
     void Use()
@@ -92,6 +122,8 @@ public class PlayerUse : MonoBehaviour
                     }
                     playerCamera.LockCamera();
                     
+                    break;
+                case item.GUN:
                     break;
                 default:
                     break;
