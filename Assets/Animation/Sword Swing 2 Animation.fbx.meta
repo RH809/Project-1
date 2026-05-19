@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3b216576b3f2e264cb1e645a4d505e9e
+guid: 83257b142e414a347a186b75f5a5e357
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -55,7 +55,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.15100671
+      - time: 0.15100673
         functionName: SwordAttackStart
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -217,8 +217,6 @@ ModelImporter:
       - path: RightShoulder/RightUpperArm/RightElbow/RightLowerArm/RightWrist/RightPalmUpper/RightKnuckles/RightPalmLower/RightRingFingerKnuckle/RightRingFingerUpper/RightRingFingerMiddleJoint/RightRingFingerMiddle
         weight: 1
       - path: RightShoulder/RightUpperArm/RightElbow/RightLowerArm/RightWrist/RightPalmUpper/RightKnuckles/RightPalmLower/RightRingFingerKnuckle/RightRingFingerUpper/RightRingFingerMiddleJoint/RightRingFingerMiddle/RightRingFingerEnd
-        weight: 1
-      - path: RightShoulder/RightUpperArm/RightElbow/RightLowerArm/RightWrist/RightPalmUpper/RightKnuckles/RightPalmLower/Sword1
         weight: 1
       - path: RightShoulder/RightUpperArm/RightElbow/RightLowerArm/RightWrist/RightPalmUpper/RightThumbKnuckle
         weight: 1
