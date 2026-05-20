@@ -10,7 +10,8 @@ public class Bullet : MonoBehaviour
         transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
-    void OnTriggerEnter() {
+    void OnCollisionEnter(Collision collision) {
+        Debug.Log("Collided with " + collision.collider);
         Destroy(gameObject);
     }
 }

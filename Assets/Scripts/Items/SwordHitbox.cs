@@ -64,12 +64,10 @@ public class SwordHitbox : MonoBehaviour
     public void SwordAttackStart() {
         prevTipPos = swordTip.position;
         prevBasePos = swordBase.position;
-        Debug.Log("Starting sword attack");
         inAttackSwing = true;
     }
 
     public void SwordAttackEnd() {
-        Debug.Log("Sword attack end");
         inAttackSwing = false;
         playerCamera.UnlockCamera();
     }
@@ -100,5 +98,9 @@ public class SwordHitbox : MonoBehaviour
         Gizmos.DrawLine(a, b);
         Gizmos.DrawWireSphere(a, r);
         Gizmos.DrawWireSphere(b, r);
+    }
+
+    public bool isSwinging() {
+        return inAttackSwing;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ public class PlayerUse : MonoBehaviour
     };
 
     private item equippedItem;
+    private Queue<item> equipQueue;
 
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
@@ -22,6 +24,8 @@ public class PlayerUse : MonoBehaviour
 
     private PlayerControls playerControls;
     private PlayerCamera playerCamera;
+    private SwordHitbox swordHitbox;
+    private Shoot shoot;
 
     [SerializeField] private float swordCooldown = 0.5f;
     [SerializeField] private float gunCooldown = 1f;
@@ -31,9 +35,12 @@ public class PlayerUse : MonoBehaviour
     {
         playerControls = new PlayerControls();
         playerCamera = GetComponent<PlayerCamera>();
+        swordHitbox = GetComponent<SwordHitbox>();
+        shoot = GetComponent<Shoot>();
     }
     void Start()
     {
+        equipQueue = new Queue<item>();
         equippedItem = item.SWORD;
         UpdateActiveItem();
     }
@@ -67,11 +74,13 @@ public class PlayerUse : MonoBehaviour
         switch (value) {
             case 0:
                 playerAnimator.SetTrigger("Equip Sword");
-                equippedItem = item.SWORD;
+                equipQueue.Enqueue(item.SWORD);
+                //equippedItem = item.SWORD;
                 break;
             case 1:
                 playerAnimator.SetTrigger("Equip Gun");
-                equippedItem = item.GUN;
+                equipQueue.Enqueue(item.GUN);
+                //equippedItem = item.GUN;
                 break;
             case 2:
 
@@ -95,9 +104,28 @@ public class PlayerUse : MonoBehaviour
 
     void UpdateActiveItem()
     {
+        if (!(equippedItem == item.SWORD && isInSwingAnimation()) &&
+            !(equippedItem == item.GUN && isInShootAnimation())) {
+            while (equipQueue.Count > 0) {
+                equippedItem = equipQueue.Dequeue();
+            }
+        }
         sword.SetActive(equippedItem == item.SWORD);
         gun.SetActive(equippedItem == item.GUN);
         aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN);
+    }
+
+    private bool isInSwingAnimation() {
+        return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 1") || playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 2") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 3") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Sword Swing 1") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Sword Swing 2") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Sword Swing 3") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Swing 1 -> Sword Idle") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Swing 2 -> Sword Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Swing 3 -> Sword Idle");
+    }
+
+    private bool isInShootAnimation() {
+        return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Gun Shoot") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Gun Shoot") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Shoot -> Gun Idle");
     }
 
     void Use()
@@ -107,6 +135,9 @@ public class PlayerUse : MonoBehaviour
             switch (equippedItem)
             {
                 case item.SWORD:
+                    if (swordHitbox.isSwinging()) {
+                        break;
+                    }
                     cooldownTime = swordCooldown;
                     float rand = Random.Range(0.0f, 1.0f);
                     if (rand <= 1 / 3.0f)
@@ -125,6 +156,9 @@ public class PlayerUse : MonoBehaviour
                     
                     break;
                 case item.GUN:
+                    if (shoot.isShooting()) {
+                        break;
+                    }
                     cooldownTime = gunCooldown;
                     playerAnimator.SetTrigger("Shoot");
                     break;

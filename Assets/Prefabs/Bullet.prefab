@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.29689
+      value: 0.991
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 1.0771
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.22905
+      value: -1.467
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,7 +83,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -101,4 +101,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1e76ed4816f9e4cb513cc1ec0c8ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  bulletSpeed: 3
+  bulletSpeed: 0.25
