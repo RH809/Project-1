@@ -13,8 +13,9 @@ public class Shoot : MonoBehaviour
 
     private bool shooting = false;
 
-    /*
+    
     void Update() {
+        /*
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(playerCamera.transform.position, ray.direction, Color.red);
         Vector3 test = playerCamera.transform.position + ray.direction * 5f;
@@ -29,14 +30,30 @@ public class Shoot : MonoBehaviour
             Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
             
         }
+        */
+        RaycastHit hit;
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 50f, targetMask))
+        {
+            // Calculate angle to raycast hit
+            Vector3 path = hit.point - bulletExit.transform.position;
+            Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
+        }
+        else
+        {
+            // Calculate angle based on default range
+            Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
+            Debug.DrawRay(bulletExit.transform.position, end - bulletExit.transform.position, Color.blue);
+        }
+
     }
-    */
+    
     private void ShootBullet() {
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         
         Quaternion aimRotation = Quaternion.identity;
-        if (Physics.Raycast(ray, out hit, targetMask))
+        if (Physics.Raycast(ray, out hit, 50f, targetMask))
         {
             // Calculate angle to raycast hit
             Vector3 path = hit.point - bulletExit.transform.position;
