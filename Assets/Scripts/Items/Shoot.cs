@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Camera playerCamera;
 
     [SerializeField] private GameObject bullet;
+    [SerializeField] private LayerMask targetMask;
 
     [SerializeField] private float defaultRange = 5.0f;
 
@@ -35,7 +36,7 @@ public class Shoot : MonoBehaviour
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         
         Quaternion aimRotation = Quaternion.identity;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, targetMask))
         {
             // Calculate angle to raycast hit
             Vector3 path = hit.point - bulletExit.transform.position;

@@ -13,7 +13,7 @@ public class SwordHitbox : MonoBehaviour
     //private Vector3 prevTipPos;
     //private Vector3 prevBasePos;
     private bool inAttackSwing = false;
-    private int attackMask;
+    [SerializeField] private LayerMask attackMask;
 
     private HashSet<Collider> hits;
 
@@ -21,8 +21,6 @@ public class SwordHitbox : MonoBehaviour
     {
         //prevTipPos = swordTip.position;
         //prevBasePos = swordBase.position;
-
-        attackMask = LayerMask.GetMask("Enemy");
         playerCamera = GetComponent<PlayerCamera>();
 
         hits = new HashSet<Collider>();
