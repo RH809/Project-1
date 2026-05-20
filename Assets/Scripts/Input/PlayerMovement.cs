@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded = false;
 
     private Rigidbody rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         playerControls = new PlayerControls();
@@ -70,23 +69,19 @@ public class PlayerMovement : MonoBehaviour
     private void OnSprintPerformed(InputAction.CallbackContext ctx) {
         sprinting = true;
         playerAnimator.SetFloat("Speed", 1.33f);
-        Debug.Log("Start sprinting");
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext ctx) {
         sprinting = false;
         playerAnimator.SetFloat("Speed", 1.0f);
-        Debug.Log("Stop sprinting");
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx) {
         jumpInput = true;
-        Debug.Log("Started holding jump");
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx) {
         jumpInput = false;
-        Debug.Log("Stopped holding jump");
     }
 
     void FixedUpdate() {
@@ -115,17 +110,16 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("Moving", moving);
         if (jumpInput && !jumping && grounded)
         {
+            // Jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumping = true;
             grounded = false;
             lastJumpTime = Time.time;
-            Debug.Log("Jumping");
             playerAnimator.SetTrigger("Jump Start");
             playerAnimator.ResetTrigger("Jump End");
         }
         else if (jumping && grounded) {
-            // stop jumping
-            Debug.Log("Ending jump");
+            // Stop jumping
             playerAnimator.SetTrigger("Jump End");
             playerAnimator.ResetTrigger("Jump Start");
             jumping = false;
