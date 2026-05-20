@@ -4,10 +4,16 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
 
+    private Rigidbody rb;
+    void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + transform.forward * bulletSpeed * Time.fixedDeltaTime);
+        //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
     void OnCollisionEnter(Collision collision) {

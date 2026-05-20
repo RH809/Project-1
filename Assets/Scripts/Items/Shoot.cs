@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -8,10 +9,27 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject bullet;
 
     private bool shooting = false;
+
+    void Update() {
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(playerCamera.transform.position, ray.direction, Color.red);
+        Vector3 test = playerCamera.transform.position + ray.direction * 5f;
+        Debug.DrawRay(playerCamera.transform.position, test - playerCamera.transform.position, Color.green);
+        Debug.DrawRay(bulletExit.transform.position, test - bulletExit.transform.position, Color.orange);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            //Transform objectHit = hit.transform;
+            Vector3 path = hit.point - bulletExit.transform.position;
+            Quaternion aimRotation = Quaternion.LookRotation(path, Vector3.up);
+            Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
+            
+        }
+    }
     private void ShootBullet() {
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(playerCamera.transform.position, ray.direction, Color.red);
+        
         
         Quaternion aimRotation = Quaternion.identity;
         Debug.Log(ray);
@@ -22,7 +40,8 @@ public class Shoot : MonoBehaviour
             aimRotation = Quaternion.LookRotation(path, Vector3.up);
             Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
         }
-        
+
+        Debug.DrawRay(bulletExit.transform.position, aimRotation.eulerAngles, Color.blue);
         GameObject newBullet = Instantiate(bullet, bulletExit.transform.position, aimRotation);
         Debug.Log("Shot " + newBullet);
     }

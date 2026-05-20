@@ -1155,10 +1155,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8515484687961457459, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8725346308993570863, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -1178,15 +1174,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 48401333754843234, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_margin.w
-      value: -55.86945
+      value: -30.513596
       objectReference: {fileID: 0}
     - target: {fileID: 48401333754843234, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 512
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3575179432812777988, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6125967248805130087, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_Name
