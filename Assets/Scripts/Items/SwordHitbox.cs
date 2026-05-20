@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SwordHitbox : MonoBehaviour
 {
@@ -9,18 +10,22 @@ public class SwordHitbox : MonoBehaviour
 
     private PlayerCamera playerCamera;
 
-    private Vector3 prevTipPos;
-    private Vector3 prevBasePos;
+    //private Vector3 prevTipPos;
+    //private Vector3 prevBasePos;
     private bool inAttackSwing = false;
     private int attackMask;
 
+    private HashSet<Collider> hits;
+
     void Start()
     {
-        prevTipPos = swordTip.position;
-        prevBasePos = swordBase.position;
+        //prevTipPos = swordTip.position;
+        //prevBasePos = swordBase.position;
 
         attackMask = LayerMask.GetMask("Enemy");
         playerCamera = GetComponent<PlayerCamera>();
+
+        hits = new HashSet<Collider>();
     }
 
     void LateUpdate()
@@ -28,7 +33,7 @@ public class SwordHitbox : MonoBehaviour
         if (!inAttackSwing) return;
         Vector3 currentTipPos = swordTip.position;
         Vector3 currentBasePos = swordBase.position;
-
+        /*
         Vector3 prevCenter = (prevBasePos + prevTipPos) * 0.5f;
         Vector3 currCenter = (currentBasePos + currentTipPos) * 0.5f;
 
@@ -42,8 +47,9 @@ public class SwordHitbox : MonoBehaviour
             move.magnitude,
             attackMask))
         {
+
             Debug.Log("Hit " + hit.collider.name);
-        }
+        }*/
 
         Collider[] overlaps = Physics.OverlapCapsule(
             currentBasePos,
@@ -54,17 +60,23 @@ public class SwordHitbox : MonoBehaviour
 
         foreach (var c in overlaps)
         {
-            Debug.Log("OVERLAP HIT: " + c.name);
+            if (!hits.Contains(c)) {
+                hits.Add(c);
+                Debug.Log("Hit: " + c.name);
+            }
         }
 
+        /*
         prevTipPos = currentTipPos;
         prevBasePos = currentBasePos;
+        */
     }
 
     public void SwordAttackStart() {
-        prevTipPos = swordTip.position;
-        prevBasePos = swordBase.position;
+        //prevTipPos = swordTip.position;
+        //prevBasePos = swordBase.position;
         inAttackSwing = true;
+        hits.Clear();
     }
 
     public void SwordAttackEnd() {
@@ -72,6 +84,7 @@ public class SwordHitbox : MonoBehaviour
         playerCamera.UnlockCamera();
     }
 
+    /*
     void OnDrawGizmos()
     {
         if (!inAttackSwing) return;
@@ -99,6 +112,7 @@ public class SwordHitbox : MonoBehaviour
         Gizmos.DrawWireSphere(a, r);
         Gizmos.DrawWireSphere(b, r);
     }
+    */
 
     public bool isSwinging() {
         return inAttackSwing;

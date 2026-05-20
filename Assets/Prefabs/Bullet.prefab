@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.014006999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.014006999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.014006999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1894662851fd0964b81e9e68e40106a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.991
       objectReference: {fileID: 0}
@@ -104,7 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1e76ed4816f9e4cb513cc1ec0c8ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  bulletSpeed: 1
+  bulletSpeed: 15
+  maxRange: 50
 --- !u!54 &4806560893932355849
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,4 +144,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1

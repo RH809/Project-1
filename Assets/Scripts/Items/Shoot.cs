@@ -8,8 +8,11 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
 
+    [SerializeField] private float defaultRange = 5.0f;
+
     private bool shooting = false;
 
+    /*
     void Update() {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(playerCamera.transform.position, ray.direction, Color.red);
@@ -26,34 +29,37 @@ public class Shoot : MonoBehaviour
             
         }
     }
+    */
     private void ShootBullet() {
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         
-        
         Quaternion aimRotation = Quaternion.identity;
-        Debug.Log(ray);
         if (Physics.Raycast(ray, out hit))
         {
-            //Transform objectHit = hit.transform;
+            // Calculate angle to raycast hit
             Vector3 path = hit.point - bulletExit.transform.position;
             aimRotation = Quaternion.LookRotation(path, Vector3.up);
             Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
         }
+        else
+        {
+            // Calculate angle based on default range
+            Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
+            aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
+        }
 
-        Debug.DrawRay(bulletExit.transform.position, aimRotation.eulerAngles, Color.blue);
         GameObject newBullet = Instantiate(bullet, bulletExit.transform.position, aimRotation);
-        Debug.Log("Shot " + newBullet);
     }
 
     public void ShootStart() {
-        Debug.Log("Shoot start");
+        //Debug.Log("Shoot start");
         shooting = true;
         ShootBullet();
     }
 
     public void ShootEnd() {
-        Debug.Log("Shoot end");
+        //Debug.Log("Shoot end");
         shooting = false;
     }
 
