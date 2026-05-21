@@ -11,6 +11,8 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private float defaultRange = 5.0f;
 
+    [SerializeField] private GameObject[] disruptors;
+
     private bool shooting = false;
 
     
@@ -68,6 +70,7 @@ public class Shoot : MonoBehaviour
         }
 
         GameObject newBullet = Instantiate(bullet, bulletExit.transform.position, aimRotation);
+        newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
     }
 
     public void ShootStart() {

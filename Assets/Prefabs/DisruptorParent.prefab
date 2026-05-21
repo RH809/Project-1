@@ -178,6 +178,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 892aed04f8a5bad4fa443fdbde7e1aaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2990658025814837517}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 892aed04f8a5bad4fa443fdbde7e1aaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7350499906047375941}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 892aed04f8a5bad4fa443fdbde7e1aaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5625198203702477191}
   m_SourcePrefab: {fileID: 100100000, guid: 892aed04f8a5bad4fa443fdbde7e1aaa, type: 3}
 --- !u!1 &6114101959389186455 stripped
 GameObject:
@@ -204,9 +210,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 118.7935
-  m_Height: 284.9253
+  m_Height: 300
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 154.5}
+  m_Center: {x: 0, y: -15, z: 154.5}
 --- !u!95 &2990658025814837517
 Animator:
   serializedVersion: 7
@@ -229,6 +235,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7350499906047375941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114101959389186455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd13f3cdd77b930408f80fe7b6ca3da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Disruptor
+  disruptorAnimator: {fileID: 2990658025814837517}
+--- !u!114 &5625198203702477191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114101959389186455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  baseRegen: 0
+  regenRate: 0
 --- !u!4 &6886698696018875181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 892aed04f8a5bad4fa443fdbde7e1aaa, type: 3}
