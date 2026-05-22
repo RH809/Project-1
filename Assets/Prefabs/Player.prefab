@@ -1479,8 +1479,8 @@ MonoBehaviour:
   aimHUD: {fileID: 2877675696275336923}
   sword: {fileID: 4443442103559543298}
   gun: {fileID: 5046193544283996882}
-  swordCooldown: 0.5
-  gunCooldown: 0.3
+  swordCooldown: 0
+  gunCooldown: 0
 --- !u!114 &6940347274788668077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +1518,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 896
   defaultRange: 5
+  disruptors:
+  - {fileID: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

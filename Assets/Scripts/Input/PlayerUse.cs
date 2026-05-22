@@ -92,7 +92,6 @@ public class PlayerUse : MonoBehaviour
         Debug.Log(value + " " + (int)equippedItem);
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateActiveItem();
@@ -135,7 +134,7 @@ public class PlayerUse : MonoBehaviour
             switch (equippedItem)
             {
                 case item.SWORD:
-                    if (swordHitbox.isSwinging()) {
+                    if (swordHitbox.isSwinging() || isInSwingAnimation()) {
                         break;
                     }
                     cooldownTime = swordCooldown;
@@ -156,7 +155,7 @@ public class PlayerUse : MonoBehaviour
                     
                     break;
                 case item.GUN:
-                    if (shoot.isShooting()) {
+                    if (shoot.isShooting() || isInShootAnimation()) {
                         break;
                     }
                     cooldownTime = gunCooldown;
