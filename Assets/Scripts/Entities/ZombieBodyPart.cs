@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class ZombieBodyPart : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    [SerializeField] private int damageMultiplier = 1;
+    private GameObject zombie;
+    private ZombieArm arm;
+    private Health health;
+
+    public GameObject Zombie { get => zombie; }
+
     void Start()
     {
-        
+        zombie = GetComponentInParent<Zombie>().gameObject;
+        health = zombie.GetComponent<Health>();
+        arm = GetComponentInParent<ZombieArm>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage, GameObject attacker)
     {
-        
+        health.TakeDamage(damage * damageMultiplier, attacker);
+        if (arm != null)
+        {
+            
+        }
     }
 }

@@ -7,6 +7,7 @@ public class SwordHitbox : MonoBehaviour
     [SerializeField] private Transform swordBase;
 
     [SerializeField] private float radius = 0.15f;
+    [SerializeField] private int damage;
 
     private PlayerCamera playerCamera;
 
@@ -15,7 +16,7 @@ public class SwordHitbox : MonoBehaviour
     private bool inAttackSwing = false;
     [SerializeField] private LayerMask attackMask;
 
-    private HashSet<Collider> hits;
+    private HashSet<GameObject> hits;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class SwordHitbox : MonoBehaviour
         //prevBasePos = swordBase.position;
         playerCamera = GetComponent<PlayerCamera>();
 
-        hits = new HashSet<Collider>();
+        hits = new HashSet<GameObject>();
     }
 
     void LateUpdate()
@@ -58,8 +59,10 @@ public class SwordHitbox : MonoBehaviour
 
         foreach (var c in overlaps)
         {
-            if (!hits.Contains(c)) {
-                hits.Add(c);
+            ZombieBodyPart bodyPart = c.gameObject.GetComponent<ZombieBodyPart>();
+            if (bodyPart != null && !hits.Contains(bodyPart.Zombie)) {
+                hits.Add(bodyPart.Zombie);
+                bodyPart.TakeDamage(damage, gameObject);
                 Debug.Log("Hit: " + c.name);
             }
         }

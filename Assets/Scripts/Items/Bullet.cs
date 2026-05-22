@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private int damage;
     [SerializeField] private float maxRange = 50f;
     [SerializeField] private float bulletRadius = 0.01f;
     [SerializeField] private LayerMask collisionMask;
@@ -56,9 +57,11 @@ public class Bullet : MonoBehaviour
         //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
+    /*
     void OnCollisionEnter(Collision collision) {
         Collide(collision.collider.gameObject, collision.GetContact(0).point);
     }
+    */
 
     void Collide(GameObject other, Vector3 collisionPoint) {
         foreach (GameObject obj in disruptors)
@@ -70,6 +73,11 @@ public class Bullet : MonoBehaviour
             }
         }
         Debug.Log("Collided with " + other);
+        ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
+        if (bodyPart != null)
+        {
+            bodyPart.TakeDamage(damage, gameObject);
+        }
         Destroy(gameObject);
     }
 }
