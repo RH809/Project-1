@@ -22,6 +22,7 @@ public class Zombie : MonoBehaviour
     {
         if (health.target == gameObject)
         {
+            Debug.Log("Zombie killed");
             Destroy(gameObject);
         }
     }

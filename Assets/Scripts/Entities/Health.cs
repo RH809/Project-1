@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     void Update()
     {
         regenTimer -= Time.deltaTime;
-        if (regenTimer <= 0) {
+        if (currentHealth > 0 && regenTimer <= 0) {
             regenTimer = regenRate;
             currentHealth = Mathf.Min(currentHealth + baseRegen, maxHealth);
         }
