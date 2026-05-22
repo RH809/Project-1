@@ -17,7 +17,8 @@ public class Disruptor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("t")) {
+        if (Input.GetKeyDown("t"))
+        {
             if (alive) health.TakeDamage(100, gameObject);
             else Respawn();
         }
@@ -35,7 +36,8 @@ public class Disruptor : MonoBehaviour
 
     void Die(HealthContext healthContext)
     {
-        if (healthContext.target == gameObject) {
+        if (healthContext.target == gameObject)
+        {
             disruptorAnimator.SetTrigger("Die");
             alive = false;
         }

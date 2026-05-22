@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     private int currentHealth;
     private float regenTimer;
 
+    public bool IsAlive { get => currentHealth > 0; }
+
     public static event Action<HealthContext> OnHeal;
     public static event Action<HealthContext> OnTakeDamage;
     public static event Action<HealthContext> OnDie;
