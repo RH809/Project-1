@@ -1,9 +1,13 @@
+/// <summary>
+/// This script handles the hitbox collisions for the zombies' body parts.
+/// </summary>
+
 using UnityEngine;
 
 public class ZombieBodyPart : MonoBehaviour
 {
     
-    [SerializeField] private int damageMultiplier = 1;
+    [SerializeField] private int damageMultiplier = 1; // headshots deal double damage
     private GameObject zombie;
     private ZombieArm arm;
     private Health health;
@@ -14,7 +18,9 @@ public class ZombieBodyPart : MonoBehaviour
     {
         zombie = GetComponentInParent<Zombie>().gameObject;
         health = zombie.GetComponent<Health>();
-        arm = GetComponentInParent<ZombieArm>();
+        // Get arm component of self or ancestor in hierachy if it exists
+        arm = GetComponent<ZombieArm>();
+        if (arm == null) arm = GetComponentInParent<ZombieArm>();
     }
 
     public void TakeDamage(int damage, GameObject attacker)
@@ -23,6 +29,7 @@ public class ZombieBodyPart : MonoBehaviour
         health.TakeDamage(damage * damageMultiplier, attacker);
         if (arm != null)
         {
+            // Make arm take damage as well if applicable
             arm.TakeDamage(damage);
         }
     }

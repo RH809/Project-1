@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the zombie's death and acts as an identifying component.
+/// </summary>
+
 using UnityEngine;
 
 public class Zombie : MonoBehaviour

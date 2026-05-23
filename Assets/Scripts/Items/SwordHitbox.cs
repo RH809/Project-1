@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the collision detection of the sword swing.
+/// </summary>
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -59,9 +63,11 @@ public class SwordHitbox : MonoBehaviour
 
         foreach (var c in overlaps)
         {
+            // Check if collider is a zombie body part
             ZombieBodyPart bodyPart = c.gameObject.GetComponent<ZombieBodyPart>();
             if (bodyPart != null && !hits.Contains(bodyPart.Zombie)) {
-                hits.Add(bodyPart.Zombie);
+
+                hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
                 bodyPart.TakeDamage(damage, gameObject);
                 Debug.Log("Hit: " + c.name);
             }
@@ -77,7 +83,7 @@ public class SwordHitbox : MonoBehaviour
         //prevTipPos = swordTip.position;
         //prevBasePos = swordBase.position;
         inAttackSwing = true;
-        hits.Clear();
+        hits.Clear(); // reset hit list
     }
 
     public void SwordAttackEnd() {

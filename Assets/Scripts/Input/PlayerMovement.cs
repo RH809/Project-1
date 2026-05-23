@@ -1,5 +1,7 @@
-using UnityEditor;
-using UnityEditor.XR;
+/// <summary>
+/// This script handles the player's movement inputs.
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
+        // Check for grounded
         grounded = Physics.CheckSphere(
             groundCheck.position,
             groundCheckRadius,
@@ -126,6 +129,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Gizmos to show whether the player is grounded or not and the grounded check sphere
+    /// </summary>
     void OnDrawGizmos()
     {
         if (groundCheck == null) return;

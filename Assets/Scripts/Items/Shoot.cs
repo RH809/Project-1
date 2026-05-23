@@ -1,4 +1,7 @@
-using System.IO;
+/// <summary>
+/// This script handles the bullet shooting.
+/// </summary>
+
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -33,6 +36,7 @@ public class Shoot : MonoBehaviour
             
         }
         */
+        // Debug raycasts
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 50f, targetMask))
@@ -50,12 +54,16 @@ public class Shoot : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// Shoots a bullet by raycasting to determine the target and the angle to the target and then
+    /// instantiates the bullet.
+    /// </summary>
     private void ShootBullet() {
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         
         Quaternion aimRotation = Quaternion.identity;
-        if (Physics.Raycast(ray, out hit, 50f, targetMask))
+        if (Physics.Raycast(ray, out hit, 50f, targetMask)) // Raycast to see if there is any target being aimed at
         {
             // Calculate angle to raycast hit
             Vector3 path = hit.point - bulletExit.transform.position;

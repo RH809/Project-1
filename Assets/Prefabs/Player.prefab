@@ -1496,6 +1496,7 @@ MonoBehaviour:
   swordTip: {fileID: 1973501209467393100}
   swordBase: {fileID: 3365748411420141106}
   radius: 0.15
+  damage: 25
   attackMask:
     serializedVersion: 2
     m_Bits: 256

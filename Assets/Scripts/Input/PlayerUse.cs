@@ -1,3 +1,7 @@
+/// <summary>
+/// This script manages the player's held item and handles using the items.
+/// </summary>
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,17 +73,17 @@ public class PlayerUse : MonoBehaviour
             (value == 1 && equippedItem == item.GUN) ||
             (value == 2 && equippedItem == item.TRAP) ||
             (value == 3 && equippedItem == item.TURRET)) {
-            return;
+            return; // don't do anything if they selected the already-equipped item
         }
         switch (value) {
             case 0:
                 playerAnimator.SetTrigger("Equip Sword");
-                equipQueue.Enqueue(item.SWORD);
+                equipQueue.Enqueue(item.SWORD); // add to queue
                 //equippedItem = item.SWORD;
                 break;
             case 1:
                 playerAnimator.SetTrigger("Equip Gun");
-                equipQueue.Enqueue(item.GUN);
+                equipQueue.Enqueue(item.GUN); // add to queue
                 //equippedItem = item.GUN;
                 break;
             case 2:
@@ -95,17 +99,20 @@ public class PlayerUse : MonoBehaviour
     void Update()
     {
         UpdateActiveItem();
-        if (cooldownTime > 0.0f) {
+        if (cooldownTime > 0.0f) { // reduce cooldown
             cooldownTime -= Time.deltaTime;
             cooldownTime = Mathf.Max(cooldownTime, 0.0f);
         }
     }
 
+    /// <summary>
+    /// Updates the equipped item and the active state of the items.
+    /// </summary>
     void UpdateActiveItem()
     {
         if (!(equippedItem == item.SWORD && isInSwingAnimation()) &&
-            !(equippedItem == item.GUN && isInShootAnimation())) {
-            while (equipQueue.Count > 0) {
+            !(equippedItem == item.GUN && isInShootAnimation())) { // update equipped item if not in use animation
+            while (equipQueue.Count > 0) { // choose the last selected item in the queue
                 equippedItem = equipQueue.Dequeue();
             }
         }
@@ -114,6 +121,10 @@ public class PlayerUse : MonoBehaviour
         aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN);
     }
 
+    /// <summary>
+    /// Checks if the player is currently in the sword swing animation
+    /// </summary>
+    /// <returns>Whether the player is in the sword swing animation</returns>
     private bool isInSwingAnimation() {
         return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 1") || playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 2") ||
             playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Sword Swing 3") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Sword Swing 1") ||
@@ -122,22 +133,30 @@ public class PlayerUse : MonoBehaviour
             playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Swing 3 -> Sword Idle");
     }
 
+    /// <summary>
+    /// Checks if the player is currently in the shoot animation
+    /// </summary>
+    /// <returns>Whether the player is in the shoot animation</returns>
     private bool isInShootAnimation() {
         return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Gun Shoot") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Gun Shoot") ||
             playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Shoot -> Gun Idle");
     }
 
+    /// <summary>
+    /// Uses the currently held item
+    /// </summary>
     void Use()
     {
-        if (cooldownTime <= 0.0f)
+        if (cooldownTime <= 0.0f) // must be off cooldown
         {
             switch (equippedItem)
             {
                 case item.SWORD:
-                    if (swordHitbox.isSwinging() || isInSwingAnimation()) {
+                    if (swordHitbox.isSwinging() || isInSwingAnimation()) { // don't use if already in swinging animation
                         break;
                     }
                     cooldownTime = swordCooldown;
+                    // Randomly choose between the 3 possible animations
                     float rand = Random.Range(0.0f, 1.0f);
                     if (rand <= 1 / 3.0f)
                     {
@@ -151,11 +170,11 @@ public class PlayerUse : MonoBehaviour
                     {
                         playerAnimator.SetTrigger("Sword Swing 3");
                     }
-                    playerCamera.LockCamera();
+                    playerCamera.LockCamera(); // Lock player camera during the swing
                     
                     break;
                 case item.GUN:
-                    if (shoot.isShooting() || isInShootAnimation()) {
+                    if (shoot.isShooting() || isInShootAnimation()) { // don't use if already in shooting animation
                         break;
                     }
                     cooldownTime = gunCooldown;

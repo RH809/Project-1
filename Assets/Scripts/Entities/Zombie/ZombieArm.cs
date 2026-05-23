@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the "health" of a zombie's arm and handle the mechanic of destroying the zombie's arm
+/// </summary>
+
 using UnityEngine;
 
 public class ZombieArm : MonoBehaviour
@@ -15,11 +19,15 @@ public class ZombieArm : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        Debug.Log($"Arm took {damage} damage");
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            // Destroy the arm
             attached = false;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Debug.Log("Deactivating arm");
+            gameObject.SetActive(false);
         }
     }
 }

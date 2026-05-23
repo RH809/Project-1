@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the movement and collision of the bullets.
+/// </summary>
+
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -35,6 +39,7 @@ public class Bullet : MonoBehaviour
             collisionMask
         );
         if (overlaps.Length > 0) {
+            // Find the collision that happened closest to the previous position along the path
             Collider closest = overlaps[0];
             Vector3 closestDist = currentPos = closest.ClosestPoint(currentPos);
             foreach (var c in overlaps)
@@ -51,7 +56,7 @@ public class Bullet : MonoBehaviour
         
         rb.MovePosition(newPos);
         Vector3 dist = rb.position - startPos;
-        if (dist.magnitude >= maxRange) {
+        if (dist.magnitude >= maxRange) { // Destory if past max range
             Destroy(gameObject);
         }
         //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
@@ -63,10 +68,15 @@ public class Bullet : MonoBehaviour
     }
     */
 
+    /// <summary>
+    /// Handles the collision with another GameObject.
+    /// </summary>
+    /// <param name="other">The GameObject it collided with</param>
+    /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
         foreach (GameObject obj in disruptors)
         {
-            // Handle different hitbox of dead disruptors
+            // Handle lower hitbox of dead disruptors
             if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > 0.25)
             {
                 return;
@@ -76,6 +86,7 @@ public class Bullet : MonoBehaviour
         ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
         if (bodyPart != null)
         {
+            // If it hit a zombie's body part, deal the damage
             bodyPart.TakeDamage(damage, gameObject);
         }
         Destroy(gameObject);

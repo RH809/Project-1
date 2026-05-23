@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the player's camera control.
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 

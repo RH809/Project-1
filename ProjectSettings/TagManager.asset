@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Constructs
   - MoveColliders
-  - 
+  - AttackHitbox
   - 
   - 
   - 

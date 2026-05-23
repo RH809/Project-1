@@ -1,15 +1,21 @@
+/// <summary>
+/// This script controls the pathfinding of a zombie.
+/// </summary>
+
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieMovement : MonoBehaviour
 {
     [SerializeField] private Animator zombieAnimator;
+    private NavMeshAgent agent;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackRange;
     [SerializeField] private float minTargetDist;
     [SerializeField] private float maxKiteRange; // kite range will scale inversely with distance from closest constructs
     [SerializeField] private float kiteRangeThreshold;
-    [SerializeField] private float playerPriorityRange;
+    [SerializeField] private float playerPriorityRange; // will not prioritize player if it is out of this range
 
     [SerializeField] private Transform zombieHead;
 
@@ -24,11 +30,14 @@ public class ZombieMovement : MonoBehaviour
 
     private bool initialized = false; 
     private bool moveEnabled = true;
+    private bool wasMoving = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = true;
     }
 
     // Update is called once per frame
@@ -45,16 +54,35 @@ public class ZombieMovement : MonoBehaviour
             }
         }
         // rotate to face target
-        Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
-        rb.MoveRotation(rotation);
+        //Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
+        //rb.MoveRotation(rotation);
         if (moveEnabled && GetDistance(target) > minTargetDist)
         {
             // move toward target if necessary and allowed
-            rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
+            //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
+            if (!wasMoving)
+            {
+                agent.SetDestination(target.transform.position);
+                zombieAnimator.SetTrigger("Start Moving");
+            }
+            wasMoving = true;
         }
-        
+        else
+        {
+            if (wasMoving)
+            {
+                agent.ResetPath();
+                zombieAnimator.SetTrigger("Stop Moving");
+            }
+            wasMoving = false;
+        }
     }
 
+    /// <summary>
+    /// Initializes the zombie's targets.
+    /// </summary>
+    /// <param name="player">Player GameObject</param>
+    /// <param name="constructTargets">List of construct GameObjects</param>
     public void SetTargets(GameObject player, GameObject[] constructTargets)
     {
         this.player = player;
@@ -62,6 +90,9 @@ public class ZombieMovement : MonoBehaviour
         initialized = true;
     }
 
+    /// <summary>
+    /// Chooses the zombie's target based on distance.
+    /// </summary>
     void ChooseTarget()
     {
         GameObject closestConstruct = null;
@@ -108,6 +139,12 @@ public class ZombieMovement : MonoBehaviour
             target = closestConstruct;
         }
     }
+
+    /// <summary>
+    /// Calculates the horizontal distance between the zombie and the given target.
+    /// </summary>
+    /// <param name="target">The target to calculate the distance to</param>
+    /// <returns>The distance to the target</returns>
     float GetDistance(GameObject target)
     {
         float targetX = target.transform.position.x;

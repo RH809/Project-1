@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the health for all of the different entities.
+/// </summary>
+
 using System;
 using UnityEngine;
 
@@ -27,6 +31,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        // handle periodic regen
         regenTimer -= Time.deltaTime;
         if (currentHealth > 0 && regenTimer <= 0) {
             regenTimer = regenRate;
@@ -35,6 +40,10 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
+    /// <summary>
+    /// Heals the entity by the given amount.
+    /// </summary>
+    /// <param name="healAmount">The heal amount</param>
     public void Heal(int healAmount)
     {
         currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
@@ -42,6 +51,12 @@ public class Health : MonoBehaviour
         OnHeal?.Invoke(healthContext);
     }
 
+
+    /// <summary>
+    /// Deals the given amount of damage to the entity and kills it if applicable.
+    /// </summary>
+    /// <param name="damageAmount">The damage amount</param>
+    /// <param name="attacker">The source of the damage</param>
     public void TakeDamage(int damageAmount, GameObject attacker)
     {
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
@@ -53,6 +68,9 @@ public class Health : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Respawns the entity by restoring its health.
+    /// </summary>
     public void Respawn()
     {
         currentHealth = maxHealth;
@@ -61,6 +79,9 @@ public class Health : MonoBehaviour
     
 }
 
+/// <summary>
+/// Struct for passing information about who is receiving and dealing the damage.
+/// </summary>
 public struct HealthContext
 {
     public GameObject source;
