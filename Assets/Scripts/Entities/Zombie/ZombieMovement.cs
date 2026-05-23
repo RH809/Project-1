@@ -37,7 +37,7 @@ public class ZombieMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = true;
+        agent.updateRotation = false;
         agent.speed = moveSpeed;
         agent.stoppingDistance = minTargetDist;
     }
@@ -55,17 +55,21 @@ public class ZombieMovement : MonoBehaviour
                 attack.Attack();
             }
         }
-        // rotate to face target
-        //Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
-        //rb.MoveRotation(rotation);
-        if (moveEnabled && GetDistance(target) > minTargetDist)
+        
+        if (moveEnabled && rb.linearVelocity.magnitude > 0.1)
         {
             // move toward target if necessary and allowed
             //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
             if (!wasMoving)
             {
+                Debug.Log("Starting movement");
                 agent.SetDestination(target.transform.position);
                 zombieAnimator.SetTrigger("Start Moving");
+            }
+            else if (target.Equals(player))
+            { // Update target path if its player
+                Debug.Log("Updating player tracking");
+                agent.SetDestination(player.transform.position);
             }
             wasMoving = true;
         }
@@ -73,11 +77,15 @@ public class ZombieMovement : MonoBehaviour
         {
             if (wasMoving)
             {
+                Debug.Log("Stopping movement");
                 agent.ResetPath();
                 zombieAnimator.SetTrigger("Stop Moving");
             }
             wasMoving = false;
         }
+        // rotate to face target
+        Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
+        rb.MoveRotation(rotation);
     }
 
     /// <summary>

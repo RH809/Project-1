@@ -110,10 +110,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 576
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3456
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -753,7 +753,8 @@ MonoBehaviour:
   leftArm: {fileID: 6893280759923028210}
   rigthArm: {fileID: 2831257371955148440}
   attackCollider: {fileID: 7501052050577930817}
-  damage: 0
+  damage: 10
+  attackCooldown: 0.75
   disableMovement: 0
 --- !u!114 &5086933326523148663
 MonoBehaviour:
@@ -768,11 +769,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMovement
   zombieAnimator: {fileID: 4555739962168164116}
-  moveSpeed: 2
-  attackRange: 2
-  minTargetDist: 1
+  moveSpeed: 1
+  attackRange: 0.75
+  minTargetDist: 0.3
   maxKiteRange: 15
-  kiteRangeThreshold: 5
+  kiteRangeThreshold: 3
   playerPriorityRange: 30
   zombieHead: {fileID: 0}
 --- !u!114 &8649347639526360746
@@ -811,7 +812,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4242966883076387515}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 26.440002
+  m_Radius: 30
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -820,8 +821,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 141.64618
-  m_BaseOffset: 70.82309
+  m_Height: 205
+  m_BaseOffset: 101
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &4551096456191142936 stripped

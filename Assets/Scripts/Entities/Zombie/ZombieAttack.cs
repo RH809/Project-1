@@ -12,12 +12,15 @@ public class ZombieAttack : MonoBehaviour
     private Zombie zombie;
 
     [SerializeField] private int damage;
+    [SerializeField] private float attackCooldown;
     [SerializeField] private bool disableMovement;
 
     private static string attackTriggerName = "Zombie Attack";
 
     private bool attacking = false;
     public bool IsAttacking { get => attacking; }
+
+    private float cooldown;
 
     void Start()
     {
@@ -30,6 +33,10 @@ public class ZombieAttack : MonoBehaviour
         if (Input.GetKeyDown("q"))
         {
             Attack();
+        }
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
         }
     }
 
@@ -47,8 +54,9 @@ public class ZombieAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (attacking || GetNumAttachedArms() == 0) return;
+        if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return;
         attacking = true;
+        cooldown = attackCooldown;
         zombieAnimator.SetTrigger(attackTriggerName);
     }
 
