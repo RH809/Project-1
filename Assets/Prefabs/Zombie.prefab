@@ -754,7 +754,7 @@ MonoBehaviour:
   rigthArm: {fileID: 2831257371955148440}
   attackCollider: {fileID: 7501052050577930817}
   damage: 10
-  attackCooldown: 0.75
+  attackCooldown: 1
   disableMovement: 0
 --- !u!114 &5086933326523148663
 MonoBehaviour:
@@ -822,7 +822,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 205
-  m_BaseOffset: 101
+  m_BaseOffset: 92.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &4551096456191142936 stripped
