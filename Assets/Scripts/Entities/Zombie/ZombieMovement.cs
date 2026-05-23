@@ -46,37 +46,56 @@ public class ZombieMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!initialized) return; // check that targets have been initialized
+        bool changedTarget = false;
         if (!attack.IsAttacking)
         {
             // Choose target and attack if in range
-            ChooseTarget();
+            changedTarget = ChooseTarget();
             if (GetDistance(target) <= attackRange)
             {
                 attack.Attack();
             }
         }
         
-        if (moveEnabled && rb.linearVelocity.magnitude > 0.1)
+        if (moveEnabled)
         {
             // move toward target if necessary and allowed
             //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
-            if (!wasMoving)
+            if (wasMoving && agent.isStopped)
             {
-                Debug.Log("Starting movement");
-                agent.SetDestination(target.transform.position);
-                zombieAnimator.SetTrigger("Start Moving");
+                // Stop movement animation but keep the tracking
+                Debug.Log("Stopping movement");
+                zombieAnimator.SetTrigger("Stop Moving");
+                wasMoving = false;
             }
-            else if (target.Equals(player))
-            { // Update target path if its player
-                Debug.Log("Updating player tracking");
-                agent.SetDestination(player.transform.position);
+            else
+            {
+                if (!wasMoving || changedTarget)
+                {
+                    // Start movement toward target if either wasn't moving or changed target
+                    
+                    Vector3 destination = target.transform.position;
+                    destination.y = rb.transform.position.y;
+                    agent.SetDestination(destination);
+                    Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
+                    zombieAnimator.SetTrigger("Start Moving");
+                }
+                else if (target.Equals(player))
+                { // Update target path if its player
+                    Vector3 destination = player.transform.position;
+                    destination.y = rb.transform.position.y;
+                    Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
+                    agent.SetDestination(destination);
+                }
+                wasMoving = true;
             }
-            wasMoving = true;
+            
         }
         else
         {
             if (wasMoving)
             {
+                // Stop movement entirely
                 Debug.Log("Stopping movement");
                 agent.ResetPath();
                 zombieAnimator.SetTrigger("Stop Moving");
@@ -86,6 +105,8 @@ public class ZombieMovement : MonoBehaviour
         // rotate to face target
         Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
         rb.MoveRotation(rotation);
+        Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
+        Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
     }
 
     /// <summary>
@@ -103,7 +124,8 @@ public class ZombieMovement : MonoBehaviour
     /// <summary>
     /// Chooses the zombie's target based on distance.
     /// </summary>
-    void ChooseTarget()
+    /// <returns>Whether or not the target changed</returns>
+    bool ChooseTarget()
     {
         GameObject closestConstruct = null;
         float closestDist = float.MaxValue;
@@ -139,15 +161,18 @@ public class ZombieMovement : MonoBehaviour
             }
             
         }
-
+        bool changed = false;
         if (playerDist <= closestDist)
         {
+            changed = (target == null || !target.Equals(player));
             target = player;
         }
         else
         {
+            changed = (target == null || !target.Equals(closestConstruct));
             target = closestConstruct;
         }
+        return changed;
     }
 
     /// <summary>

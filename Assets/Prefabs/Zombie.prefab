@@ -115,7 +115,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 3456
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -771,7 +771,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 4555739962168164116}
   moveSpeed: 1
   attackRange: 0.75
-  minTargetDist: 0.3
+  minTargetDist: 0
   maxKiteRange: 15
   kiteRangeThreshold: 3
   playerPriorityRange: 30
