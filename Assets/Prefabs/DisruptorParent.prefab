@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8192251666969833698}
   - component: {fileID: 6173002582988421424}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: EntityCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

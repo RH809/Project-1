@@ -68,6 +68,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieBodyPart
   damageMultiplier: 1
+--- !u!1 &7501052050577930817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2151800356189099649}
+  - component: {fileID: 5923559525776274868}
+  m_Layer: 11
+  m_Name: AttackCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2151800356189099649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501052050577930817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3578632493977561089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5923559525776274868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501052050577930817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 66.17212, y: 124.37041, z: 68.02273}
+  m_Center: {x: 0, y: 20.140194, z: 49.1004}
 --- !u!1001 &3901069692869971946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -326,6 +379,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2903517550259559966}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2151800356189099649}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
@@ -348,6 +404,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5658279888064851517}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2571144626966019676}
     - targetCorrespondingSourceObject: {fileID: -3820366374065145986, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3123671248373872691}
@@ -405,12 +464,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1651212314467056258, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2831257371955148440}
+    - targetCorrespondingSourceObject: {fileID: 1651212314467056258, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5440144742792568573}
     - targetCorrespondingSourceObject: {fileID: -3751404095250187030, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8764866796687938278}
+    - targetCorrespondingSourceObject: {fileID: -3751404095250187030, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7533715876747117799}
     - targetCorrespondingSourceObject: {fileID: 8606656475093532036, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3770678833467117546}
+    - targetCorrespondingSourceObject: {fileID: 8606656475093532036, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 90931692151292103}
   m_SourcePrefab: {fileID: 100100000, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
 --- !u!1 &657956934999149665 stripped
 GameObject:
@@ -546,6 +614,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieArm
   armHealth: 20
+--- !u!114 &5440144742792568573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362466683286828392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14dc1f6efc332364282b1beba2b03fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieBodyPart
+  damageMultiplier: 1
 --- !u!4 &3578632493977561089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
@@ -622,10 +703,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1728
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2304
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -671,6 +752,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 4555739962168164116}
   leftArm: {fileID: 6893280759923028210}
   rigthArm: {fileID: 2831257371955148440}
+  attackCollider: {fileID: 7501052050577930817}
   damage: 0
   disableMovement: 0
 --- !u!114 &5086933326523148663
@@ -686,12 +768,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMovement
   zombieAnimator: {fileID: 4555739962168164116}
-  moveSpeed: 0
-  attackRange: 0
-  minTargetDist: 0
-  maxKiteRange: 0
-  kiteRangeThreshold: 0
-  playerPriorityRange: 0
+  moveSpeed: 2
+  attackRange: 2
+  minTargetDist: 1
+  maxKiteRange: 15
+  kiteRangeThreshold: 5
+  playerPriorityRange: 30
   zombieHead: {fileID: 0}
 --- !u!114 &8649347639526360746
 MonoBehaviour:
@@ -720,6 +802,28 @@ MonoBehaviour:
   maxHealth: 100
   baseRegen: 0
   regenRate: 0
+--- !u!195 &2571144626966019676
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242966883076387515}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 26.440002
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 141.64618
+  m_BaseOffset: 70.82309
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4551096456191142936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 651856647223862258, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
@@ -813,6 +917,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.816746, y: 3.7038267, z: 11.543632}
   m_Center: {x: -0.94457716, y: 0.0000074505806, z: 3.4157872}
+--- !u!114 &90931692151292103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707280038788952686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14dc1f6efc332364282b1beba2b03fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieBodyPart
+  damageMultiplier: 1
 --- !u!1 &6158794019942672422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7159329983980447692, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
@@ -1031,3 +1148,16 @@ CapsuleCollider:
   m_Height: 38.125275
   m_Direction: 2
   m_Center: {x: -0.0000011175871, y: 0, z: 13.96153}
+--- !u!114 &7533715876747117799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066651971815224064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14dc1f6efc332364282b1beba2b03fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieBodyPart
+  damageMultiplier: 1

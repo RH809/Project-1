@@ -14,7 +14,7 @@ public class ZombieMovement : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float minTargetDist;
     [SerializeField] private float maxKiteRange; // kite range will scale inversely with distance from closest constructs
-    [SerializeField] private float kiteRangeThreshold;
+    [SerializeField] private float kiteRangeThreshold; // construct target must be outside of this range for player to take aggro
     [SerializeField] private float playerPriorityRange; // will not prioritize player if it is out of this range
 
     [SerializeField] private Transform zombieHead;
@@ -38,6 +38,8 @@ public class ZombieMovement : MonoBehaviour
         attack = GetComponent<ZombieAttack>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = true;
+        agent.speed = moveSpeed;
+        agent.stoppingDistance = minTargetDist;
     }
 
     // Update is called once per frame
@@ -118,7 +120,7 @@ public class ZombieMovement : MonoBehaviour
         {
             // Check if player is in view
 
-            // Check kite range
+            // Check kite range (must not be too close to construct target)
             if (closestDist > kiteRangeThreshold)
             {
                 float kiteRange = maxKiteRange * (kiteRangeThreshold / playerDist);
