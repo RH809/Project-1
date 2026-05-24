@@ -770,8 +770,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMovement
   zombieAnimator: {fileID: 4555739962168164116}
   moveSpeed: 1
-  attackRange: 0.75
-  minTargetDist: 1.1
+  rotationSpeed: 10
+  attackRange: 1.5
+  playerStoppingDist: 0.75
+  disruptorStoppingDist: 1.5
   maxKiteRange: 15
   kiteRangeThreshold: 3
   playerPriorityRange: 30
