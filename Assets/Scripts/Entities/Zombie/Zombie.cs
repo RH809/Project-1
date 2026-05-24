@@ -7,6 +7,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     private Health health;
+    private Vector3 contactPos;
     void Start()
     {
         health = GetComponent<Health>();
@@ -29,5 +30,25 @@ public class Zombie : MonoBehaviour
             Debug.Log("Zombie killed");
             Destroy(gameObject);
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Zombie collided with " + collision.collider);
+        if (collision.collider.GetComponentInParent<Disruptor>() != null) {
+            contactPos = collision.GetContact(0).point;
+            foreach (var contact in collision.contacts)
+            {
+                Debug.Log($"THIS collider: {contact.thisCollider.name}");
+                Debug.Log($"OTHER collider: {contact.otherCollider.name}");
+            }
+        }
+        
+        
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(contactPos, 0.5f);
     }
 }

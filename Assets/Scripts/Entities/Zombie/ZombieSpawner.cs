@@ -24,7 +24,7 @@ public class ZombieSpawner : MonoBehaviour
     /// </summary>
     void Spawn()
     {
-        GameObject newZombie = Instantiate(zombie, transform);
+        GameObject newZombie = Instantiate(zombie, transform.position, transform.rotation);
         newZombie.GetComponent<ZombieMovement>().SetTargets(player, constructTargets); // initialize zombie's targets
     }
 }

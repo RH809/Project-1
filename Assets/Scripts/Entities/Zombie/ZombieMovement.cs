@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Apple;
 
 public class ZombieMovement : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class ZombieMovement : MonoBehaviour
         attack = GetComponent<ZombieAttack>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+        agent.updatePosition = false;
         agent.speed = moveSpeed;
         agent.stoppingDistance = minTargetDist;
     }
@@ -61,18 +63,20 @@ public class ZombieMovement : MonoBehaviour
         {
             // move toward target if necessary and allowed
             //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
-            if (wasMoving && agent.isStopped)
+            float distanceToTarget = GetDistance(target);
+            if (wasMoving && distanceToTarget <= minTargetDist)
             {
-                // Stop movement animation but keep the tracking
+                // Stop movement if within min distance
+                agent.ResetPath();
                 Debug.Log("Stopping movement");
                 zombieAnimator.SetTrigger("Stop Moving");
                 wasMoving = false;
             }
             else
             {
-                if (!wasMoving || changedTarget)
+                if ((!wasMoving || changedTarget) && distanceToTarget > minTargetDist)
                 {
-                    // Start movement toward target if either wasn't moving or changed target
+                    // Start movement toward target if either wasn't moving or changed target and outside of min target distance
                     
                     Vector3 destination = target.transform.position;
                     destination.y = rb.transform.position.y;
@@ -80,7 +84,7 @@ public class ZombieMovement : MonoBehaviour
                     Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
                     zombieAnimator.SetTrigger("Start Moving");
                 }
-                else if (target.Equals(player))
+                else if (target.Equals(player) && distanceToTarget > minTargetDist)
                 { // Update target path if its player
                     Vector3 destination = player.transform.position;
                     destination.y = rb.transform.position.y;
@@ -102,11 +106,18 @@ public class ZombieMovement : MonoBehaviour
             }
             wasMoving = false;
         }
-        // rotate to face target
+        // rotate to face target even if not moving
+        Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
         Quaternion rotation = Quaternion.LookRotation(target.transform.position - rb.transform.position, Vector3.up);
         rb.MoveRotation(rotation);
         Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
         Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
+
+        // handle movement
+        Vector3 targetPos = agent.steeringTarget;
+        Vector3 dir = (targetPos - rb.position).normalized;
+
+        rb.MovePosition(rb.position + dir * moveSpeed * Time.fixedDeltaTime);
     }
 
     /// <summary>

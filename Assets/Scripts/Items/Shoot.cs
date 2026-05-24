@@ -16,6 +16,8 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private GameObject[] disruptors;
 
+    public static float adjustedDisruptorHeight = 0.15f; // new height of disruptor hitbox when dead
+
     private bool shooting = false;
 
     
@@ -65,6 +67,27 @@ public class Shoot : MonoBehaviour
         Quaternion aimRotation = Quaternion.identity;
         if (Physics.Raycast(ray, out hit, 50f, targetMask)) // Raycast to see if there is any target being aimed at
         {
+            GameObject hitObject = hit.collider.gameObject;
+            foreach (GameObject obj in disruptors)
+            {
+                // Handle lower hitbox of dead disruptors
+                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().isAlive && hit.point.y > adjustedDisruptorHeight)
+                {
+                    bool hitSomething = true;
+                    do {
+                        Vector3 rayDir = ray.direction;
+                        ray = new Ray(hit.point, rayDir);
+                        hitSomething = Physics.Raycast(ray, out hit, 50f, targetMask);
+                        hitObject = hit.collider.gameObject;
+                    } while (hitSomething && obj.Equals(hitObject) && hit.point.y > adjustedDisruptorHeight);
+
+                    if (!hitSomething)
+                    {
+                        Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
+                        aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
+                    }
+                }
+            }
             // Calculate angle to raycast hit
             Vector3 path = hit.point - bulletExit.transform.position;
             aimRotation = Quaternion.LookRotation(path, Vector3.up);

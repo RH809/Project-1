@@ -77,7 +77,7 @@ public class Bullet : MonoBehaviour
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
-            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > 0.25)
+            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight)
             {
                 return;
             }
