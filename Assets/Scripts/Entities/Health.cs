@@ -10,11 +10,18 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int baseRegen;
     [SerializeField] private float regenRate;
+    [SerializeField] private bool hasHealthbar = true;
+
+    [SerializeField] private GameObject healthbarPrefab;
+    private GameObject healthbar;
+    private Transform worldSpaceCanvas;
 
     private int currentHealth;
     private float regenTimer;
 
     public bool IsAlive { get => currentHealth > 0; }
+    public int MaxHealth { get => maxHealth;  }
+    public int CurrentHealth { get => currentHealth; }
 
     public static event Action<HealthContext> OnHeal;
     public static event Action<HealthContext> OnTakeDamage;
@@ -27,6 +34,14 @@ public class Health : MonoBehaviour
         regenTimer = regenRate;
 
         healthContext.target = gameObject;
+        if (hasHealthbar)
+        {
+            // create healthbar
+            healthbar = Instantiate(healthbarPrefab);
+            worldSpaceCanvas = GameObject.FindGameObjectWithTag("WorldSpaceCanvas").transform;
+            healthbar.transform.SetParent(worldSpaceCanvas, false);
+            healthbar.GetComponent<Healthbar>().Initialize(this, gameObject);
+        }
     }
 
     void Update()
@@ -64,6 +79,7 @@ public class Health : MonoBehaviour
         OnTakeDamage?.Invoke(healthContext);
         if (currentHealth == 0)
         {
+            HideHealthbar();
             OnDie?.Invoke(healthContext);
         }
     }
@@ -75,7 +91,38 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         regenTimer = regenRate;
-    }   
+        ShowHealthBar();
+    }
+
+    /// <summary>
+    /// Hides the healthbar (for entities that can respawn after dying)
+    /// </summary>
+    public void HideHealthbar()
+    {
+        if (hasHealthbar)
+        {
+            healthbar.SetActive(false);
+        }
+    }
+
+    public void ShowHealthBar()
+    {
+        if (hasHealthbar)
+        {
+            healthbar.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Destroys teh healthbar GameObject (for entities that do not respawn)
+    /// </summary>
+    public void DestroyHealthbar()
+    {
+        if (hasHealthbar)
+        {
+            Destroy(healthbar);
+        }
+    }
     
 }
 

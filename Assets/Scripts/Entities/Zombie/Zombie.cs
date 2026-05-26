@@ -23,11 +23,12 @@ public class Zombie : MonoBehaviour
         Health.OnDie -= Die;
     }
 
-    void Die(HealthContext health)
+    void Die(HealthContext healthCtx)
     {
-        if (health.target == gameObject)
+        if (healthCtx.target == gameObject)
         {
             Debug.Log("Zombie killed");
+            health.DestroyHealthbar();
             Destroy(gameObject);
         }
     }

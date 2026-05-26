@@ -805,6 +805,8 @@ MonoBehaviour:
   maxHealth: 100
   baseRegen: 0
   regenRate: 0
+  hasHealthbar: 1
+  healthbarPrefab: {fileID: 6824034527116237848, guid: 3bf957430a6708f40b122753034c7d35, type: 3}
 --- !u!195 &2571144626966019676
 NavMeshAgent:
   m_ObjectHideFlags: 0
