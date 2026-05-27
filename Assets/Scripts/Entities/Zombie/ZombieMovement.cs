@@ -21,14 +21,22 @@ public class ZombieMovement : MonoBehaviour
     [SerializeField] private float kiteRangeThreshold; // construct target must be outside of this range for player to take aggro
     [SerializeField] private float playerPriorityRange; // will not prioritize player if it is out of this range
 
+    [SerializeField] private Transform head;
+    [SerializeField] private Transform leftArm;
+    [SerializeField] private Transform rightArm;
+    private Quaternion headBaseRotation;
+    private Quaternion leftArmBaseRotation;
+    private Quaternion rightArmBaseRotation;
+
     private ZombieAttack attack;
     private Rigidbody rb;
 
-    // Given by spawner
+    
     private GameObject player;
-    private GameObject[] constructTargets;
+    private GameObject[] constructTargets; // Given by spawner
 
     private GameObject target;
+    private ZombieTarget zombieTarget;
 
     private bool initialized = false; 
     private bool moveEnabled = true;
@@ -43,6 +51,10 @@ public class ZombieMovement : MonoBehaviour
         agent.updatePosition = true;
         agent.speed = moveSpeed;
         player = Player.Instance.gameObject;
+
+        headBaseRotation = head.localRotation;
+        leftArmBaseRotation = leftArm.localRotation;
+        rightArmBaseRotation = rightArm.localRotation;
     }
 
     // Update is called once per frame
@@ -69,6 +81,7 @@ public class ZombieMovement : MonoBehaviour
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
             if (changedTarget)
             {
+                zombieTarget = target.GetComponent<ZombieTarget>();
                 Vector3 destination = target.transform.position;
                 destination.y = rb.transform.position.y;
                 agent.SetDestination(destination);
@@ -152,6 +165,44 @@ public class ZombieMovement : MonoBehaviour
         }
         Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
         Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
+
+        
+    }
+
+    void LateUpdate()
+    {
+        // rotate arms and head to point toward target
+        if (zombieTarget)
+        {
+            Vector3 targetPoint = zombieTarget.GetZombieTarget();
+            Vector3 direction = targetPoint - head.position;
+            Debug.DrawRay(head.position, direction);
+            float targetPitch = -Mathf.Atan2(
+                direction.y,
+                new Vector2(direction.x, direction.z).magnitude
+            ) * Mathf.Rad2Deg;
+            float currentPitch = head.localEulerAngles.x;
+            float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
+            Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
+            Quaternion baseHead = head.localRotation;
+            head.localRotation = baseHead * rotation;
+            Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
+            if (leftArm != null)
+            {
+
+                Quaternion baseLeft = leftArm.localRotation;
+                leftArm.localRotation = baseLeft * totalRotation;
+                //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
+            }
+            if (rightArm != null)
+            {
+                Quaternion baseRight = rightArm.localRotation;
+                rightArm.localRotation = baseRight * totalRotation;
+            }
+            
+            //Debug.Log($"rotating head {rotation} {baseHead} {head.localRotation}");
+        }
+        
     }
 
     /// <summary>

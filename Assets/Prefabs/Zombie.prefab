@@ -561,6 +561,11 @@ CapsuleCollider:
   m_Height: 61.16399
   m_Direction: 1
   m_Center: {x: 0.00001564622, y: -21.257427, z: 0.035595894}
+--- !u!4 &848860080050043759 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459869341032838277, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+  m_PrefabInstance: {fileID: 3901069692869971946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1163218305496400235 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2740430294054522497, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
@@ -789,6 +794,9 @@ MonoBehaviour:
   maxKiteRange: 15
   kiteRangeThreshold: 3
   playerPriorityRange: 30
+  head: {fileID: 5104713707010874758}
+  leftArm: {fileID: 848860080050043759}
+  rightArm: {fileID: 5809293878432791174}
 --- !u!114 &8649347639526360746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +954,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieBodyPart
   damageMultiplier: 1
+--- !u!4 &5104713707010874758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1083973168022039956, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+  m_PrefabInstance: {fileID: 3901069692869971946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5809293878432791174 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1820122514620615316, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+  m_PrefabInstance: {fileID: 3901069692869971946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6158794019942672422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7159329983980447692, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
