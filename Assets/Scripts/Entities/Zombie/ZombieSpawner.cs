@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject[] constructTargets;
     [SerializeField] private GameObject zombie;
 
@@ -25,6 +24,6 @@ public class ZombieSpawner : MonoBehaviour
     void Spawn()
     {
         GameObject newZombie = Instantiate(zombie, transform.position, transform.rotation);
-        newZombie.GetComponent<ZombieMovement>().SetTargets(player, constructTargets); // initialize zombie's targets
+        newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
     }
 }

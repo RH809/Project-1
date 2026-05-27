@@ -1314,6 +1314,9 @@ PrefabInstance:
       addedObject: {fileID: 4542021642725296381}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4013281475357573766}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1861507916033701773}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
@@ -1389,10 +1392,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1728
+    m_Bits: 3776
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1423,6 +1426,20 @@ CapsuleCollider:
   m_Height: 179.81856
   m_Direction: 1
   m_Center: {x: 0, y: -45.899166, z: 2.7139552}
+--- !u!114 &4013281475357573766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a74ba3db87ef9c44832da8949eece6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  Camera: {fileID: 0}
+  Health: {fileID: 0}
 --- !u!114 &1861507916033701773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,7 +1516,7 @@ MonoBehaviour:
   swordTip: {fileID: 1973501209467393100}
   swordBase: {fileID: 3365748411420141106}
   radius: 0.15
-  damage: 25
+  damage: 20
   attackMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1524,7 +1541,6 @@ MonoBehaviour:
   defaultRange: 5
   disruptors:
   - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &5246923091890705108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,8 +1554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
-  baseRegen: 0
-  regenRate: 0
+  baseRegen: 0.5
+  regenRate: 1
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}
 --- !u!4 &6793713491657405917 stripped

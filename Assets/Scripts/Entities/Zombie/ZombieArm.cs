@@ -8,7 +8,7 @@ public class ZombieArm : MonoBehaviour
 {
     [SerializeField] private int armHealth;
 
-    private int currentHealth;
+    private float currentHealth;
     private bool attached = true;
 
     public bool Attached { get => attached; }
@@ -17,7 +17,7 @@ public class ZombieArm : MonoBehaviour
     {
         currentHealth = armHealth;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log($"Arm took {damage} damage");
         currentHealth -= damage;

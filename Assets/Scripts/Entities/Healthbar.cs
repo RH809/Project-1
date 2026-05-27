@@ -35,10 +35,17 @@ public class Healthbar : MonoBehaviour
         if (health)
         {
             // Update color and slide values
-            fill.color = Color.Lerp(minColor, maxColor, ((float)health.CurrentHealth) / health.MaxHealth);
+            fill.color = Color.Lerp(minColor, maxColor, health.CurrentHealth / health.MaxHealth);
             slider.value = health.CurrentHealth;
-            // Update rotation to face player
-            transform.rotation = Quaternion.LookRotation(transform.position - Player.Instance.MainCamera.transform.position);
+            // Update rotation to face player or respawn camera
+            if (Player.Instance.Health.IsAlive)
+            {
+                transform.rotation = Quaternion.LookRotation(transform.position - Player.Instance.Camera.transform.position);
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(transform.position - Respawn.Instance.Camera.transform.position);
+            }
             transform.position = entity.transform.position + offset;
         }
     }

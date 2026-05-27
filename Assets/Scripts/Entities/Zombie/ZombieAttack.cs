@@ -1,6 +1,7 @@
 /// <summary>
 /// This script handles the attack state of the zombies.
 /// </summary>
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
@@ -8,10 +9,9 @@ public class ZombieAttack : MonoBehaviour
     [SerializeField] private Animator zombieAnimator;
     [SerializeField] private ZombieArm leftArm;
     [SerializeField] private ZombieArm rigthArm;
-    [SerializeField] private GameObject attackCollider;
     private Zombie zombie;
+    private ZombieAttackCollider collisionHandler;
 
-    [SerializeField] private int damage;
     [SerializeField] private float attackCooldown;
     [SerializeField] private bool disableMovement;
 
@@ -25,7 +25,7 @@ public class ZombieAttack : MonoBehaviour
     void Start()
     {
         zombie = GetComponent<Zombie>();
-        attackCollider.SetActive(false);
+        collisionHandler = GetComponentInChildren<ZombieAttackCollider>();
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class ZombieAttack : MonoBehaviour
     /// Gets the number of attached arms to determine attack damage and whether the zombie can attack
     /// </summary>
     /// <returns>The number of attached arms</returns>
-    int GetNumAttachedArms()
+    public int GetNumAttachedArms()
     {
         int num = 0;
         if (leftArm.Attached) num++;
@@ -62,14 +62,14 @@ public class ZombieAttack : MonoBehaviour
 
     public void ZombieAttackStart()
     {
-        Debug.Log("zombie attack start");
-        attackCollider.SetActive(true);
+        //Debug.Log("zombie attack start");
+        collisionHandler.StartAttack();
     }
 
     public void ZombieAttackEnd()
     {
-        Debug.Log("zombie attack end");
+        //Debug.Log("zombie attack end");
         attacking = false;
-        attackCollider.SetActive(false);
+        collisionHandler.EndAttack();
     }
 }

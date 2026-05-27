@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int baseRegen;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float baseRegen;
     [SerializeField] private float regenRate;
     [SerializeField] private bool hasHealthbar = true;
 
@@ -16,12 +16,12 @@ public class Health : MonoBehaviour
     private GameObject healthbar;
     private Transform worldSpaceCanvas;
 
-    private int currentHealth;
+    private float currentHealth;
     private float regenTimer;
 
     public bool IsAlive { get => currentHealth > 0; }
-    public int MaxHealth { get => maxHealth;  }
-    public int CurrentHealth { get => currentHealth; }
+    public float MaxHealth { get => maxHealth;  }
+    public float CurrentHealth { get => currentHealth; }
 
     public static event Action<HealthContext> OnHeal;
     public static event Action<HealthContext> OnTakeDamage;
@@ -59,8 +59,10 @@ public class Health : MonoBehaviour
     /// Heals the entity by the given amount.
     /// </summary>
     /// <param name="healAmount">The heal amount</param>
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
+        if (!IsAlive) return;
+        Debug.Log($"{gameObject} healed {healAmount} health");
         currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
         healthContext.source = gameObject;
         OnHeal?.Invoke(healthContext);
@@ -72,8 +74,10 @@ public class Health : MonoBehaviour
     /// </summary>
     /// <param name="damageAmount">The damage amount</param>
     /// <param name="attacker">The source of the damage</param>
-    public void TakeDamage(int damageAmount, GameObject attacker)
+    public void TakeDamage(float damageAmount, GameObject attacker)
     {
+        if (!IsAlive) return;
+        Debug.Log($"{gameObject} took {damageAmount} damage from {attacker}");
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
         healthContext.source = attacker;
         OnTakeDamage?.Invoke(healthContext);

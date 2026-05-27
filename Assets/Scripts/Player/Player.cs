@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
-    [HideInInspector] public Camera MainCamera;
+    [HideInInspector] public Camera Camera;
+    [HideInInspector] public Health Health;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
         }
 
         Instance = this;
-        MainCamera = GetComponentInChildren<Camera>();
+        Camera = GetComponentInChildren<Camera>();
+        Health = GetComponent<Health>();
     }
 }

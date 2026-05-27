@@ -23,7 +23,7 @@ public class ZombieBodyPart : MonoBehaviour
         if (arm == null) arm = GetComponentInParent<ZombieArm>();
     }
 
-    public void TakeDamage(int damage, GameObject attacker)
+    public void TakeDamage(float damage, GameObject attacker)
     {
         Debug.Log(gameObject + " taking damage");
         health.TakeDamage(damage * damageMultiplier, attacker);

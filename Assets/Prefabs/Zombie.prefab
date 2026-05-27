@@ -78,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2151800356189099649}
   - component: {fileID: 5923559525776274868}
+  - component: {fileID: 1617918775819617865}
   m_Layer: 11
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -121,6 +122,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 66.17212, y: 124.37041, z: 68.02273}
   m_Center: {x: 0, y: 20.140194, z: 49.1004}
+--- !u!114 &1617918775819617865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501052050577930817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598a149a9ac0a8e4e942c433123edccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttackCollider
+  damage: 2.5
 --- !u!1001 &3901069692869971946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110c6fc335a4e043a1a95dc0cb2a8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieArm
-  armHealth: 20
+  armHealth: 30
 --- !u!114 &5440144742792568573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,9 +766,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 4555739962168164116}
   leftArm: {fileID: 6893280759923028210}
   rigthArm: {fileID: 2831257371955148440}
-  attackCollider: {fileID: 7501052050577930817}
-  damage: 10
-  attackCooldown: 1
+  attackCooldown: 1.2
   disableMovement: 0
 --- !u!114 &5086933326523148663
 MonoBehaviour:
@@ -777,7 +789,6 @@ MonoBehaviour:
   maxKiteRange: 15
   kiteRangeThreshold: 3
   playerPriorityRange: 30
-  zombieHead: {fileID: 0}
 --- !u!114 &8649347639526360746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110c6fc335a4e043a1a95dc0cb2a8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieArm
-  armHealth: 20
+  armHealth: 30
 --- !u!114 &2833265129749177138
 MonoBehaviour:
   m_ObjectHideFlags: 0

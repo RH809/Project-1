@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   bulletSpeed: 15
-  damage: 20
+  damage: 15
   maxRange: 50
   bulletRadius: 0.01
   collisionMask:

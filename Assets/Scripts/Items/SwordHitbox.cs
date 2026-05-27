@@ -11,7 +11,7 @@ public class SwordHitbox : MonoBehaviour
     [SerializeField] private Transform swordBase;
 
     [SerializeField] private float radius = 0.15f;
-    [SerializeField] private int damage;
+    [SerializeField] private float damage;
 
     private PlayerCamera playerCamera;
 
