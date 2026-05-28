@@ -33,6 +33,7 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    /*
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Zombie collided with " + collision.collider);
@@ -47,6 +48,7 @@ public class Zombie : MonoBehaviour
         
         
     }
+    */
 
     private void OnDrawGizmos()
     {

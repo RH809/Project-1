@@ -1426,9 +1426,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 25.102968
-  m_Height: 179.81856
+  m_Height: 177.6277
   m_Direction: 1
-  m_Center: {x: 0, y: -45.899166, z: 2.7139552}
+  m_Center: {x: 0, y: -44.803738, z: 2.7139544}
 --- !u!114 &4013281475357573766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieTarget
   offset: {x: 0, y: 0.3, z: 0}
+  radius: 0.25
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

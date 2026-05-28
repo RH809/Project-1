@@ -43,10 +43,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 576
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3456
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -786,9 +786,9 @@ MonoBehaviour:
   zombieAnimator: {fileID: 3026694912971059461}
   moveSpeed: 2
   rotationSpeed: 10
-  attackRange: 1.2
+  attackRange: 0.5
   playerStoppingDist: 0.6
-  disruptorStoppingDist: 1.2
+  disruptorStoppingDist: 1.4
   maxKiteRange: 20
   kiteRangeThreshold: 3
   playerPriorityRange: 30
@@ -823,7 +823,7 @@ MonoBehaviour:
   baseRegen: 0
   regenRate: 0
   hasHealthbar: 1
-  healthbarPrefab: {fileID: 6824034527116237848, guid: 3bf957430a6708f40b122753034c7d35, type: 3}
+  healthbarPrefab: {fileID: 6824034527116237848, guid: caa48693b07d8684cad683773579baf6, type: 3}
 --- !u!195 &200006572892455932
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -843,7 +843,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 230
-  m_BaseOffset: 0
+  m_BaseOffset: -8
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!4 &1792957158343670138 stripped

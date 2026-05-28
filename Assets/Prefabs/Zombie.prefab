@@ -845,7 +845,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 4555739962168164116}
   moveSpeed: 1
   rotationSpeed: 10
-  attackRange: 1.5
+  attackRange: 0.75
   playerStoppingDist: 0.75
   disruptorStoppingDist: 1.5
   maxKiteRange: 15
@@ -901,8 +901,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 220
-  m_BaseOffset: 101
+  m_Height: 230
+  m_BaseOffset: 93
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &4551096456191142936 stripped

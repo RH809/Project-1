@@ -14,8 +14,10 @@ public class MiniZombieMovement : ZombieMovement
             if (changedTarget)
             {
                 targetHealth = target.GetComponent<Health>();
+                zombieTarget = target.GetComponent<ZombieTarget>();
             }
-            if (GetDistance(target) <= attackRange && (target != player || (target == player && Player.Instance.Health.IsAlive)))
+            if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
+                    (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
                 attack.Attack();
                 if (attack.DisableMovement)
@@ -26,9 +28,10 @@ public class MiniZombieMovement : ZombieMovement
         }
         else
         {
-            if (!targetHealth.IsAlive || GetDistance(target) > attackRange)
+            if (!targetHealth.IsAlive || GetDistance(target) > attackRange + zombieTarget.Radius)
             {
                 // Stop attack
+                Debug.Log("Stopping mini zombie attack");
                 ((MiniZombieAttack)attack).StopAttack();
             }
         }

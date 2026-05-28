@@ -33,7 +33,7 @@ public class ZombieMovement : MonoBehaviour
     protected GameObject[] constructTargets; // Given by spawner
 
     protected GameObject target;
-    private ZombieTarget zombieTarget;
+    protected ZombieTarget zombieTarget;
 
     private bool initialized = false; 
     protected bool moveEnabled = true;
@@ -67,7 +67,6 @@ public class ZombieMovement : MonoBehaviour
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
             if (changedTarget)
             {
-                zombieTarget = target.GetComponent<ZombieTarget>();
                 Vector3 destination = target.transform.position;
                 destination.y = rb.transform.position.y;
                 agent.SetDestination(destination);
@@ -214,7 +213,12 @@ public class ZombieMovement : MonoBehaviour
             moveEnabled = true; // not attacking currently, so move is allowed
             // Choose target and attack if in range
             changedTarget = ChooseTarget();
-            if (GetDistance(target) <= attackRange && (target != player || (target == player && Player.Instance.Health.IsAlive)))
+            if (changedTarget)
+            {
+                zombieTarget = target.GetComponent<ZombieTarget>();
+            }
+            if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
+                    (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
                 attack.Attack();
                 if (attack.DisableMovement)
