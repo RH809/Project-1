@@ -5,7 +5,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Apple;
 
 public class ZombieMovement : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class ZombieMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float attackRange;
+    [SerializeField] protected float attackRange;
     [SerializeField] private float playerStoppingDist;
     [SerializeField] private float disruptorStoppingDist;
     [SerializeField] private float maxKiteRange; // kite range will scale inversely with distance from closest constructs
@@ -25,24 +24,22 @@ public class ZombieMovement : MonoBehaviour
     [SerializeField] private Transform leftArm;
     [SerializeField] private Transform rightArm;
     private Quaternion headBaseRotation;
-    private Quaternion leftArmBaseRotation;
-    private Quaternion rightArmBaseRotation;
 
-    private ZombieAttack attack;
+    protected ZombieAttack attack;
     private Rigidbody rb;
 
     
-    private GameObject player;
-    private GameObject[] constructTargets; // Given by spawner
+    protected GameObject player;
+    protected GameObject[] constructTargets; // Given by spawner
 
-    private GameObject target;
+    protected GameObject target;
     private ZombieTarget zombieTarget;
 
     private bool initialized = false; 
-    private bool moveEnabled = true;
+    protected bool moveEnabled = true;
     private bool wasMoving = false;
 
-    void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
@@ -53,24 +50,13 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
-        leftArmBaseRotation = leftArm.localRotation;
-        rightArmBaseRotation = rightArm.localRotation;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (!initialized) return; // check that targets have been initialized
-        bool changedTarget = false;
-        if (!attack.IsAttacking)
-        {
-            // Choose target and attack if in range
-            changedTarget = ChooseTarget();
-            if (GetDistance(target) <= attackRange && (target != player || (target == player && Player.Instance.Health.IsAlive)))
-            {
-                attack.Attack();
-            }
-        }
+        bool changedTarget = HandleAttack();
         
         if (moveEnabled)
         {
@@ -169,7 +155,7 @@ public class ZombieMovement : MonoBehaviour
         
     }
 
-    void LateUpdate()
+    protected void LateUpdate()
     {
         // rotate arms and head to point toward target
         if (zombieTarget)
@@ -217,10 +203,34 @@ public class ZombieMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles choosing the target and attacking (to be overriden by zombie variants)
+    /// </summary>
+    /// <returns>Whether or not the target was changed</returns>
+    protected virtual bool HandleAttack()
+    {
+        bool changedTarget = false;
+        if (!attack.IsAttacking)
+        {
+            moveEnabled = true; // not attacking currently, so move is allowed
+            // Choose target and attack if in range
+            changedTarget = ChooseTarget();
+            if (GetDistance(target) <= attackRange && (target != player || (target == player && Player.Instance.Health.IsAlive)))
+            {
+                attack.Attack();
+                if (attack.DisableMovement)
+                {
+                    moveEnabled = false; // disable movement when beginning attack if applicable
+                }
+            }
+        }
+        return changedTarget;
+    }
+
+    /// <summary>
     /// Chooses the zombie's target based on distance.
     /// </summary>
     /// <returns>Whether or not the target changed</returns>
-    bool ChooseTarget()
+    protected bool ChooseTarget()
     {
         GameObject closestConstruct = null;
         float closestDist = float.MaxValue;
@@ -283,25 +293,11 @@ public class ZombieMovement : MonoBehaviour
     /// </summary>
     /// <param name="target">The target to calculate the distance to</param>
     /// <returns>The distance to the target</returns>
-    float GetDistance(GameObject target)
+    protected float GetDistance(GameObject target)
     {
         float targetX = target.transform.position.x;
         float targetZ = target.transform.position.z;
 
         return Mathf.Sqrt(Mathf.Pow(transform.position.x - targetX, 2) + Mathf.Pow(transform.position.z - targetZ, 2));
-    }
-
-    public GameObject GetTarget() {
-        return target;
-    }
-
-    public void DisableMovement()
-    {
-        moveEnabled = false;
-    }
-
-    public void EnableMovement()
-    {
-        moveEnabled = true;
     }
 }

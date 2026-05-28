@@ -6,29 +6,28 @@ using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
 {
-    [SerializeField] private Animator zombieAnimator;
-    [SerializeField] private ZombieArm leftArm;
-    [SerializeField] private ZombieArm rigthArm;
-    private Zombie zombie;
-    private ZombieAttackCollider collisionHandler;
+    [SerializeField] protected Animator zombieAnimator;
+    [SerializeField] protected ZombieArm leftArm;
+    [SerializeField] protected ZombieArm rightArm;
+    protected ZombieAttackCollider collisionHandler;
 
-    [SerializeField] private float attackCooldown;
+    [SerializeField] protected float attackCooldown;
     [SerializeField] private bool disableMovement;
 
     private static string attackTriggerName = "Zombie Attack";
 
-    private bool attacking = false;
+    protected bool attacking = false;
     public bool IsAttacking { get => attacking; }
+    public bool DisableMovement { get => disableMovement; }
 
-    private float cooldown;
+    protected float cooldown;
 
-    void Start()
+    protected void Start()
     {
-        zombie = GetComponent<Zombie>();
-        collisionHandler = GetComponentInChildren<ZombieAttackCollider>();
+        collisionHandler = GetComponentInChildren<ZombieAttackCollider>(true);
     }
 
-    void Update()
+    protected void Update()
     {
         if (Input.GetKeyDown("q"))
         {
@@ -48,11 +47,11 @@ public class ZombieAttack : MonoBehaviour
     {
         int num = 0;
         if (leftArm.Attached) num++;
-        if (rigthArm.Attached) num++;
+        if (rightArm.Attached) num++;
         return num;
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return;
         attacking = true;
@@ -60,13 +59,13 @@ public class ZombieAttack : MonoBehaviour
         zombieAnimator.SetTrigger(attackTriggerName);
     }
 
-    public void ZombieAttackStart()
+    public virtual void ZombieAttackStart()
     {
         //Debug.Log("zombie attack start");
         collisionHandler.StartAttack();
     }
 
-    public void ZombieAttackEnd()
+    public virtual void ZombieAttackEnd()
     {
         //Debug.Log("zombie attack end");
         attacking = false;

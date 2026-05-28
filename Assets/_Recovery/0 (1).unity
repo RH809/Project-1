@@ -1412,10 +1412,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4632643668257292653, guid: 0955b5bbc11a1994abd69fc0a7556a06, type: 3}
-      propertyPath: disruptorStoppingDist
-      value: 1.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
