@@ -211,6 +211,7 @@ public class ZombieMovement : MonoBehaviour
     protected virtual bool HandleAttack()
     {
         bool changedTarget = false;
+        Debug.Log($"Handle attack: {attack.IsAttacking}");
         if (!attack.IsAttacking)
         {
             moveEnabled = true; // not attacking currently, so move is allowed

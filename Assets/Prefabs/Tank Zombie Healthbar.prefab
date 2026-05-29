@@ -292,4 +292,4 @@ MonoBehaviour:
   fill: {fileID: 3965932440834160210}
   minColor: {r: 1, g: 0, b: 0, a: 1}
   maxColor: {r: 0.23755479, g: 1, b: 0, a: 1}
-  offset: {x: 0, y: 2.05, z: 0}
+  offset: {x: 0, y: 1.7, z: 0}

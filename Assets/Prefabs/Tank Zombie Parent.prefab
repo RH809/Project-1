@@ -84,7 +84,7 @@ MonoBehaviour:
   disableMovement: 1
   tankZombieAttack: {fileID: 2172975992671019524, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
   directionOffset: -1
-  yOffset: -0.75
+  yOffset: -0.9
   moveCollider: {fileID: 815379770717727638}
 --- !u!114 &9137572958045931906
 MonoBehaviour:
@@ -347,10 +347,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5370904348828157297, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+    - {fileID: 5777250710002013904, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+    - {fileID: 9219092915028522104, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+    - {fileID: 4859090274914654199, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+    - {fileID: 515734073926697125, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+    - {fileID: 6200207863669497194, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3466226944465948142, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3953267526946902003}
   m_SourcePrefab: {fileID: 100100000, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+--- !u!1 &82470774075695533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3466226944465948142, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+  m_PrefabInstance: {fileID: 3548411759585258563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3953267526946902003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82470774075695533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d2ff8e177b39b4097ba79290e542cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankZombieAnimation
+  tankZombieAttack: {fileID: 3148451196474547039}
 --- !u!4 &168217830675250102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3705297595731351541, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}

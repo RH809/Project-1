@@ -18,7 +18,7 @@ public class TankZombieMovement : ZombieMovement
     {
         base.LateUpdate();
         
-        if (!initialized || !moveEnabled) return; // check that targets have been initialized
+        if (!initialized || !moveEnabled || target == null) return; // check that targets have been initialized
         // Rotate toward target during late update since animation rotates body
         //parentTransform.position += rb.transform.localPosition;
         //rb.transform.localPosition = Vector3.zero;
