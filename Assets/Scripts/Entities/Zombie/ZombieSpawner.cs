@@ -60,6 +60,6 @@ public class ZombieSpawner : MonoBehaviour
     void SpawnTankZombie()
     {
         GameObject newZombie = Instantiate(tankZombie, transform.position, transform.rotation);
-        newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+        newZombie.GetComponentInChildren<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
     }
 }

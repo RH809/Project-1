@@ -37,9 +37,10 @@ public class ZombieMovement : MonoBehaviour
 
     protected bool initialized = false; 
     protected bool moveEnabled = true;
+    protected bool rbRotation = true;
     private bool wasMoving = false;
 
-    protected void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
@@ -57,7 +58,7 @@ public class ZombieMovement : MonoBehaviour
     {
         if (!initialized) return; // check that targets have been initialized
         bool changedTarget = HandleAttack();
-        
+        Debug.Log($"{moveEnabled} {attack.IsAttacking}");
         if (moveEnabled)
         {
             // move toward target if necessary and allowed
@@ -70,7 +71,7 @@ public class ZombieMovement : MonoBehaviour
                 Vector3 destination = target.transform.position;
                 destination.y = rb.transform.position.y;
                 agent.SetDestination(destination);
-                //Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
+                Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
                 zombieAnimator.ResetTrigger("Stop Moving");
                 zombieAnimator.SetTrigger("Start Moving");
                 wasMoving = true;
@@ -82,21 +83,21 @@ public class ZombieMovement : MonoBehaviour
                     Vector3 destination = player.transform.position;
                     destination.y = rb.transform.position.y;
                     //Debug.Log("Updating player tracking");
-                    //Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
+                    Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
                     agent.SetDestination(destination);
                 }
                 if (wasMoving)
                 {
                     if (stopped)
                     {
-                        //Debug.Log("Stopping movement animation");
+                        Debug.Log("Stopping movement animation");
                         zombieAnimator.ResetTrigger("Start Moving");
                         zombieAnimator.SetTrigger("Stop Moving");
                         wasMoving = false;
                     }
                     else
                     {
-                        //Debug.Log("Still moving");
+                        Debug.Log("Still moving");
                         wasMoving = true;
                     }
                 }
@@ -104,14 +105,14 @@ public class ZombieMovement : MonoBehaviour
                 {
                     if (!stopped)
                     {
-                        //Debug.Log("Starting movement from stop");
+                        Debug.Log("Starting movement from stop");
                         zombieAnimator.ResetTrigger("Stop Moving");
                         zombieAnimator.SetTrigger("Start Moving");
                         wasMoving = true;
                     }
                     else
                     {
-                        //Debug.Log("Still not moving");
+                        Debug.Log("Still not moving");
                         wasMoving = false;
                     }
                 }
@@ -133,6 +134,7 @@ public class ZombieMovement : MonoBehaviour
 
         // rotate to face target even if not moving
         //Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
+        if (!rbRotation) return;
         Vector3 dir = target.transform.position - rb.transform.position;
         dir.y = 0f;
 
