@@ -19,8 +19,8 @@ public class MiniZombieMovement : ZombieMovement
             if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
-                attack.Attack();
-                if (attack.DisableMovement)
+                bool success = attack.Attack();
+                if (success && attack.DisableMovement)
                 {
                     moveEnabled = false; // disable movement when beginning attack if applicable
                 }
@@ -31,7 +31,7 @@ public class MiniZombieMovement : ZombieMovement
             if (!targetHealth.IsAlive || GetDistance(target) > attackRange + zombieTarget.Radius)
             {
                 // Stop attack
-                Debug.Log("Stopping mini zombie attack");
+                //Debug.Log("Stopping mini zombie attack");
                 ((MiniZombieAttack)attack).StopAttack();
             }
         }

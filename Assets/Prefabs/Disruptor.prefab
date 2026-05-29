@@ -224,3 +224,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieTarget
   offset: {x: 0, y: 1.25, z: 0}
+  radius: 1
+  bottomOffset: {x: 0, y: 0, z: 0}

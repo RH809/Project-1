@@ -126,6 +126,7 @@ public class ZombieMovement : MonoBehaviour
                 // Stop movement entirely
                 Debug.Log("Stopping movement");
                 agent.ResetPath();
+                target = null;
                 zombieAnimator.ResetTrigger("Start Moving");
                 zombieAnimator.SetTrigger("Stop Moving");
             }
@@ -149,7 +150,7 @@ public class ZombieMovement : MonoBehaviour
                     rotationSpeed * Time.fixedDeltaTime
                 )
             );
-            Debug.Log("Rotating rigidbody " + rb.rotation);
+            //Debug.Log("Rotating rigidbody " + rb.rotation);
         }
         Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
         Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
@@ -211,7 +212,7 @@ public class ZombieMovement : MonoBehaviour
     protected virtual bool HandleAttack()
     {
         bool changedTarget = false;
-        Debug.Log($"Handle attack: {attack.IsAttacking}");
+        //Debug.Log($"Handle attack: {attack.IsAttacking}");
         if (!attack.IsAttacking)
         {
             moveEnabled = true; // not attacking currently, so move is allowed
@@ -224,8 +225,8 @@ public class ZombieMovement : MonoBehaviour
             if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
-                attack.Attack();
-                if (attack.DisableMovement)
+                bool success = attack.Attack();
+                if (success && attack.DisableMovement)
                 {
                     moveEnabled = false; // disable movement when beginning attack if applicable
                 }

@@ -5,24 +5,25 @@ using UnityEngine;
 public class MiniZombieAttack : ZombieAttack
 {
     private int armNum = 0; // 0 = right, 1 = left;
-    public override void Attack()
+    public override bool Attack()
     {
-        if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return;
+        if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return false;
         attacking = true;
-        Debug.Log("Starting mini zombie attack");
+        //Debug.Log("Starting mini zombie attack");
         zombieAnimator.SetTrigger("Zombie Attack");
         StartCoroutine(DoAttack());
+        return true;
 
     }
     public override void ZombieAttackStart()
     {
-        Debug.Log("mini zombie attack start");
+        //Debug.Log("mini zombie attack start");
         collisionHandler.StartAttack();
     }
 
     public override void ZombieAttackEnd()
     {
-        Debug.Log("mini zombie attack end");
+        //Debug.Log("mini zombie attack end");
         collisionHandler.EndAttack();
     }
 
@@ -43,7 +44,7 @@ public class MiniZombieAttack : ZombieAttack
             {
                 if (armNum == 0 || !leftArm.Attached)
                 {
-                    Debug.Log("Right attack");
+                    //Debug.Log("Right attack");
                     zombieAnimator.SetTrigger("Right Attack");
                     zombieAnimator.ResetTrigger("Left Attack");
                     //yield return new WaitUntil(() => zombieAnimator.GetAnimatorTransitionInfo(1).IsName(
@@ -51,7 +52,7 @@ public class MiniZombieAttack : ZombieAttack
                 }
                 else
                 {
-                    Debug.Log("Left attack");
+                    //Debug.Log("Left attack");
                     zombieAnimator.SetTrigger("Left Attack");
                     zombieAnimator.ResetTrigger("Right Attack");
                     //yield return new WaitUntil(() => zombieAnimator.GetAnimatorTransitionInfo(1).IsName(

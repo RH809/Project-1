@@ -15,16 +15,17 @@ public class TankZombieAttack : ZombieAttack
     /// </summary>
     public override void ZombieAttackStart()
     {
-        Debug.Log("Tank zombie attack start");
+        //Debug.Log("Tank zombie attack start");
         Vector3 instantiatePos = transform.position + transform.forward * directionOffset;
         instantiatePos.y = transform.position.y + yOffset;
-        Instantiate(tankZombieAttack, instantiatePos, Quaternion.identity);
+        GameObject attackCollider = Instantiate(tankZombieAttack, instantiatePos, Quaternion.identity);
+        attackCollider.GetComponent<TankZombieAttackCollider>().SetNumArms(GetNumAttachedArms());
     }
 
     public override void ZombieAttackEnd()
     {
         attacking = false;
-        Debug.Log($"Tank zombie attack end {IsAttacking}");
+        //Debug.Log($"Tank zombie attack end {IsAttacking}");
     }
 
     void LateUpdate()

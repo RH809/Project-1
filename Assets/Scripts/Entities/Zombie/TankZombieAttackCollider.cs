@@ -3,6 +3,7 @@
 /// </summary>
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TankZombieAttackCollider : MonoBehaviour
@@ -11,12 +12,24 @@ public class TankZombieAttackCollider : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float startOuterRadius;
     [SerializeField] private float startInnerRadius;
+    [SerializeField] private float height;
+    [SerializeField] private float groundY;
+    [SerializeField] private float damage;
 
     private float outerRadius;
     private float innerRadius;
+    private int numArms;
+    private HashSet<GameObject> hits;
+
     void Start()
     {
+        hits = new HashSet<GameObject>();
         StartCoroutine(Grow());
+    }
+
+    public void SetNumArms(int numArms)
+    {
+        this.numArms = numArms;
     }
 
     /// <summary>
@@ -43,8 +56,58 @@ public class TankZombieAttackCollider : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter(Collision collision)
+    /// <summary>
+    /// Handles collisions with zombie targets
+    /// </summary>
+    /// <param name="other">Collider it collided with</param>
+    void OnTriggerEnter(Collider other)
     {
+        if (numArms == 0) return;
+        GameObject hit = other.gameObject;
+        ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
         
+        if (hits.Contains(hit) || hitTarget == null) return;
+        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // did't hit in the cylinder part
+        
+        float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +
+            Mathf.Pow(hit.transform.position.z - transform.position.z, 2));
+        //Debug.Log($"Trigger entered {hit} {hitTarget} {distToCenter} {innerRadius} {outerRadius}");
+        if ((distToCenter >= innerRadius && distToCenter <= outerRadius) || // already in between
+            (distToCenter < innerRadius && distToCenter + hitTarget.Radius >= innerRadius) || // check inner edge
+            (distToCenter > outerRadius && distToCenter - hitTarget.Radius <= outerRadius)) // check outer edge
+        {
+            Debug.Log("(Enter) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
+            hits.Add(hit);
+            hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
+        }
+
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (numArms == 0) return;
+        GameObject hit = other.gameObject;
+        ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
+
+        if (hits.Contains(hit) || hitTarget == null) return;
+        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // did't hit in the cylinder part
+
+        float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +
+            Mathf.Pow(hit.transform.position.z - transform.position.z, 2));
+        //Debug.Log($"Trigger entered {hit} {hitTarget} {distToCenter} {innerRadius} {outerRadius}");
+        if ((distToCenter >= innerRadius && distToCenter <= outerRadius) || // already in between
+            (distToCenter < innerRadius && distToCenter + hitTarget.Radius >= innerRadius) || // check inner edge
+            (distToCenter > outerRadius && distToCenter - hitTarget.Radius <= outerRadius)) // check outer edge
+        {
+            Debug.Log("(Stay) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
+            hits.Add(hit);
+            hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
+        }
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(transform.position, new Vector3(1, height, 1));
     }
 }

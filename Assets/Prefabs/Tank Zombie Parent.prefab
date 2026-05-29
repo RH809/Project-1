@@ -83,8 +83,8 @@ MonoBehaviour:
   attackCooldown: 4
   disableMovement: 1
   tankZombieAttack: {fileID: 2172975992671019524, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
-  directionOffset: -1
-  yOffset: -0.9
+  directionOffset: 1
+  yOffset: -1.06
   moveCollider: {fileID: 815379770717727638}
 --- !u!114 &9137572958045931906
 MonoBehaviour:
@@ -101,9 +101,9 @@ MonoBehaviour:
   zombieAnimator: {fileID: 2924449509950619678}
   moveSpeed: 0.75
   rotationSpeed: 10
-  attackRange: 2
-  playerStoppingDist: 1
-  disruptorStoppingDist: 1
+  attackRange: 3
+  playerStoppingDist: 2.5
+  disruptorStoppingDist: 2.5
   maxKiteRange: 10
   kiteRangeThreshold: 3
   playerPriorityRange: 30

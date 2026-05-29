@@ -51,12 +51,13 @@ public class ZombieAttack : MonoBehaviour
         return num;
     }
 
-    public virtual void Attack()
+    public virtual bool Attack()
     {
-        if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return;
+        if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return false;
         attacking = true;
         cooldown = attackCooldown;
         zombieAnimator.SetTrigger(attackTriggerName);
+        return true;
     }
 
     public virtual void ZombieAttackStart()

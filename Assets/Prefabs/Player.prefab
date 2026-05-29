@@ -1335,7 +1335,7 @@ PrefabInstance:
       addedObject: {fileID: 5246923091890705108}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8336101510885758476}
+      addedObject: {fileID: 5932398607630681951}
   m_SourcePrefab: {fileID: 100100000, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
 --- !u!4 &1588968357102363306 stripped
 Transform:
@@ -1443,6 +1443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   Camera: {fileID: 0}
   Health: {fileID: 0}
+  Movement: {fileID: 0}
 --- !u!114 &1861507916033701773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,6 +1461,7 @@ MonoBehaviour:
   leftShoulder: {fileID: 2674490599965099398}
   rightShoulder: {fileID: 1588968357102363306}
   aimAmount: 1
+  enableCameraLock: 0
   sensitivity: 60
   maxYRotation: 55
   minYRotation: -65
@@ -1480,7 +1482,7 @@ MonoBehaviour:
   walkSpeed: 3
   backwardMultiplier: 0.6
   sidewaysMultiplier: 0.75
-  jumpForce: 5
+  jumpForce: 4.5
   groundCheck: {fileID: 7996358824361159185}
   groundCheckRadius: 0.2
   groundMask:
@@ -1561,7 +1563,7 @@ MonoBehaviour:
   regenRate: 1
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}
---- !u!114 &8336101510885758476
+--- !u!114 &5932398607630681951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1570,11 +1572,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6125967248805130087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61ca226ea3a3a4645b59f854cc6e5d73, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2297121ce52cb42ae0603830f64292, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ZombieTarget
-  offset: {x: 0, y: 0.3, z: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerZombieTarget
+  offset: {x: 0, y: 0, z: 0}
   radius: 0.25
+  bottomOffset: {x: 0, y: -1.336, z: 0}
+  jumpBottomOffset: {x: 0, y: -0.95, z: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

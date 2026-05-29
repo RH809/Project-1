@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private bool jumping = false;
     private bool grounded = false;
 
+    public bool IsJumping { get => jumping; }
+
     private Rigidbody rb;
     void Awake()
     {
