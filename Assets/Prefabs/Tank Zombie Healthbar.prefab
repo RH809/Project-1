@@ -213,7 +213,7 @@ RectTransform:
   m_GameObject: {fileID: 6824034527116237848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.76665, y: 1.275, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6189084463979022772}
@@ -292,4 +292,4 @@ MonoBehaviour:
   fill: {fileID: 3965932440834160210}
   minColor: {r: 1, g: 0, b: 0, a: 1}
   maxColor: {r: 0.23755479, g: 1, b: 0, a: 1}
-  offset: {x: 0, y: 3, z: 0}
+  offset: {x: 0, y: 2.05, z: 0}

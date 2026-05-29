@@ -9,6 +9,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private GameObject[] constructTargets;
     [SerializeField] private GameObject regularZombie;
     [SerializeField] private GameObject miniZombie;
+    [SerializeField] private GameObject tankZombie;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +21,10 @@ public class ZombieSpawner : MonoBehaviour
         if (Input.GetKeyDown("k"))
         {
             SpawnMiniZombie();
+        }
+        if (Input.GetKeyDown("j"))
+        {
+            SpawnTankZombie();
         }
     }
 
@@ -46,6 +51,15 @@ public class ZombieSpawner : MonoBehaviour
     void SpawnMiniZombie()
     {
         GameObject newZombie = Instantiate(miniZombie, transform.position, transform.rotation);
+        newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+    }
+
+    /// <summary>
+    /// Spawns a tank zombie.
+    /// </summary>
+    void SpawnTankZombie()
+    {
+        GameObject newZombie = Instantiate(tankZombie, transform.position, transform.rotation);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
     }
 }

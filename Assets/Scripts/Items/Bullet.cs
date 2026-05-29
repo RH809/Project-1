@@ -41,12 +41,14 @@ public class Bullet : MonoBehaviour
         if (overlaps.Length > 0) {
             // Find the collision that happened closest to the previous position along the path
             Collider closest = overlaps[0];
-            Vector3 closestDist = currentPos = closest.ClosestPoint(currentPos);
+            Vector3 closestDist = closest.ClosestPoint(currentPos);
             foreach (var c in overlaps)
             {
                 Vector3 hitPoint = c.ClosestPoint(currentPos);
                 Vector3 hitDist = currentPos - hitPoint;
-                if (hitDist.magnitude < closestDist.magnitude) {
+                Debug.Log("Bullet Collision: " + c.gameObject + " " + hitDist.magnitude + " " + closestDist.magnitude);
+                if (hitDist.magnitude < closestDist.magnitude)
+                {
                     closest = c;
                     closestDist = hitDist;
                 }
@@ -61,12 +63,6 @@ public class Bullet : MonoBehaviour
         }
         //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
-
-    /*
-    void OnCollisionEnter(Collision collision) {
-        Collide(collision.collider.gameObject, collision.GetContact(0).point);
-    }
-    */
 
     /// <summary>
     /// Handles the collision with another GameObject.

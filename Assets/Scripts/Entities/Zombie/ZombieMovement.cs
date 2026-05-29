@@ -12,7 +12,7 @@ public class ZombieMovement : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] protected float rotationSpeed;
     [SerializeField] protected float attackRange;
     [SerializeField] private float playerStoppingDist;
     [SerializeField] private float disruptorStoppingDist;
@@ -26,7 +26,7 @@ public class ZombieMovement : MonoBehaviour
     private Quaternion headBaseRotation;
 
     protected ZombieAttack attack;
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
     
     protected GameObject player;
@@ -35,7 +35,7 @@ public class ZombieMovement : MonoBehaviour
     protected GameObject target;
     protected ZombieTarget zombieTarget;
 
-    private bool initialized = false; 
+    protected bool initialized = false; 
     protected bool moveEnabled = true;
     private bool wasMoving = false;
 
@@ -147,6 +147,7 @@ public class ZombieMovement : MonoBehaviour
                     rotationSpeed * Time.fixedDeltaTime
                 )
             );
+            Debug.Log("Rotating rigidbody " + rb.rotation);
         }
         Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
         Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
@@ -154,7 +155,7 @@ public class ZombieMovement : MonoBehaviour
         
     }
 
-    protected void LateUpdate()
+    protected virtual void LateUpdate()
     {
         // rotate arms and head to point toward target
         if (zombieTarget)

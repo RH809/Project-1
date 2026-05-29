@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1361951820004892501
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.99837
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14200002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.44
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_Name
+      value: TankZombieAttackCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8371207598627973359}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3286397247815519344}
+  m_SourcePrefab: {fileID: 100100000, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+--- !u!1 &2172975992671019524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
+  m_PrefabInstance: {fileID: 1361951820004892501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &8371207598627973359
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172975992671019524}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 58.97932
+  m_Height: 181.07631
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5534649, z: 0}
+--- !u!114 &3286397247815519344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172975992671019524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05c2005f1c853141a3fdd54b6ac991b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankZombieAttackCollider
+  endScale: {x: 0.075, y: 0, z: 0.075}
+  duration: 1
+  startOuterRadius: 0
+  startInnerRadius: 0

@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the attack collider for the tank zombie variant.
+/// </summary>
+
 using System.Collections;
 using UnityEngine;
 

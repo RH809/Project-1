@@ -56,7 +56,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.52997935
-        functionName: NewEvent
+        functionName: ZombieAttackStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -69,8 +69,104 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TankZombieLeftHip
+        weight: 1
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg
+        weight: 1
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee
+        weight: 1
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg
+        weight: 1
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg/TankZombieLeftAnkle
+        weight: 1
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg/TankZombieLeftAnkle/TankZombieLeftFoot
+        weight: 1
+      - path: TankZombieLeftShoulder
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle1
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle1/TankZombieLeftFinger1
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle2
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle2/TankZombieLeftFinger2
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle3
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle3/TankZombieLeftFinger3
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle4
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle4/TankZombieLeftFinger4
+        weight: 1
+      - path: TankZombieNeck
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead/TankZombieLeftEye
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead/TankZombieLeftEyebrow
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead/TankZombieMouth
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead/TankZombieRightEye
+        weight: 1
+      - path: TankZombieNeck/TankZombieHead/TankZombieRightEyebrow
+        weight: 1
+      - path: TankZombieRightHip
+        weight: 1
+      - path: TankZombieRightHip/TankZombieRightUpperLeg
+        weight: 1
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee
+        weight: 1
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg
+        weight: 1
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg/TankZombieRightAnkle
+        weight: 1
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg/TankZombieRightAnkle/TankZombieRightFoot
+        weight: 1
+      - path: TankZombieRightShoulder
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle1
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle1/TankZombieRightFinger1
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle2
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle2/TankZombieRightFinger2
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle3
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle3/TankZombieRightFinger3
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle4
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle4/TankZombieRightFinger4
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
@@ -98,8 +194,104 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TankZombieLeftHip
+        weight: 0
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg
+        weight: 0
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee
+        weight: 0
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg
+        weight: 0
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg/TankZombieLeftAnkle
+        weight: 0
+      - path: TankZombieLeftHip/TankZombieLeftUpperLeg/TankZombieLeftKnee/TankZombieLeftLowerLeg/TankZombieLeftAnkle/TankZombieLeftFoot
+        weight: 0
+      - path: TankZombieLeftShoulder
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle1
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle1/TankZombieLeftFinger1
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle2
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle2/TankZombieLeftFinger2
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle3
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle3/TankZombieLeftFinger3
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle4
+        weight: 1
+      - path: TankZombieLeftShoulder/TankZombieLeftUpperArm/TankZombieLeftElbow/TankZombieLeftLowerArm/TankZombieLeftWrist/TankZombieLeftHand/TankZombieLeftKnuckle4/TankZombieLeftFinger4
+        weight: 1
+      - path: TankZombieNeck
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead/TankZombieLeftEye
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead/TankZombieLeftEyebrow
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead/TankZombieMouth
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead/TankZombieRightEye
+        weight: 0
+      - path: TankZombieNeck/TankZombieHead/TankZombieRightEyebrow
+        weight: 0
+      - path: TankZombieRightHip
+        weight: 0
+      - path: TankZombieRightHip/TankZombieRightUpperLeg
+        weight: 0
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee
+        weight: 0
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg
+        weight: 0
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg/TankZombieRightAnkle
+        weight: 0
+      - path: TankZombieRightHip/TankZombieRightUpperLeg/TankZombieRightKnee/TankZombieRightLowerLeg/TankZombieRightAnkle/TankZombieRightFoot
+        weight: 0
+      - path: TankZombieRightShoulder
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle1
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle1/TankZombieRightFinger1
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle2
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle2/TankZombieRightFinger2
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle3
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle3/TankZombieRightFinger3
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle4
+        weight: 1
+      - path: TankZombieRightShoulder/TankZombieRightUpperArm/TankZombieRightElbow/TankZombieRightLowerArm/TankZombieRightWrist/TankZombieRightHand/TankZombieRightKnuckle4/TankZombieRightFinger4
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 0

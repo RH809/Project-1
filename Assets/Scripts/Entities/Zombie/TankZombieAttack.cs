@@ -8,6 +8,7 @@ public class TankZombieAttack : ZombieAttack
     [SerializeField] private GameObject tankZombieAttack;
     [SerializeField] private float directionOffset;
     [SerializeField] private float yOffset;
+    [SerializeField] private Collider moveCollider;
 
     /// <summary>
     /// Instantiate the attack GameObject when the animation reaches the attack point
@@ -22,5 +23,11 @@ public class TankZombieAttack : ZombieAttack
     public override void ZombieAttackEnd()
     {
         attacking = false;
+    }
+
+    void LateUpdate()
+    {
+        // lock rotation every frame
+        moveCollider.transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
     }
 }

@@ -48,3 +48,4 @@ MonoBehaviour:
   - {fileID: 0}
   regularZombie: {fileID: 4242966883076387515, guid: 716046a5180d2264297883af731d2fb8, type: 3}
   miniZombie: {fileID: 1664181393097271400, guid: 0955b5bbc11a1994abd69fc0a7556a06, type: 3}
+  tankZombie: {fileID: 0}
