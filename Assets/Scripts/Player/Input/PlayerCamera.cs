@@ -12,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private Transform leftShoulder;
     [SerializeField] private Transform rightShoulder;
     [SerializeField] private float aimAmount = 0.6f;
+    [SerializeField] private bool enableCameraLock;
 
     [SerializeField] private float sensitivity = 60f;
     [SerializeField] private float maxYRotation = 60f;
@@ -57,7 +58,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (lockedCamera) return;
+        if (lockedCamera && enableCameraLock) return;
         float mouseX = lookInput.x * sensitivity * Time.deltaTime;
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 
