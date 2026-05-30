@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalScale.y
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.018999994
+      value: 2.8465528
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22472
+      value: -0.4999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.8851
+      value: -3.8202374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994a7b7a20302c745a221b250e622a08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05c2005f1c853141a3fdd54b6ac991b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankZombieAttackCollider
+  startScale: {x: 0.003, y: 0.01, z: 0.003}
   endScale: {x: 0.075, y: 0.01, z: 0.075}
-  duration: 1
-  startOuterRadius: 0.59
-  startInnerRadius: 0.475
+  duration: 1.2
+  startOuterRadius: 0.177
+  startInnerRadius: 0.143
   height: 0.62
   groundY: -0.5
   damage: 12.5

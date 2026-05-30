@@ -227,8 +227,8 @@ Transform:
   m_GameObject: {fileID: 18571497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.372, y: -0.018, z: -3.511}
-  m_LocalScale: {x: 1.18, y: 0.31, z: 1.18}
+  m_LocalPosition: {x: 2.846553, y: -0.018, z: -3.820237}
+  m_LocalScale: {x: 0.354, y: 0.31, z: 0.354}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -556,6 +556,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &632096996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.8465528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.8202374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543651153377228990, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172975992671019524, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
+      propertyPath: m_Name
+      value: TankZombieAttackCollider
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 603ed5034656c564fbcec3e9510e7c1d, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,3 +1892,4 @@ SceneRoots:
   - {fileID: 6785301236506808055}
   - {fileID: 1007615607332124411}
   - {fileID: 18571501}
+  - {fileID: 632096996}

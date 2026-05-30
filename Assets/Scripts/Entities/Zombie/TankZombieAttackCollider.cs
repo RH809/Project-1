@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class TankZombieAttackCollider : MonoBehaviour
 {
+    [SerializeField] private Vector3 startScale;
     [SerializeField] private Vector3 endScale;
     [SerializeField] private float duration;
     [SerializeField] private float startOuterRadius;
@@ -37,7 +38,7 @@ public class TankZombieAttackCollider : MonoBehaviour
     /// </summary>
     IEnumerator Grow()
     {
-        Vector3 start = transform.localScale;
+        transform.localScale = startScale;
         float t = 0f;
 
         while (t < duration)
@@ -45,10 +46,10 @@ public class TankZombieAttackCollider : MonoBehaviour
             t += Time.deltaTime;
             float lerp = t / duration;
 
-            transform.localScale = Vector3.Lerp(start, endScale, lerp);
+            transform.localScale = Vector3.Lerp(startScale, endScale, lerp);
             // Calculate current radii
-            outerRadius = startOuterRadius * transform.localScale.x / start.x;
-            innerRadius = startInnerRadius * transform.localScale.x / start.x;
+            outerRadius = startOuterRadius * transform.localScale.x / startScale.x;
+            innerRadius = startInnerRadius * transform.localScale.x / startScale.x;
 
             yield return null;
         }
@@ -67,7 +68,7 @@ public class TankZombieAttackCollider : MonoBehaviour
         ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
         
         if (hits.Contains(hit) || hitTarget == null) return;
-        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // did't hit in the cylinder part
+        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // didn't hit in the cylinder part
         
         float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +
             Mathf.Pow(hit.transform.position.z - transform.position.z, 2));
