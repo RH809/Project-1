@@ -1314,6 +1314,9 @@ PrefabInstance:
       addedObject: {fileID: 4542021642725296381}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4013281475357573766}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1861507916033701773}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
@@ -1327,6 +1330,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8800698382623858628}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5246923091890705108}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5932398607630681951}
   m_SourcePrefab: {fileID: 100100000, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
 --- !u!4 &1588968357102363306 stripped
 Transform:
@@ -1386,10 +1395,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3776
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1417,9 +1426,24 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 25.102968
-  m_Height: 179.81856
+  m_Height: 177.6277
   m_Direction: 1
-  m_Center: {x: 0, y: -45.899166, z: 2.7139552}
+  m_Center: {x: 0, y: -44.803738, z: 2.7139544}
+--- !u!114 &4013281475357573766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a74ba3db87ef9c44832da8949eece6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  Camera: {fileID: 0}
+  Health: {fileID: 0}
+  Movement: {fileID: 0}
 --- !u!114 &1861507916033701773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1461,7 @@ MonoBehaviour:
   leftShoulder: {fileID: 2674490599965099398}
   rightShoulder: {fileID: 1588968357102363306}
   aimAmount: 1
+  enableCameraLock: 0
   sensitivity: 60
   maxYRotation: 55
   minYRotation: -65
@@ -1457,7 +1482,7 @@ MonoBehaviour:
   walkSpeed: 3
   backwardMultiplier: 0.6
   sidewaysMultiplier: 0.75
-  jumpForce: 5
+  jumpForce: 4.5
   groundCheck: {fileID: 7996358824361159185}
   groundCheckRadius: 0.2
   groundMask:
@@ -1496,6 +1521,7 @@ MonoBehaviour:
   swordTip: {fileID: 1973501209467393100}
   swordBase: {fileID: 3365748411420141106}
   radius: 0.15
+  damage: 20
   attackMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1520,6 +1546,39 @@ MonoBehaviour:
   defaultRange: 5
   disruptors:
   - {fileID: 0}
+--- !u!114 &5246923091890705108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  baseRegen: 0.5
+  regenRate: 1
+  hasHealthbar: 0
+  healthbarPrefab: {fileID: 0}
+--- !u!114 &5932398607630681951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2297121ce52cb42ae0603830f64292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerZombieTarget
+  offset: {x: 0, y: 0, z: 0}
+  radius: 0.25
+  bottomOffset: {x: 0, y: -1.336, z: 0}
+  jumpBottomOffset: {x: 0, y: -0.95, z: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

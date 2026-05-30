@@ -1,8 +1,13 @@
+/// <summary>
+/// This script handles the movement and collision of the bullets.
+/// </summary>
+
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private int damage;
     [SerializeField] private float maxRange = 50f;
     [SerializeField] private float bulletRadius = 0.01f;
     [SerializeField] private LayerMask collisionMask;
@@ -34,13 +39,16 @@ public class Bullet : MonoBehaviour
             collisionMask
         );
         if (overlaps.Length > 0) {
+            // Find the collision that happened closest to the previous position along the path
             Collider closest = overlaps[0];
-            Vector3 closestDist = currentPos = closest.ClosestPoint(currentPos);
+            Vector3 closestDist = closest.ClosestPoint(currentPos);
             foreach (var c in overlaps)
             {
                 Vector3 hitPoint = c.ClosestPoint(currentPos);
                 Vector3 hitDist = currentPos - hitPoint;
-                if (hitDist.magnitude < closestDist.magnitude) {
+                Debug.Log("Bullet Collision: " + c.gameObject + " " + hitDist.magnitude + " " + closestDist.magnitude);
+                if (hitDist.magnitude < closestDist.magnitude)
+                {
                     closest = c;
                     closestDist = hitDist;
                 }
@@ -50,26 +58,33 @@ public class Bullet : MonoBehaviour
         
         rb.MovePosition(newPos);
         Vector3 dist = rb.position - startPos;
-        if (dist.magnitude >= maxRange) {
+        if (dist.magnitude >= maxRange) { // Destory if past max range
             Destroy(gameObject);
         }
         //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
-    void OnCollisionEnter(Collision collision) {
-        Collide(collision.collider.gameObject, collision.GetContact(0).point);
-    }
-
+    /// <summary>
+    /// Handles the collision with another GameObject.
+    /// </summary>
+    /// <param name="other">The GameObject it collided with</param>
+    /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
         foreach (GameObject obj in disruptors)
         {
-            // Handle different hitbox of dead disruptors
-            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > 0.25)
+            // Handle lower hitbox of dead disruptors
+            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight)
             {
                 return;
             }
         }
         Debug.Log("Collided with " + other);
+        ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
+        if (bodyPart != null)
+        {
+            // If it hit a zombie's body part, deal the damage
+            bodyPart.TakeDamage(damage, gameObject);
+        }
         Destroy(gameObject);
     }
 }

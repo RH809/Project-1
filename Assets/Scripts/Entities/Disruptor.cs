@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// This script handles the dying and respawning of the disruptor.
+/// </summary>
+
 public class Disruptor : MonoBehaviour
 {
     [SerializeField] private Animator disruptorAnimator;

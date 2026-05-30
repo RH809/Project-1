@@ -1,3 +1,7 @@
+/// <summary>
+/// This script handles the collision detection of the sword swing.
+/// </summary>
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -7,6 +11,7 @@ public class SwordHitbox : MonoBehaviour
     [SerializeField] private Transform swordBase;
 
     [SerializeField] private float radius = 0.15f;
+    [SerializeField] private float damage;
 
     private PlayerCamera playerCamera;
 
@@ -15,7 +20,7 @@ public class SwordHitbox : MonoBehaviour
     private bool inAttackSwing = false;
     [SerializeField] private LayerMask attackMask;
 
-    private HashSet<Collider> hits;
+    private HashSet<GameObject> hits;
 
     void Start()
     {
@@ -23,7 +28,7 @@ public class SwordHitbox : MonoBehaviour
         //prevBasePos = swordBase.position;
         playerCamera = GetComponent<PlayerCamera>();
 
-        hits = new HashSet<Collider>();
+        hits = new HashSet<GameObject>();
     }
 
     void LateUpdate()
@@ -58,8 +63,12 @@ public class SwordHitbox : MonoBehaviour
 
         foreach (var c in overlaps)
         {
-            if (!hits.Contains(c)) {
-                hits.Add(c);
+            // Check if collider is a zombie body part
+            ZombieBodyPart bodyPart = c.gameObject.GetComponent<ZombieBodyPart>();
+            if (bodyPart != null && !hits.Contains(bodyPart.Zombie)) {
+
+                hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
+                bodyPart.TakeDamage(damage, gameObject);
                 Debug.Log("Hit: " + c.name);
             }
         }
@@ -74,7 +83,7 @@ public class SwordHitbox : MonoBehaviour
         //prevTipPos = swordTip.position;
         //prevBasePos = swordBase.position;
         inAttackSwing = true;
-        hits.Clear();
+        hits.Clear(); // reset hit list
     }
 
     public void SwordAttackEnd() {
