@@ -18,11 +18,4 @@ public class PlayerZombieTarget : ZombieTarget
             return base.GetHitboxBottom();
         }
     }
-
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GetComponent<Rigidbody>().position + jumpBottomOffset, 0.3f);
-    }
 }

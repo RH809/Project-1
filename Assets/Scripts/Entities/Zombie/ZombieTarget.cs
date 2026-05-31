@@ -25,5 +25,9 @@ public class ZombieTarget : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(GetHitboxBottom(), 0.3f);
+        Gizmos.color = Color.orange;
+        Gizmos.DrawWireSphere(GetZombieTarget(), 0.2f);
+        Gizmos.color = Color.pink;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

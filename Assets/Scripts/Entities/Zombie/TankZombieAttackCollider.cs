@@ -89,8 +89,14 @@ public class TankZombieAttackCollider : MonoBehaviour
         if (numArms == 0) return;
         GameObject hit = other.gameObject;
         ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
+        if (hitTarget == null)
+        {
+            hitTarget = hit.GetComponentInParent<ZombieTarget>();
+            if (hitTarget == null) return;
+            hit = hitTarget.gameObject;
+        }
 
-        if (hits.Contains(hit) || hitTarget == null) return;
+        if (hits.Contains(hit)) return;
         if (hitTarget.GetHitboxBottom().y > height + groundY) return; // did't hit in the cylinder part
 
         float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +

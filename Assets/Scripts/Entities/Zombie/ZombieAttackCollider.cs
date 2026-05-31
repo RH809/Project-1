@@ -27,6 +27,13 @@ public class ZombieAttackCollider : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         GameObject hit = other.gameObject;
+        ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
+        if (hitTarget == null)
+        {
+            hitTarget = hit.GetComponentInParent<ZombieTarget>(); // get from parent as well in the case of defenders
+            if (hitTarget == null) return;
+            hit = hitTarget.gameObject;
+        }
         Debug.Log("Hit: " + hit);
         if (!hits.Contains(hit))
         {
