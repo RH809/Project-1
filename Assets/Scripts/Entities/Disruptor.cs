@@ -1,56 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// This script handles the dying and respawning of the disruptor.
 /// </summary>
 
-public class Disruptor : MonoBehaviour
+public class Disruptor : Construct
 {
-    [SerializeField] private Animator disruptorAnimator;
-
-    private Health health;
-
-    private bool alive = true;
-    public bool isAlive { get => alive; }
-
-
-    void Start()
+    [SerializeField] private float respawnTime;
+    protected override void Die(HealthContext healthContext)
     {
-        health = GetComponent<Health>();
+        base.Die(healthContext);
+        StartCoroutine(RespawnTime());
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown("t"))
-        {
-            if (alive) health.TakeDamage(100, gameObject);
-            else Respawn();
-        }
+    IEnumerator RespawnTime() {
+        yield return new WaitForSeconds(respawnTime);
+        if (!alive) Respawn();
     }
 
-    void OnEnable()
-    {
-        Health.OnDie += Die;
-    }
-
-    void OnDisable()
-    {
-        Health.OnDie -= Die;
-    }
-
-    void Die(HealthContext healthContext)
-    {
-        if (healthContext.target == gameObject)
-        {
-            disruptorAnimator.SetTrigger("Die");
-            alive = false;
-        }
-    }
-
-    void Respawn()
-    {
-        disruptorAnimator.SetTrigger("Respawn");
-        health.Respawn();
-        alive = true;
-    }
 }

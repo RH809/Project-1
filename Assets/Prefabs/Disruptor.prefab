@@ -210,7 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd13f3cdd77b930408f80fe7b6ca3da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Disruptor
-  disruptorAnimator: {fileID: 849592895952854769}
+  animator: {fileID: 849592895952854769}
+  respawnTime: 120
 --- !u!114 &2002253992147722255
 MonoBehaviour:
   m_ObjectHideFlags: 0
