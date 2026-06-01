@@ -789,6 +789,7 @@ MonoBehaviour:
   attackRange: 0.5
   playerStoppingDist: 0.6
   disruptorStoppingDist: 1.4
+  defenderStoppingDist: 1.2
   maxKiteRange: 20
   kiteRangeThreshold: 3
   playerPriorityRange: 30
@@ -807,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a60d07608bc8f34f834397f994a93b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
+  type: 0
 --- !u!114 &8197917337458359528
 MonoBehaviour:
   m_ObjectHideFlags: 0

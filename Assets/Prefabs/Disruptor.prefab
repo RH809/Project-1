@@ -211,7 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Disruptor
   animator: {fileID: 849592895952854769}
-  respawnTime: 120
+  active: 0
+  respawnTime: 3
+  defender: {fileID: 0}
 --- !u!114 &2002253992147722255
 MonoBehaviour:
   m_ObjectHideFlags: 0

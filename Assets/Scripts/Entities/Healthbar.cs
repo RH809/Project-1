@@ -15,6 +15,8 @@ public class Healthbar : MonoBehaviour
 
     private Health health;
     private GameObject entity;
+    private bool isConstruct;
+    private Construct construct;
 
     /// <summary>
     /// Initializes the values of the healthbar based on the given Health component.
@@ -25,6 +27,8 @@ public class Healthbar : MonoBehaviour
     {
         this.health = health;
         this.entity = entity;
+        construct =  entity.GetComponent<Construct>();
+        isConstruct = construct != null;
         slider.minValue = 0;
         slider.maxValue = health.MaxHealth;
         slider.value = health.MaxHealth;
@@ -32,6 +36,10 @@ public class Healthbar : MonoBehaviour
 
     void Update()
     {
+        if (isConstruct)
+        {
+            gameObject.SetActive(construct.IsActive);
+        }
         if (health)
         {
             // Update color and slide values

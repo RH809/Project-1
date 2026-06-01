@@ -71,7 +71,7 @@ public class Shoot : MonoBehaviour
             foreach (GameObject obj in disruptors)
             {
                 // Handle lower hitbox of dead disruptors
-                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().isAlive && hit.point.y > adjustedDisruptorHeight)
+                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight)
                 {
                     bool hitSomething = true;
                     do {

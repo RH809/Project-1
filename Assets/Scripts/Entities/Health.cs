@@ -26,6 +26,7 @@ public class Health : MonoBehaviour
     public static event Action<HealthContext> OnHeal;
     public static event Action<HealthContext> OnTakeDamage;
     public static event Action<HealthContext> OnDie;
+    public static event Action<HealthContext> OnRespawn;
 
     private HealthContext healthContext;
     void Start()
@@ -96,6 +97,8 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         regenTimer = regenRate;
         ShowHealthBar();
+        healthContext.source = gameObject;
+        OnRespawn?.Invoke(healthContext);
     }
 
     /// <summary>
