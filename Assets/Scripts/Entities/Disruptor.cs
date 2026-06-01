@@ -4,7 +4,9 @@ using UnityEngine;
 /// <summary>
 /// This script handles the dying and respawning of the disruptor.
 /// </summary>
-
+/// <summary>
+/// This script handles the behavior for the disruptor construct.
+/// </summary>
 public class Disruptor : Construct
 {
     [SerializeField] private float respawnTime;

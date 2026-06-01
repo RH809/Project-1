@@ -43,6 +43,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject newZombie = Instantiate(regularZombie, transform.position, transform.rotation);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+        DefenderManager.Instance.AddToZombieList(newZombie);
     }
 
     /// <summary>
@@ -52,6 +53,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject newZombie = Instantiate(miniZombie, transform.position, transform.rotation);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+        DefenderManager.Instance.AddToZombieList(newZombie);
     }
 
     /// <summary>
@@ -61,5 +63,6 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject newZombie = Instantiate(tankZombie, transform.position, transform.rotation);
         newZombie.GetComponentInChildren<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+        DefenderManager.Instance.AddToZombieList(newZombie);
     }
 }

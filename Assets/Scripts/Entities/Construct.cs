@@ -1,3 +1,6 @@
+/// <summary>
+/// This script is the abstract parent for all constructs, which handles the basic dying/respawning logic.
+/// </summary>
 using UnityEngine;
 
 public abstract class Construct : MonoBehaviour

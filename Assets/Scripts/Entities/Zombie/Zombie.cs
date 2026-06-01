@@ -6,6 +6,16 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    public enum ZombieType
+    {
+        TANK,
+        REGULAR,
+        MINI
+    }
+
+    [SerializeField] private ZombieType type;
+    public ZombieType Type { get => type; }
+
     private Health health;
     private Vector3 contactPos;
     void Start()
