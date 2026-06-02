@@ -10,9 +10,11 @@ public class Defender : Construct
     [SerializeField] protected float damageIncrement;
     [SerializeField] protected float range;
 
+    [SerializeField] private GameObject zap;
     [SerializeField] protected Transform shooter;
 
-    protected GameObject target;
+    protected GameObject targetObject;
+    protected DefenderTarget target;
     protected float currentDamage;
     protected float currentCooldown;
 
@@ -22,7 +24,7 @@ public class Defender : Construct
         if (alive)
         {
             cooldown -= Time.deltaTime;
-            if (target == null || !target.GetComponent<Health>().IsAlive)
+            if (targetObject == null || !targetObject.GetComponent<Health>().IsAlive)
             {
                 ChooseTarget();
                 currentDamage = baseDamage; // reset damage
@@ -38,11 +40,14 @@ public class Defender : Construct
 
     protected void ChooseTarget()
     {
-        target = DefenderManager.Instance.GetDefenderTarget(transform.position, range);
+        targetObject = DefenderManager.Instance.GetDefenderTarget(transform.position, range);
+        target = targetObject.GetComponent<DefenderTarget>();
     }
 
     protected void Shoot()
     {
+        GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
+        newZap.GetComponent<DefenderZap>().Initialize(target, currentDamage);
         Debug.Log("Defender shooting...");
     }
 
@@ -51,7 +56,7 @@ public class Defender : Construct
         if (target != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(shooter.position, shooter.position - target.transform.position);
+            Gizmos.DrawRay(shooter.position, shooter.position - target.GetDefenderTarget());
         }
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);

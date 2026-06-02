@@ -1,16 +1,20 @@
+/// <summary>
+/// This script gives information about the defender's target.
+/// </summary>
 using UnityEngine;
 
 public class DefenderTarget : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Vector3 offset;
+
+    public Vector3 GetDefenderTarget()
     {
-        
+        return transform.position + offset;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(GetDefenderTarget(), 0.2f);
     }
 }
