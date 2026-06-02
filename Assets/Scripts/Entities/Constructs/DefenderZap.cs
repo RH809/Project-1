@@ -3,30 +3,34 @@ using UnityEngine;
 public class DefenderZap : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private Rigidbody rb;
+    private GameObject targetObject;
     private DefenderTarget target;
+    private Health targetHealth;
     private float damage;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
 
-    public void Initialize(DefenderTarget target, float damage)
+    public void Initialize(GameObject targetObject, DefenderTarget target, float damage)
     {
+        this.targetObject = targetObject;
+        targetHealth = targetObject.GetComponent<Health>();
         this.target = target;
         this.damage = damage;
     }
 
     void Update()
     {
-        if (target != null)
+        if (targetObject != null && targetHealth.IsAlive && target != null)
         {
-            Vector3 direction = target.GetDefenderTarget() - rb.position;
+            Vector3 direction = target.GetDefenderTarget() - transform.position;
+            if (direction.magnitude <= speed * Time.fixedDeltaTime)
+            {
+                transform.position = target.GetDefenderTarget();
+                targetHealth.TakeDamage(damage, gameObject);
+                Destroy(gameObject);
+            }
+            else
+            {
+                transform.position += direction.normalized * speed * Time.fixedDeltaTime;
+            }
         }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-    
     }
 }

@@ -1558,8 +1558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  baseRegen: 0.5
+  maxHealth: 500
+  baseRegen: 1
   regenRate: 1
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}

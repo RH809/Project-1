@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class DefenderTarget : MonoBehaviour
 {
-    [SerializeField] private Vector3 offset;
+    [SerializeField] protected Vector3 offset;
 
-    public Vector3 GetDefenderTarget()
+    public virtual Vector3 GetDefenderTarget()
     {
         return transform.position + offset;
     }

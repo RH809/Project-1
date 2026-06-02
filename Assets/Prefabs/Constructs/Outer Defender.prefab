@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 225873035444110108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 233, z: 0}
+  m_LocalPosition: {x: 0, y: 240, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,10 +434,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Defender
   animator: {fileID: 3665873463860833517}
   active: 1
-  cooldown: 0
-  baseDamage: 0
-  damageIncrement: 0
-  range: 0
+  cooldown: 1.5
+  baseDamage: 30
+  damageIncrement: 5
+  range: 3.5
+  zap: {fileID: 301558933894255715, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
   shooter: {fileID: 7495204314339394908}
 --- !u!114 &213697569703306852
 MonoBehaviour:

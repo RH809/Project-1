@@ -54,7 +54,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1728
+    m_Bits: 5824
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 2304
@@ -101,7 +101,7 @@ MonoBehaviour:
   zombieAnimator: {fileID: 2924449509950619678}
   moveSpeed: 0.75
   rotationSpeed: 10
-  attackRange: 3
+  attackRange: 2.75
   playerStoppingDist: 2.5
   disruptorStoppingDist: 2.5
   defenderStoppingDist: 2.5
@@ -360,6 +360,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3466226944465948142, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3953267526946902003}
+    - targetCorrespondingSourceObject: {fileID: 3466226944465948142, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 996247081621220844}
   m_SourcePrefab: {fileID: 100100000, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}
 --- !u!1 &82470774075695533 stripped
 GameObject:
@@ -379,6 +382,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankZombieAnimation
   tankZombieAttack: {fileID: 3148451196474547039}
+--- !u!114 &996247081621220844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82470774075695533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8056d3df1ac75c4685e2fb659e446af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankZombieDefenderTarget
+  offset: {x: 0, y: 0.9, z: 0}
 --- !u!4 &168217830675250102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3705297595731351541, guid: e039ece36de1fb843868bbed7ae63abb, type: 3}

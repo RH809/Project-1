@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4928705993353508950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 233, z: 0}
+  m_LocalPosition: {x: 0, y: 240, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -330,6 +330,7 @@ MonoBehaviour:
   baseDamage: 50
   damageIncrement: 7.5
   range: 4
+  zap: {fileID: 301558933894255715, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
   shooter: {fileID: 8653836031678101909}
 --- !u!114 &6841488813528128176
 MonoBehaviour:

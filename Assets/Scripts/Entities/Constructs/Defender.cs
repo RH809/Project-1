@@ -23,13 +23,13 @@ public class Defender : Construct
         base.Update();
         if (alive)
         {
-            cooldown -= Time.deltaTime;
+            currentCooldown -= Time.deltaTime;
             if (targetObject == null || !targetObject.GetComponent<Health>().IsAlive)
             {
                 ChooseTarget();
                 currentDamage = baseDamage; // reset damage
             }
-            else if (cooldown <= 0)
+            else if (currentCooldown <= 0)
             {
                 Shoot();
                 currentDamage += damageIncrement; // increase damage
@@ -41,13 +41,20 @@ public class Defender : Construct
     protected void ChooseTarget()
     {
         targetObject = DefenderManager.Instance.GetDefenderTarget(transform.position, range);
-        target = targetObject.GetComponent<DefenderTarget>();
+        if (targetObject != null)
+        {
+            target = targetObject.GetComponent<DefenderTarget>();
+            if (target == null) // for tank zombie
+            {
+                target = targetObject.GetComponentInChildren<DefenderTarget>();
+            }
+        }
     }
 
     protected void Shoot()
     {
         GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
-        newZap.GetComponent<DefenderZap>().Initialize(target, currentDamage);
+        newZap.GetComponent<DefenderZap>().Initialize(targetObject, target, currentDamage);
         Debug.Log("Defender shooting...");
     }
 
