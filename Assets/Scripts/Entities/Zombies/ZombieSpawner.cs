@@ -11,7 +11,10 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private GameObject miniZombie;
     [SerializeField] private GameObject tankZombie;
 
-    // Update is called once per frame
+    [SerializeField] private Construct disruptor;
+
+    private int disruptorDeaths = 0; // each disruptor death increases spawns
+
     void Update()
     {
         if (Input.GetKeyDown("l"))
@@ -25,6 +28,24 @@ public class ZombieSpawner : MonoBehaviour
         if (Input.GetKeyDown("j"))
         {
             SpawnTankZombie();
+        }
+    }
+
+    void OnEnable()
+    {
+        Health.OnDie += OnDisruptorDie;
+    }
+
+    void OnDisable()
+    {
+        Health.OnDie -= OnDisruptorDie;
+    }
+
+    void OnDisruptorDie(HealthContext healthContext)
+    {
+        if (healthContext.target.Equals(disruptor))
+        {
+            disruptorDeaths++;
         }
     }
 

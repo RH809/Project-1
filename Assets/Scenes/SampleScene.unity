@@ -679,6 +679,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       insertIndex: -1
       addedObject: {fileID: 838510205}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 838510208}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 838510207}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 838510206}
     - targetCorrespondingSourceObject: {fileID: 2647754956396441939, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       insertIndex: -1
       addedObject: {fileID: 838510199}
@@ -789,6 +798,54 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &838510206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838510202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ca226ea3a3a4645b59f854cc6e5d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieTarget
+  offset: {x: 0, y: 1.4, z: 0}
+  radius: 1.35
+  bottomOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &838510207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838510202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0680b9dec13a06d44b262c7568153266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Beacon
+  animator: {fileID: 838510205}
+  active: 0
+  innerDefenders: []
+  disruptors: []
+--- !u!114 &838510208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838510202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 5000
+  baseRegen: 2
+  regenRate: 1
+  hasHealthbar: 1
+  healthbarPrefab: {fileID: 6824034527116237848, guid: 3e736cb2785518f4aa04b6632491c81a, type: 3}
 --- !u!1 &853391783
 GameObject:
   m_ObjectHideFlags: 0
