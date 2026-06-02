@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls.Player.Jump.performed += OnJumpPerformed;
         playerControls.Player.Jump.canceled += OnJumpCanceled;
         playerControls.Enable();
+        Health.OnDie += PlayerDeath;
     }
 
     void OnDisable() {
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls.Player.Jump.performed -= OnJumpPerformed;
         playerControls.Player.Jump.canceled -= OnJumpCanceled;
         playerControls.Disable();
+        Health.OnDie -= PlayerDeath;
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx) {
@@ -129,6 +131,26 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.ResetTrigger("Jump Start");
             jumping = false;
         }
+    }
+
+    void PlayerDeath(HealthContext healthContext)
+    {
+        if (healthContext.target.Equals(gameObject))
+        {
+            StopMovement();
+        }
+    }
+
+    /// <summary>
+    /// Cancels all movement inputs
+    /// </summary>
+    void StopMovement()
+    {
+        Debug.Log("Stopping player movement on death");
+        jumpInput = false;
+        sprinting = false;
+        moving = false;
+        moveInput = Vector2.zero;
     }
 
 
