@@ -3,6 +3,7 @@ using UnityEngine;
 public class MiniZombieMovement : ZombieMovement
 {
     private Health targetHealth;
+    private Construct targetConstruct;
     protected override bool HandleAttack()
     {
         bool changedTarget = false;
@@ -15,6 +16,7 @@ public class MiniZombieMovement : ZombieMovement
             {
                 targetHealth = target.GetComponent<Health>();
                 zombieTarget = target.GetComponent<ZombieTarget>();
+                targetConstruct = target.GetComponent<Construct>();
             }
             if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
@@ -28,7 +30,7 @@ public class MiniZombieMovement : ZombieMovement
         }
         else
         {
-            if (!targetHealth.IsAlive || GetDistance(target) > attackRange + zombieTarget.Radius)
+            if (!targetHealth.IsAlive || (targetConstruct != null && !targetConstruct.IsActive) || GetDistance(target) > attackRange + zombieTarget.Radius)
             {
                 // Stop attack
                 //Debug.Log("Stopping mini zombie attack");

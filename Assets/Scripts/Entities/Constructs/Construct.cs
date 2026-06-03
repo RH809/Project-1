@@ -18,15 +18,21 @@ public abstract class Construct : MonoBehaviour
     protected virtual void Start()
     {
         health = GetComponent<Health>();
+        if (!active)
+        {
+            health.HideHealthbar();
+        }
     }
 
     protected virtual void Update()
     {
+        /*
         if (Input.GetKeyDown("t"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
             else Respawn(1);
         }
+        */
     }
 
     protected virtual void OnEnable()
@@ -41,7 +47,7 @@ public abstract class Construct : MonoBehaviour
 
     protected virtual void Die(HealthContext healthContext)
     {
-        if (healthContext.target == gameObject)
+        if (healthContext.target.Equals(gameObject))
         {
             animator.SetTrigger("Die");
             alive = false;
@@ -51,7 +57,22 @@ public abstract class Construct : MonoBehaviour
     protected virtual void Respawn(float maxHealthProportion)
     {
         animator.SetTrigger("Respawn");
-        health.Respawn(maxHealthProportion);
+        health.Respawn(maxHealthProportion, active);
         alive = true;
+    }
+
+    protected virtual void Activate()
+    {
+        active = true;
+        if (alive)
+        {
+            health.ShowHealthBar();
+        } 
+    }
+
+    protected virtual void Deactivate()
+    {
+        active = false;
+        health.HideHealthbar();
     }
 }

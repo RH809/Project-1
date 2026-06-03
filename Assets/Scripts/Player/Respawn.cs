@@ -69,6 +69,6 @@ public class Respawn : MonoBehaviour
         // Enable player and switch cameras
         Camera.gameObject.SetActive(false);
         Player.Instance.gameObject.SetActive(true);
-        Player.Instance.Health.Respawn(1);
+        Player.Instance.Health.Respawn(1, false);
     }
 }

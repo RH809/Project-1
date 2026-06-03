@@ -23,24 +23,36 @@ public class Disruptor : Construct
         base.OnDisable();
         Health.OnRespawn -= DefenderRespawn;
     }
+
+    protected override void Update()
+    {
+        if (Input.GetKeyDown("o"))
+        {
+            if (alive) health.TakeDamage(health.MaxHealth, gameObject);
+            else Respawn(1f);
+        }
+    }
+
     protected override void Die(HealthContext healthContext)
     {
-        if (healthContext.source.Equals(gameObject))
+        if (healthContext.target.Equals(gameObject))
         {
             base.Die(healthContext);
             StartCoroutine(RespawnTime());
         }
-        else if (healthContext.source.Equals(defender))
+        else if (healthContext.target.Equals(defender.gameObject))
         {
-            active = true;
+
+            Debug.Log("defender died; setting active");
+            Activate();
         }
     }
 
     void DefenderRespawn(HealthContext healthContext)
     {
-        if (healthContext.target.Equals(defender))
+        if (healthContext.target.Equals(defender.gameObject))
         {
-            active = false; // make it not active when defender respawns
+            Deactivate(); // deactivate when defender respawns
         }
     }
 

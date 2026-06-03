@@ -42,6 +42,7 @@ public class DefenderManager : MonoBehaviour
 
     public void AddToZombieList(GameObject zombie)
     {
+        //Debug.Log("Adding zombie to list...");
         zombies.AddLast(zombie);
     }
 
@@ -56,6 +57,7 @@ public class DefenderManager : MonoBehaviour
         foreach (GameObject z in zombies)
         {
             float dist = Mathf.Sqrt(Mathf.Pow(pos.x - z.transform.position.x, 2) + Mathf.Pow(pos.z - z.transform.position.z, 2));
+            //Debug.Log($"Zombie dist: {dist} {pos} {z.transform.position}");
             if (dist <= range)
             {
                 switch (z.GetComponent<Zombie>().Type)

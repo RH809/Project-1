@@ -8,4 +8,14 @@ public class OuterDefender : Defender
     [SerializeField] private Disruptor disruptor;
 
     public override bool Repairable { get => health.CurrentHealth < health.MaxHealth && disruptor.IsAlive; }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown("p"))
+        {
+            if (alive) health.TakeDamage(health.MaxHealth, gameObject);
+            else Repair();
+        }
+    }
 }

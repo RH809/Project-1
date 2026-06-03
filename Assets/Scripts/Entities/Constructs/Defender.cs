@@ -29,15 +29,21 @@ public abstract class Defender : Construct
             currentCooldown -= Time.deltaTime;
             if (targetObject == null || !targetObject.GetComponent<Health>().IsAlive)
             {
+                //Debug.Log("Defender choosing target...");
                 ChooseTarget();
                 currentDamage = baseDamage; // reset damage
             }
             else if (currentCooldown <= 0)
             {
+                //Debug.Log("Defender shooting...");
                 Shoot();
                 currentDamage += damageIncrement; // increase damage
                 currentCooldown = cooldown;
             }
+        }
+        else
+        {
+            //Debug.Log("Defender not alive");
         }
     }
 
@@ -58,11 +64,16 @@ public abstract class Defender : Construct
     {
         GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
         newZap.GetComponent<DefenderZap>().Initialize(targetObject, target, currentDamage);
-        Debug.Log("Defender shooting...");
+        //Debug.Log("Defender shooting...");
     }
 
     public void Repair()
     {
+        if (!Repairable)
+        {
+            Debug.Log("Not repairable");
+            return;
+        }
         // Respawn or heal by half health
         if (!alive)
         {

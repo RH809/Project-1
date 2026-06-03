@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     public static event Action<HealthContext> OnRespawn;
 
     private HealthContext healthContext;
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         regenTimer = regenRate;
@@ -96,11 +96,15 @@ public class Health : MonoBehaviour
     /// <summary>
     /// Respawns the entity by restoring its health.
     /// </summary>
-    public void Respawn(float maxHealthProportion)
+    public void Respawn(float maxHealthProportion, bool showHealthbar)
     {
         currentHealth = maxHealth * maxHealthProportion;
+        Debug.Log($"{gameObject} respawning to {currentHealth} health");
         regenTimer = regenRate;
-        ShowHealthBar();
+        if (showHealthbar)
+        {
+            ShowHealthBar();
+        }
         healthContext.source = gameObject;
         OnRespawn?.Invoke(healthContext);
     }
@@ -125,7 +129,7 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroys teh healthbar GameObject (for entities that do not respawn)
+    /// Destroys the healthbar GameObject (for entities that do not respawn)
     /// </summary>
     public void DestroyHealthbar()
     {

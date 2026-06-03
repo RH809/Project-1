@@ -1,6 +1,7 @@
 /// <summary>
 /// This script handles the behavior for the inner defender construct.
 /// </summary>
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class InnerDefender : Defender
@@ -19,7 +20,20 @@ public class InnerDefender : Defender
                 break;
             }
         }
-        active = makeActive;
+        if (!active && makeActive)
+        {
+            Activate();
+        }
+        else if (active && !makeActive)
+        {
+            Deactivate();
+        }
+
+        if (Input.GetKeyDown("i"))
+        {
+            if (alive) health.TakeDamage(health.MaxHealth, gameObject);
+            else Repair();
+        }
     }
 
 }

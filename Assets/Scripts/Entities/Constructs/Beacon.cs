@@ -26,7 +26,14 @@ public class Beacon : Construct
                 makeActive = false; // if either inner defender is alive, don't make active
             }
         }
-        active = makeActive;
+        if (!active && makeActive)
+        {
+            Activate();
+        }
+        else if (active && !makeActive)
+        {
+            Deactivate();
+        }
     }
 
     protected override void Respawn(float maxHealthProportion)

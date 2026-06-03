@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a60d07608bc8f34f834397f994a93b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
-  type: 0
+  type: 2
 --- !u!114 &8197917337458359528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,6 +827,7 @@ MonoBehaviour:
   maxHealth: 60
   baseRegen: 0
   regenRate: 0
+  hitResetTime: 0
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: caa48693b07d8684cad683773579baf6, type: 3}
 --- !u!195 &200006572892455932
