@@ -22,6 +22,9 @@ public class ZombieAttack : MonoBehaviour
 
     protected float cooldown;
 
+    protected ZombieTarget target;
+    public ZombieTarget Target { get => target; }
+
     protected void Start()
     {
         collisionHandler = GetComponentInChildren<ZombieAttackCollider>(true);
@@ -31,7 +34,7 @@ public class ZombieAttack : MonoBehaviour
     {
         if (Input.GetKeyDown("q"))
         {
-            Attack();
+            Attack(Player.Instance.GetComponent<ZombieTarget>());
         }
         if (cooldown > 0)
         {
@@ -51,9 +54,10 @@ public class ZombieAttack : MonoBehaviour
         return num;
     }
 
-    public virtual bool Attack()
+    public virtual bool Attack(ZombieTarget target)
     {
         if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return false;
+        this.target = target;
         attacking = true;
         cooldown = attackCooldown;
         zombieAnimator.SetTrigger(attackTriggerName);

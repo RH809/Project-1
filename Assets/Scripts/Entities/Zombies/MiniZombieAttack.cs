@@ -5,9 +5,10 @@ using UnityEngine;
 public class MiniZombieAttack : ZombieAttack
 {
     private int armNum = 0; // 0 = right, 1 = left;
-    public override bool Attack()
+    public override bool Attack(ZombieTarget target)
     {
         if (attacking || GetNumAttachedArms() == 0 || cooldown > 0) return false;
+        this.target = target;
         attacking = true;
         //Debug.Log("Starting mini zombie attack");
         zombieAnimator.SetTrigger("Zombie Attack");

@@ -25,7 +25,7 @@ public abstract class Construct : MonoBehaviour
         if (Input.GetKeyDown("t"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
-            else Respawn();
+            else Respawn(1);
         }
     }
 
@@ -48,10 +48,10 @@ public abstract class Construct : MonoBehaviour
         }
     }
 
-    protected virtual void Respawn()
+    protected virtual void Respawn(float maxHealthProportion)
     {
         animator.SetTrigger("Respawn");
-        health.Respawn();
+        health.Respawn(maxHealthProportion);
         alive = true;
     }
 }

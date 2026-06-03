@@ -34,6 +34,7 @@ public class ZombieAttackCollider : MonoBehaviour
             if (hitTarget == null) return;
             hit = hitTarget.gameObject;
         }
+        if (!hit.Equals(attack.Target.gameObject)) return; // only hit target
         Debug.Log("Hit: " + hit);
         if (!hits.Contains(hit))
         {

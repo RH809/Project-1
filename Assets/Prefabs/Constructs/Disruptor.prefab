@@ -194,8 +194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 2000
-  baseRegen: 0
-  regenRate: 0
+  baseRegen: 5
+  regenRate: 0.5
+  hitResetTime: 5
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 84e5af417cd22cf42a53a0d3fd49cc84, type: 3}
 --- !u!114 &9202611513729263611

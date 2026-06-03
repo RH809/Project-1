@@ -46,7 +46,7 @@ public class Disruptor : Construct
 
     IEnumerator RespawnTime() {
         yield return new WaitForSeconds(respawnTime);
-        if (!alive) Respawn();
+        if (!alive) Respawn(1);
     }
 
 }

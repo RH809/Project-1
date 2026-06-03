@@ -185,7 +185,7 @@ PrefabInstance:
       addedObject: {fileID: 316148030033914791}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da7f784d439de644d82b9805baafadae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2228404087978632514}
+      addedObject: {fileID: 1946138263728147497}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da7f784d439de644d82b9805baafadae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 213697569703306852}
@@ -418,9 +418,10 @@ MonoBehaviour:
   maxHealth: 1500
   baseRegen: 0
   regenRate: 0
+  hitResetTime: 0
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
---- !u!114 &2228404087978632514
+--- !u!114 &1946138263728147497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,17 +430,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7602304757884550476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27d33aca48ded648a42f6b66c3f0ad3, type: 3}
+  m_Script: {fileID: 11500000, guid: f72edab23fc1cae4d9ee88a6d727b47b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Defender
+  m_EditorClassIdentifier: Assembly-CSharp::OuterDefender
   animator: {fileID: 3665873463860833517}
   active: 1
   cooldown: 1.5
   baseDamage: 30
   damageIncrement: 5
-  range: 3.5
+  range: 4
   zap: {fileID: 301558933894255715, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
   shooter: {fileID: 7495204314339394908}
+  disruptor: {fileID: 0}
 --- !u!114 &213697569703306852
 MonoBehaviour:
   m_ObjectHideFlags: 0

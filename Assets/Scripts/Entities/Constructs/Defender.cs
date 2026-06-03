@@ -1,9 +1,10 @@
 /// <summary>
-/// This script handles the behavior for the defender construct.
+/// This script is the abstract parent of the two types of defender constructs,
+/// which handles their basic behavior.
 /// </summary>
 using UnityEngine;
 
-public class Defender : Construct
+public abstract class Defender : Construct
 {
     [SerializeField] protected float cooldown;
     [SerializeField] protected float baseDamage;
@@ -18,10 +19,12 @@ public class Defender : Construct
     protected float currentDamage;
     protected float currentCooldown;
 
+    public virtual bool Repairable { get => health.CurrentHealth < health.MaxHealth; }
+
     protected override void Update()
     {
         base.Update();
-        if (alive)
+        if (alive) // shoots even if not active
         {
             currentCooldown -= Time.deltaTime;
             if (targetObject == null || !targetObject.GetComponent<Health>().IsAlive)
@@ -56,6 +59,19 @@ public class Defender : Construct
         GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
         newZap.GetComponent<DefenderZap>().Initialize(targetObject, target, currentDamage);
         Debug.Log("Defender shooting...");
+    }
+
+    public void Repair()
+    {
+        // Respawn or heal by half health
+        if (!alive)
+        {
+            Respawn(0.5f);
+        }
+        else
+        {
+            health.Heal(health.MaxHealth / 2);
+        }
     }
 
     private void OnDrawGizmos()

@@ -29,7 +29,7 @@ public class Beacon : Construct
         active = makeActive;
     }
 
-    protected override void Respawn()
+    protected override void Respawn(float maxHealthProportion)
     {
         return; // beacon cannot respawn
     }

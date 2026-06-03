@@ -326,7 +326,7 @@ Transform:
   m_GameObject: {fileID: 8117700913155997391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 47.8, z: 0}
+  m_LocalPosition: {x: 0, y: 43.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
   swordTip: {fileID: 1973501209467393100}
   swordBase: {fileID: 3365748411420141106}
-  radius: 0.15
+  radius: 0.1
   damage: 20
   attackMask:
     serializedVersion: 2
@@ -1559,8 +1559,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 500
-  baseRegen: 1
-  regenRate: 1
+  baseRegen: 2.5
+  regenRate: 0.5
+  hitResetTime: 3
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}
 --- !u!114 &5932398607630681951
@@ -1575,7 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2297121ce52cb42ae0603830f64292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerZombieTarget
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0.3, z: 0}
   radius: 0.25
   bottomOffset: {x: 0, y: -1.336, z: 0}
   jumpBottomOffset: {x: 0, y: -0.95, z: 0}
