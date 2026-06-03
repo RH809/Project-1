@@ -17,6 +17,7 @@ public class ZombieMovement : MonoBehaviour
     [SerializeField] private float playerStoppingDist;
     [SerializeField] private float disruptorStoppingDist;
     [SerializeField] private float defenderStoppingDist;
+    [SerializeField] private float beaconStoppingDist;
     [SerializeField] private float maxKiteRange; // kite range will scale inversely with distance from closest constructs
     [SerializeField] private float kiteRangeThreshold; // construct target must be outside of this range for player to take aggro
     [SerializeField] private float playerPriorityRange; // will not prioritize player if it is out of this range
@@ -297,6 +298,10 @@ public class ZombieMovement : MonoBehaviour
             else if (target.GetComponent<Defender>() != null)
             {
                 agent.stoppingDistance = defenderStoppingDist;
+            }
+            else if (target.GetComponent<Beacon>() != null)
+            {
+                agent.stoppingDistance = beaconStoppingDist;
             }
         }
         return changed;

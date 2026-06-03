@@ -105,6 +105,7 @@ MonoBehaviour:
   playerStoppingDist: 1.75
   disruptorStoppingDist: 1.75
   defenderStoppingDist: 1.75
+  beaconStoppingDist: 2.25
   maxKiteRange: 10
   kiteRangeThreshold: 3
   playerPriorityRange: 30

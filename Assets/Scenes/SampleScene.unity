@@ -2094,6 +2094,10 @@ PrefabInstance:
       propertyPath: defender
       value: 
       objectReference: {fileID: 5629644001931995651}
+    - target: {fileID: 9202611513729263611, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
+      propertyPath: respawnTime
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
