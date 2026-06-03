@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float baseRegen;
     [SerializeField] private float regenRate;
+    [SerializeField] private float hitResetTime;
     [SerializeField] private bool hasHealthbar = true;
 
     [SerializeField] private GameObject healthbarPrefab;
@@ -18,6 +19,7 @@ public class Health : MonoBehaviour
 
     private float currentHealth;
     private float regenTimer;
+    private float hitTimer;
 
     public bool IsAlive { get => currentHealth > 0; }
     public float MaxHealth { get => maxHealth;  }
@@ -26,9 +28,10 @@ public class Health : MonoBehaviour
     public static event Action<HealthContext> OnHeal;
     public static event Action<HealthContext> OnTakeDamage;
     public static event Action<HealthContext> OnDie;
+    public static event Action<HealthContext> OnRespawn;
 
     private HealthContext healthContext;
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         regenTimer = regenRate;
@@ -47,8 +50,9 @@ public class Health : MonoBehaviour
     void Update()
     {
         // handle periodic regen
-        regenTimer -= Time.deltaTime;
-        if (currentHealth > 0 && regenTimer <= 0) {
+        regenTimer = Mathf.Max(regenTimer - Time.deltaTime, 0);
+        hitTimer = Mathf.Max(hitTimer - Time.deltaTime, 0);
+        if (currentHealth > 0 && regenTimer <= 0 && hitTimer <= 0) {
             regenTimer = regenRate;
             currentHealth = Mathf.Min(currentHealth + baseRegen, maxHealth);
         }
@@ -78,6 +82,7 @@ public class Health : MonoBehaviour
     {
         if (!IsAlive) return;
         Debug.Log($"{gameObject} took {damageAmount} damage from {attacker}");
+        hitTimer = hitResetTime;
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
         healthContext.source = attacker;
         OnTakeDamage?.Invoke(healthContext);
@@ -91,11 +96,17 @@ public class Health : MonoBehaviour
     /// <summary>
     /// Respawns the entity by restoring its health.
     /// </summary>
-    public void Respawn()
+    public void Respawn(float maxHealthProportion, bool showHealthbar)
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth * maxHealthProportion;
+        Debug.Log($"{gameObject} respawning to {currentHealth} health");
         regenTimer = regenRate;
-        ShowHealthBar();
+        if (showHealthbar)
+        {
+            ShowHealthBar();
+        }
+        healthContext.source = gameObject;
+        OnRespawn?.Invoke(healthContext);
     }
 
     /// <summary>
@@ -118,7 +129,7 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroys teh healthbar GameObject (for entities that do not respawn)
+    /// Destroys the healthbar GameObject (for entities that do not respawn)
     /// </summary>
     public void DestroyHealthbar()
     {

@@ -22,6 +22,9 @@ public class SwordHitbox : MonoBehaviour
 
     private HashSet<GameObject> hits;
 
+    Vector3 debugBasePos;
+    Vector3 debugTipPos;
+
     void Start()
     {
         //prevTipPos = swordTip.position;
@@ -30,12 +33,67 @@ public class SwordHitbox : MonoBehaviour
 
         hits = new HashSet<GameObject>();
     }
-
+    /*
     void LateUpdate()
     {
         if (!inAttackSwing) return;
         Vector3 currentTipPos = swordTip.position;
         Vector3 currentBasePos = swordBase.position;
+        debugBasePos = currentBasePos;
+        debugTipPos = currentTipPos;
+        
+    ////
+        Vector3 prevCenter = (prevBasePos + prevTipPos) * 0.5f;
+        Vector3 currCenter = (currentBasePos + currentTipPos) * 0.5f;
+
+        Vector3 move = currCenter - prevCenter;
+        if (Physics.CapsuleCast(
+            prevBasePos,
+            prevTipPos,
+            radius,
+            move.normalized,
+            out RaycastHit hit,
+            move.magnitude,
+            attackMask))
+        {
+
+            Debug.Log("Hit " + hit.collider.name);
+        }
+    ////
+
+        Collider[] overlaps = Physics.OverlapCapsule(
+            currentBasePos,
+            currentTipPos,
+            radius,
+            attackMask
+        );
+
+        foreach (var c in overlaps)
+        {
+            Debug.Log("Sword collision: " + c);
+            // Check if collider is a zombie body part
+            ZombieBodyPart bodyPart = c.gameObject.GetComponent<ZombieBodyPart>();
+            if (bodyPart != null && !hits.Contains(bodyPart.Zombie)) {
+
+                hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
+                bodyPart.TakeDamage(damage, gameObject);
+                Debug.Log("Hit: " + c.name);
+            }
+        }
+
+        ////
+        prevTipPos = currentTipPos;
+        prevBasePos = currentBasePos;
+        ////
+    }
+    */
+    public void HitDetection()
+    {
+        if (!inAttackSwing) return;
+        Vector3 currentTipPos = swordTip.position;
+        Vector3 currentBasePos = swordBase.position;
+        debugBasePos = currentBasePos;
+        debugTipPos = currentTipPos;
         /*
         Vector3 prevCenter = (prevBasePos + prevTipPos) * 0.5f;
         Vector3 currCenter = (currentBasePos + currentTipPos) * 0.5f;
@@ -63,9 +121,11 @@ public class SwordHitbox : MonoBehaviour
 
         foreach (var c in overlaps)
         {
+            //Debug.Log("Sword collision: " + c);
             // Check if collider is a zombie body part
             ZombieBodyPart bodyPart = c.gameObject.GetComponent<ZombieBodyPart>();
-            if (bodyPart != null && !hits.Contains(bodyPart.Zombie)) {
+            if (bodyPart != null && !hits.Contains(bodyPart.Zombie))
+            {
 
                 hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
                 bodyPart.TakeDamage(damage, gameObject);
@@ -91,26 +151,14 @@ public class SwordHitbox : MonoBehaviour
         playerCamera.UnlockCamera();
     }
 
-    /*
+    
     void OnDrawGizmos()
     {
         if (!inAttackSwing) return;
-        Gizmos.color = Color.red;
+        Gizmos.color = (inAttackSwing ? Color.green : Color.red);
 
         // Previous capsule
-        DrawCapsule(prevBasePos, prevTipPos, radius);
-
-        Gizmos.color = Color.green;
-
-        // Current capsule
-        DrawCapsule(swordBase.position, swordTip.position, radius);
-
-        // Sweep direction (center movement)
-        Vector3 prevCenter = (prevBasePos + prevTipPos) * 0.5f;
-        Vector3 currCenter = (swordBase.position + swordTip.position) * 0.5f;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(prevCenter, currCenter);
+        DrawCapsule(debugBasePos, debugTipPos, radius);
     }
 
     void DrawCapsule(Vector3 a, Vector3 b, float r)
@@ -119,7 +167,7 @@ public class SwordHitbox : MonoBehaviour
         Gizmos.DrawWireSphere(a, r);
         Gizmos.DrawWireSphere(b, r);
     }
-    */
+    
 
     public bool isSwinging() {
         return inAttackSwing;

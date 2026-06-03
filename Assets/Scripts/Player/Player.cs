@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public Health Health;
     [HideInInspector] public PlayerMovement Movement;
 
+    private PlayerCamera playerCamera;
+    private SwordHitbox swordHitbox;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,5 +26,15 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         Health = GetComponent<Health>();
         Movement = GetComponent<PlayerMovement>();
+
+        playerCamera = GetComponent<PlayerCamera>();
+        swordHitbox = GetComponent<SwordHitbox>();
+    }
+
+    private void LateUpdate()
+    {
+        // handle ordering of LateUpdate method calls
+        playerCamera.UpdateArmRotation(); // arm rotation update should come before sword hitbox detection
+        swordHitbox.HitDetection();
     }
 }

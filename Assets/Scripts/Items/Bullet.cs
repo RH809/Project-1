@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     private GameObject[] disruptors;
 
     private Rigidbody rb;
+    private bool hasHit = false;
 
     private Vector3 startPos;
     void Start() {
@@ -70,10 +71,11 @@ public class Bullet : MonoBehaviour
     /// <param name="other">The GameObject it collided with</param>
     /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
+        if (hasHit) return;
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
-            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().isAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight)
+            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().IsAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight)
             {
                 return;
             }
@@ -85,6 +87,7 @@ public class Bullet : MonoBehaviour
             // If it hit a zombie's body part, deal the damage
             bodyPart.TakeDamage(damage, gameObject);
         }
+        hasHit = true;
         Destroy(gameObject);
     }
 }
