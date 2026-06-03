@@ -35,5 +35,9 @@ public class DefenderZap : MonoBehaviour
                 transform.position += direction.normalized * speed * Time.fixedDeltaTime;
             }
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

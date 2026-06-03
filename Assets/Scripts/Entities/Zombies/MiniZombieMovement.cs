@@ -30,7 +30,8 @@ public class MiniZombieMovement : ZombieMovement
         }
         else
         {
-            if (!targetHealth.IsAlive || (targetConstruct != null && !targetConstruct.IsActive) || GetDistance(target) > attackRange + zombieTarget.Radius)
+            if (!targetHealth.IsAlive || (targetConstruct != null && !targetConstruct.IsActive) || GetDistance(target) > attackRange + zombieTarget.Radius
+                || attack.GetNumAttachedArms() == 0)
             {
                 // Stop attack
                 //Debug.Log("Stopping mini zombie attack");

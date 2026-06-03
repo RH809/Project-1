@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110c6fc335a4e043a1a95dc0cb2a8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieArm
-  armHealth: 20
+  armHealth: 15
 --- !u!1 &1664181393097271400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c31cfd3e55e05634b82360fd51c35e66, type: 3}
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110c6fc335a4e043a1a95dc0cb2a8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieArm
-  armHealth: 20
+  armHealth: 15
 --- !u!1 &3549535461530007317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3070133655604585004, guid: c31cfd3e55e05634b82360fd51c35e66, type: 3}
