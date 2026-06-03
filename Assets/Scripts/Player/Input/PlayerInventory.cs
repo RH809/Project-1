@@ -2,6 +2,7 @@
 /// This script manages the player's held item and handles using the items.
 /// </summary>
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,8 +21,10 @@ public class PlayerInventory : MonoBehaviour
 
     private item equippedItem;
     private Queue<item> equipQueue;
-    private item[] slotItems; // 0 - 3
-    private int[] count; // 0 -> 2, 1 -> 3
+    private ArrayList<item> slotItems;
+    private int repairToolCount = 0;
+    private int trapCount = 0;
+    private int equippedIndex;
 
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
@@ -48,12 +51,9 @@ public class PlayerInventory : MonoBehaviour
     }
     void Start()
     {
-        slotItems = new item[4];
-        slotItems[0] = item.SWORD;
-        slotItems[1] = item.GUN;
-        slotItems[2] = item.EMPTY;
-        slotItems[3] = item.EMPTY;
-        count = new int[2];
+        slotItems = new LinkedList<item>();
+        slotItems.AddLast(item.SWORD);
+        slotItems.AddLast(item.GUN);
         equipQueue = new Queue<item>();
         equippedItem = item.SWORD;
         UpdateActiveItem();
@@ -80,9 +80,9 @@ public class PlayerInventory : MonoBehaviour
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
         int value = (int)ctx.ReadValue<float>();
         Debug.Log(value + " " + (int)equippedItem);
-        if (slotItems[value] == equippedItem)
+        if (value >= slotItems.Count || slotItems.== equippedItem)
         {
-            Debug.Log("Trying to equip same item; returning.");
+            Debug.Log($"Trying to equip same item. {slotItems[value]} {equippedItem}");
             return; // don't do anything if they selected the already-equipped item
         }
         switch (value)
@@ -141,16 +141,22 @@ public class PlayerInventory : MonoBehaviour
                     case item.SWORD:
                         Debug.Log("Equip sword animation");
                         playerAnimator.SetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
                     case item.GUN:
                         Debug.Log("Equip gun animation");
                         playerAnimator.SetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
                     case item.TRAP:
                         break;
                     case item.REPAIR_TOOL:
                         Debug.Log("Equip repair tool animation");
                         playerAnimator.SetTrigger("Equip Repair Tool");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
                         break;
                 }
             }
