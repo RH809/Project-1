@@ -26,6 +26,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject gun;
+    [SerializeField] private GameObject repairTool;
     //[SerializeField] private GameObject trap;
     //[SerializeField] private GameObject turret;
 
@@ -114,6 +115,10 @@ public class PlayerInventory : MonoBehaviour
             cooldownTime -= Time.deltaTime;
             cooldownTime = Mathf.Max(cooldownTime, 0.0f);
         }
+        if (equippedItem == item.REPAIR_TOOL)
+        {
+            // Raycast for construct to be repaired
+        }
     }
 
     /// <summary>
@@ -144,6 +149,8 @@ public class PlayerInventory : MonoBehaviour
                     case item.TRAP:
                         break;
                     case item.REPAIR_TOOL:
+                        Debug.Log("Equip repair tool animation");
+                        playerAnimator.SetTrigger("Equip Repair Tool");
                         break;
                 }
             }
@@ -151,7 +158,8 @@ public class PlayerInventory : MonoBehaviour
         }
         sword.SetActive(equippedItem == item.SWORD);
         gun.SetActive(equippedItem == item.GUN);
-        aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN);
+        repairTool.SetActive(equippedItem == item.REPAIR_TOOL);
+        aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN || equippedItem == item.REPAIR_TOOL);
     }
 
     /// <summary>
@@ -220,8 +228,6 @@ public class PlayerInventory : MonoBehaviour
                     }
                     cooldownTime = gunCooldown;
                     playerAnimator.SetTrigger("Shoot");
-                    break;
-                default:
                     break;
             }
         }
