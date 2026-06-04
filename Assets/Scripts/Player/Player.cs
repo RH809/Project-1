@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public Camera Camera;
     [HideInInspector] public Health Health;
     [HideInInspector] public PlayerMovement Movement;
+    [HideInInspector] public PlayerInventory Inventory;
+    [HideInInspector] public PlayerInputManager InputManager;
 
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         Health = GetComponent<Health>();
         Movement = GetComponent<PlayerMovement>();
+        Inventory = GetComponent<PlayerInventory>();
+        InputManager = GetComponent<PlayerInputManager>();
 
         playerCamera = GetComponent<PlayerCamera>();
         swordHitbox = GetComponent<SwordHitbox>();
