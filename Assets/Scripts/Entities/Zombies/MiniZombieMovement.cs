@@ -16,6 +16,7 @@ public class MiniZombieMovement : ZombieMovement
             {
                 targetHealth = target.GetComponent<Health>();
                 zombieTarget = target.GetComponent<ZombieTarget>();
+                constructCollider = zombieTarget.ConstructCollider;
                 targetConstruct = target.GetComponent<Construct>();
             }
             if (GetDistance(target) <= attackRange + zombieTarget.Radius &&

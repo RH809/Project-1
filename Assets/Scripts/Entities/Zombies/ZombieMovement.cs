@@ -33,6 +33,7 @@ public class ZombieMovement : MonoBehaviour
     
     protected GameObject player;
     protected GameObject[] constructTargets; // Given by spawner
+    protected Collider constructCollider;
 
     protected GameObject target;
     protected ZombieTarget zombieTarget;
@@ -70,7 +71,15 @@ public class ZombieMovement : MonoBehaviour
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
             if (changedTarget)
             {
-                Vector3 destination = target.transform.position;
+                Vector3 destination;
+                if (constructCollider != null)
+                {
+                    destination = constructCollider.ClosestPoint(rb.position);
+                }
+                else
+                {
+                    destination = target.transform.position;
+                }
                 destination.y = rb.transform.position.y;
                 agent.SetDestination(destination);
                 //Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
@@ -86,6 +95,12 @@ public class ZombieMovement : MonoBehaviour
                     destination.y = rb.transform.position.y;
                     //Debug.Log("Updating player tracking");
                     //Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
+                    agent.SetDestination(destination);
+                }
+                else if (constructCollider != null)
+                {
+                    Vector3 destination = constructCollider.ClosestPoint(rb.position);
+                    destination.y = rb.transform.position.y;
                     agent.SetDestination(destination);
                 }
                 if (wasMoving)
@@ -223,6 +238,7 @@ public class ZombieMovement : MonoBehaviour
             if (changedTarget)
             {
                 zombieTarget = target.GetComponent<ZombieTarget>();
+                constructCollider = zombieTarget.ConstructCollider;
             }
             if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
