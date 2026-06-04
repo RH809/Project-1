@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e559fc62438eea4469ca80d283509d45
+guid: d7a01a341d3f60c458d2459d27d7e8aa
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -34,8 +34,8 @@ ModelImporter:
       name: Repair Tool Idle
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 121
-      lastFrame: 130
+      firstFrame: 0
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -58,20 +58,20 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Repair Tool Use
       takeName: Take 001
       internalID: 9067093048684652814
-      firstFrame: 131
-      lastFrame: 140
+      firstFrame: 10
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -87,7 +87,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

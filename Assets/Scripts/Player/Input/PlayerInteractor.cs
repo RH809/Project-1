@@ -19,6 +19,7 @@ public class PlayerInteractor : MonoBehaviour
 
     //private PlayerControls playerControls;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator repairToolAnimator;
 
     private bool defenderHover = false;
     private bool shopHover = false;
@@ -109,6 +110,7 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
         playerAnimator.SetBool("Repair Tool Use", defenderHover && interacting);
+        repairToolAnimator.SetBool("Repair Tool Use", defenderHover && interacting);
         wasInteracting = interacting;
     }
 
