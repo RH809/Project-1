@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerZombieTarget : ZombieTarget
 {
     [SerializeField] private Vector3 jumpBottomOffset;
+    public override Collider ConstructCollider { get => null; }
 
     public override Vector3 GetHitboxBottom()
     {

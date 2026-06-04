@@ -16,6 +16,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "7dd4955e-2de5-4aab-8e21-54168d4c4a78",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "2bf5f7f8-d6c3-4c70-819b-7f86195f8036",
@@ -55,6 +64,15 @@
                     "name": "Use",
                     "type": "Button",
                     "id": "4d827f2d-7b20-41fc-8ed0-f5b5cf9e6f6d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "5b80247c-5d64-4ad1-9c27-31e249157943",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -202,6 +220,28 @@
                     "processors": "Scale(factor=3)",
                     "groups": "",
                     "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ba22348-4785-494f-95ac-be0387fed5f1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6c289e0-a4b0-43f3-8e73-364fc92439c5",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

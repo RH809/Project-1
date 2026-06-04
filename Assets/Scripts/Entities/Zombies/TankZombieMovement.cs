@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class TankZombieMovement : ZombieMovement
 {
-    private Transform parentTransform;
     protected override void Start()
     {
         base.Start();
         rbRotation = false;
-        parentTransform = transform.parent;
     }
     protected override void LateUpdate()
     {

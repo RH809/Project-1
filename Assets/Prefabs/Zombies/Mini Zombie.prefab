@@ -791,9 +791,9 @@ MonoBehaviour:
   rotationSpeed: 10
   attackRange: 0.5
   playerStoppingDist: 0.6
-  disruptorStoppingDist: 1.4
-  defenderStoppingDist: 1.2
-  beaconStoppingDist: 1.8
+  disruptorStoppingDist: 0.4
+  defenderStoppingDist: 0.325
+  beaconStoppingDist: 0.45
   maxKiteRange: 20
   kiteRangeThreshold: 3
   playerPriorityRange: 30
@@ -840,7 +840,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1664181393097271400}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 24
+  m_Radius: 26
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

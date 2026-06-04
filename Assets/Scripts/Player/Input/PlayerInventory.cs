@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
 
-    public enum item {
+    public enum Item {
         SWORD = 0,
         GUN = 1,
         TRAP = 2,
@@ -18,18 +18,22 @@ public class PlayerInventory : MonoBehaviour
         EMPTY = 4
     };
 
-    private item equippedItem;
-    private Queue<item> equipQueue;
-    private item[] slotItems; // 0 - 3
-    private int[] count; // 0 -> 2, 1 -> 3
+    private Item equippedItem;
+    public Item EquippedItem { get => equippedItem; }
+    private Queue<Item> equipQueue;
+    private List<Item> slotItems;
+    private int repairToolCount = 0;
+    private int trapCount = 0;
+    private int equippedIndex;
 
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject gun;
+    [SerializeField] private GameObject repairTool;
     //[SerializeField] private GameObject trap;
     //[SerializeField] private GameObject turret;
 
-    private PlayerControls playerControls;
+    //private PlayerControls playerControls;
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
     private Shoot shoot;
@@ -40,36 +44,56 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        playerControls = new PlayerControls();
+        //playerControls = new PlayerControls();
         playerCamera = GetComponent<PlayerCamera>();
         swordHitbox = GetComponent<SwordHitbox>();
         shoot = GetComponent<Shoot>();
     }
     void Start()
     {
-        slotItems = new item[4];
-        slotItems[0] = item.SWORD;
-        slotItems[1] = item.GUN;
-        slotItems[2] = item.EMPTY;
-        slotItems[3] = item.EMPTY;
-        count = new int[2];
-        equipQueue = new Queue<item>();
-        equippedItem = item.SWORD;
+        slotItems = new List<Item>();
+        slotItems.Add(Item.SWORD);
+        slotItems.Add(Item.GUN);
+        AddRepairTool(); // debugging
+        equipQueue = new Queue<Item>();
+        equippedItem = Item.SWORD;
         UpdateActiveItem();
     }
 
     void OnEnable()
     {
+        Player.Instance.InputManager.Controls.Player.Use.performed += OnUsePerformed;
+        Player.Instance.InputManager.Controls.Player.SelectItem.performed += OnSelectItemPerformed;
+        Player.Instance.InputManager.Controls.Player.Scroll.performed += OnScrollPerformed;
+        /*
+        Player.Instance.Controls.Player.Use.performed += OnUsePerformed;
+        Player.Instance.Controls.Player.SelectItem.performed += OnSelectItemPerformed;
+        Player.Instance.Controls.Player.Scroll.performed += OnScrollPerformed;
+        */
+        /*
         playerControls.Player.Use.performed += OnUsePerformed;
         playerControls.Player.SelectItem.performed += OnSelectItemPerformed;
+        playerControls.Player.Scroll.performed += OnScrollPerformed;
         playerControls.Enable();
+        */
     }
 
     void OnDisable()
     {
+        Player.Instance.InputManager.Controls.Player.Use.performed -= OnUsePerformed;
+        Player.Instance.InputManager.Controls.Player.SelectItem.performed -= OnSelectItemPerformed;
+        Player.Instance.InputManager.Controls.Player.Scroll.performed -= OnScrollPerformed;
+        /*
+        Player.Instance.Controls.Player.Use.performed -= OnUsePerformed;
+        Player.Instance.Controls.Player.SelectItem.performed -= OnSelectItemPerformed;
+        Player.Instance.Controls.Player.Scroll.performed -= OnScrollPerformed;
+        */
+        /*
         playerControls.Player.Use.performed -= OnUsePerformed;
         playerControls.Player.SelectItem.performed -= OnSelectItemPerformed;
+        playerControls.Player.Scroll.performed -= OnScrollPerformed;
         playerControls.Disable();
+        */
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
@@ -78,11 +102,10 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
         int value = (int)ctx.ReadValue<float>();
-        Debug.Log(value + " " + (int)equippedItem);
-        if (slotItems[value] == equippedItem)
+        //Debug.Log(value + " " + (int)equippedItem);
+        if (value >= slotItems.Count || slotItems[value] == equippedItem)
         {
-            Debug.Log("Trying to equip same item; returning.");
-            return; // don't do anything if they selected the already-equipped item
+            return; // don't do anything if they selected the already-equipped item or out of bounds
         }
         switch (value)
         {
@@ -95,16 +118,27 @@ public class PlayerInventory : MonoBehaviour
                 //playerAnimator.SetTrigger("Equip Gun");
                 //equipQueue.Enqueue(item.GUN); // add to queue
                 //equippedItem = item.GUN;
-                equipQueue.Enqueue(slotItems[value]);
-                break;
             case 2:
             case 3:
-                if (slotItems[value] != item.EMPTY && count[value - 2] > 0) {
-                    equipQueue.Enqueue(slotItems[value]);
-                }
+                equipQueue.Enqueue(slotItems[value]);
                 break;
         }
-        
+    }
+
+    private void OnScrollPerformed(InputAction.CallbackContext ctx)
+    {
+        float scroll = ctx.ReadValue<Vector2>().y;
+        if (scroll == 0) return;
+        int newIndex = equippedIndex + (scroll > 0 ? -1 : 1); // positive scroll = index goes down
+        if (newIndex < 0)
+        {
+            newIndex = slotItems.Count - 1;
+        }
+        else if (newIndex >= slotItems.Count)
+        {
+            newIndex = 0;
+        }
+        equipQueue.Enqueue(slotItems[newIndex]);
     }
 
     void Update()
@@ -121,37 +155,47 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     void UpdateActiveItem()
     {
-        if (!(equippedItem == item.SWORD && IsInSwingAnimation()) &&
-            !(equippedItem == item.GUN && IsInShootAnimation()))
+        if (!(equippedItem == Item.SWORD && IsInSwingAnimation()) &&
+            !(equippedItem == Item.GUN && IsInShootAnimation()))
         { // update equipped item if not in use animation
-            item prev = equippedItem;
+            Item prev = equippedItem;
             while (equipQueue.Count > 0)
             { // choose the last selected item in the queue
                 equippedItem = equipQueue.Dequeue();
             }
+            equippedIndex = slotItems.IndexOf(equippedItem);
             if (prev != equippedItem)
             { // trigger animation if equipped new item
                 switch (equippedItem)
                 {
-                    case item.SWORD:
-                        Debug.Log("Equip sword animation");
+                    case Item.SWORD:
+                        //Debug.Log("Equip sword animation");
                         playerAnimator.SetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
-                    case item.GUN:
-                        Debug.Log("Equip gun animation");
+                    case Item.GUN:
+                        //Debug.Log("Equip gun animation");
                         playerAnimator.SetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
-                    case item.TRAP:
+                    case Item.TRAP:
                         break;
-                    case item.REPAIR_TOOL:
+                    case Item.REPAIR_TOOL:
+                        //Debug.Log("Equip repair tool animation");
+                        playerAnimator.SetTrigger("Equip Repair Tool");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
                         break;
                 }
             }
             
         }
-        sword.SetActive(equippedItem == item.SWORD);
-        gun.SetActive(equippedItem == item.GUN);
-        aimHUD.enabled = (equippedItem == item.SWORD || equippedItem == item.GUN);
+        sword.SetActive(equippedItem == Item.SWORD);
+        gun.SetActive(equippedItem == Item.GUN);
+        repairTool.SetActive(equippedItem == Item.REPAIR_TOOL);
+        aimHUD.enabled = (equippedItem == Item.SWORD || equippedItem == Item.GUN || equippedItem == Item.REPAIR_TOOL);
     }
 
     /// <summary>
@@ -192,7 +236,7 @@ public class PlayerInventory : MonoBehaviour
         {
             switch (equippedItem)
             {
-                case item.SWORD:
+                case Item.SWORD:
                     if (swordHitbox.isSwinging() || IsInSwingAnimation()) { // don't use if already in swinging animation
                         break;
                     }
@@ -214,14 +258,12 @@ public class PlayerInventory : MonoBehaviour
                     playerCamera.LockCamera(); // Lock player camera during the swing
                     
                     break;
-                case item.GUN:
+                case Item.GUN:
                     if (shoot.isShooting() || IsInShootAnimation()) { // don't use if already in shooting animation
                         break;
                     }
                     cooldownTime = gunCooldown;
                     playerAnimator.SetTrigger("Shoot");
-                    break;
-                default:
                     break;
             }
         }
@@ -230,4 +272,54 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("On cooldown");
         }
     }
+
+    public void AddRepairTool()
+    {
+        repairToolCount++;
+        if (repairToolCount == 1)
+        {
+            slotItems.Add(Item.REPAIR_TOOL);
+        }
+    }
+
+    public void UseRepairTool()
+    {
+        repairToolCount--;
+        if (repairToolCount == 0)
+        {
+            slotItems.Remove(Item.REPAIR_TOOL);
+            if (equippedIndex >= slotItems.Count)
+            {
+                equippedIndex--;
+            }
+            equipQueue.Enqueue(slotItems[equippedIndex]);
+            UpdateActiveItem();
+        }
+    }
+
+    public void AddTrap()
+    {
+        trapCount++;
+        if (trapCount == 1)
+        {
+            slotItems.Add(Item.TRAP);
+        }
+    }
+
+    public void UseTrap()
+    {
+        trapCount--;
+        if (repairToolCount == 0)
+        {
+            slotItems.Remove(Item.TRAP);
+            if (equippedIndex >= slotItems.Count)
+            {
+                equippedIndex--;
+            }
+            equipQueue.Enqueue(slotItems[equippedIndex]);
+            UpdateActiveItem();
+        }
+    }
+
+
 }

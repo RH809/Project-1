@@ -9,7 +9,9 @@ public class ZombieTarget : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float radius; // radius of the collider of the target
     [SerializeField] private Vector3 bottomOffset; // bottom of the hitbox
-    public float Radius { get => radius;  }
+    [SerializeField] private Collider constructCollider;
+    public float Radius { get => radius; }
+    public virtual Collider ConstructCollider { get => constructCollider; }
 
     public Vector3 GetZombieTarget()
     {
