@@ -72,6 +72,11 @@ public class Bullet : MonoBehaviour
     /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
         if (hasHit) return;
+        // Handle actual hitbox of walls
+        if (other.layer == LayerMask.NameToLayer("Walls") && collisionPoint.y > Shoot.wallHeight)
+        {
+            return;
+        }
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors

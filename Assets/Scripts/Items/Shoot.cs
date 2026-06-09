@@ -17,6 +17,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject[] disruptors;
 
     public static float adjustedDisruptorHeight = 0.15f; // new height of disruptor hitbox when dead
+    public static float wallHeight = 1.042f; // height of walls
 
     private bool shooting = false;
 
@@ -55,12 +56,56 @@ public class Shoot : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Calculates the rotation to the target for shooting
+    /// </summary>
+    /// <param name="ray">Raycast ray for shooting</param>
+    /// <returns>Quaternion rotation to the target</returns>
+    private Quaternion GetTargetRotation(Ray ray)
+    {
+        RaycastHit hit;
+        Quaternion aimRotation = Quaternion.identity;
+        if (Physics.Raycast(ray, out hit, 50f, targetMask))
+        {
+            // Handle actual hitbox of walls
+            GameObject hitObject = hit.collider.gameObject;
+            if (hitObject.layer == LayerMask.NameToLayer("Walls") && hit.point.y > wallHeight)
+            {
+                Vector3 rayDir = ray.direction;
+                ray = new Ray(hit.point, rayDir);
+                return GetTargetRotation(ray); // recursive call with new ray
+            }
+            // Handle lower hitbox of dead disruptors
+            foreach (GameObject obj in disruptors)
+            {
+                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight)
+                {
+                    Vector3 rayDir = ray.direction;
+                    ray = new Ray(hit.point, rayDir);
+                    return GetTargetRotation(ray); // recursive call with new ray
+                }
+            }
+            // Calculate angle to raycast hit
+            Vector3 path = hit.point - bulletExit.transform.position;
+            aimRotation = Quaternion.LookRotation(path, Vector3.up);
+            Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
+        }
+        else
+        {
+            // Calculate angle based on default range
+            Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
+            aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
+        }
+        return aimRotation;
+    }
     
     /// <summary>
-    /// Shoots a bullet by raycasting to determine the target and the angle to the target and then
+    /// Shoots a bullet in the direction of the target
     /// instantiates the bullet.
     /// </summary>
     private void ShootBullet() {
+        /*
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         
@@ -99,6 +144,9 @@ public class Shoot : MonoBehaviour
             Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
             aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
         }
+        */
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Quaternion aimRotation = GetTargetRotation(ray);
 
         GameObject newBullet = Instantiate(bullet, bulletExit.transform.position, aimRotation);
         newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
