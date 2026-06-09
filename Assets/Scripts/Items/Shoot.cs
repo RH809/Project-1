@@ -16,7 +16,7 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private GameObject[] disruptors;
 
-    public static float adjustedDisruptorHeight = 0.15f; // new height of disruptor hitbox when dead
+    public static float adjustedDisruptorHeight = 0.605f; // new height of disruptor hitbox when dead
     public static float wallHeight = 1.042f; // height of walls
 
     private bool shooting = false;
@@ -70,7 +70,7 @@ public class Shoot : MonoBehaviour
         {
             // Handle actual hitbox of walls
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.layer == LayerMask.NameToLayer("Walls") && hit.point.y > wallHeight)
+            if (hitObject.layer == LayerMask.NameToLayer("Walls") && hit.point.y > wallHeight + GameManager.GroundY)
             {
                 Vector3 rayDir = ray.direction;
                 ray = new Ray(hit.point, rayDir);
@@ -79,7 +79,7 @@ public class Shoot : MonoBehaviour
             // Handle lower hitbox of dead disruptors
             foreach (GameObject obj in disruptors)
             {
-                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight)
+                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight + GameManager.GroundY)
                 {
                     Vector3 rayDir = ray.direction;
                     ray = new Ray(hit.point, rayDir);
