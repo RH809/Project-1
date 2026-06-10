@@ -73,7 +73,7 @@ public class Shoot : MonoBehaviour
             if (hitObject.layer == LayerMask.NameToLayer("Walls") && hit.point.y > wallHeight + GameManager.GroundY)
             {
                 Vector3 rayDir = ray.direction;
-                ray = new Ray(hit.point, rayDir);
+                ray = new Ray(hit.point + 0.1f * rayDir, rayDir);
                 return GetTargetRotation(ray); // recursive call with new ray
             }
             // Handle lower hitbox of dead disruptors
@@ -82,7 +82,7 @@ public class Shoot : MonoBehaviour
                 if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight + GameManager.GroundY)
                 {
                     Vector3 rayDir = ray.direction;
-                    ray = new Ray(hit.point, rayDir);
+                    ray = new Ray(hit.point + 0.1f * rayDir, rayDir);
                     return GetTargetRotation(ray); // recursive call with new ray
                 }
             }

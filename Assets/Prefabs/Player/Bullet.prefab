@@ -97,7 +97,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 9088
+    m_Bits: 25472
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 7232
@@ -126,7 +126,7 @@ MonoBehaviour:
   bulletRadius: 0.01
   collisionMask:
     serializedVersion: 2
-    m_Bits: 9088
+    m_Bits: 25472
 --- !u!54 &4806560893932355849
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1847,7 +1847,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 11968
+    m_Bits: 28352
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 4352
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   bullet: {fileID: 8725346308993570863, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
   targetMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
   defaultRange: 5
   disruptors:
   - {fileID: 0}
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   interactRange: 3.5
   layerMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
   defenderInteractTime: 1.5
   shopInteractTime: 0
   interactProgress: {fileID: 4426946311257573996}
