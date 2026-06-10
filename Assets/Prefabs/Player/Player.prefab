@@ -2067,7 +2067,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 25472
   defenderInteractTime: 1.5
-  shopInteractTime: 0
+  shopInteractTime: 0.2
   interactProgress: {fileID: 4426946311257573996}
   interactTextObject: {fileID: 5503357274292445011}
   playerAnimator: {fileID: 1644641789591390061}
