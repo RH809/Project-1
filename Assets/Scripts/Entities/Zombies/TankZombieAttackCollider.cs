@@ -14,7 +14,6 @@ public class TankZombieAttackCollider : MonoBehaviour
     [SerializeField] private float startOuterRadius;
     [SerializeField] private float startInnerRadius;
     [SerializeField] private float height;
-    [SerializeField] private float groundY;
     [SerializeField] private float damage;
 
     private float outerRadius;
@@ -68,7 +67,7 @@ public class TankZombieAttackCollider : MonoBehaviour
         ZombieTarget hitTarget = hit.GetComponent<ZombieTarget>();
         
         if (hits.Contains(hit) || hitTarget == null) return;
-        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // didn't hit in the cylinder part
+        if (hitTarget.GetHitboxBottom().y > height + GameManager.GroundY) return; // didn't hit in the cylinder part
         
         float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +
             Mathf.Pow(hit.transform.position.z - transform.position.z, 2));
@@ -97,7 +96,7 @@ public class TankZombieAttackCollider : MonoBehaviour
         }
 
         if (hits.Contains(hit)) return;
-        if (hitTarget.GetHitboxBottom().y > height + groundY) return; // did't hit in the cylinder part
+        if (hitTarget.GetHitboxBottom().y > height + GameManager.GroundY) return; // did't hit in the cylinder part
 
         float distToCenter = Mathf.Sqrt(Mathf.Pow(hit.transform.position.x - transform.position.x, 2) +
             Mathf.Pow(hit.transform.position.z - transform.position.z, 2));

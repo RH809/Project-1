@@ -152,6 +152,9 @@ public class PlayerMovement : MonoBehaviour
         if (jumpInput && !jumping && grounded)
         {
             // Jump
+            Vector3 velocity = rb.linearVelocity;
+            velocity.y = 0f;
+            rb.linearVelocity = velocity;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumping = true;
             grounded = false;

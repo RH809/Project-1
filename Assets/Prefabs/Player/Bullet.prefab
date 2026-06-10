@@ -97,12 +97,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 7232
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -126,7 +126,7 @@ MonoBehaviour:
   bulletRadius: 0.01
   collisionMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
 --- !u!54 &4806560893932355849
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 9088
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 7232

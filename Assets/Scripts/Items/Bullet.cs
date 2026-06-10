@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
             {
                 Vector3 hitPoint = c.ClosestPoint(currentPos);
                 Vector3 hitDist = currentPos - hitPoint;
-                Debug.Log("Bullet Collision: " + c.gameObject + " " + hitDist.magnitude + " " + closestDist.magnitude);
+                //Debug.Log("Bullet Collision: " + c.gameObject + " " + hitDist.magnitude + " " + closestDist.magnitude);
                 if (hitDist.magnitude < closestDist.magnitude)
                 {
                     closest = c;
@@ -72,15 +72,20 @@ public class Bullet : MonoBehaviour
     /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
         if (hasHit) return;
+        // Handle actual hitbox of walls
+        if (other.layer == LayerMask.NameToLayer("Walls") && collisionPoint.y > Shoot.wallHeight + GameManager.GroundY)
+        {
+            return;
+        }
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
-            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().IsAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight)
+            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().IsAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight + GameManager.GroundY)
             {
                 return;
             }
         }
-        Debug.Log("Collided with " + other);
+        Debug.Log("Collided with " + other + " " + other.layer + " " + LayerMask.NameToLayer("Walls") + " " + collisionPoint.y);
         ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
         if (bodyPart != null)
         {

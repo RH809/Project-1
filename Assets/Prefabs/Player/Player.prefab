@@ -1136,15 +1136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.874
+      value: -27.114
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1847,10 +1847,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 3776
+    m_Bits: 28352
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4352
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -2009,9 +2009,10 @@ MonoBehaviour:
   bullet: {fileID: 8725346308993570863, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
   targetMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
   defaultRange: 5
   disruptors:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &5246923091890705108
 MonoBehaviour:
@@ -2046,6 +2047,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.3, z: 0}
   radius: 0.25
   bottomOffset: {x: 0, y: -1.336, z: 0}
+  constructCollider: {fileID: 0}
   jumpBottomOffset: {x: 0, y: -0.95, z: 0}
 --- !u!114 &2434006918805420810
 MonoBehaviour:
@@ -2063,9 +2065,9 @@ MonoBehaviour:
   interactRange: 3.5
   layerMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 25472
   defenderInteractTime: 1.5
-  shopInteractTime: 0
+  shopInteractTime: 0.2
   interactProgress: {fileID: 4426946311257573996}
   interactTextObject: {fileID: 5503357274292445011}
   playerAnimator: {fileID: 1644641789591390061}

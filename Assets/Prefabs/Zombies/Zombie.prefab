@@ -114,7 +114,7 @@ BoxCollider:
     m_Bits: 576
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 7552
+    m_Bits: 32128
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -782,7 +782,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 5824
+    m_Bits: 30400
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 2304
@@ -853,9 +853,9 @@ MonoBehaviour:
   disruptorStoppingDist: 0.5
   defenderStoppingDist: 0.425
   beaconStoppingDist: 0.65
-  maxKiteRange: 15
+  maxKiteRange: 10
   kiteRangeThreshold: 3
-  playerPriorityRange: 30
+  playerPriorityRange: 15
   head: {fileID: 5104713707010874758}
   leftArm: {fileID: 848860080050043759}
   rightArm: {fileID: 5809293878432791174}
