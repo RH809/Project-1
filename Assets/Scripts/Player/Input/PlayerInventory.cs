@@ -59,7 +59,7 @@ public class PlayerInventory : MonoBehaviour
         slotItems.Add(Item.GUN);
         // ==== TESTING ======
         AddRepairTool();
-        AddGrenade();
+        for (int i = 0; i < 5; i++) AddGrenade();
         // ===================
         equipQueue = new Queue<Item>();
         equippedItem = Item.SWORD;
@@ -363,7 +363,7 @@ public class PlayerInventory : MonoBehaviour
     public void UseGrenade()
     {
         grenadeCount--;
-        if (repairToolCount == 0)
+        if (grenadeCount == 0)
         {
             slotItems.Remove(Item.GRENADE);
             if (equippedIndex >= slotItems.Count)
