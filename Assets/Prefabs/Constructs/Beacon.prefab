@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.43000007
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.97
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa4a40ff38f896344be06ee6b6d69417, type: 3}
       propertyPath: m_LocalRotation.w
@@ -216,7 +216,9 @@ MonoBehaviour:
   active: 0
   innerDefenders:
   - {fileID: 0}
+  - {fileID: 0}
   disruptors:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &1516400758760369801
 MonoBehaviour:
@@ -233,6 +235,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1.4, z: 0}
   radius: 1.35
   bottomOffset: {x: 0, y: 0, z: 0}
+  constructCollider: {fileID: 8094407800849674333}
 --- !u!208 &1375094329774595020
 NavMeshObstacle:
   m_ObjectHideFlags: 0

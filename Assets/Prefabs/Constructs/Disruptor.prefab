@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.279
+      value: 5.869
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.214
+      value: -7.848
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalRotation.w
@@ -233,6 +233,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1.25, z: 0}
   radius: 1
   bottomOffset: {x: 0, y: 0, z: 0}
+  constructCollider: {fileID: 840297040752115926}
 --- !u!208 &3356789405801000470
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -73,14 +73,14 @@ public class Bullet : MonoBehaviour
     void Collide(GameObject other, Vector3 collisionPoint) {
         if (hasHit) return;
         // Handle actual hitbox of walls
-        if (other.layer == LayerMask.NameToLayer("Walls") && collisionPoint.y > Shoot.wallHeight + GameManager.GroundY)
+        if (other.layer == LayerMask.NameToLayer("Walls") && collisionPoint.y > Aim.wallHeight + GameManager.GroundY)
         {
             return;
         }
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
-            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().IsAlive && collisionPoint.y > Shoot.adjustedDisruptorHeight + GameManager.GroundY)
+            if (obj.Equals(other) && !obj.GetComponent<Disruptor>().IsAlive && collisionPoint.y > Aim.adjustedDisruptorHeight + GameManager.GroundY)
             {
                 return;
             }
