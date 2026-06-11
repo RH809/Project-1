@@ -12,7 +12,6 @@ public class Aim : MonoBehaviour
     [SerializeField] private GameObject[] disruptors;
 
     public static float adjustedDisruptorHeight = 0.605f; // new height of disruptor hitbox when dead
-    public static float wallHeight = 1.042f; // height of walls
 
     public Quaternion GetTargetRotation(Transform from)
     {
@@ -33,12 +32,6 @@ public class Aim : MonoBehaviour
         {
             // Handle actual hitbox of walls
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.layer == LayerMask.NameToLayer("Walls") && hit.point.y > wallHeight + GameManager.GroundY)
-            {
-                Vector3 rayDir = ray.direction;
-                ray = new Ray(hit.point + 0.1f * rayDir, rayDir);
-                return GetTargetRotation(ray, from); // recursive call with new ray
-            }
             // Handle lower hitbox of dead disruptors
             foreach (GameObject obj in disruptors)
             {
