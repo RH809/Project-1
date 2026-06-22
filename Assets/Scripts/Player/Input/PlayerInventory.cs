@@ -13,9 +13,9 @@ public class PlayerInventory : MonoBehaviour
     public enum Item {
         SWORD = 0,
         GUN = 1,
-        TRAP = 2,
+        GRENADE = 2,
         REPAIR_TOOL = 3,
-        EMPTY = 4
+        HEALTH_POTION = 4
     };
 
     private Item equippedItem;
@@ -23,23 +23,26 @@ public class PlayerInventory : MonoBehaviour
     private Queue<Item> equipQueue;
     private List<Item> slotItems;
     private int repairToolCount = 0;
-    private int trapCount = 0;
+    private int grenadeCount = 0;
+    private int potionCount = 0;
     private int equippedIndex;
 
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject repairTool;
-    //[SerializeField] private GameObject trap;
-    //[SerializeField] private GameObject turret;
+    [SerializeField] private GameObject grenade;
+    [SerializeField] private GameObject potion;
 
-    //private PlayerControls playerControls;
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
     private Shoot shoot;
+    private GrenadeThrow grenadeThrow;
+    private PotionDrink potionDrink;
 
     [SerializeField] private float swordCooldown = 0.5f;
     [SerializeField] private float gunCooldown = 1f;
+    [SerializeField] private float grenadeCooldown = 1f;
     private float cooldownTime = 0.0f;
 
     void Awake()
@@ -48,13 +51,19 @@ public class PlayerInventory : MonoBehaviour
         playerCamera = GetComponent<PlayerCamera>();
         swordHitbox = GetComponent<SwordHitbox>();
         shoot = GetComponent<Shoot>();
+        grenadeThrow = GetComponent<GrenadeThrow>();
+        potionDrink = GetComponent<PotionDrink>();
     }
     void Start()
     {
         slotItems = new List<Item>();
         slotItems.Add(Item.SWORD);
         slotItems.Add(Item.GUN);
-        AddRepairTool(); // debugging
+        // ==== TESTING ======
+        AddRepairTool();
+        for (int i = 0; i < 5; i++) AddGrenade();
+        AddPotion();
+        // ===================
         equipQueue = new Queue<Item>();
         equippedItem = Item.SWORD;
         UpdateActiveItem();
@@ -156,7 +165,9 @@ public class PlayerInventory : MonoBehaviour
     void UpdateActiveItem()
     {
         if (!(equippedItem == Item.SWORD && IsInSwingAnimation()) &&
-            !(equippedItem == Item.GUN && IsInShootAnimation()))
+            !(equippedItem == Item.GUN && IsInShootAnimation()) &&
+            !(equippedItem == Item.GRENADE && IsInThrowAnimation()) &&
+            !(equippedItem == Item.HEALTH_POTION && IsInDrinkAnimation()))
         { // update equipped item if not in use animation
             Item prev = equippedItem;
             while (equipQueue.Count > 0)
@@ -172,21 +183,41 @@ public class PlayerInventory : MonoBehaviour
                         //Debug.Log("Equip sword animation");
                         playerAnimator.SetTrigger("Equip Sword");
                         playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Grenade");
                         playerAnimator.ResetTrigger("Equip Repair Tool");
+                        playerAnimator.ResetTrigger("Equip Potion");
                         break;
                     case Item.GUN:
                         //Debug.Log("Equip gun animation");
                         playerAnimator.SetTrigger("Equip Gun");
                         playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Grenade");
                         playerAnimator.ResetTrigger("Equip Repair Tool");
+                        playerAnimator.ResetTrigger("Equip Potion");
                         break;
-                    case Item.TRAP:
+                    case Item.GRENADE:
+                        //Debug.Log("Equip grenade animation");
+                        playerAnimator.SetTrigger("Equip Grenade");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
+                        playerAnimator.ResetTrigger("Equip Potion");
                         break;
                     case Item.REPAIR_TOOL:
                         //Debug.Log("Equip repair tool animation");
                         playerAnimator.SetTrigger("Equip Repair Tool");
                         playerAnimator.ResetTrigger("Equip Sword");
                         playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Grenade");
+                        playerAnimator.ResetTrigger("Equip Potion");
+                        break;
+                    case Item.HEALTH_POTION:
+                        //Debug.Log("Equip potion animation");
+                        playerAnimator.SetTrigger("Equip Potion");
+                        playerAnimator.ResetTrigger("Equip Sword");
+                        playerAnimator.ResetTrigger("Equip Gun");
+                        playerAnimator.ResetTrigger("Equip Grenade");
+                        playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
                 }
             }
@@ -195,7 +226,9 @@ public class PlayerInventory : MonoBehaviour
         sword.SetActive(equippedItem == Item.SWORD);
         gun.SetActive(equippedItem == Item.GUN);
         repairTool.SetActive(equippedItem == Item.REPAIR_TOOL);
-        aimHUD.enabled = (equippedItem == Item.SWORD || equippedItem == Item.GUN || equippedItem == Item.REPAIR_TOOL);
+        grenade.SetActive(equippedItem == Item.GRENADE && !grenadeThrow.ThrowingGrenade);
+        potion.SetActive(equippedItem == Item.HEALTH_POTION && !potionDrink.FinishedDrinking);
+        //aimHUD.enabled = (equippedItem != Item.HEALTH_POTION);
     }
 
     /// <summary>
@@ -221,9 +254,57 @@ public class PlayerInventory : MonoBehaviour
             playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Shoot -> Gun Idle") || playerAnimator.GetBool("Shoot");
     }
 
+    /// <summary>
+    /// Checks if the player is currently in the grenade throw animation
+    /// </summary>
+    /// <returns>Whether the player is in the grenade throw animation</returns>
+    private bool IsInThrowAnimation()
+    {
+        return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Grenade Throw") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Idle -> Grenade Throw") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Throw -> Grenade Idle") || playerAnimator.GetBool("Grenade Throw");
+    }
+
+    /// <summary>
+    /// Checks if the player is currently in the potion drink animation
+    /// </summary>
+    /// <returns>Whether the player is in the potion drink animation</returns>
+    private bool IsInDrinkAnimation()
+    {
+        return playerAnimator.GetCurrentAnimatorStateInfo(1).IsName("Potion Drink") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Idle -> Potion Drink") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Drink -> Potion Idle") || playerAnimator.GetBool("Potion Drink");
+    }
+
+    /// <summary>
+    /// Checks if the player is currently in an animation transition of switching between items
+    /// </summary>
+    /// <returns>Whether the player is in an animation transition for switching items</returns>
     private bool IsInSwitchItemAnimation()
     {
-        return playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Gun Idle") || playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Sword Idle");
+        return playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Gun Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Grenade Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Repair Tool Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Sword Idle -> Potion Idle") ||
+
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Sword Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Grenade Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Repair Tool Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Gun Idle -> Potion Idle") ||
+
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Idle -> Sword Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Idle -> Gun Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Idle -> Repair Tool Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Grenade Idle -> Potion Idle") ||
+
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Repair Tool Idle -> Sword Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Repair Tool Idle -> Gun Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Repair Tool Idle -> Grenade Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Repair Tool Idle -> Potion Idle") ||
+
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Idle -> Sword Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Idle -> Gun Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Idle -> Grenade Idle") ||
+            playerAnimator.GetAnimatorTransitionInfo(1).IsName("Potion Idle -> Repair Tool Idle");
+            
     }
 
     /// <summary>
@@ -237,7 +318,8 @@ public class PlayerInventory : MonoBehaviour
             switch (equippedItem)
             {
                 case Item.SWORD:
-                    if (swordHitbox.isSwinging() || IsInSwingAnimation()) { // don't use if already in swinging animation
+                    if (swordHitbox.isSwinging() || IsInSwingAnimation())
+                    { // don't use if already in swinging animation
                         break;
                     }
                     cooldownTime = swordCooldown;
@@ -259,11 +341,20 @@ public class PlayerInventory : MonoBehaviour
                     
                     break;
                 case Item.GUN:
-                    if (shoot.isShooting() || IsInShootAnimation()) { // don't use if already in shooting animation
+                    if (shoot.isShooting() || IsInShootAnimation())
+                    { // don't use if already in shooting animation
                         break;
                     }
                     cooldownTime = gunCooldown;
                     playerAnimator.SetTrigger("Shoot");
+                    break;
+                case Item.GRENADE:
+                    if (IsInThrowAnimation())
+                    { // don't use if already in throwing animation
+                        break;
+                    }
+                    cooldownTime = grenadeCooldown;
+                    playerAnimator.SetTrigger("Grenade Throw");
                     break;
             }
         }
@@ -297,21 +388,21 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void AddTrap()
+    public void AddGrenade()
     {
-        trapCount++;
-        if (trapCount == 1)
+        grenadeCount++;
+        if (grenadeCount == 1)
         {
-            slotItems.Add(Item.TRAP);
+            slotItems.Add(Item.GRENADE);
         }
     }
 
-    public void UseTrap()
+    public void UseGrenade()
     {
-        trapCount--;
-        if (repairToolCount == 0)
+        grenadeCount--;
+        if (grenadeCount == 0)
         {
-            slotItems.Remove(Item.TRAP);
+            slotItems.Remove(Item.GRENADE);
             if (equippedIndex >= slotItems.Count)
             {
                 equippedIndex--;
@@ -321,5 +412,28 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void AddPotion()
+    {
+        potionCount++;
+        if (potionCount == 1)
+        {
+            slotItems.Add(Item.HEALTH_POTION);
+        }
+    }
+
+    public void UsePotion()
+    {
+        potionCount--;
+        if (potionCount == 0)
+        {
+            slotItems.Remove(Item.HEALTH_POTION);
+            if (equippedIndex >= slotItems.Count)
+            {
+                equippedIndex--;
+            }
+            equipQueue.Enqueue(slotItems[equippedIndex]);
+            UpdateActiveItem();
+        }
+    }
 
 }

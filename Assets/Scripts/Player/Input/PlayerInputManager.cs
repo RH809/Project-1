@@ -1,6 +1,7 @@
-using System;
+/// <summary>
+/// This script manages the player controls.
+/// </summary>
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
