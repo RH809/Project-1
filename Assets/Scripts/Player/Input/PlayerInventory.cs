@@ -129,6 +129,7 @@ public class PlayerInventory : MonoBehaviour
                 //equippedItem = item.GUN;
             case 2:
             case 3:
+            case 4:
                 equipQueue.Enqueue(slotItems[value]);
                 break;
         }
@@ -355,6 +356,13 @@ public class PlayerInventory : MonoBehaviour
                     }
                     cooldownTime = grenadeCooldown;
                     playerAnimator.SetTrigger("Grenade Throw");
+                    break;
+                case Item.HEALTH_POTION:
+                    if (IsInDrinkAnimation())
+                    { // don't use if already in drinking animation
+                        break;
+                    }
+                    playerAnimator.SetTrigger("Potion Drink");
                     break;
             }
         }
