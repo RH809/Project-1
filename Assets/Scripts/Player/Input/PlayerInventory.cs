@@ -358,8 +358,8 @@ public class PlayerInventory : MonoBehaviour
                     playerAnimator.SetTrigger("Grenade Throw");
                     break;
                 case Item.HEALTH_POTION:
-                    if (IsInDrinkAnimation())
-                    { // don't use if already in drinking animation
+                    if (IsInDrinkAnimation() || Player.Instance.Health.CurrentHealth == Player.Instance.Health.MaxHealth)
+                    { // don't use if already in drinking animation or at full health
                         break;
                     }
                     playerAnimator.SetTrigger("Potion Drink");
