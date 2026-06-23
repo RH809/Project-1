@@ -1,3 +1,6 @@
+/// <summary>
+/// This script handles the behavior of the player HUD.
+/// </summary>
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +17,9 @@ public class PlayerHUD : MonoBehaviour
         healthbar.minValue = 0;
         healthbar.maxValue = Player.Instance.Health.MaxHealth;
         healthbar.value = Player.Instance.Health.CurrentHealth;
+        staminaBar.minValue = 0;
+        staminaBar.maxValue = Player.Instance.Stamina.MaxStamina;
+        staminaBar.value = Player.Instance.Stamina.CurrentStamina;
     }
 
     // Update is called once per frame
@@ -21,5 +27,6 @@ public class PlayerHUD : MonoBehaviour
     {
         healthbar.value = Player.Instance.Health.CurrentHealth;
         healthText.text = Player.Instance.Health.CurrentHealth.ToString() + "/" + Player.Instance.Health.MaxHealth.ToString();
+        staminaBar.value = Player.Instance.Stamina.CurrentStamina;
     }
 }

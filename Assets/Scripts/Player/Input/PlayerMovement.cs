@@ -29,12 +29,18 @@ public class PlayerMovement : MonoBehaviour
     private bool jumping = false;
     private bool grounded = false;
 
+    private PlayerStamina playerStamina;
+
     public bool IsJumping { get => jumping; }
+    public bool IsSprinting { get => sprinting; }
+    public bool IsGrounded { get => grounded; }
+    public bool IsMoving { get => moving; }
 
     private Rigidbody rb;
     void Awake()
     {
         playerControls = new PlayerControls();
+        playerStamina = GetComponent<PlayerStamina>();
         rb = GetComponent<Rigidbody>();
 
         playerAnimator.SetFloat("Speed", 1.0f);
@@ -136,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = transform.TransformDirection(movement);
-        rb.MovePosition(rb.position + movement * (sprinting ? sprintSpeed : walkSpeed) * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * (sprinting && playerStamina.CanSprint ? sprintSpeed : walkSpeed) * Time.fixedDeltaTime);
 
     }
 
