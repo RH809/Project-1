@@ -3,6 +3,7 @@
 /// </summary>
 
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 

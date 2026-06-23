@@ -794,7 +794,7 @@ MonoBehaviour:
   disruptorStoppingDist: 0.4
   defenderStoppingDist: 0.325
   beaconStoppingDist: 0.45
-  maxKiteRange: 12
+  maxKiteRange: 50
   kiteRangeThreshold: 3
   playerPriorityRange: 15
   head: {fileID: 1792957158343670138}

@@ -35,6 +35,17 @@ public class Player : MonoBehaviour
         swordHitbox = GetComponent<SwordHitbox>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("y"))
+        {
+            if (this.Health.IsAlive)
+            {
+                this.Health.TakeDamage(this.Health.MaxHealth, gameObject);
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         // handle ordering of LateUpdate method calls

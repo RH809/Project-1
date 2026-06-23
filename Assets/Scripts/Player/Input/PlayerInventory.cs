@@ -3,6 +3,7 @@
 /// </summary>
 
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,17 +75,10 @@ public class PlayerInventory : MonoBehaviour
         Player.Instance.InputManager.Controls.Player.Use.performed += OnUsePerformed;
         Player.Instance.InputManager.Controls.Player.SelectItem.performed += OnSelectItemPerformed;
         Player.Instance.InputManager.Controls.Player.Scroll.performed += OnScrollPerformed;
-        /*
-        Player.Instance.Controls.Player.Use.performed += OnUsePerformed;
-        Player.Instance.Controls.Player.SelectItem.performed += OnSelectItemPerformed;
-        Player.Instance.Controls.Player.Scroll.performed += OnScrollPerformed;
-        */
-        /*
-        playerControls.Player.Use.performed += OnUsePerformed;
-        playerControls.Player.SelectItem.performed += OnSelectItemPerformed;
-        playerControls.Player.Scroll.performed += OnScrollPerformed;
-        playerControls.Enable();
-        */
+
+        Health.OnDie += OnDie;
+        Health.OnRespawn += OnRespawn;
+        
     }
 
     void OnDisable()
@@ -92,17 +86,10 @@ public class PlayerInventory : MonoBehaviour
         Player.Instance.InputManager.Controls.Player.Use.performed -= OnUsePerformed;
         Player.Instance.InputManager.Controls.Player.SelectItem.performed -= OnSelectItemPerformed;
         Player.Instance.InputManager.Controls.Player.Scroll.performed -= OnScrollPerformed;
-        /*
-        Player.Instance.Controls.Player.Use.performed -= OnUsePerformed;
-        Player.Instance.Controls.Player.SelectItem.performed -= OnSelectItemPerformed;
-        Player.Instance.Controls.Player.Scroll.performed -= OnScrollPerformed;
-        */
-        /*
-        playerControls.Player.Use.performed -= OnUsePerformed;
-        playerControls.Player.SelectItem.performed -= OnSelectItemPerformed;
-        playerControls.Player.Scroll.performed -= OnScrollPerformed;
-        playerControls.Disable();
-        */
+
+        Health.OnDie -= OnDie;
+        Health.OnRespawn -= OnRespawn;
+
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
@@ -441,6 +428,25 @@ public class PlayerInventory : MonoBehaviour
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
             UpdateActiveItem();
+        }
+    }
+
+    public void OnDie(HealthContext healthContext)
+    {
+        if (healthContext.target.Equals(Player.Instance.gameObject))
+        {
+            equipQueue.Clear();
+        }
+    }
+
+    public void OnRespawn(HealthContext healthContext)
+    {
+        if (healthContext.target.Equals(Player.Instance.gameObject))
+        {
+            Debug.Log("Player respawn inventory...");
+            equipQueue.Enqueue(slotItems[equippedIndex]);
+            equippedIndex = 0;
+            equippedItem = Item.SWORD; // set to default so that animation transition will play on respawn
         }
     }
 
