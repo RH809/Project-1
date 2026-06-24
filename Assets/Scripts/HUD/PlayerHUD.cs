@@ -44,6 +44,11 @@ public class PlayerHUD : MonoBehaviour
         }
 
         Instance = this;
+
+        Debug.Log("Hotbar: " + hotbar);
+        hotbarLayout = hotbar.GetComponent<HorizontalLayoutGroup>();
+        Debug.Log("Hotbar layout: " + hotbarLayout);
+        hotbarLayout.spacing = spacings[1];
     }
 
     void Start()
@@ -55,10 +60,6 @@ public class PlayerHUD : MonoBehaviour
         staminaBar.maxValue = Player.Instance.Stamina.MaxStamina;
         staminaBar.value = Player.Instance.Stamina.CurrentStamina;
         staminaFill.color = sprintEnabledColor;
-
-        hotbarLayout = hotbar.GetComponent<HorizontalLayoutGroup>();
-        Debug.Log("Hotbar layout: " + hotbarLayout);
-        hotbarLayout.spacing = spacings[1];
     }
 
     // Update is called once per frame
