@@ -16,6 +16,13 @@ public class PlayerStamina : MonoBehaviour
 
     private bool disableSprint = false;
 
+    public bool SprintDisabled { get => disableSprint; }
+
+    void Start()
+    {
+        currentStamina = MaxStamina;
+    }
+
     void OnEnable()
     {
         Health.OnDie += OnDie;
@@ -40,7 +47,7 @@ public class PlayerStamina : MonoBehaviour
                     StartCoroutine(DisableSprintRoutine());
                 }
             }
-            else if (Player.Instance.Movement.IsGrounded)
+            else
             {
                 currentStamina = Mathf.Min(MaxStamina, currentStamina + staminaRegenRate * Time.deltaTime);
             }
