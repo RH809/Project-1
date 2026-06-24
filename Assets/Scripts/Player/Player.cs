@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     [HideInInspector] public Camera Camera;
     [HideInInspector] public Health Health;
     [HideInInspector] public PlayerMovement Movement;
+    [HideInInspector] public PlayerStamina Stamina;
     [HideInInspector] public PlayerInventory Inventory;
     [HideInInspector] public PlayerInputManager InputManager;
+    
 
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
@@ -28,11 +30,23 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         Health = GetComponent<Health>();
         Movement = GetComponent<PlayerMovement>();
+        Stamina = GetComponent<PlayerStamina>();
         Inventory = GetComponent<PlayerInventory>();
         InputManager = GetComponent<PlayerInputManager>();
 
         playerCamera = GetComponent<PlayerCamera>();
         swordHitbox = GetComponent<SwordHitbox>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("y"))
+        {
+            if (this.Health.IsAlive)
+            {
+                this.Health.TakeDamage(this.Health.MaxHealth, gameObject);
+            }
+        }
     }
 
     private void LateUpdate()

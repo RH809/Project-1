@@ -2,6 +2,7 @@
 /// This script handles the player respawn logic.
 /// </summary>
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Respawn : MonoBehaviour
@@ -9,9 +10,11 @@ public class Respawn : MonoBehaviour
     public static Respawn Instance;
     [HideInInspector] public Camera Camera;
     [SerializeField] private Transform respawnTransform;
-    [SerializeField] private float baseRespawnTime;
+    [SerializeField] private int baseRespawnTime;
+    [SerializeField] private Canvas respawnCanvas;
+    [SerializeField] private TextMeshProUGUI respawnText;
 
-    private float respawnTime;
+    private int respawnTime;
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class Respawn : MonoBehaviour
     {
         Camera.gameObject.SetActive(false);
         respawnTime = baseRespawnTime;
+        respawnCanvas.enabled = false;
     }
 
     void OnEnable()
@@ -61,14 +65,21 @@ public class Respawn : MonoBehaviour
         // Disable player and switch cameras
         Player.Instance.gameObject.SetActive(false);
         Camera.gameObject.SetActive(true);
+        respawnCanvas.enabled = true;
+        for (int i = respawnTime; i > 0; i--)
+        {
+            respawnText.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
         
 
-        yield return new WaitForSeconds(respawnTime);
+        //yield return new WaitForSeconds(respawnTime);
 
         Debug.Log("Player respawned!");
         // Enable player and switch cameras
         Camera.gameObject.SetActive(false);
         Player.Instance.gameObject.SetActive(true);
+        respawnCanvas.enabled = false;
         Player.Instance.Health.Respawn(1, false);
     }
 }

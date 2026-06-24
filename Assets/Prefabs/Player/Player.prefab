@@ -1773,6 +1773,9 @@ PrefabInstance:
       addedObject: {fileID: 4229798535611753488}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1128237815840577676}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2323866215633140696}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
@@ -1911,6 +1914,7 @@ MonoBehaviour:
   Camera: {fileID: 0}
   Health: {fileID: 0}
   Movement: {fileID: 0}
+  Stamina: {fileID: 0}
   Inventory: {fileID: 0}
   InputManager: {fileID: 0}
 --- !u!114 &3664526495947786501
@@ -1959,7 +1963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerAnimator: {fileID: 1644641789591390061}
-  sprintSpeed: 4
+  sprintSpeed: 4.5
   walkSpeed: 3
   backwardMultiplier: 0.6
   sidewaysMultiplier: 0.75
@@ -1969,6 +1973,20 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1128237815840577676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04a3ed0f65b8314888f3733012e8f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
+  staminaRegenRate: 10
+  staminaUseRate: 7.5
 --- !u!114 &2323866215633140696
 MonoBehaviour:
   m_ObjectHideFlags: 0
