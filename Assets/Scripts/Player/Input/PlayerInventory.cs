@@ -21,12 +21,14 @@ public class PlayerInventory : MonoBehaviour
 
     private Item equippedItem;
     public Item EquippedItem { get => equippedItem; }
+    private int equippedIndex;
+    public int EquippedIndex { get => equippedIndex; }
     private Queue<Item> equipQueue;
     private List<Item> slotItems;
     private int repairToolCount = 0;
     private int grenadeCount = 0;
     private int potionCount = 0;
-    private int equippedIndex;
+    
 
     [SerializeField] private Canvas aimHUD;
     [SerializeField] private GameObject sword;
@@ -365,6 +367,11 @@ public class PlayerInventory : MonoBehaviour
         if (repairToolCount == 1)
         {
             slotItems.Add(Item.REPAIR_TOOL);
+            PlayerHUD.Instance.AddItem(Item.REPAIR_TOOL);
+        }
+        else
+        {
+            PlayerHUD.Instance.IncrementItem(slotItems.IndexOf(Item.REPAIR_TOOL));
         }
     }
 
@@ -374,12 +381,17 @@ public class PlayerInventory : MonoBehaviour
         if (repairToolCount == 0)
         {
             slotItems.Remove(Item.REPAIR_TOOL);
+            PlayerHUD.Instance.RemoveItem(equippedIndex);
             if (equippedIndex >= slotItems.Count)
             {
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
             UpdateActiveItem();
+        }
+        else
+        {
+            PlayerHUD.Instance.DecrementItem(equippedIndex);
         }
     }
 
@@ -389,6 +401,11 @@ public class PlayerInventory : MonoBehaviour
         if (grenadeCount == 1)
         {
             slotItems.Add(Item.GRENADE);
+            PlayerHUD.Instance.AddItem(Item.GRENADE);
+        }
+        else
+        {
+            PlayerHUD.Instance.IncrementItem(slotItems.IndexOf(Item.GRENADE));
         }
     }
 
@@ -398,12 +415,17 @@ public class PlayerInventory : MonoBehaviour
         if (grenadeCount == 0)
         {
             slotItems.Remove(Item.GRENADE);
+            PlayerHUD.Instance.RemoveItem(equippedIndex);
             if (equippedIndex >= slotItems.Count)
             {
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
             UpdateActiveItem();
+        }
+        else
+        {
+            PlayerHUD.Instance.DecrementItem(equippedIndex);
         }
     }
 
@@ -413,6 +435,11 @@ public class PlayerInventory : MonoBehaviour
         if (potionCount == 1)
         {
             slotItems.Add(Item.HEALTH_POTION);
+            PlayerHUD.Instance.AddItem(Item.HEALTH_POTION);
+        }
+        else
+        {
+            PlayerHUD.Instance.IncrementItem(slotItems.IndexOf(Item.HEALTH_POTION));
         }
     }
 
@@ -422,12 +449,17 @@ public class PlayerInventory : MonoBehaviour
         if (potionCount == 0)
         {
             slotItems.Remove(Item.HEALTH_POTION);
+            PlayerHUD.Instance.RemoveItem(equippedIndex);
             if (equippedIndex >= slotItems.Count)
             {
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
             UpdateActiveItem();
+        }
+        else
+        {
+            PlayerHUD.Instance.DecrementItem(equippedIndex);
         }
     }
 
