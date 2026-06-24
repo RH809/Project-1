@@ -95,7 +95,10 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
-        Use();
+        if (UIManager.Instance.State == UIManager.UIState.PLAY)
+        {
+            Use();
+        }
     }
 
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {

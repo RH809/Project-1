@@ -11,5 +11,6 @@ public class ShopInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("Opening shop...");
+        UIManager.Instance.SwitchState(UIManager.UIState.SHOP);
     }
 }

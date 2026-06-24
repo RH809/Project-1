@@ -103,8 +103,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx) {
-        moveInput = ctx.ReadValue<Vector2>();
-        moving = true;
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            moveInput = ctx.ReadValue<Vector2>();
+            moving = true;
+        }
     }
 
     private void OnMoveCanceled(InputAction.CallbackContext ctx) {
@@ -113,7 +116,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnSprintPerformed(InputAction.CallbackContext ctx) {
-        sprinting = true;
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            sprinting = true;
+        }
         //playerAnimator.SetFloat("Speed", sprintSpeed / walkSpeed);
     }
 
@@ -123,7 +129,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx) {
-        jumpInput = true;
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            jumpInput = true;
+        }
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx) {
@@ -188,9 +197,9 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Cancels all movement inputs
     /// </summary>
-    void StopMovement()
+    public void StopMovement()
     {
-        Debug.Log("Stopping player movement on death");
+        Debug.Log("Stopping player movement");
         jumpInput = false;
         sprinting = false;
         moving = false;

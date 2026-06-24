@@ -64,6 +64,12 @@ public class PlayerInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UIManager.Instance.State != UIManager.UIState.PLAY)
+        {
+            interacting = false;
+            interactProgress.fillAmount = 0;
+            return;
+        }
         interactRay = new Ray(interactSource.position, interactSource.forward * interactRange);
         defenderHover = false;
         shopHover = false;
@@ -116,7 +122,8 @@ public class PlayerInteractor : MonoBehaviour
 
     void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
-        if (!shopHover && !defenderHover) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY) return;
+            if (!shopHover && !defenderHover) return;
         if (!interacting)
         {
             interactTime = 0;
