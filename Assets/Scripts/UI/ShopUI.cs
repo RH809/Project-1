@@ -58,7 +58,7 @@ public class ShopUI : MonoBehaviour
         close.onClick.AddListener(() => UIManager.Instance.SwitchState(UIManager.UIState.PLAY));
         buy.onClick.AddListener(Buy);
 
-        swordDamage.Select();
+        selectItem(swordDamageInfo, swordDamage);
     }
 
     void Update()
@@ -98,6 +98,11 @@ public class ShopUI : MonoBehaviour
             buttonText.text = buttonText.text.Substring(0, buttonText.text.IndexOf('$')) + "Maxed)";
             buy.interactable = false;
         }
+        selectedButton.Select();
+    }
+
+    public void ShopOpen()
+    {
         selectedButton.Select();
     }
 

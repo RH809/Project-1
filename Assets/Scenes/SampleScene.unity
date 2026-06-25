@@ -2263,6 +2263,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1744910905}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: swordDamageInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b8d4f40782186048b4130e21d4f809d, type: 2}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: swordAttackSpeed
       value: 
       objectReference: {fileID: 1577174624}

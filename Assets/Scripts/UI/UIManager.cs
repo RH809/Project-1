@@ -58,5 +58,9 @@ public class UIManager : MonoBehaviour
         {
             Player.Instance.Movement.StopMovement();
         }
+        if (newState == UIState.SHOP)
+        {
+            ShopUI.Instance.ShopOpen();
+        }
     }
 }
