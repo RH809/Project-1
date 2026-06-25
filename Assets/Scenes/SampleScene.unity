@@ -585,6 +585,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e88b85300e49c854e90624639a74d883, type: 3}
+--- !u!114 &471690127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 683992160129856575, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+  m_PrefabInstance: {fileID: 1235629867653128070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &589581054
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +675,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &612569171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4513050467827828406, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+  m_PrefabInstance: {fileID: 1235629867653128070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &741050416 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9124961893839464813, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+  m_PrefabInstance: {fileID: 1235629867653128070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &760706566 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3542024782517270673, guid: 61c1fee8affef5d459df255585364a10, type: 3}
@@ -868,6 +901,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1013734253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 874549558406170192, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+  m_PrefabInstance: {fileID: 1235629867653128070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1036011546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4514173001614129113, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+  m_PrefabInstance: {fileID: 1235629867653128070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1102333003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2190,10 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.78431374
       objectReference: {fileID: 0}
+    - target: {fileID: 917505728936008200, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1919461537316571395, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.5921569
@@ -2172,13 +2231,33 @@ PrefabInstance:
       value: 0.78431374
       objectReference: {fileID: 0}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: buy
+      value: 
+      objectReference: {fileID: 1013734253}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: close
       value: 
       objectReference: {fileID: 760706566}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: buyImage
+      value: 
+      objectReference: {fileID: 741050416}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: buyItemText
+      value: 
+      objectReference: {fileID: 1036011546}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: swordDamage
       value: 
       objectReference: {fileID: 1119115769}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: buyPriceText
+      value: 
+      objectReference: {fileID: 471690127}
+    - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: buyDescription
+      value: 
+      objectReference: {fileID: 612569171}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: swordCritChance
       value: 

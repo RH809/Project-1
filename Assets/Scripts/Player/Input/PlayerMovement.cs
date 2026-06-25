@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
 
-    private PlayerControls playerControls;
     private Vector2 moveInput;
     private bool jumpInput = false;
     private float lastJumpTime = 0.0f;
@@ -39,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     void Awake()
     {
-        playerControls = new PlayerControls();
         playerStamina = GetComponent<PlayerStamina>();
         rb = GetComponent<Rigidbody>();
 
