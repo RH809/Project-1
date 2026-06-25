@@ -88,9 +88,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.100000024
-  m_TransitionOffset: 51.27839
-  m_ExitTime: 0.74589574
+  m_TransitionDuration: 0.099999994
+  m_TransitionOffset: 111.283455
+  m_ExitTime: 0.98917437
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -207,7 +207,7 @@ AnimatorStateMachine:
     m_Position: {x: 160, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6298740956671724528}
-    m_Position: {x: 560, y: 70, z: 0}
+    m_Position: {x: 550, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3593815911031162272}
     m_Position: {x: 550, y: 160, z: 0}
@@ -1220,7 +1220,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword Swing 1
-  m_Speed: 1.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7245899766589360342}
