@@ -4,7 +4,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stat Info", menuName = "Scriptable Objects/Stat Upgrade Info")]
-public class StatUpgradeInfo : ShopItemInfo
+public class StatUpgrade : ShopItem
 {
     public float statValue;
     public float statValueIncrement;

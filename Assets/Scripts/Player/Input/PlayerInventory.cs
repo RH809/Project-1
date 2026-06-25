@@ -2,6 +2,7 @@
 /// This script manages the player's held item and handles using the items.
 /// </summary>
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -44,6 +45,7 @@ public class PlayerInventory : MonoBehaviour
     private PotionDrink potionDrink;
 
     [SerializeField] private float swordCooldown = 0.5f;
+    private float swordCooldownReduction;
     [SerializeField] private float gunCooldown = 1f;
     [SerializeField] private float grenadeCooldown = 1f;
     private float cooldownTime = 0.0f;
@@ -69,6 +71,7 @@ public class PlayerInventory : MonoBehaviour
         // ===================
         equipQueue = new Queue<Item>();
         equippedItem = Item.SWORD;
+        swordCooldownReduction = swordCooldown / Shop.Instance.swordAttackSpeed.purchaseCap;
         UpdateActiveItem();
     }
 
@@ -315,8 +318,8 @@ public class PlayerInventory : MonoBehaviour
                     { // don't use if already in swinging animation
                         break;
                     }
-                    cooldownTime = swordCooldown;
                     // Randomly choose between the 3 possible animations
+                    cooldownTime = 100f; // set to high value for now just to prevent quick clicks
                     float rand = Random.Range(0.0f, 1.0f);
                     if (rand <= 1 / 3.0f)
                     {
@@ -331,7 +334,7 @@ public class PlayerInventory : MonoBehaviour
                         playerAnimator.SetTrigger("Sword Swing 3");
                     }
                     playerCamera.LockCamera(); // Lock player camera during the swing
-                    
+                    StartCoroutine(SetSwordCooldown());
                     break;
                 case Item.GUN:
                     if (shoot.isShooting() || IsInShootAnimation())
@@ -362,6 +365,17 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log("On cooldown");
         }
+    }
+
+    public void ReduceSwordCooldown()
+    {
+        swordCooldown -= swordCooldownReduction;
+    }
+
+    IEnumerator SetSwordCooldown()
+    {
+        yield return new WaitUntil(() => !IsInSwingAnimation() && !swordHitbox.isSwinging());
+        cooldownTime = swordCooldown;
     }
 
     public void AddRepairTool()

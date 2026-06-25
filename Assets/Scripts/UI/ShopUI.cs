@@ -2,6 +2,7 @@
 /// This script manages the UI for the shop.
 /// </summary>
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ using UnityEngine.UI;
 public class ShopUI : MonoBehaviour
 {
     public static ShopUI Instance;
+
+    [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private Button swordDamage;
     [SerializeField] private Button swordAttackSpeed;
@@ -22,12 +25,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI buyPriceText;
     [SerializeField] private TextMeshProUGUI buyDescription;
 
-    [SerializeField] private ShopItemInfo swordDamageInfo;
-    [SerializeField] private ShopItemInfo swordAttackSpeedInfo;
-    [SerializeField] private ShopItemInfo swordCritChanceInfo;
-
     private Button selectedButton;
-    private ShopItemInfo selectedItem;
+    private ShopItem selectedItem;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,14 +50,14 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
-        swordDamage.onClick.AddListener(() => selectItem(swordDamageInfo, swordDamage));
-        swordAttackSpeed.onClick.AddListener(() => selectItem(swordAttackSpeedInfo, swordAttackSpeed));
-        swordCritChance.onClick.AddListener(() => selectItem(swordCritChanceInfo, swordCritChance));
+        swordDamage.onClick.AddListener(() => selectItem(Shop.Instance.swordDamage, swordDamage));
+        swordAttackSpeed.onClick.AddListener(() => selectItem(Shop.Instance.swordAttackSpeed, swordAttackSpeed));
+        swordCritChance.onClick.AddListener(() => selectItem(Shop.Instance.swordCritChance, swordCritChance));
 
         close.onClick.AddListener(() => UIManager.Instance.SwitchState(UIManager.UIState.PLAY));
         buy.onClick.AddListener(Buy);
 
-        selectItem(swordDamageInfo, swordDamage);
+        selectItem(Shop.Instance.swordDamage, swordDamage);
     }
 
     void Update()
@@ -66,13 +65,13 @@ public class ShopUI : MonoBehaviour
         buy.interactable = !selectedItem.reachedCap; // TODO: based on player's money
     }
 
-    void selectItem(ShopItemInfo item, Button button)
+    void selectItem(ShopItem item, Button button)
     {
         selectedButton = button;
         selectedItem = item;
 
         buyImage.sprite = selectedItem.image;
-        buyItemText.text = selectedItem.name;
+        buyItemText.text = selectedItem.itemName;
         if (selectedItem.reachedCap)
         {
             buyPriceText.text = "Maxed";
@@ -84,12 +83,41 @@ public class ShopUI : MonoBehaviour
             buyDescription.text = selectedItem.description;
         }
 
-        Debug.Log("Selected: " + selectedItem);
+        Debug.Log("Selected: " + selectedItem.itemName);
     }
 
     void Buy()
     {
+        if (selectedItem.reachedCap)
+        {
+            selectedButton.Select();
+            return;
+        }
         selectedItem.Purchase();
+        switch (selectedItem.shopItem) {
+            case ShopItem.ShopItemType.SWORD_DAMAGE:
+            case ShopItem.ShopItemType.SWORD_CRIT_CHANCE:
+            case ShopItem.ShopItemType.GUN_DAMAGE:
+            case ShopItem.ShopItemType.GUN_CRIT_CHANCE: // Purchase method handles stat upgrades
+                break;
+            case ShopItem.ShopItemType.SWORD_ATTACK_SPEED:
+                playerAnimator.SetFloat("SwordAttackSpeed", playerAnimator.GetFloat("SwordAttackSpeed") + Shop.Instance.swordAttackSpeed.statValueIncrement / 4);
+                Player.Instance.Inventory.ReduceSwordCooldown();
+                break;
+            case ShopItem.ShopItemType.GUN_ATTACK_SPEED:
+                break;
+            case ShopItem.ShopItemType.REPAIR_TOOL:
+                Player.Instance.Inventory.AddRepairTool();
+                break;
+            case ShopItem.ShopItemType.GRENADE:
+                Player.Instance.Inventory.AddGrenade();
+                break;
+            case ShopItem.ShopItemType.HEALTH_POTION:
+                Player.Instance.Inventory.AddPotion();
+                break;
+        }
+        buyPriceText.text = "$" + selectedItem.price.ToString();
+        buyDescription.text = selectedItem.description;
         if (selectedItem.reachedCap)
         {
             buyPriceText.text = "Maxed";
@@ -99,6 +127,7 @@ public class ShopUI : MonoBehaviour
             buy.interactable = false;
         }
         selectedButton.Select();
+        Debug.Log("Bought: " + selectedItem.itemName);
     }
 
     public void ShopOpen()

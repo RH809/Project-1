@@ -120,6 +120,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12a42344c7b2d7849b5110801db74ce7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3247664450899320672}
     - targetCorrespondingSourceObject: {fileID: 6635825433914472740, guid: 12a42344c7b2d7849b5110801db74ce7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3279747086756119015}
@@ -293,6 +296,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8fb654b837b0d44851df2b3e45e39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopInteractable
+--- !u!1 &331731358106635083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12a42344c7b2d7849b5110801db74ce7, type: 3}
+  m_PrefabInstance: {fileID: 602323706483635738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3247664450899320672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331731358106635083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3744fd3bbf47a2149b849ec15dc37050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shop
+  swordDamageBase: {fileID: 11400000, guid: 5b8d4f40782186048b4130e21d4f809d, type: 2}
+  swordAttackSpeedBase: {fileID: 11400000, guid: 0c040932f19d7a445b2dd5d6685c4133, type: 2}
+  swordCritChanceBase: {fileID: 11400000, guid: 7eae1786925a4d14d9ae9f2894fc7314, type: 2}
+  swordDamage: {fileID: 0}
+  swordAttackSpeed: {fileID: 0}
+  swordCritChance: {fileID: 0}
 --- !u!1 &387948926758718903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 952976715635915693, guid: 12a42344c7b2d7849b5110801db74ce7, type: 3}

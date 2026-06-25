@@ -1985,7 +1985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04a3ed0f65b8314888f3733012e8f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
-  staminaRegenRate: 10
+  staminaRegenRate: 6
   staminaUseRate: 7.5
 --- !u!114 &2323866215633140696
 MonoBehaviour:
@@ -2021,13 +2021,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aecaa79afe8198419da91551bc08816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
+  playerAnimator: {fileID: 1644641789591390061}
   swordTip: {fileID: 1973501209467393100}
   swordBase: {fileID: 3365748411420141106}
   radius: 0.075
-  damage: 20
+  critMultiplier: 1.5
   attackMask:
     serializedVersion: 2
     m_Bits: 256
+  swordDamageInfo: {fileID: 11400000, guid: 5b8d4f40782186048b4130e21d4f809d, type: 2}
+  swordAttackSpeedInfo: {fileID: 11400000, guid: 0c040932f19d7a445b2dd5d6685c4133, type: 2}
+  swordCritChanceInfo: {fileID: 11400000, guid: 7eae1786925a4d14d9ae9f2894fc7314, type: 2}
 --- !u!114 &2196699293173105311
 MonoBehaviour:
   m_ObjectHideFlags: 0

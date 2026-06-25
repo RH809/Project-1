@@ -4,9 +4,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item Info", menuName = "Scriptable Objects/Shop Item Info")]
-public class ShopItemInfo : ScriptableObject
+public class ShopItem : ScriptableObject
 {
-    public enum ShopItem
+    public enum ShopItemType
     {
         SWORD_DAMAGE,
         SWORD_ATTACK_SPEED,
@@ -19,7 +19,7 @@ public class ShopItemInfo : ScriptableObject
         HEALTH_POTION
     };
 
-    public ShopItem shopItem;
+    public ShopItemType shopItem;
     public Sprite image;
     public string itemName;
     public int price;
