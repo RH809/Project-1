@@ -14,6 +14,7 @@ public class Zombie : MonoBehaviour
     }
 
     [SerializeField] private ZombieType type;
+    [SerializeField] private int killReward;
     public ZombieType Type { get => type; }
 
     private Health health;
@@ -38,6 +39,10 @@ public class Zombie : MonoBehaviour
         if (healthCtx.target == gameObject)
         {
             Debug.Log("Zombie killed");
+            if (healthCtx.source == Player.Instance.gameObject)
+            {
+                Player.Instance.Bank.AddMoney(killReward);
+            }
             health.DestroyHealthbar();
             Destroy(gameObject);
         }

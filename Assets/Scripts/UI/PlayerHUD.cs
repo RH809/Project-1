@@ -75,6 +75,8 @@ public class PlayerHUD : MonoBehaviour
             panelImages[i].color = (i == Player.Instance.Inventory.EquippedIndex ? equippedColor : unequippedColor);
             indices[i].fontStyle = (i == Player.Instance.Inventory.EquippedIndex ? FontStyles.Bold : FontStyles.Normal);
         }
+
+        moneyText.text = "$" + Player.Instance.Bank.Amount.ToString();
     }
 
     public void IncrementItem(int index)

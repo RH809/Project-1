@@ -32,6 +32,7 @@ public class ShopItem : ScriptableObject
 
     public virtual void Purchase()
     {
+        Player.Instance.Bank.RemoveMoney(price);
         purchases++;
         price += priceIncrement;
     }

@@ -78,7 +78,7 @@ public class ShopUI : MonoBehaviour
 
     void Update()
     {
-        buy.interactable = !selectedItem.reachedCap; // TODO: based on player's money
+        selectedButton.Select();
     }
 
     void selectItem(ShopItem item, Button button)
@@ -98,6 +98,7 @@ public class ShopUI : MonoBehaviour
             buyPriceText.text = "$" + selectedItem.price.ToString();
             buyDescription.text = selectedItem.description;
         }
+        buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
 
         Debug.Log("Selected: " + selectedItem.itemName);
     }
@@ -143,8 +144,8 @@ public class ShopUI : MonoBehaviour
             buyPriceText.text = "Maxed";
             buyDescription.text = "";
             buttonText.text = buttonText.text.Substring(0, buttonText.text.IndexOf('$')) + "Maxed)";
-            buy.interactable = false;
         }
+        buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
         selectedButton.Select();
         Debug.Log("Bought: " + selectedItem.itemName);
     }
@@ -152,6 +153,7 @@ public class ShopUI : MonoBehaviour
     public void ShopOpen()
     {
         selectedButton.Select();
+        selectItem(selectedItem, selectedButton);
     }
 
     void Close(InputAction.CallbackContext ctx)

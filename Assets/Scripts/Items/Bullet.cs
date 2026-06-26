@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
         if (bodyPart != null)
         {
             // If it hit a zombie's body part, deal the damage
-            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f), gameObject);
+            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f), Player.Instance.gameObject);
         }
         hasHit = true;
         Destroy(gameObject);

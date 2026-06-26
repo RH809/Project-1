@@ -872,6 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   type: 1
+  killReward: 5
 --- !u!114 &5658279888064851517
 MonoBehaviour:
   m_ObjectHideFlags: 0

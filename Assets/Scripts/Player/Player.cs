@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerMovement Movement;
     [HideInInspector] public PlayerStamina Stamina;
     [HideInInspector] public PlayerInventory Inventory;
+    [HideInInspector] public PlayerBank Bank;
     [HideInInspector] public PlayerInputManager InputManager;
     
 
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerMovement>();
         Stamina = GetComponent<PlayerStamina>();
         Inventory = GetComponent<PlayerInventory>();
+        Bank = GetComponent<PlayerBank>();
         InputManager = GetComponent<PlayerInputManager>();
 
         playerCamera = GetComponent<PlayerCamera>();
