@@ -3,7 +3,7 @@
 /// </summary>
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item Info", menuName = "Scriptable Objects/Shop Item Info")]
+[CreateAssetMenu(fileName = "Shop Item", menuName = "Scriptable Objects/Shop Item")]
 public class ShopItem : ScriptableObject
 {
     public enum ShopItemType

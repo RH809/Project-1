@@ -17,6 +17,14 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Button swordAttackSpeed;
     [SerializeField] private Button swordCritChance;
 
+    [SerializeField] private Button gunDamage;
+    [SerializeField] private Button gunAttackSpeed;
+    [SerializeField] private Button gunCritChance;
+
+    [SerializeField] private Button repairTool;
+    [SerializeField] private Button grenade;
+    [SerializeField] private Button healthPotion;
+
     [SerializeField] private Button close;
     [SerializeField] private Button buy;
 
@@ -53,6 +61,14 @@ public class ShopUI : MonoBehaviour
         swordDamage.onClick.AddListener(() => selectItem(Shop.Instance.swordDamage, swordDamage));
         swordAttackSpeed.onClick.AddListener(() => selectItem(Shop.Instance.swordAttackSpeed, swordAttackSpeed));
         swordCritChance.onClick.AddListener(() => selectItem(Shop.Instance.swordCritChance, swordCritChance));
+
+        gunDamage.onClick.AddListener(() => selectItem(Shop.Instance.gunDamage, gunDamage));
+        gunAttackSpeed.onClick.AddListener(() => selectItem(Shop.Instance.gunAttackSpeed, gunAttackSpeed));
+        gunCritChance.onClick.AddListener(() => selectItem(Shop.Instance.gunCritChance, gunCritChance));
+
+        repairTool.onClick.AddListener(() => selectItem(Shop.Instance.repairTool, repairTool));
+        grenade.onClick.AddListener(() => selectItem(Shop.Instance.grenade, grenade));
+        healthPotion.onClick.AddListener(() => selectItem(Shop.Instance.healthPotion, healthPotion));
 
         close.onClick.AddListener(() => UIManager.Instance.SwitchState(UIManager.UIState.PLAY));
         buy.onClick.AddListener(Buy);
@@ -105,6 +121,8 @@ public class ShopUI : MonoBehaviour
                 Player.Instance.Inventory.ReduceSwordCooldown();
                 break;
             case ShopItem.ShopItemType.GUN_ATTACK_SPEED:
+                playerAnimator.SetFloat("GunAttackSpeed", playerAnimator.GetFloat("GunAttackSpeed") + Shop.Instance.gunAttackSpeed.statValueIncrement / 4);
+                Player.Instance.Inventory.ReduceGunCooldown();
                 break;
             case ShopItem.ShopItemType.REPAIR_TOOL:
                 Player.Instance.Inventory.AddRepairTool();
@@ -118,11 +136,12 @@ public class ShopUI : MonoBehaviour
         }
         buyPriceText.text = "$" + selectedItem.price.ToString();
         buyDescription.text = selectedItem.description;
+        TextMeshProUGUI buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
+        buttonText.text = buttonText.text.Substring(0, buttonText.text.IndexOf('$') + 1) + selectedItem.price.ToString() + ")";
         if (selectedItem.reachedCap)
         {
             buyPriceText.text = "Maxed";
             buyDescription.text = "";
-            TextMeshProUGUI buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = buttonText.text.Substring(0, buttonText.text.IndexOf('$')) + "Maxed)";
             buy.interactable = false;
         }

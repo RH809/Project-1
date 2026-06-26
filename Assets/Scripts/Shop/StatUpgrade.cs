@@ -3,7 +3,7 @@
 /// </summary>
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat Info", menuName = "Scriptable Objects/Stat Upgrade Info")]
+[CreateAssetMenu(fileName = "Stat Upgrade", menuName = "Scriptable Objects/Stat Upgrade")]
 public class StatUpgrade : ShopItem
 {
     public float statValue;

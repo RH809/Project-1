@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1892003863737563214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ RectTransform:
   m_GameObject: {fileID: 7101903019099179753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5864439, y: 1.1438221, z: 0.74867415}
+  m_LocalScale: {x: 0.5864439, y: 0.910917, z: 0.74867415}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8923862309681652938}
@@ -788,7 +788,7 @@ RectTransform:
   m_Father: {fileID: 8551876139151903578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -957,7 +957,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00000333786, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8781169639000011768
 GameObject:
@@ -2283,10 +2283,12 @@ MonoBehaviour:
   grenade: {fileID: 6991932197885446697}
   potion: {fileID: 7463682185074650286}
   swordCooldown: 0.25
-  swordSwing1CDMultiplier: 1.25
-  swordSwing2CDMultiplier: 1
-  swordSwing3CDMultiplier: 0.625
-  gunCooldown: 0
+  swordSwing1AnimationSpeed: 1
+  swordSwing1TransitionTime: 0.25
+  swordSwing2AnimationSpeed: 1
+  swordSwing3AnimationSpeed: 0.625
+  gunCooldown: 0.25
+  gunAnimationSpeed: 1.25
   grenadeCooldown: 1
   cooldownIndicator: {fileID: 8724208382501939588}
 --- !u!114 &6940347274788668077

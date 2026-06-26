@@ -966,17 +966,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc2f40d51cc8ed648abad06d33ac8ba3, type: 3}
---- !u!114 &1309946523 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8724208382501939588, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-  m_PrefabInstance: {fileID: 5170403548368877777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &1346341127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,30 +2352,6 @@ PrefabInstance:
       propertyPath: 'disruptors.Array.data[1]'
       value: 
       objectReference: {fileID: 1689524644}
-    - target: {fileID: 2323866215633140696, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: cooldownIndicator
-      value: 
-      objectReference: {fileID: 1309946523}
-    - target: {fileID: 2323866215633140696, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: swordSwing1CDMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2323866215633140696, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: swordSwing1TransitionTime
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2877675696275336923, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002347171553423164, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002347171553423164, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6125967248805130087, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2431,18 +2396,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7101903019099179753, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551876139151903578, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551876139151903578, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8800698382623858628, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 
@@ -2451,10 +2404,6 @@ PrefabInstance:
       propertyPath: 'disruptors.Array.data[1]'
       value: 
       objectReference: {fileID: 1689524644}
-    - target: {fileID: 9103599491626953144, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

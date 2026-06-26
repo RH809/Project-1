@@ -3159,18 +3159,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df859b6fc1ecde458b68e3a87b636a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopHUD
+  playerAnimator: {fileID: 0}
   swordDamage: {fileID: 8897381014864221943}
   swordAttackSpeed: {fileID: 5414530267253463823}
   swordCritChance: {fileID: 3283308363100042819}
+  gunDamage: {fileID: 1919461537316571395}
+  gunAttackSpeed: {fileID: 5993480215536244316}
+  gunCritChance: {fileID: 3988433638272814706}
+  repairTool: {fileID: 752186772023543316}
+  grenade: {fileID: 3352978726029863518}
+  healthPotion: {fileID: 6200582194726257033}
   close: {fileID: 3542024782517270673}
   buy: {fileID: 874549558406170192}
   buyImage: {fileID: 9124961893839464813}
   buyItemText: {fileID: 4514173001614129113}
   buyPriceText: {fileID: 683992160129856575}
   buyDescription: {fileID: 4513050467827828406}
-  swordDamageInfo: {fileID: 11400000, guid: 5b8d4f40782186048b4130e21d4f809d, type: 2}
-  swordAttackSpeedInfo: {fileID: 11400000, guid: 0c040932f19d7a445b2dd5d6685c4133, type: 2}
-  swordCritChanceInfo: {fileID: 11400000, guid: 7eae1786925a4d14d9ae9f2894fc7314, type: 2}
 --- !u!1 &5340995420261575243
 GameObject:
   m_ObjectHideFlags: 0

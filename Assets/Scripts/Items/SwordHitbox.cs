@@ -93,7 +93,7 @@ public class SwordHitbox : MonoBehaviour
         hits.Clear(); // reset hit list
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.swordCritChance.statValue;
-        if (isCrit) Debug.Log("Sword Attack will crit");
+        //if (isCrit) Debug.Log("Sword Attack will crit");
     }
 
     public void SwordAttackEnd()
