@@ -14,8 +14,7 @@ public class VignetteEffect : MonoBehaviour
 
     [SerializeField] private float startIntensity;
     [SerializeField] private float endIntensity;
-    [SerializeField] private float inDuration;
-    [SerializeField] private float outDuration;
+    [SerializeField] private float duration;
     [SerializeField] private Color damageColor;
     [SerializeField] private Color healColor;
 
@@ -63,8 +62,7 @@ public class VignetteEffect : MonoBehaviour
     IEnumerator PlayEffect(bool damage)
     {
         vignette.color.value = damage ? damageColor : healColor;
-        yield return Fade(startIntensity, endIntensity, inDuration);
-        yield return Fade(endIntensity, startIntensity, outDuration);
+        yield return Fade(startIntensity, endIntensity, duration);
         vignette.intensity.value = 0;
         coroutine = null;
     }

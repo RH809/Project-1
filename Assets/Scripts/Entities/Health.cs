@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
 
     [SerializeField] private GameObject healthbarPrefab;
     private GameObject healthbar;
-    private Transform worldSpaceCanvas;
 
     private float currentHealth;
     private float regenTimer;
@@ -41,8 +40,7 @@ public class Health : MonoBehaviour
         {
             // create healthbar
             healthbar = Instantiate(healthbarPrefab);
-            worldSpaceCanvas = GameObject.FindGameObjectWithTag("WorldSpaceCanvas").transform;
-            healthbar.transform.SetParent(worldSpaceCanvas, false);
+            healthbar.transform.SetParent(WorldSpaceCanvas.Instance.transform, false);
             healthbar.GetComponent<Healthbar>().Initialize(this, gameObject);
         }
     }

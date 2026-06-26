@@ -481,10 +481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VignetteEffect
   volume: {fileID: 0}
-  startIntensity: 0.3
-  endIntensity: 0.5
-  inDuration: 0.2
-  outDuration: 0.3
+  startIntensity: 0.48
+  endIntensity: 0.3
+  duration: 0.25
   damageColor: {r: 1, g: 0, b: 0, a: 0}
   healColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &5753055825458826980
