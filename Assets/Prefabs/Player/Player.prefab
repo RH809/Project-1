@@ -2133,7 +2133,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6125967248805130087}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2243,7 +2243,7 @@ MonoBehaviour:
   walkSpeed: 3
   backwardMultiplier: 0.6
   sidewaysMultiplier: 0.75
-  jumpForce: 4.5
+  jumpForce: 225
   groundCheck: {fileID: 7996358824361159185}
   groundCheckRadius: 0.2
   groundMask:

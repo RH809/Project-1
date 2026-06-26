@@ -790,7 +790,7 @@ MonoBehaviour:
   moveSpeed: 2
   rotationSpeed: 10
   attackRange: 0.5
-  playerStoppingDist: 0.6
+  playerStoppingDist: 0.7
   disruptorStoppingDist: 0.4
   defenderStoppingDist: 0.325
   beaconStoppingDist: 0.45
