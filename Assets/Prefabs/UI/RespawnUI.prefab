@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5168909516834350433}
   - component: {fileID: 6174523210386674950}
   m_Layer: 5
-  m_Name: RespawnHUD
+  m_Name: RespawnUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

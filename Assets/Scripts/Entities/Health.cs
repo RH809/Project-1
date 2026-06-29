@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private GameObject healthbarPrefab;
     private GameObject healthbar;
+    [SerializeField] private GameObject mapHealthbar;
 
     private float currentHealth;
     private float regenTimer;
@@ -115,6 +116,7 @@ public class Health : MonoBehaviour
         if (hasHealthbar)
         {
             healthbar.SetActive(false);
+            if(mapHealthbar) mapHealthbar.SetActive(false);
         }
     }
 
@@ -123,6 +125,7 @@ public class Health : MonoBehaviour
         if (hasHealthbar)
         {
             healthbar.SetActive(true);
+            if (mapHealthbar) mapHealthbar.SetActive(true);
         }
     }
 

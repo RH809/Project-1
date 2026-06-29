@@ -15,8 +15,9 @@ public class UIManager : MonoBehaviour
         MENU
     };
 
-    private Canvas interactHUD;
-    private Canvas shopHUD;
+    private Canvas interactUI;
+    private Canvas shopUI;
+    private Canvas mapUI;
 
     private UIState state;
     public UIState State { get => state; }
@@ -34,8 +35,9 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        interactHUD = Player.Instance.gameObject.GetComponentInChildren<Canvas>();
-        shopHUD = ShopUI.Instance.gameObject.GetComponent<Canvas>();
+        interactUI = Player.Instance.gameObject.GetComponentInChildren<Canvas>();
+        shopUI = ShopUI.Instance.gameObject.GetComponent<Canvas>();
+        mapUI = MapUI.Instance.gameObject.GetComponent<Canvas>();
 
         state = UIState.PLAY;
         Cursor.lockState = CursorLockMode.Locked;
@@ -45,8 +47,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        interactHUD.enabled = (state == UIState.PLAY);
-        shopHUD.enabled = (state == UIState.SHOP);
+        interactUI.enabled = (state == UIState.PLAY);
+        mapUI.enabled = (state == UIState.MAP);
+        shopUI.enabled = (state == UIState.SHOP);
         Cursor.lockState = (state == UIState.PLAY || state == UIState.MAP ? CursorLockMode.Locked : CursorLockMode.None);
         Cursor.visible = (state == UIState.SHOP || state == UIState.MENU);
     }
