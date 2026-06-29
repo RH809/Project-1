@@ -260,6 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+--- !u!1 &146984044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5571513773260291441, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &248307213 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3371125242077315604, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
@@ -276,6 +281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &329321402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4739303229243027705, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &399644856
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +685,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &727611547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5579518578421447134, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &728614393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8831989745993071928, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &766147787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5156526592665800408, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +915,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &959727880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1779565402759048510, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1015799324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8082071620513655853, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+  m_PrefabInstance: {fileID: 4747847542453959847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1017388855 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
@@ -1309,6 +1344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 316148030033914791, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 727611547}
     - target: {fileID: 1946138263728147497, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
       propertyPath: disruptor
       value: 
@@ -1397,6 +1436,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6386099930049850674, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 329321402}
     - target: {fileID: 8431768321655436250, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
       propertyPath: m_Name
       value: Right Disruptor
@@ -1649,6 +1692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Inner Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 8736800533945420139, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 959727880}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2219,6 +2266,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.67295593
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.67295593
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833520471008651873, guid: d038ee80d9f607949841b6d4ef77c654, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.67295593
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2427,6 +2494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4256071692637478080, guid: 312d312d39b00384a9de17831ad87b2f, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 1015799324}
     - target: {fileID: 6309601696320269130, guid: 312d312d39b00384a9de17831ad87b2f, type: 3}
       propertyPath: m_Name
       value: Beacon
@@ -2528,6 +2599,18 @@ PrefabInstance:
       propertyPath: constructHealth
       value: 
       objectReference: {fileID: 1689524649}
+    - target: {fileID: 4191795587291886710, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.016013639
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191795587291886710, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.016013639
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191795587291886710, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.016013639
+      objectReference: {fileID: 0}
     - target: {fileID: 4689968582344024803, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2761,6 +2844,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 316148030033914791, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 728614393}
     - target: {fileID: 1946138263728147497, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
       propertyPath: disruptor
       value: 
@@ -3343,6 +3430,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6386099930049850674, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 766147787}
     - target: {fileID: 8431768321655436250, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
       propertyPath: m_Name
       value: Left Disruptor
@@ -3549,6 +3640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Inner Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 8736800533945420139, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
+      propertyPath: mapHealthbar
+      value: 
+      objectReference: {fileID: 146984044}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -65,7 +65,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (UIManager.Instance.State != UIManager.UIState.PLAY || (lockedCamera && enableCameraLock)) return;
+        if ((UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) || (lockedCamera && enableCameraLock)) return;
         float mouseX = lookInput.x * sensitivity * Time.deltaTime;
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 

@@ -74,6 +74,9 @@ public class PlayerInteractor : MonoBehaviour
             {
                 shopTimeout = 0.05f;
             }
+            playerAnimator.SetBool("Repair Tool Use", false);
+            repairToolAnimator.SetBool("Repair Tool Use", false);
+            wasInteracting = interacting;
             return;
         }
         shopTimeout = Mathf.Max(0, shopTimeout - Time.deltaTime);

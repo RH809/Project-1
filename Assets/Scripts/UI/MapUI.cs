@@ -47,7 +47,7 @@ public class MapUI : MonoBehaviour
                 (viewportPos.x - 0.5f) * mapWidth,
                 (viewportPos.y - 0.5f) * mapHeight
             );
-            playerMapDot.transform.position = uiPos;
+            playerMapDot.transform.localPosition = uiPos;
         }
         else
         {

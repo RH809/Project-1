@@ -158,6 +158,9 @@ public class ShopUI : MonoBehaviour
 
     void Close(InputAction.CallbackContext ctx)
     {
-        UIManager.Instance.SwitchState(UIManager.UIState.PLAY);
+        if (UIManager.Instance.State == UIManager.UIState.SHOP)
+        {
+            UIManager.Instance.SwitchState(UIManager.UIState.PLAY);
+        }
     }
 }
