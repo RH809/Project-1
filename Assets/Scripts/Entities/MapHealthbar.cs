@@ -1,3 +1,6 @@
+/// <summary>
+/// This script handles the behavior of the healthbars on the map.
+/// </summary>
 using UnityEngine;
 using UnityEngine.UI;
 

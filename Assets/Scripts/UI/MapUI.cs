@@ -1,6 +1,8 @@
+/// <summary>
+/// This script manages the UI for the map.
+/// </summary>
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class MapUI : MonoBehaviour
 {
@@ -42,6 +44,7 @@ public class MapUI : MonoBehaviour
         if (Player.Instance.Health.IsAlive)
         {
             playerMapDot.SetActive(true);
+            // place the player map dot on the map in accordance to where the player is in the viewport
             Vector3 viewportPos = mapCamera.WorldToViewportPoint(Player.Instance.gameObject.transform.position);
             Vector2 uiPos = new Vector2(
                 (viewportPos.x - 0.5f) * mapWidth,
