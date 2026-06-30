@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 5245079810479105919}
   - component: {fileID: 4018294809413973101}
   - component: {fileID: 5159053385914540523}
+  - component: {fileID: 1027027471926756427}
   m_Layer: 5
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -467,6 +468,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spacings: 00000000c4ffffffd8ffffffecffffff00000000
+--- !u!114 &1027027471926756427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533063782431360360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515f76880c72da84a882ad7de2425604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VignetteEffect
+  volume: {fileID: 0}
+  startIntensity: 0.48
+  endIntensity: 0.3
+  duration: 0.25
+  damageColor: {r: 1, g: 0, b: 0, a: 0}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &5753055825458826980
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +776,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1641996118880362497}
   m_HandleRect: {fileID: 0}
@@ -1021,7 +1040,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2785176858654350303}
   m_HandleRect: {fileID: 0}

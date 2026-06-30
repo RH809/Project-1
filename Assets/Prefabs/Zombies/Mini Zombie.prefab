@@ -790,7 +790,7 @@ MonoBehaviour:
   moveSpeed: 2
   rotationSpeed: 10
   attackRange: 0.5
-  playerStoppingDist: 0.6
+  playerStoppingDist: 0.7
   disruptorStoppingDist: 0.4
   defenderStoppingDist: 0.325
   beaconStoppingDist: 0.45
@@ -813,6 +813,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   type: 2
+  killReward: 2
+  moneyPopupPrefab: {fileID: 7135188640742163769, guid: 1f863724b5a9b4148810e8ec5b6d9b39, type: 3}
 --- !u!114 &8197917337458359528
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
                 if (!hitSet.Contains(zombie))
                 {
                     hitSet.Add(zombie);
-                    zombie.GetComponent<Health>().TakeDamage(damage, gameObject);
+                    zombie.GetComponent<Health>().TakeDamage(damage, Player.Instance.gameObject);
                 }
             }
         }

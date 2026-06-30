@@ -26,6 +26,7 @@ public class PlayerInteractor : MonoBehaviour
     private IInteractable interactable;
     private bool wasInteracting = false;
     private bool interacting = false;
+    private float shopTimeout;
     private float interactTime;
     private float interactRequirement;
 
@@ -64,6 +65,21 @@ public class PlayerInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (UIManager.Instance.State != UIManager.UIState.PLAY)
+        {
+            interacting = false;
+            interactProgress.fillAmount = 0;
+            if (UIManager.Instance.State == UIManager.UIState.SHOP)
+            {
+                shopTimeout = 0.05f;
+            }
+            playerAnimator.SetBool("Repair Tool Use", false);
+            repairToolAnimator.SetBool("Repair Tool Use", false);
+            wasInteracting = interacting;
+            return;
+        }
+        shopTimeout = Mathf.Max(0, shopTimeout - Time.deltaTime);
         interactRay = new Ray(interactSource.position, interactSource.forward * interactRange);
         defenderHover = false;
         shopHover = false;
@@ -92,7 +108,7 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
         interactTextObject.SetActive(defenderHover || shopHover);
-        if (!shopHover && !defenderHover)
+        if ((!shopHover && !defenderHover) || shopTimeout > 0)
         {
             interacting = false;
             interactProgress.fillAmount = 0;
@@ -116,6 +132,7 @@ public class PlayerInteractor : MonoBehaviour
 
     void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
+        if (UIManager.Instance.State != UIManager.UIState.PLAY) return;
         if (!shopHover && !defenderHover) return;
         if (!interacting)
         {

@@ -872,6 +872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   type: 1
+  killReward: 5
+  moneyPopupPrefab: {fileID: 7135188640742163769, guid: 1f863724b5a9b4148810e8ec5b6d9b39, type: 3}
 --- !u!114 &5658279888064851517
 MonoBehaviour:
   m_ObjectHideFlags: 0

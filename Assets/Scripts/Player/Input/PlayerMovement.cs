@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
 
-    private PlayerControls playerControls;
     private Vector2 moveInput;
     private bool jumpInput = false;
     private float lastJumpTime = 0.0f;
@@ -39,11 +38,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     void Awake()
     {
-        playerControls = new PlayerControls();
         playerStamina = GetComponent<PlayerStamina>();
         rb = GetComponent<Rigidbody>();
 
-        playerAnimator.SetFloat("Speed", 1.0f);
+        playerAnimator.SetFloat("MoveSpeed", 1.0f);
     }
 
     void OnEnable() {
@@ -103,8 +101,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx) {
-        moveInput = ctx.ReadValue<Vector2>();
-        moving = true;
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            moveInput = ctx.ReadValue<Vector2>();
+            moving = true;
+        }
     }
 
     private void OnMoveCanceled(InputAction.CallbackContext ctx) {
@@ -113,17 +114,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnSprintPerformed(InputAction.CallbackContext ctx) {
-        sprinting = true;
-        //playerAnimator.SetFloat("Speed", sprintSpeed / walkSpeed);
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            sprinting = true;
+        }
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext ctx) {
         sprinting = false;
-        //playerAnimator.SetFloat("Speed", 1.0f);
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx) {
-        jumpInput = true;
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        {
+            jumpInput = true;
+        }
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx) {
@@ -143,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
         movement = transform.TransformDirection(movement);
         rb.MovePosition(rb.position + movement * (sprinting && playerStamina.CanSprint ? sprintSpeed : walkSpeed) * Time.fixedDeltaTime);
-        playerAnimator.SetFloat("Speed", sprinting && playerStamina.CanSprint ? sprintSpeed / walkSpeed : 1.0f);
+        playerAnimator.SetFloat("MoveSpeed", sprinting && playerStamina.CanSprint ? sprintSpeed / walkSpeed : 1.0f);
 
     }
 
@@ -188,9 +193,9 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Cancels all movement inputs
     /// </summary>
-    void StopMovement()
+    public void StopMovement()
     {
-        Debug.Log("Stopping player movement on death");
+        Debug.Log("Stopping player movement");
         jumpInput = false;
         sprinting = false;
         moving = false;

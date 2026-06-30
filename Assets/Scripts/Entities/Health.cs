@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private GameObject healthbarPrefab;
     private GameObject healthbar;
-    private Transform worldSpaceCanvas;
+    [SerializeField] private GameObject mapHealthbar;
 
     private float currentHealth;
     private float regenTimer;
@@ -41,8 +41,7 @@ public class Health : MonoBehaviour
         {
             // create healthbar
             healthbar = Instantiate(healthbarPrefab);
-            worldSpaceCanvas = GameObject.FindGameObjectWithTag("WorldSpaceCanvas").transform;
-            healthbar.transform.SetParent(worldSpaceCanvas, false);
+            healthbar.transform.SetParent(WorldSpaceCanvas.Instance.transform, false);
             healthbar.GetComponent<Healthbar>().Initialize(this, gameObject);
         }
     }
@@ -117,6 +116,7 @@ public class Health : MonoBehaviour
         if (hasHealthbar)
         {
             healthbar.SetActive(false);
+            if(mapHealthbar) mapHealthbar.SetActive(false);
         }
     }
 
@@ -125,6 +125,7 @@ public class Health : MonoBehaviour
         if (hasHealthbar)
         {
             healthbar.SetActive(true);
+            if (mapHealthbar) mapHealthbar.SetActive(true);
         }
     }
 

@@ -2,10 +2,13 @@
 /// This script manages the player's held item and handles using the items.
 /// </summary>
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -43,10 +46,25 @@ public class PlayerInventory : MonoBehaviour
     private GrenadeThrow grenadeThrow;
     private PotionDrink potionDrink;
 
-    [SerializeField] private float swordCooldown = 0.5f;
+    [SerializeField] private float swordCooldown;
+    private float swordCooldownReduction;
+    private float swordSwing1AnimationTime;
+    private float swordSwing2AnimationTime;
+    private float swordSwing3AnimationTime;
+    [SerializeField] private float swordSwing1AnimationSpeed;
+    [SerializeField] private float swordSwing1TransitionTime;
+    [SerializeField] private float swordSwing2AnimationSpeed;
+    [SerializeField] private float swordSwing3AnimationSpeed;
+    
     [SerializeField] private float gunCooldown = 1f;
+    private float gunCooldownReduction;
+    private float gunShootAnimationTime;
+    [SerializeField] private float gunAnimationSpeed;
     [SerializeField] private float grenadeCooldown = 1f;
+
+    [SerializeField] private Slider cooldownIndicator;
     private float cooldownTime = 0.0f;
+    private float cooldown;
 
     void Awake()
     {
@@ -69,6 +87,35 @@ public class PlayerInventory : MonoBehaviour
         // ===================
         equipQueue = new Queue<Item>();
         equippedItem = Item.SWORD;
+        swordCooldownReduction = swordCooldown / Shop.Instance.swordAttackSpeed.purchaseCap;
+        gunCooldownReduction = gunCooldown / Shop.Instance.gunAttackSpeed.purchaseCap;
+        foreach (AnimationClip clip in playerAnimator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == "Sword Swing 1")
+            {
+                swordSwing1AnimationTime = clip.length;
+            }
+            else if (clip.name == "Sword Swing 2")
+            {
+                swordSwing2AnimationTime = clip.length;
+            }
+            else if (clip.name == "Sword Swing 3")
+            {
+                swordSwing3AnimationTime = clip.length;
+            }
+            else if (clip.name == "Gun Shoot")
+            {
+                gunShootAnimationTime = clip.length;
+            }
+        }
+
+        playerAnimator.SetFloat("SwordAttackSpeed", 1.0f);
+        playerAnimator.SetFloat("GunAttackSpeed", 1.0f);
+        
+        cooldownIndicator.minValue = 0;
+        cooldownIndicator.maxValue = 1;
+        cooldownIndicator.value = 0;
+        cooldownIndicator.gameObject.SetActive(false);
         UpdateActiveItem();
     }
 
@@ -95,7 +142,10 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
-        Use();
+        if (UIManager.Instance.State == UIManager.UIState.PLAY)
+        {
+            Use();
+        }
     }
 
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
@@ -143,10 +193,20 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         UpdateActiveItem();
-        if (cooldownTime > 0.0f) { // reduce cooldown
+        if (cooldownTime > 0.0f)
+        { // reduce cooldown
             cooldownTime -= Time.deltaTime;
             cooldownTime = Mathf.Max(cooldownTime, 0.0f);
+            cooldownIndicator.gameObject.SetActive(true);
+            cooldownIndicator.value = 1f - cooldownTime / cooldown;
         }
+        else
+        {
+            cooldownIndicator.value = 0;
+            cooldownIndicator.gameObject.SetActive(false);
+        }
+        //Debug.Log(cooldownTime + " / " + cooldown);
+        
     }
 
     /// <summary>
@@ -210,6 +270,7 @@ public class PlayerInventory : MonoBehaviour
                         playerAnimator.ResetTrigger("Equip Repair Tool");
                         break;
                 }
+                cooldownTime = 0;
             }
             
         }
@@ -312,30 +373,36 @@ public class PlayerInventory : MonoBehaviour
                     { // don't use if already in swinging animation
                         break;
                     }
-                    cooldownTime = swordCooldown;
                     // Randomly choose between the 3 possible animations
                     float rand = Random.Range(0.0f, 1.0f);
+                    float animationTime = 0;
                     if (rand <= 1 / 3.0f)
                     {
                         playerAnimator.SetTrigger("Sword Swing 1");
+                        animationTime = swordSwing1AnimationTime / (swordSwing1AnimationSpeed * playerAnimator.GetFloat("SwordAttackSpeed"));
+                        animationTime += swordSwing1TransitionTime;
                     }
                     else if (rand <= 2 / 3.0f)
                     {
                         playerAnimator.SetTrigger("Sword Swing 2");
+                        animationTime = swordSwing2AnimationTime / (swordSwing2AnimationSpeed * playerAnimator.GetFloat("SwordAttackSpeed"));
                     }
                     else
                     {
                         playerAnimator.SetTrigger("Sword Swing 3");
+                        animationTime = swordSwing3AnimationTime / (swordSwing3AnimationSpeed * playerAnimator.GetFloat("SwordAttackSpeed"));
                     }
                     playerCamera.LockCamera(); // Lock player camera during the swing
-                    
+                    cooldown = swordCooldown + animationTime;
+                    cooldownTime = cooldown;
                     break;
                 case Item.GUN:
                     if (shoot.isShooting() || IsInShootAnimation())
                     { // don't use if already in shooting animation
                         break;
                     }
-                    cooldownTime = gunCooldown;
+                    cooldown = gunCooldown + (gunShootAnimationTime / (gunAnimationSpeed * playerAnimator.GetFloat("GunAttackSpeed")));
+                    cooldownTime = cooldown;
                     playerAnimator.SetTrigger("Shoot");
                     break;
                 case Item.GRENADE:
@@ -344,6 +411,7 @@ public class PlayerInventory : MonoBehaviour
                         break;
                     }
                     cooldownTime = grenadeCooldown;
+                    cooldown = grenadeCooldown;
                     playerAnimator.SetTrigger("Grenade Throw");
                     break;
                 case Item.HEALTH_POTION:
@@ -359,6 +427,16 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log("On cooldown");
         }
+    }
+
+    public void ReduceSwordCooldown()
+    {
+        swordCooldown -= swordCooldownReduction;
+    }
+
+    public void ReduceGunCooldown()
+    {
+        gunCooldown -= gunCooldownReduction;
     }
 
     public void AddRepairTool()
