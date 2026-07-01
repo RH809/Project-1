@@ -36,6 +36,16 @@ public class UIManager : Singleton<UIManager>
         Cursor.visible = false;
     }
 
+    private void OnEnable()
+    {
+        Health.OnDie += OnPlayerDeath;   
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDie -= OnPlayerDeath;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -73,5 +83,16 @@ public class UIManager : Singleton<UIManager>
             ShopUI.Instance.ShopOpen();
         }
         Time.timeScale = 1.0f; // unpause game
+    }
+
+    public void OnPlayerDeath(HealthContext healthContext)
+    {
+        if (healthContext.target == Player.Instance.gameObject)
+        {
+            if (state == UIState.SHOP)
+            {
+                state = UIState.PLAY;
+            }
+        }
     }
 }

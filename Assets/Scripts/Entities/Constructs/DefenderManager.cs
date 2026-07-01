@@ -9,6 +9,8 @@ public class DefenderManager : Singleton<DefenderManager>
 
     [SerializeField] private GameObject[] defenders;
     private LinkedList<GameObject> zombies;
+
+    public int NumZombies { get => zombies.Count; }
     protected override void Awake()
     {
         base.Awake();
