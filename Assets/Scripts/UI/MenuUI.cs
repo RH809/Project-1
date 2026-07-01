@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UIManager;
 
 public class MenuUI : MonoBehaviour
 {
@@ -45,6 +47,11 @@ public class MenuUI : MonoBehaviour
         currentPage = Page.MENU;
     }
 
+    void OnEnable()
+    {
+        Player.Instance.InputManager.Controls.Player.Escape.performed += OnEscapePerformed;
+    }
+
     void Update()
     {
         menuPanel.SetActive(currentPage == Page.MENU);
@@ -56,6 +63,25 @@ public class MenuUI : MonoBehaviour
     {
         currentPage = Page.MENU;
         Time.timeScale = 0f; // pause game
+    }
+
+    public void OnEscapePerformed(InputAction.CallbackContext ctx)
+    {
+        if (UIManager.Instance.State == UIState.MENU)
+        {
+            if (currentPage == Page.MENU)
+            {
+                UIManager.Instance.CloseMenu();
+            }
+            else
+            {
+                currentPage = Page.MENU;
+            }
+        }
+        else
+        {
+            UIManager.Instance.SwitchState(UIState.MENU);
+        }
     }
 
 }

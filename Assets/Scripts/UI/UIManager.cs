@@ -2,6 +2,7 @@
 /// This script manages the transitions between HUD states.
 /// </summary>
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -69,6 +70,10 @@ public class UIManager : MonoBehaviour
         if (state == UIState.SHOP)
         {
             ShopUI.Instance.ShopOpen();
+        }
+        if (state == UIState.MENU)
+        {
+            MenuUI.Instance.MenuOpen();
         }
     }
 
