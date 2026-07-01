@@ -3,18 +3,6 @@
 /// </summary>
 using UnityEngine;
 
-public class WorldSpaceCanvas : MonoBehaviour
+public class WorldSpaceCanvas : Singleton<WorldSpaceCanvas>
 {
-    public static WorldSpaceCanvas Instance;
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
 }

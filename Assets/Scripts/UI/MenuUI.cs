@@ -1,11 +1,14 @@
+/// <summary>
+/// This script handles the UI behavior of the pause menu.
+/// </summary>
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
-public class MenuUI : MonoBehaviour
+public class MenuUI : Singleton<MenuUI>
 {
-    public static MenuUI Instance;
 
     enum Page {
         MENU,
@@ -27,19 +30,13 @@ public class MenuUI : MonoBehaviour
 
     private Page currentPage;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
 
         settingsButton.onClick.AddListener(() => currentPage = Page.SETTINGS);
         howToPlayButton.onClick.AddListener(() => currentPage = Page.HOW_TO_PLAY);
-        quitButton.onClick.AddListener(() => Debug.Log("Quit!")); // TODO: Change to quit to title screen
+        quitButton.onClick.AddListener(QuitGame);
         menuCloseButton.onClick.AddListener(() => UIManager.Instance.CloseMenu());
         settingsBackButton.onClick.AddListener(() => currentPage = Page.MENU);
         howToPlayBackButton.onClick.AddListener(() => currentPage = Page.MENU);
@@ -50,6 +47,11 @@ public class MenuUI : MonoBehaviour
     void OnEnable()
     {
         Player.Instance.InputManager.Controls.Player.Escape.performed += OnEscapePerformed;
+    }
+
+    void OnDisable()
+    {
+        Player.Instance.InputManager.Controls.Player.Escape.performed -= OnEscapePerformed;
     }
 
     void Update()
@@ -82,6 +84,13 @@ public class MenuUI : MonoBehaviour
         {
             UIManager.Instance.SwitchState(UIState.MENU);
         }
+    }
+
+    void QuitGame()
+    {
+        Time.timeScale = 1.0f; // unpause right before quit
+        Debug.Log("Quitting game.");
+        SceneManager.LoadScene(0);
     }
 
 }

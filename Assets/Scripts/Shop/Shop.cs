@@ -3,9 +3,8 @@
 /// </summary>
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class Shop : Singleton<Shop>
 {
-    public static Shop Instance;
 
     [SerializeField] private StatUpgrade swordDamageBase;
     [SerializeField] private StatUpgrade swordAttackSpeedBase;
@@ -31,15 +30,9 @@ public class Shop : MonoBehaviour
     [HideInInspector] public ShopItem grenade;
     [HideInInspector] public ShopItem healthPotion;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
 
         swordDamage = Instantiate(swordDamageBase);
         swordAttackSpeed = Instantiate(swordAttackSpeedBase);

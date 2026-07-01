@@ -4,9 +4,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MapUI : MonoBehaviour
+public class MapUI : Singleton<MapUI>
 {
-    public static MapUI Instance;
 
     [SerializeField] private GameObject playerMapDot;
     [SerializeField] private Camera mapCamera;
@@ -14,15 +13,9 @@ public class MapUI : MonoBehaviour
 
     private float mapWidth;
     private float mapHeight;
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
         mapWidth = mapRect.rect.width;
         mapHeight = mapRect.rect.height;
     }

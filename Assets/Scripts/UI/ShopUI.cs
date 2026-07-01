@@ -7,9 +7,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : Singleton<ShopUI>
 {
-    public static ShopUI Instance;
 
     [SerializeField] private Animator playerAnimator;
 
@@ -35,16 +34,6 @@ public class ShopUI : MonoBehaviour
 
     private Button selectedButton;
     private ShopItem selectedItem;
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
 
     void OnEnable()
     {

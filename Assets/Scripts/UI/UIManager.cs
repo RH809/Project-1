@@ -4,9 +4,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public static UIManager Instance;
 
     public enum UIState
     {
@@ -24,17 +23,6 @@ public class UIManager : MonoBehaviour
     private UIState state;
     private UIState prevState;
     public UIState State { get => state; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
 
     void Start()
     {

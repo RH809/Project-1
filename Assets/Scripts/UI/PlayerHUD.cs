@@ -6,9 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHUD : MonoBehaviour
+public class PlayerHUD : Singleton<PlayerHUD>
 {
-    public static PlayerHUD Instance;
 
     [SerializeField] private Slider healthbar;
     [SerializeField] private Slider staminaBar;
@@ -34,19 +33,11 @@ public class PlayerHUD : MonoBehaviour
 
     [SerializeField] private int[] spacings;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
 
-        Instance = this;
-
-        Debug.Log("Hotbar: " + hotbar);
         hotbarLayout = hotbar.GetComponent<HorizontalLayoutGroup>();
-        Debug.Log("Hotbar layout: " + hotbarLayout);
         hotbarLayout.spacing = spacings[1];
     }
 

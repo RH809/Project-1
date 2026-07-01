@@ -3,9 +3,8 @@
 /// </summary>
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
-    public static Player Instance;
 
     [HideInInspector] public Camera Camera;
     [HideInInspector] public Health Health;
@@ -19,15 +18,10 @@ public class Player : MonoBehaviour
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
 
-        Instance = this;
         Camera = GetComponentInChildren<Camera>();
         Health = GetComponent<Health>();
         Movement = GetComponent<PlayerMovement>();
