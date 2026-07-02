@@ -19,6 +19,9 @@ public class UIManager : Singleton<UIManager>
     private Canvas shopUI;
     private Canvas mapUI;
     private Canvas menuUI;
+    private Canvas playerHUD;
+    private Canvas gameUI;
+    [SerializeField] private Canvas respawnUI;
 
     public UIInput Input;
 
@@ -38,8 +41,11 @@ public class UIManager : Singleton<UIManager>
         shopUI = ShopUI.Instance.gameObject.GetComponent<Canvas>();
         mapUI = MapUI.Instance.gameObject.GetComponent<Canvas>();
         menuUI = MenuUI.Instance.gameObject.GetComponent<Canvas>();
+        playerHUD = PlayerHUD.Instance.gameObject.GetComponent<Canvas>();
+        gameUI = GameManager.Instance.gameObject.GetComponentInChildren<Canvas>();
 
         state = UIState.PLAY;
+        gameUI.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -104,5 +110,15 @@ public class UIManager : Singleton<UIManager>
                 state = UIState.PLAY;
             }
         }
+    }
+
+    public void DisableAllUI()
+    {
+        state = UIState.PLAY;
+        interactUI.enabled = false;
+        shopUI.enabled = false;
+        mapUI.enabled = false;
+        menuUI.enabled = false;
+        respawnUI.enabled = false;
     }
 }

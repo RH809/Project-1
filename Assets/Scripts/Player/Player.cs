@@ -66,7 +66,7 @@ public class Player : Singleton<Player>
     {
         if (healthContext.target == gameObject)
         {
-            GameManager.Instance.AddAnnouncement("You have been slain");
+            GameManager.Instance.AddAnnouncement("You Have Been Slain");
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -27,6 +29,15 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private float announcementTime;
 
+    [SerializeField] private Canvas gameOverUI;
+    [SerializeField] private Image gameOverPanel;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private GameObject exitButton;
+
+    [SerializeField] private GameObject gameOverCamera;
+    [SerializeField] private Transform gameOverPosition;
+
     private int waveNum;
     public int WaveNum { get => waveNum; }
     private int countdown;
@@ -40,6 +51,11 @@ public class GameManager : Singleton<GameManager>
         announcementText.text = "";
         announcementText.alpha = 0;
         waveNum = 1;
+        gameOverUI.enabled = false;
+        gameOverCamera.SetActive(false);
+        exitButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(0));
+        beacon.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
+
         StartCoroutine(SpawnWaves());
     }
 
@@ -78,7 +94,7 @@ public class GameManager : Singleton<GameManager>
             leftZombieSpawner.WaveSetup();
             rightZombieSpawner.WaveSetup();
             Debug.Log("Spawning wave...");
-            AddAnnouncement("New wave spawning");
+            AddAnnouncement("New Wave Spawning");
             leftZombieSpawner.SpawnWave();
             rightZombieSpawner.SpawnWave();
         }
@@ -126,13 +142,114 @@ public class GameManager : Singleton<GameManager>
     {
         gameOver = true;
         Player.Instance.Movement.StopMovement();
+        UIManager.Instance.DisableAllUI();
+        announcements.Clear();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (win)
         {
+            resultText.text = "You Win";
+            resultText.color = Color.green;
+            StartCoroutine(GameOverAnnouncement("Last Zombie Slain"));
+            StartCoroutine(GameWon());
+            
 
         }
         else
         {
-            
+            resultText.text = "You Lose";
+            resultText.color = Color.red;
+            StartCoroutine(GameOverAnnouncement("Beacon Destroyed"));
+            StartCoroutine(GameLost());
         }
     }
+
+    IEnumerator GameOverAnnouncement(string announcement)
+    {
+        announcementText.text = announcement;
+        announcementText.alpha = 0;
+        float t = 0;
+        while (t < 0.5f)
+        {
+            t += Time.unscaledDeltaTime;
+            announcementText.alpha = Mathf.Lerp(0, 1, t / 0.5f);
+            yield return null;
+        }
+        announcementText.alpha = 1;
+        yield return new WaitForSecondsRealtime(announcementTime);
+        t = 0;
+        while (t < 0.5f)
+        {
+            t += Time.unscaledDeltaTime;
+            announcementText.alpha = Mathf.Lerp(1, 0, t / 0.5f);
+            yield return null;
+        }
+    }
+
+    IEnumerator GameWon()
+    {
+        Time.timeScale = 0.25f;
+        yield return new WaitForSecondsRealtime(1f);
+        StartCoroutine(ShowGameOverUI());
+        Time.timeScale = 0.0f;
+        yield return null;
+    }
+
+    IEnumerator GameLost()
+    {
+        Time.timeScale = 0.0f;
+        if (Player.Instance.Health.IsAlive)
+        {
+            gameOverCamera.transform.position = Player.Instance.Camera.transform.position;
+            gameOverCamera.transform.rotation = Player.Instance.Camera.transform.rotation;
+            Player.Instance.Camera.gameObject.SetActive(false);
+        }
+        else
+        {
+            gameOverCamera.transform.position = Respawn.Instance.Camera.transform.position;
+            gameOverCamera.transform.rotation = Respawn.Instance.Camera.transform.rotation;
+            Respawn.Instance.Camera.gameObject.SetActive(false);
+        }
+        gameOverCamera.SetActive(true);
+        Vector3 startPos = gameOverCamera.transform.position;
+        Quaternion startRot = gameOverCamera.transform.rotation;
+        float t = 0;
+        while (t < 5f)
+        {
+            t += Time.unscaledDeltaTime;
+            gameOverCamera.transform.position = Vector3.Lerp(startPos, gameOverPosition.position, t / 5f);
+            gameOverCamera.transform.rotation = Quaternion.Lerp(startRot, gameOverPosition.rotation, t / 5f);
+        }
+        gameOverCamera.transform.position = gameOverPosition.position;
+        gameOverCamera.transform.rotation = gameOverPosition.rotation;
+        beacon.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
+        yield return new WaitForSecondsRealtime(1f);
+        StartCoroutine(ShowGameOverUI());
+        yield return null;
+    }
+
+    IEnumerator ShowGameOverUI()
+    {
+        exitButton.SetActive(false);
+        gameOverUI.enabled = true;
+        gameOverPanel.color = new Color(gameOverPanel.color.r, gameOverPanel.color.g, gameOverPanel.color.b, 0);
+        resultText.alpha = 0;
+        gameOverText.alpha = 0;
+        float t = 0;
+        while (t < 3f)
+        {
+            t += Time.unscaledDeltaTime;
+            resultText.alpha = Mathf.Lerp(0, 1, t / 3f);
+            gameOverText.alpha = Mathf.Lerp(0, 1, t / 3f);
+            gameOverPanel.color = new Color(gameOverPanel.color.r, gameOverPanel.color.g, gameOverPanel.color.b, Mathf.Lerp(0, 180, t / 3f));
+            yield return null;
+        }
+        resultText.alpha = 1;
+        gameOverText.alpha = 1;
+        exitButton.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+
 }
