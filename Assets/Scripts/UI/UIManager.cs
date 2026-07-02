@@ -62,9 +62,9 @@ public class UIManager : Singleton<UIManager>
         Health.OnDie -= OnPlayerDeath;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.GameOver) return;
         interactUI.enabled = (state == UIState.PLAY);
         mapUI.enabled = (state == UIState.MAP);
         shopUI.enabled = (state == UIState.SHOP);

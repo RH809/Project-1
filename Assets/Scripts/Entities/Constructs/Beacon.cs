@@ -34,6 +34,11 @@ public class Beacon : Construct
         {
             Deactivate();
         }
+
+        if (Input.GetKeyDown("u"))
+        {
+            if (alive) health.TakeDamage(health.MaxHealth, gameObject);
+        }
     }
 
     protected override void Respawn(float maxHealthProportion)

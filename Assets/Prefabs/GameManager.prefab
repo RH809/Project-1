@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.69182384, g: 0.69182384, b: 0.69182384, a: 0.22352941}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -361,6 +361,7 @@ MonoBehaviour:
   zombiesRemainingText: {fileID: 8770834311563323934}
   announcementTime: 3
   gameOverUI: {fileID: 5400929143949035269}
+  gameOverPanel: {fileID: 5540096689885889410}
   gameOverText: {fileID: 2431369449776463132}
   resultText: {fileID: 8980680575233006145}
   exitButton: {fileID: 3188636893663045391}

@@ -53,7 +53,10 @@ public class GameManager : Singleton<GameManager>
         waveNum = 1;
         gameOverUI.enabled = false;
         gameOverCamera.SetActive(false);
-        exitButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(0));
+        exitButton.GetComponent<Button>().onClick.AddListener(() => {
+            Time.timeScale = 1.0f;
+            SceneManager.LoadScene(0);
+        });
         beacon.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
 
         StartCoroutine(SpawnWaves());
@@ -71,13 +74,14 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+        if (gameOver) return;
         waveText.text = $"Wave {waveNum} spawning in {countdown}";
         zombiesRemainingText.text = "Zombies Remaining: " + DefenderManager.Instance.NumZombies.ToString();
         if (announcementCoroutine == null && announcements.Count > 0)
         {
             announcementCoroutine = StartCoroutine(ShowAnnouncement(announcements.Dequeue()));
         }
-        if (waveNum == waves && leftZombieSpawner.FinishedSpawning && rightZombieSpawner.FinishedSpawning && DefenderManager.Instance.NumZombies == 0)
+        if (waveNum > waves && leftZombieSpawner.FinishedSpawning && rightZombieSpawner.FinishedSpawning && DefenderManager.Instance.NumZombies == 0)
         {
             EndGame(true);
         }
@@ -152,8 +156,6 @@ public class GameManager : Singleton<GameManager>
             resultText.color = Color.green;
             StartCoroutine(GameOverAnnouncement("Last Zombie Slain"));
             StartCoroutine(GameWon());
-            
-
         }
         else
         {
@@ -232,7 +234,9 @@ public class GameManager : Singleton<GameManager>
     {
         exitButton.SetActive(false);
         gameOverUI.enabled = true;
-        gameOverPanel.color = new Color(gameOverPanel.color.r, gameOverPanel.color.g, gameOverPanel.color.b, 0);
+        Color color = gameOverPanel.color;
+        color.a = 0;
+        gameOverPanel.color = color;
         resultText.alpha = 0;
         gameOverText.alpha = 0;
         float t = 0;
@@ -241,14 +245,18 @@ public class GameManager : Singleton<GameManager>
             t += Time.unscaledDeltaTime;
             resultText.alpha = Mathf.Lerp(0, 1, t / 3f);
             gameOverText.alpha = Mathf.Lerp(0, 1, t / 3f);
-            gameOverPanel.color = new Color(gameOverPanel.color.r, gameOverPanel.color.g, gameOverPanel.color.b, Mathf.Lerp(0, 180, t / 3f));
+            color.a = t / 3f * (180.0f / 255.0f);
+            gameOverPanel.color = color;
             yield return null;
         }
         resultText.alpha = 1;
         gameOverText.alpha = 1;
+        color.a = 180.0f / 255.0f;
+        gameOverPanel.color = color;
         exitButton.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        yield return null;
     }
 
 
