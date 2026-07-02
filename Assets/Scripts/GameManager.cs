@@ -125,6 +125,7 @@ public class GameManager : Singleton<GameManager>
     void EndGame(bool win)
     {
         gameOver = true;
+        Player.Instance.Movement.StopMovement();
         if (win)
         {
 
