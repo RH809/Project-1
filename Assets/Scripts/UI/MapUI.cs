@@ -22,14 +22,14 @@ public class MapUI : Singleton<MapUI>
 
     void OnEnable()
     {
-        Player.Instance.InputManager.Controls.Player.OpenMap.performed += OpenMap;
-        Player.Instance.InputManager.Controls.Player.OpenMap.canceled += CloseMap;
+        UIManager.Instance.Input.UIControls.OpenMap.performed += OpenMap;
+        UIManager.Instance.Input.UIControls.OpenMap.canceled += CloseMap;
     }
 
     void OnDisable()
     {
-        Player.Instance.InputManager.Controls.Player.OpenMap.performed -= OpenMap;
-        Player.Instance.InputManager.Controls.Player.OpenMap.canceled -= CloseMap;
+        UIManager.Instance.Input.UIControls.OpenMap.performed -= OpenMap;
+        UIManager.Instance.Input.UIControls.OpenMap.canceled -= CloseMap;
     }
 
     void Update()

@@ -20,9 +20,17 @@ public class UIManager : Singleton<UIManager>
     private Canvas mapUI;
     private Canvas menuUI;
 
+    public UIInput Input;
+
     private UIState state;
     private UIState prevState;
     public UIState State { get => state; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Input = new UIInput();
+    }
 
     void Start()
     {
@@ -38,11 +46,13 @@ public class UIManager : Singleton<UIManager>
 
     private void OnEnable()
     {
+        Input.Enable();
         Health.OnDie += OnPlayerDeath;   
     }
 
     private void OnDisable()
     {
+        Input.Disable();
         Health.OnDie -= OnPlayerDeath;
     }
 

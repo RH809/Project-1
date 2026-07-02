@@ -38,6 +38,9 @@ public class ZombieSpawner : MonoBehaviour
     private int numMiniZombies;
     private int numTankZombies;
 
+    private bool finishedSpawning;
+    public bool FinishedSpawning { get => finishedSpawning; }
+
     void Start()
     {
         zombies = new List<Zombie.ZombieType>();
@@ -86,15 +89,15 @@ public class ZombieSpawner : MonoBehaviour
     public void WaveSetup()
     {
         // Update spawn numbers base on increase intervals
-        if (regularZombieSpawnIncreaseInterval % GameManager.Instance.WaveNum == 0)
+        if (GameManager.Instance.WaveNum % regularZombieSpawnIncreaseInterval == 0)
         {
             numRegularZombies += regularZombieSpawnIncrease;
         }
-        if (miniZombieSpawnIncreaseInterval % GameManager.Instance.WaveNum == 0)
+        if (GameManager.Instance.WaveNum % miniZombieSpawnIncreaseInterval == 0)
         {
             numMiniZombies += miniZombieSpawnIncrease;
         }
-        if (tankZombieSpawnIncreaseInterval % GameManager.Instance.WaveNum == 0)
+        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0)
         {
             numTankZombies += tankZombieSpawnIncrease;
         }
@@ -122,11 +125,13 @@ public class ZombieSpawner : MonoBehaviour
     /// </summary>
     IEnumerator SpawnWaveRoutine()
     {
+        finishedSpawning = false;
         while (zombies.Count > 0)
         {
             Spawn();
             yield return new WaitForSeconds(spawnInterval);
         }
+        finishedSpawning = true;
         yield return null;
     }
 

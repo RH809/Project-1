@@ -34,6 +34,16 @@ public class Player : Singleton<Player>
         swordHitbox = GetComponent<SwordHitbox>();
     }
 
+    void OnEnable()
+    {
+        Health.OnDie += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDie -= OnPlayerDeath;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown("y"))
@@ -50,5 +60,13 @@ public class Player : Singleton<Player>
         // handle ordering of LateUpdate method calls
         playerCamera.UpdateArmRotation(); // arm rotation update should come before sword hitbox detection
         swordHitbox.HitDetection();
+    }
+
+    void OnPlayerDeath(HealthContext healthContext)
+    {
+        if (healthContext.target == gameObject)
+        {
+            GameManager.Instance.AddAnnouncement("You have been slain");
+        }
     }
 }

@@ -46,12 +46,12 @@ public class MenuUI : Singleton<MenuUI>
 
     void OnEnable()
     {
-        Player.Instance.InputManager.Controls.Player.Escape.performed += OnEscapePerformed;
+        UIManager.Instance.Input.UIControls.Escape.performed += OnEscapePerformed;
     }
 
     void OnDisable()
     {
-        Player.Instance.InputManager.Controls.Player.Escape.performed -= OnEscapePerformed;
+        UIManager.Instance.Input.UIControls.Escape.performed -= OnEscapePerformed;
     }
 
     void Update()

@@ -1674,6 +1674,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
+      propertyPath: deathAnnouncement
+      value: Left Inner Defender Destroyed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
+      propertyPath: respawnAnnouncement
+      value: Left Inner Defender Repaired
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 
       objectReference: {fileID: 66699370}
@@ -2721,6 +2729,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
+      propertyPath: beacon
+      value: 
+      objectReference: {fileID: 838510202}
+    - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: leftZombieSpawner
       value: 
       objectReference: {fileID: 237377080}
@@ -3056,6 +3068,14 @@ PrefabInstance:
       propertyPath: disruptor
       value: 
       objectReference: {fileID: 1689524645}
+    - target: {fileID: 1946138263728147497, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
+      propertyPath: deathAnnouncement
+      value: Right Outer Defender Destroyed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946138263728147497, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
+      propertyPath: respawnAnnouncement
+      value: Right Outer Defender Repaired
+      objectReference: {fileID: 0}
     - target: {fileID: 7118818041315993590, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.326

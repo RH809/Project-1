@@ -4,12 +4,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
 
     public static float GroundY = -0.5f;
+
+    [SerializeField] private GameObject beacon;
+    private bool gameOver = false;
+    public bool GameOver { get => gameOver; }
 
     [SerializeField] private int waves = 30;
     [SerializeField] private int waveSpawnInterval = 30;
@@ -33,7 +38,19 @@ public class GameManager : Singleton<GameManager>
     {
         announcements = new Queue<string>();
         announcementText.text = "";
+        announcementText.alpha = 0;
+        waveNum = 1;
         StartCoroutine(SpawnWaves());
+    }
+
+    private void OnEnable()
+    {
+        Health.OnDie += OnBeaconDeath;
+    }
+
+    private void OnDisable()
+    {
+       Health.OnDie -= OnBeaconDeath;
     }
 
     void Update()
@@ -43,6 +60,10 @@ public class GameManager : Singleton<GameManager>
         if (announcementCoroutine == null && announcements.Count > 0)
         {
             announcementCoroutine = StartCoroutine(ShowAnnouncement(announcements.Dequeue()));
+        }
+        if (waveNum == waves && leftZombieSpawner.FinishedSpawning && rightZombieSpawner.FinishedSpawning && DefenderManager.Instance.NumZombies == 0)
+        {
+            EndGame(true);
         }
     }
 
@@ -57,6 +78,7 @@ public class GameManager : Singleton<GameManager>
             leftZombieSpawner.WaveSetup();
             rightZombieSpawner.WaveSetup();
             Debug.Log("Spawning wave...");
+            AddAnnouncement("New wave spawning");
             leftZombieSpawner.SpawnWave();
             rightZombieSpawner.SpawnWave();
         }
@@ -70,8 +92,46 @@ public class GameManager : Singleton<GameManager>
     IEnumerator ShowAnnouncement(string announcement)
     {
         announcementText.text = announcement;
+        announcementText.alpha = 0;
+        float t = 0;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            announcementText.alpha = Mathf.Lerp(0, 1, t / 0.5f);
+            yield return null;
+        }
+        announcementText.alpha = 1;
         yield return new WaitForSeconds(announcementTime);
+        t = 0;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            announcementText.alpha = Mathf.Lerp(1, 0, t / 0.5f);
+            yield return null;
+        }
+        announcementText.alpha = 0;
         announcementText.text = "";
         announcementCoroutine = null;
+    }
+
+    void OnBeaconDeath(HealthContext healthContext)
+    {
+        if (healthContext.target == beacon)
+        {
+            EndGame(false);
+        }
+    }
+
+    void EndGame(bool win)
+    {
+        gameOver = true;
+        if (win)
+        {
+
+        }
+        else
+        {
+            
+        }
     }
 }
