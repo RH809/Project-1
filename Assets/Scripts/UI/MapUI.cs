@@ -1,10 +1,11 @@
+/// <summary>
+/// This script manages the UI for the map.
+/// </summary>
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class MapUI : MonoBehaviour
+public class MapUI : Singleton<MapUI>
 {
-    public static MapUI Instance;
 
     [SerializeField] private GameObject playerMapDot;
     [SerializeField] private Camera mapCamera;
@@ -12,29 +13,23 @@ public class MapUI : MonoBehaviour
 
     private float mapWidth;
     private float mapHeight;
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
         mapWidth = mapRect.rect.width;
         mapHeight = mapRect.rect.height;
     }
 
     void OnEnable()
     {
-        Player.Instance.InputManager.Controls.Player.OpenMap.performed += OpenMap;
-        Player.Instance.InputManager.Controls.Player.OpenMap.canceled += CloseMap;
+        UIManager.Instance.Input.UIControls.OpenMap.performed += OpenMap;
+        UIManager.Instance.Input.UIControls.OpenMap.canceled += CloseMap;
     }
 
     void OnDisable()
     {
-        Player.Instance.InputManager.Controls.Player.OpenMap.performed -= OpenMap;
-        Player.Instance.InputManager.Controls.Player.OpenMap.canceled -= CloseMap;
+        UIManager.Instance.Input.UIControls.OpenMap.performed -= OpenMap;
+        UIManager.Instance.Input.UIControls.OpenMap.canceled -= CloseMap;
     }
 
     void Update()
@@ -42,6 +37,7 @@ public class MapUI : MonoBehaviour
         if (Player.Instance.Health.IsAlive)
         {
             playerMapDot.SetActive(true);
+            // place the player map dot on the map in accordance to where the player is in the viewport
             Vector3 viewportPos = mapCamera.WorldToViewportPoint(Player.Instance.gameObject.transform.position);
             Vector2 uiPos = new Vector2(
                 (viewportPos.x - 0.5f) * mapWidth,
@@ -57,6 +53,7 @@ public class MapUI : MonoBehaviour
 
     public void OpenMap(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY)
         {
             UIManager.Instance.SwitchState(UIManager.UIState.MAP);
@@ -65,6 +62,7 @@ public class MapUI : MonoBehaviour
 
     public void CloseMap(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.MAP)
         {
             UIManager.Instance.SwitchState(UIManager.UIState.PLAY);

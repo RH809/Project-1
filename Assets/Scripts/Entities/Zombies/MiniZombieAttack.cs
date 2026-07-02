@@ -43,10 +43,13 @@ public class MiniZombieAttack : ZombieAttack
             }
             else if (cooldown <= 0)
             {
-                if (armNum == 0 || !leftArm.Attached)
+                if (armNum == 0)
                 {
                     //Debug.Log("Right attack");
-                    zombieAnimator.SetTrigger("Right Attack");
+                    if (rightArm.Attached)
+                    {
+                        zombieAnimator.SetTrigger("Right Attack");
+                    }
                     zombieAnimator.ResetTrigger("Left Attack");
                     //yield return new WaitUntil(() => zombieAnimator.GetAnimatorTransitionInfo(1).IsName(
                     //    "Mini Zombie Right Attack -> Mini Zombie Attack Start"));
@@ -54,7 +57,10 @@ public class MiniZombieAttack : ZombieAttack
                 else
                 {
                     //Debug.Log("Left attack");
-                    zombieAnimator.SetTrigger("Left Attack");
+                    if (leftArm.Attached)
+                    {
+                        zombieAnimator.SetTrigger("Left Attack");
+                    }
                     zombieAnimator.ResetTrigger("Right Attack");
                     //yield return new WaitUntil(() => zombieAnimator.GetAnimatorTransitionInfo(1).IsName(
                     //    "Mini Zombie Left Attack -> Mini Zombie Attack Start"));

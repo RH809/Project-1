@@ -1,0 +1,66 @@
+{
+    "version": 1,
+    "name": "UIInput",
+    "maps": [
+        {
+            "name": "UIControls",
+            "id": "73c82cfc-728f-4085-afc8-d9ea2575f92f",
+            "actions": [
+                {
+                    "name": "OpenMap",
+                    "type": "Button",
+                    "id": "490286bc-5fb6-41d9-809f-2b4f6ba43c89",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "f029aa2d-987b-4b5c-939e-525e84bd6b4f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cecf2fe1-7b06-411d-a72d-86f6dc5e2187",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48d23871-555a-4652-a97a-f79ab7823aca",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f289597-5ded-4202-a4ea-06885235fe7e",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -51,10 +51,12 @@ public class PlayerCamera : MonoBehaviour
     }
 
     private void OnLookPerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         lookInput = ctx.ReadValue<Vector2>();
     }
 
     private void OnLookCanceled(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         lookInput = Vector2.zero;
     }
 
@@ -65,7 +67,8 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if ((UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) || (lockedCamera && enableCameraLock)) return;
+        if ((UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) ||
+            (lockedCamera && enableCameraLock) || GameManager.Instance.GameOver) return;
         float mouseX = lookInput.x * sensitivity * Time.deltaTime;
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 

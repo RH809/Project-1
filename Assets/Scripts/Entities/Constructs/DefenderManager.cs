@@ -4,21 +4,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenderManager : MonoBehaviour
+public class DefenderManager : Singleton<DefenderManager>
 {
-    public static DefenderManager Instance;
 
     [SerializeField] private GameObject[] defenders;
     private LinkedList<GameObject> zombies;
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Instance = this;
+    public int NumZombies { get => zombies.Count; }
+    protected override void Awake()
+    {
+        base.Awake();
         zombies = new LinkedList<GameObject>();
     }
 

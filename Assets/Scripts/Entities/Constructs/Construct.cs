@@ -11,6 +11,9 @@ public abstract class Construct : MonoBehaviour
 
     protected bool alive = true;
     [SerializeField] protected bool active;
+
+    [SerializeField] protected string deathAnnouncement;
+    [SerializeField] protected string respawnAnnouncement;
     public bool IsAlive { get => alive; }
     public bool IsActive { get => active;  }
 
@@ -51,6 +54,7 @@ public abstract class Construct : MonoBehaviour
         {
             animator.SetTrigger("Die");
             alive = false;
+            GameManager.Instance.AddAnnouncement(deathAnnouncement);
         }
     }
 
@@ -59,6 +63,7 @@ public abstract class Construct : MonoBehaviour
         animator.SetTrigger("Respawn");
         health.Respawn(maxHealthProportion, active);
         alive = true;
+        GameManager.Instance.AddAnnouncement(respawnAnnouncement);
     }
 
     protected virtual void Activate()

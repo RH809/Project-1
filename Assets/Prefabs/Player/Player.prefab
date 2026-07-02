@@ -2077,6 +2077,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2434006918805420810}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4260185295004292115}
   m_SourcePrefab: {fileID: 100100000, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
 --- !u!4 &1588968357102363306 stripped
 Transform:
@@ -2192,6 +2195,7 @@ MonoBehaviour:
   Movement: {fileID: 0}
   Stamina: {fileID: 0}
   Inventory: {fileID: 0}
+  Bank: {fileID: 0}
   InputManager: {fileID: 0}
 --- !u!114 &3664526495947786501
 MonoBehaviour:
@@ -2388,10 +2392,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 500
   baseRegen: 2.5
-  regenRate: 0.5
+  regenRate: 1
   hitResetTime: 3
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}
+  mapHealthbar: {fileID: 0}
 --- !u!114 &5932398607630681951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,13 +2430,26 @@ MonoBehaviour:
   interactRange: 3.5
   layerMask:
     serializedVersion: 2
-    m_Bits: 25472
+    m_Bits: 25216
   defenderInteractTime: 1.5
   shopInteractTime: 0.2
   interactProgress: {fileID: 4426946311257573996}
   interactTextObject: {fileID: 5503357274292445011}
   playerAnimator: {fileID: 1644641789591390061}
   repairToolAnimator: {fileID: 1714034413358899481}
+--- !u!114 &4260185295004292115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f85a557ed8ee134e80b09252ef834a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBank
+  startingAmount: 0
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

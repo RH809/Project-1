@@ -5,9 +5,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Respawn : MonoBehaviour
+public class Respawn : Singleton<Respawn>
 {
-    public static Respawn Instance;
     [HideInInspector] public Camera Camera;
     [SerializeField] private Transform respawnTransform;
     [SerializeField] private int baseRespawnTime;
@@ -16,15 +15,9 @@ public class Respawn : MonoBehaviour
 
     private int respawnTime;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
         Camera = GetComponentInChildren<Camera>(true);
     }
 

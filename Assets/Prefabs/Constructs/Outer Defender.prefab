@@ -521,6 +521,7 @@ MonoBehaviour:
   hitResetTime: 0
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
+  mapHealthbar: {fileID: 0}
 --- !u!114 &1946138263728147497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OuterDefender
   animator: {fileID: 3665873463860833517}
   active: 1
+  deathAnnouncement: Left Outer Defender Destroyed
+  respawnAnnouncement: Left Outer Defender Repaired
   cooldown: 1.5
   baseDamage: 30
   damageIncrement: 5

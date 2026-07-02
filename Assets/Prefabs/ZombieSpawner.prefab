@@ -54,3 +54,16 @@ MonoBehaviour:
   miniZombie: {fileID: 1664181393097271400, guid: 0955b5bbc11a1994abd69fc0a7556a06, type: 3}
   tankZombie: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
   disruptor: {fileID: 0}
+  spawnInterval: 0.5
+  regularZombieBaseSpawns: 2
+  miniZombieBaseSpawns: 2
+  tankZombieBaseSpawns: 0
+  regularZombieSpawnIncrease: 1
+  regularZombieSpawnIncreaseInterval: 3
+  miniZombieSpawnIncrease: 2
+  miniZombieSpawnIncreaseInterval: 2
+  tankZombieSpawnIncrease: 1
+  tankZombieSpawnIncreaseInterval: 5
+  regularZombieDisruptorIncrease: 2
+  miniZombieDisruptorIncrease: 2
+  tankZombieDisruptorIncrease: 1

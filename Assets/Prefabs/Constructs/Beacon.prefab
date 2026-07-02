@@ -172,7 +172,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b37fce5d7672c6f4bb2d7e3b0343dd3b, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   hitResetTime: 5
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 3e736cb2785518f4aa04b6632491c81a, type: 3}
+  mapHealthbar: {fileID: 0}
 --- !u!114 &6951444495312434223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Beacon
   animator: {fileID: 7765674668135360198}
   active: 0
+  deathAnnouncement: Beacon Destroyed
+  respawnAnnouncement: 
   innerDefenders:
   - {fileID: 0}
   - {fileID: 0}

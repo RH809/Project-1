@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "TitleScreenInput",
+    "maps": [
+        {
+            "name": "TitleScreen",
+            "id": "56e08b89-9ca6-4e97-b2d8-a98ef2b33970",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "9abc6991-1a26-43fe-99af-c273cadbf9d2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "809b168a-9ea0-47fc-a602-25afbb9bb018",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

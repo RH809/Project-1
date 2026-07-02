@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.869
+      value: 5.869
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef2edd8cb3795aa46b4d361a9f84a787, type: 3}
       propertyPath: m_LocalPosition.y
@@ -202,6 +202,7 @@ MonoBehaviour:
   hitResetTime: 5
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 84e5af417cd22cf42a53a0d3fd49cc84, type: 3}
+  mapHealthbar: {fileID: 0}
 --- !u!114 &9202611513729263611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Disruptor
   animator: {fileID: 849592895952854769}
   active: 0
+  deathAnnouncement: Right Disruptor Destroyed
+  respawnAnnouncement: Right Disruptor Respawned
   respawnTime: 120
   defender: {fileID: 0}
 --- !u!114 &2002253992147722255

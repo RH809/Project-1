@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   type: 0
-  killReward: 20
+  killReward: 50
   moneyPopupPrefab: {fileID: 7135188640742163769, guid: 1f863724b5a9b4148810e8ec5b6d9b39, type: 3}
 --- !u!114 &5879278959162143161
 MonoBehaviour:
@@ -145,6 +145,7 @@ MonoBehaviour:
   hitResetTime: 0
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 79ceb0605aaa42d46ae6d0de63990d9b, type: 3}
+  mapHealthbar: {fileID: 0}
 --- !u!195 &3375704590298713998
 NavMeshAgent:
   m_ObjectHideFlags: 0

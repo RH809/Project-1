@@ -51,24 +51,7 @@ public class PlayerMovement : MonoBehaviour
         Player.Instance.InputManager.Controls.Player.Move.canceled += OnMoveCanceled;
         Player.Instance.InputManager.Controls.Player.Jump.performed += OnJumpPerformed;
         Player.Instance.InputManager.Controls.Player.Jump.canceled += OnJumpCanceled;
-        /*
-        Player.Instance.Controls.Player.Sprint.performed += OnSprintPerformed;
-        Player.Instance.Controls.Player.Sprint.canceled += OnSprintCanceled;
-        Player.Instance.Controls.Player.Move.performed += OnMovePerformed;
-        Player.Instance.Controls.Player.Move.canceled += OnMoveCanceled;
-        Player.Instance.Controls.Player.Jump.performed += OnJumpPerformed;
-        Player.Instance.Controls.Player.Jump.canceled += OnJumpCanceled;
-        */
 
-        /*
-        playerControls.Player.Sprint.performed += OnSprintPerformed;
-        playerControls.Player.Sprint.canceled += OnSprintCanceled;
-        playerControls.Player.Move.performed += OnMovePerformed;
-        playerControls.Player.Move.canceled += OnMoveCanceled;
-        playerControls.Player.Jump.performed += OnJumpPerformed;
-        playerControls.Player.Jump.canceled += OnJumpCanceled;
-        playerControls.Enable();
-        */
         Health.OnDie += PlayerDeath;
     }
 
@@ -79,28 +62,12 @@ public class PlayerMovement : MonoBehaviour
         Player.Instance.InputManager.Controls.Player.Move.canceled -= OnMoveCanceled;
         Player.Instance.InputManager.Controls.Player.Jump.performed -= OnJumpPerformed;
         Player.Instance.InputManager.Controls.Player.Jump.canceled -= OnJumpCanceled;
-        /*
-        Player.Instance.Controls.Player.Sprint.performed -= OnSprintPerformed;
-        Player.Instance.Controls.Player.Sprint.canceled -= OnSprintCanceled;
-        Player.Instance.Controls.Player.Move.performed -= OnMovePerformed;
-        Player.Instance.Controls.Player.Move.canceled -= OnMoveCanceled;
-        Player.Instance.Controls.Player.Jump.performed -= OnJumpPerformed;
-        Player.Instance.Controls.Player.Jump.canceled -= OnJumpCanceled;
-        */
-
-        /*
-        playerControls.Player.Sprint.performed -= OnSprintPerformed;
-        playerControls.Player.Sprint.canceled -= OnSprintCanceled;
-        playerControls.Player.Move.performed -= OnMovePerformed;
-        playerControls.Player.Move.canceled -= OnMoveCanceled;
-        playerControls.Player.Jump.performed -= OnJumpPerformed;
-        playerControls.Player.Jump.canceled -= OnJumpCanceled;
-        playerControls.Disable();
-        */
+        
         Health.OnDie -= PlayerDeath;
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
         {
             moveInput = ctx.ReadValue<Vector2>();
@@ -114,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnSprintPerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
         {
             sprinting = true;
@@ -125,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
         {
             jumpInput = true;

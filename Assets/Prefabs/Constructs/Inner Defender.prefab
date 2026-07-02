@@ -108,7 +108,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: da7f784d439de644d82b9805baafadae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.75
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da7f784d439de644d82b9805baafadae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -361,6 +361,7 @@ MonoBehaviour:
   hitResetTime: 0
   hasHealthbar: 1
   healthbarPrefab: {fileID: 6824034527116237848, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
+  mapHealthbar: {fileID: 0}
 --- !u!114 &3095698594537783644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InnerDefender
   animator: {fileID: 160553607079215295}
   active: 0
+  deathAnnouncement: Right Inner Defender Destroyed
+  respawnAnnouncement: Right Outer Defender Repaired
   cooldown: 1.2
   baseDamage: 50
   damageIncrement: 7.5

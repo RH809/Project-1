@@ -3,9 +3,8 @@
 /// </summary>
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
-    public static Player Instance;
 
     [HideInInspector] public Camera Camera;
     [HideInInspector] public Health Health;
@@ -19,15 +18,10 @@ public class Player : MonoBehaviour
     private PlayerCamera playerCamera;
     private SwordHitbox swordHitbox;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
 
-        Instance = this;
         Camera = GetComponentInChildren<Camera>();
         Health = GetComponent<Health>();
         Movement = GetComponent<PlayerMovement>();
@@ -38,6 +32,16 @@ public class Player : MonoBehaviour
 
         playerCamera = GetComponent<PlayerCamera>();
         swordHitbox = GetComponent<SwordHitbox>();
+    }
+
+    void OnEnable()
+    {
+        Health.OnDie += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDie -= OnPlayerDeath;
     }
 
     private void Update()
@@ -56,5 +60,13 @@ public class Player : MonoBehaviour
         // handle ordering of LateUpdate method calls
         playerCamera.UpdateArmRotation(); // arm rotation update should come before sword hitbox detection
         swordHitbox.HitDetection();
+    }
+
+    void OnPlayerDeath(HealthContext healthContext)
+    {
+        if (healthContext.target == gameObject)
+        {
+            GameManager.Instance.AddAnnouncement("You Have Been Slain");
+        }
     }
 }

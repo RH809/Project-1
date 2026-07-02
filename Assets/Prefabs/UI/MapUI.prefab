@@ -399,7 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 6336299572219783165}
   fill: {fileID: 3477555133630789871}
@@ -512,7 +511,7 @@ RectTransform:
   m_GameObject: {fileID: 2025080353411353735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.009750739, y: 0.009750739, z: 0.009750739}
+  m_LocalScale: {x: 0.016013639, y: 0.016013639, z: 0.016013639}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236950408646780951}
@@ -995,7 +994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 2571328455479848623}
   fill: {fileID: 5990286922329447812}
@@ -1103,7 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 150652918823809308}
   fill: {fileID: 8955478692153768380}
@@ -1286,7 +1283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 4278523540423993301}
   fill: {fileID: 4827371390244194282}
@@ -1394,7 +1390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 1511788723058370269}
   fill: {fileID: 3568252032988786053}
@@ -2024,7 +2019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 1259690159957331328}
   fill: {fileID: 5384694672639914235}
@@ -2091,7 +2085,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3461602303407285383
 MonoBehaviour:
@@ -2250,7 +2244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72cae337dfd056459822a8841e034a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapHealthbar
-  construct: {fileID: 0}
   constructHealth: {fileID: 0}
   slider: {fileID: 5119899566235146915}
   fill: {fileID: 3928057059094582421}
