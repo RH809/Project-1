@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 500
   baseRegen: 2.5
-  regenRate: 0.5
+  regenRate: 1
   hitResetTime: 3
   hasHealthbar: 0
   healthbarPrefab: {fileID: 0}

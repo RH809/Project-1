@@ -2995,6 +2995,22 @@ PrefabInstance:
       propertyPath: 'disruptors.Array.data[1]'
       value: 
       objectReference: {fileID: 1689524644}
+    - target: {fileID: 3575179432812777988, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6759
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575179432812777988, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6759
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575179432812777988, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260185295004292115, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: startingAmount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6125967248805130087, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_Name
       value: Player
