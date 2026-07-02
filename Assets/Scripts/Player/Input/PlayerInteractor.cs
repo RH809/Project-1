@@ -65,8 +65,7 @@ public class PlayerInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (UIManager.Instance.State != UIManager.UIState.PLAY)
+        if (UIManager.Instance.State != UIManager.UIState.PLAY || GameManager.Instance.GameOver)
         {
             interacting = false;
             interactProgress.fillAmount = 0;
@@ -132,7 +131,7 @@ public class PlayerInteractor : MonoBehaviour
 
     void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
-        if (UIManager.Instance.State != UIManager.UIState.PLAY) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY || GameManager.Instance.GameOver) return;
         if (!shopHover && !defenderHover) return;
         if (!interacting)
         {

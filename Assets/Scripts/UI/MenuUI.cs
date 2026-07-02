@@ -69,6 +69,7 @@ public class MenuUI : Singleton<MenuUI>
 
     public void OnEscapePerformed(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIState.MENU)
         {
             if (currentPage == Page.MENU)

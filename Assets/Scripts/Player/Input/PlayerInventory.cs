@@ -142,6 +142,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnUsePerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY)
         {
             Use();
@@ -149,6 +150,8 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
+        if (GameManager.Instance.GameOver) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) return;
         int value = (int)ctx.ReadValue<float>();
         //Debug.Log(value + " " + (int)equippedItem);
         if (value >= slotItems.Count || slotItems[value] == equippedItem)
@@ -176,6 +179,8 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnScrollPerformed(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) return;
         float scroll = ctx.ReadValue<Vector2>().y;
         if (scroll == 0) return;
         int newIndex = equippedIndex + (scroll > 0 ? -1 : 1); // positive scroll = index goes down

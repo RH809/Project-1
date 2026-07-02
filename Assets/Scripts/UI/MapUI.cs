@@ -53,6 +53,7 @@ public class MapUI : Singleton<MapUI>
 
     public void OpenMap(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.PLAY)
         {
             UIManager.Instance.SwitchState(UIManager.UIState.MAP);
@@ -61,6 +62,7 @@ public class MapUI : Singleton<MapUI>
 
     public void CloseMap(InputAction.CallbackContext ctx)
     {
+        if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.MAP)
         {
             UIManager.Instance.SwitchState(UIManager.UIState.PLAY);
