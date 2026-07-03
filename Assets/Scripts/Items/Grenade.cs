@@ -14,6 +14,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float damage;
+    private float damageMultiplier;
     private Rigidbody rb;
 
     private HashSet<GameObject> hitSet;
@@ -22,6 +23,7 @@ public class Grenade : MonoBehaviour
     {
         hitSet = new HashSet<GameObject>();
         rb = GetComponent<Rigidbody>();
+        damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         Vector3 throwVector = rb.transform.forward * throwForce;
         rb.AddForce(throwVector, ForceMode.Impulse);
         StartCoroutine(DetonationTimer());
@@ -49,7 +51,7 @@ public class Grenade : MonoBehaviour
                 if (!hitSet.Contains(zombie))
                 {
                     hitSet.Add(zombie);
-                    zombie.GetComponent<Health>().TakeDamage(damage, Player.Instance.gameObject);
+                    zombie.GetComponent<Health>().TakeDamage(damage * damageMultiplier, Player.Instance.gameObject);
                 }
             }
         }
