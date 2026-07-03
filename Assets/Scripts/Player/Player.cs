@@ -12,6 +12,7 @@ public class Player : Singleton<Player>
     [HideInInspector] public PlayerStamina Stamina;
     [HideInInspector] public PlayerInventory Inventory;
     [HideInInspector] public PlayerBank Bank;
+    [HideInInspector] public PlayerPowerUp PowerUp;
     [HideInInspector] public PlayerInputManager InputManager;
     
 
@@ -28,6 +29,7 @@ public class Player : Singleton<Player>
         Stamina = GetComponent<PlayerStamina>();
         Inventory = GetComponent<PlayerInventory>();
         Bank = GetComponent<PlayerBank>();
+        PowerUp = GetComponent<PlayerPowerUp>();
         InputManager = GetComponent<PlayerInputManager>();
 
         playerCamera = GetComponent<PlayerCamera>();

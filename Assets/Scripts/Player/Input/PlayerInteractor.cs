@@ -12,17 +12,18 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float defenderInteractTime;
     [SerializeField] private float shopInteractTime;
+    [SerializeField] private float powerUpInteractTime;
 
     [SerializeField] private Image interactProgress;
     [SerializeField] private GameObject interactTextObject;
     private TextMeshProUGUI interactText;
 
-    //private PlayerControls playerControls;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator repairToolAnimator;
 
     private bool defenderHover = false;
     private bool shopHover = false;
+    private bool powerUpHover = false;
     private IInteractable interactable;
     private bool wasInteracting = false;
     private bool interacting = false;
@@ -32,11 +33,11 @@ public class PlayerInteractor : MonoBehaviour
 
     private const string repairText = "Repair";
     private const string shopText = "Open Shop";
+    private const string powerUpText = "Grab Power Up";
     Ray interactRay;
 
     void Start()
     {
-        //playerControls = new PlayerControls();
         interactProgress.fillAmount = 0;
         interactTextObject.SetActive(false);
         interactText = interactTextObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -46,20 +47,12 @@ public class PlayerInteractor : MonoBehaviour
     {
         Player.Instance.InputManager.Controls.Player.Interact.performed += OnInteractPerformed;
         Player.Instance.InputManager.Controls.Player.Interact.canceled += OnInteractCanceled;
-        /*
-        Player.Instance.Controls.Player.Interact.performed += OnInteractPerformed;
-        Player.Instance.Controls.Player.Interact.canceled += OnInteractCanceled;
-        */
     }
 
     void OnDisable()
     {
         Player.Instance.InputManager.Controls.Player.Interact.performed -= OnInteractPerformed;
         Player.Instance.InputManager.Controls.Player.Interact.canceled -= OnInteractCanceled;
-        /*
-        Player.Instance.Controls.Player.Interact.performed -= OnInteractPerformed;
-        Player.Instance.Controls.Player.Interact.canceled -= OnInteractCanceled;
-        */
     }
 
     // Update is called once per frame
@@ -82,6 +75,7 @@ public class PlayerInteractor : MonoBehaviour
         interactRay = new Ray(interactSource.position, interactSource.forward * interactRange);
         defenderHover = false;
         shopHover = false;
+        powerUpHover = false;
         if (Physics.Raycast(interactRay, out RaycastHit hitInfo, interactRange, layerMask))
         {
             if (hitInfo.collider.gameObject.TryGetComponent(out interactable))
@@ -95,19 +89,27 @@ public class PlayerInteractor : MonoBehaviour
                         {
                             defenderHover = true;
                             interactText.text = repairText;
+                            interactText.fontSize = 36;
                             interactRequirement = defenderInteractTime;
                         }
                         break;
                     case IInteractable.InteractType.SHOP:
                         shopHover = true;
                         interactText.text = shopText;
+                        interactText.fontSize = 36;
                         interactRequirement = shopInteractTime;
+                        break;
+                    case IInteractable.InteractType.POWER_UP:
+                        powerUpHover = true;
+                        interactText.text = powerUpText;
+                        interactText.fontSize = 28;
+                        interactRequirement = powerUpInteractTime;
                         break;
                 }
             }
         }
-        interactTextObject.SetActive(defenderHover || shopHover);
-        if ((!shopHover && !defenderHover) || shopTimeout > 0)
+        interactTextObject.SetActive(defenderHover || shopHover || powerUpHover);
+        if ((!shopHover && !defenderHover && !powerUpHover) || shopTimeout > 0)
         {
             interacting = false;
             interactProgress.fillAmount = 0;
@@ -132,7 +134,7 @@ public class PlayerInteractor : MonoBehaviour
     void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
         if (UIManager.Instance.State != UIManager.UIState.PLAY || GameManager.Instance.GameOver) return;
-        if (!shopHover && !defenderHover) return;
+        if (!shopHover && !defenderHover && !powerUpHover) return;
         if (!interacting)
         {
             interactTime = 0;
@@ -156,9 +158,13 @@ public class PlayerInteractor : MonoBehaviour
         {
             Gizmos.color = Color.green;
         }
-        else
+        else if (powerUpHover)
         {
             Gizmos.color = Color.orange;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
         }
         Gizmos.DrawRay(interactRay);
     }
@@ -169,7 +175,8 @@ public interface IInteractable
     public enum InteractType
     {
         DEFENDER,
-        SHOP
+        SHOP,
+        POWER_UP
     }
     public void Interact();
     public InteractType GetInteractType();

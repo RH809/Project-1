@@ -12,6 +12,7 @@ public class SwordHitbox : MonoBehaviour
 
     [SerializeField] private float radius = 0.15f;
     [SerializeField] private float critMultiplier = 1.5f;
+    private float damageMultiplier = 1f; // damage multiplier for power up
     private bool isCrit = false;
 
     private PlayerCamera playerCamera;
@@ -75,7 +76,7 @@ public class SwordHitbox : MonoBehaviour
             {
 
                 hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
-                bodyPart.TakeDamage(Shop.Instance.swordDamage.statValue * (isCrit ? critMultiplier : 1f), Player.Instance.gameObject);
+                bodyPart.TakeDamage(Shop.Instance.swordDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
                 //Debug.Log("Hit: " + c.name);
             }
         }
@@ -93,6 +94,7 @@ public class SwordHitbox : MonoBehaviour
         hits.Clear(); // reset hit list
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.swordCritChance.statValue;
+        damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         //if (isCrit) Debug.Log("Sword Attack will crit");
     }
 
@@ -117,7 +119,6 @@ public class SwordHitbox : MonoBehaviour
         Gizmos.DrawWireSphere(a, r);
         Gizmos.DrawWireSphere(b, r);
     }
-    
 
     public bool isSwinging() {
         return inAttackSwing;

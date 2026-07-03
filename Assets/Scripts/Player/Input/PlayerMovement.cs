@@ -116,8 +116,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = transform.TransformDirection(movement);
-        rb.MovePosition(rb.position + movement * (sprinting && playerStamina.CanSprint ? sprintSpeed : walkSpeed) * Time.fixedDeltaTime);
-        playerAnimator.SetFloat("MoveSpeed", sprinting && playerStamina.CanSprint ? sprintSpeed / walkSpeed : 1.0f);
+        float speedMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.SpeedMultiplier : 1f); // speed multiplier from power up
+        rb.MovePosition(rb.position + movement * (sprinting && playerStamina.CanSprint ? sprintSpeed : walkSpeed) * speedMultiplier * Time.fixedDeltaTime);
+        playerAnimator.SetFloat("MoveSpeed", (sprinting && playerStamina.CanSprint ? sprintSpeed / walkSpeed : 1.0f) * speedMultiplier);
 
     }
 

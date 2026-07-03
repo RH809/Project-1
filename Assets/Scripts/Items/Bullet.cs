@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody rb;
     private bool hasHit = false;
     private bool isCrit = false;
+    private float damageMultiplier; // damage multiplier for power up
 
     private Vector3 startPos;
     void Start() {
@@ -24,6 +25,7 @@ public class Bullet : MonoBehaviour
         startPos = transform.position;
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
+        damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         if (isCrit) Debug.Log("Bullet will crit");
     }
 
@@ -89,7 +91,7 @@ public class Bullet : MonoBehaviour
         if (bodyPart != null)
         {
             // If it hit a zombie's body part, deal the damage
-            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f), Player.Instance.gameObject);
+            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
         }
         hasHit = true;
         Destroy(gameObject);

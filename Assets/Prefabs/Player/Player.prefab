@@ -171,7 +171,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Open Shop
+  m_text: 'Grab Power Up
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -198,15 +200,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -986,7 +988,7 @@ RectTransform:
   m_GameObject: {fileID: 8781169639000011768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6759, y: 0.6759, z: 0.6759}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 494445806157069036}
@@ -2080,6 +2082,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4260185295004292115}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8942367434204241945}
   m_SourcePrefab: {fileID: 100100000, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
 --- !u!4 &1588968357102363306 stripped
 Transform:
@@ -2147,7 +2152,7 @@ Rigidbody:
     m_Bits: 28352
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4352
+    m_Bits: 37120
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -2196,6 +2201,7 @@ MonoBehaviour:
   Stamina: {fileID: 0}
   Inventory: {fileID: 0}
   Bank: {fileID: 0}
+  PowerUp: {fileID: 0}
   InputManager: {fileID: 0}
 --- !u!114 &3664526495947786501
 MonoBehaviour:
@@ -2427,12 +2433,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
   interactSource: {fileID: 5461213776951513186}
-  interactRange: 3.5
+  interactRange: 2.75
   layerMask:
     serializedVersion: 2
-    m_Bits: 25216
+    m_Bits: 57984
   defenderInteractTime: 1.5
   shopInteractTime: 0.2
+  powerUpInteractTime: 0.75
   interactProgress: {fileID: 4426946311257573996}
   interactTextObject: {fileID: 5503357274292445011}
   playerAnimator: {fileID: 1644641789591390061}
@@ -2449,7 +2456,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f85a557ed8ee134e80b09252ef834a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBank
-  startingAmount: 0
+  startingAmount: 100
+--- !u!114 &8942367434204241945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125967248805130087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4841573d8980edd47b5880eddcfbcd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPowerUp
+  damageMultiplier: 1.5
+  speedMultiplier: 1.5
+  duration: 30
+  powerUpTimer: {fileID: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
