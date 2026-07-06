@@ -1669,12 +1669,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective: Defend your beacon from 30 waves of invading zombies\n\nGame
     Mechanics:\n> Zombie waves spawn every 30 seconds\n> Each wave has more zombies\n>
-    More zombies spawn in a lane each time the disrutor is destroyed\n\nGameplay:\n>
-    Kill zombies to collect money\n> Spend money on items and stat upgrades in th
-    shop\n> Collect power ups for temporary stat boosts\n\nControls:\n> WASD to move
-    \n> Space to jump\n> Control to sprint \n> Left click to use / attack\n> Scroll
-    Wheel / Num keys 1-5 to switch items\n> E to interact\n> Tab to open map\n> ESC
-    to open menu
+    More zombies spawn in a lane each time the disruptor is destroyed\n> Headshots
+    deal double damage\n> Zombie arms can be dismembered to reduce damage or prevent
+    attacking \n\nGameplay:\n> Kill zombies to collect money\n> Spend money on items
+    and stat upgrades in th shop\n> Collect power ups for temporary stat boosts\n\nControls:\n>
+    WASD to move \n> Space to jump\n> Control to sprint \n> Left click to use / attack\n>
+    Scroll Wheel / Num keys 1-5 to switch items\n> E to interact\n> Tab to open map\n>
+    ESC to open menu
 
 '
   m_isRightToLeft: 0
@@ -1703,8 +1704,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 29
+  m_fontSizeBase: 29
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

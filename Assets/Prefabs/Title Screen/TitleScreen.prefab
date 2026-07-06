@@ -246,8 +246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -79.00009}
-  m_SizeDelta: {x: 1000, y: 800}
+  m_AnchoredPosition: {x: 0.000061035156, y: -48.937275}
+  m_SizeDelta: {x: 1000, y: 739.8743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &145293505270008902
 CanvasRenderer:
@@ -279,12 +279,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective: Defend your beacon from 30 waves of invading zombies\n\nGame
     Mechanics:\n> Zombie waves spawn every 30 seconds\n> Each wave has more zombies\n>
-    More zombies spawn in a lane each time the disrutor is destroyed\n\nGameplay:\n>
-    Kill zombies to collect money\n> Spend money on items and stat upgrades in th
-    shop\n> Collect power ups for temporary stat boosts\n\nControls:\n> WASD to move
-    \n> Space to jump\n> Control to sprint \n> Left click to use / attack\n> Scroll
-    Wheel / Num keys 1-5 to switch items\n> E to interact\n> Tab to open map\n> ESC
-    to open menu
+    More zombies spawn in a lane each time the disruptor is destroyed\n> Headshots
+    deal double damage\n> Zombie arms can be dismembered to reduce damage or prevent
+    attacking \n\nGameplay:\n> Kill zombies to collect money\n> Spend money on items
+    and stat upgrades in th shop\n> Collect power ups for temporary stat boosts\n\nControls:\n>
+    WASD to move \n> Space to jump\n> Control to sprint \n> Left click to use / attack\n>
+    Scroll Wheel / Num keys 1-5 to switch items\n> E to interact\n> Tab to open map\n>
+    ESC to open menu
 
 '
   m_isRightToLeft: 0
@@ -313,8 +314,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 27.5
+  m_fontSizeBase: 27.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
