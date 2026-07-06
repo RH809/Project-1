@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -9,8 +10,15 @@ using UnityEngine;
 /// </summary>
 public class Disruptor : Construct
 {
-    [SerializeField] private float respawnTime;
+    [SerializeField] private int respawnTime;
     [SerializeField] private Defender defender;
+    [SerializeField] private TextMeshProUGUI respawnTimeText;
+
+    protected override void Start()
+    {
+        base.Start();
+        respawnTimeText.enabled = false;
+    }
 
     protected override void OnEnable()
     {
@@ -57,8 +65,19 @@ public class Disruptor : Construct
     }
 
     IEnumerator RespawnTime() {
-        yield return new WaitForSeconds(respawnTime);
+        respawnTimeText.enabled = true;
+        for (int t = respawnTime; t > 0; t--)
+        {
+            respawnTimeText.text = timeToText(t);
+            yield return new WaitForSeconds(1);
+        }
+        respawnTimeText.enabled = false;
         if (!alive) Respawn(1);
+    }
+
+    string timeToText(int t)
+    {
+        return (t / 60).ToString() + ":" + (t % 60).ToString("D2");
     }
 
 }
