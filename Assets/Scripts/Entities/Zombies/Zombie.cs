@@ -18,6 +18,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieType type;
     [SerializeField] private int killReward;
     [SerializeField] private GameObject moneyPopupPrefab;
+    [SerializeField] private GameObject deathParticles;
     public ZombieType Type { get => type; }
 
     private Health health;
@@ -56,6 +57,9 @@ public class Zombie : MonoBehaviour
                     
             }
             health.DestroyHealthbar();
+            DefenderTarget defenderTarget = GetComponent<DefenderTarget>();
+            if (!defenderTarget) defenderTarget = GetComponentInChildren<DefenderTarget>();
+            Instantiate(deathParticles, defenderTarget.GetDefenderTarget(), Quaternion.identity);
             Destroy(gameObject);
         }
     }

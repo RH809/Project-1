@@ -874,6 +874,7 @@ MonoBehaviour:
   type: 1
   killReward: 20
   moneyPopupPrefab: {fileID: 7135188640742163769, guid: 1f863724b5a9b4148810e8ec5b6d9b39, type: 3}
+  deathParticles: {fileID: 7880275001028697528, guid: 4b0f10363b4213e49996ea23b3782b93, type: 3}
 --- !u!114 &5658279888064851517
 MonoBehaviour:
   m_ObjectHideFlags: 0
