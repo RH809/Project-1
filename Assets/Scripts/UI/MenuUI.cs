@@ -9,7 +9,6 @@ using static UIManager;
 
 public class MenuUI : Singleton<MenuUI>
 {
-
     enum Page {
         MENU,
         SETTINGS,
@@ -28,13 +27,18 @@ public class MenuUI : Singleton<MenuUI>
     [SerializeField] private Button settingsBackButton;
     [SerializeField] private Button howToPlayBackButton;
 
+    [SerializeField] private Settings settings;
+
     private Page currentPage;
 
     protected override void Awake()
     {
         base.Awake();
 
-        settingsButton.onClick.AddListener(() => currentPage = Page.SETTINGS);
+        settingsButton.onClick.AddListener(() => {
+            currentPage = Page.SETTINGS;
+            settings.OpenSettings();
+        });
         howToPlayButton.onClick.AddListener(() => currentPage = Page.HOW_TO_PLAY);
         quitButton.onClick.AddListener(QuitGame);
         menuCloseButton.onClick.AddListener(() => UIManager.Instance.CloseMenu());

@@ -40,6 +40,7 @@ public class VignetteEffect : MonoBehaviour
 
     public void Damage(HealthContext healthContext)
     {
+        if (!SettingsManager.Instance.ShowVignette) return;
         if (!healthContext.target.Equals(Player.Instance.gameObject)) return;
         if (coroutine != null)
         {
@@ -50,7 +51,7 @@ public class VignetteEffect : MonoBehaviour
 
     public void Heal(HealthContext healthContext)
     {
-        Debug.Log("Heal: " + healthContext.target);
+        if (!SettingsManager.Instance.ShowVignette) return;
         if (!healthContext.target.Equals(Player.Instance.gameObject)) return;
         if (coroutine != null)
         {

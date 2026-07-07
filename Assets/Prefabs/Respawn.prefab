@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7700258381505482227}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 1.642, z: -1.23}
+  m_LocalPosition: {x: 0, y: 0.296, z: 0.074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 7944148330926352674}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.30063, y: 1.39, z: -1.32618}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -217,6 +217,8 @@ MonoBehaviour:
   Camera: {fileID: 0}
   respawnTransform: {fileID: 3824122950570833636}
   baseRespawnTime: 5
+  respawnCanvas: {fileID: 0}
+  respawnText: {fileID: 0}
 --- !u!1001 &563826781460129889
 PrefabInstance:
   m_ObjectHideFlags: 0

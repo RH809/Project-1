@@ -1,6 +1,7 @@
 /// <summary>
 /// This script handles the aiming for shooting and throwing.
 /// </summary>
+using TMPro;
 using UnityEngine;
 
 public class Aim : MonoBehaviour
@@ -11,7 +12,19 @@ public class Aim : MonoBehaviour
     [SerializeField] private float defaultRange = 5.0f;
     [SerializeField] private GameObject[] disruptors;
 
+    [SerializeField] private TextMeshProUGUI crosshair;
+
     public static float adjustedDisruptorHeight = 0.605f; // new height of disruptor hitbox when dead
+
+    void Start()
+    {
+        crosshair.fontSize = SettingsManager.Instance.CrosshairSize;
+    }
+
+    void Update()
+    {
+        crosshair.fontSize = SettingsManager.Instance.CrosshairSize;
+    }
 
     public Quaternion GetTargetRotation(Transform from)
     {

@@ -46,7 +46,9 @@ public class Zombie : MonoBehaviour
             if (healthCtx.source == Player.Instance.gameObject)
             {
                 Player.Instance.Bank.AddMoney(killReward);
-                    Debug.Log("Creating money popup");
+                Debug.Log("Creating money popup");
+                if (SettingsManager.Instance.ShowMoneyPopup)
+                {
                     GameObject moneyPopup = Instantiate(moneyPopupPrefab, PlayerHUD.Instance.transform);
                     moneyPopup.GetComponent<TextMeshProUGUI>().text = "$" + killReward.ToString();
                     RectTransform popupRect = moneyPopup.GetComponent<RectTransform>();
@@ -54,12 +56,15 @@ public class Zombie : MonoBehaviour
                     {
                         popupRect.anchoredPosition = new Vector2(Random.Range(-70, 70), Random.Range(-40, 70)); // place popup randomly around center of the screen
                     } while (popupRect.anchoredPosition.magnitude < 25);
-                    
+                }  
             }
             health.DestroyHealthbar();
-            DefenderTarget defenderTarget = GetComponent<DefenderTarget>();
-            if (!defenderTarget) defenderTarget = GetComponentInChildren<DefenderTarget>();
-            Instantiate(deathParticles, defenderTarget.GetDefenderTarget(), Quaternion.identity);
+            if (SettingsManager.Instance.ShowDeathParticles)
+            {
+                DefenderTarget defenderTarget = GetComponent<DefenderTarget>();
+                if (!defenderTarget) defenderTarget = GetComponentInChildren<DefenderTarget>();
+                Instantiate(deathParticles, defenderTarget.GetDefenderTarget(), Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }

@@ -75,7 +75,8 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         if (gameOver) return;
-        waveText.text = $"Wave {waveNum} spawning in {countdown}";
+        if (waveNum <= waves) waveText.text = $"Wave {waveNum} spawning in {countdown}";
+        else waveText.text = "Final Wave";
         zombiesRemainingText.text = "Zombies Remaining: " + DefenderManager.Instance.NumZombies.ToString();
         if (announcementCoroutine == null && announcements.Count > 0)
         {

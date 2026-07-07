@@ -2,6 +2,7 @@
 /// This script handles the healthbar for entities.
 /// </summary>
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private Color minColor;
     [SerializeField] private Color maxColor;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private Health health;
     private GameObject entity;
@@ -37,6 +39,8 @@ public class Healthbar : MonoBehaviour
             // Update color and slide values
             fill.color = Color.Lerp(minColor, maxColor, health.CurrentHealth / health.MaxHealth);
             slider.value = health.CurrentHealth;
+            healthText.enabled = SettingsManager.Instance.ShowHealthbarValues;
+            healthText.text = health.CurrentHealth.ToString() + "/" + health.MaxHealth.ToString();
             // Update rotation to face player or respawn camera
             if (Player.Instance.Health.IsAlive)
             {
