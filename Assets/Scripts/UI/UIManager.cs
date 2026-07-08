@@ -12,15 +12,17 @@ public class UIManager : Singleton<UIManager>
         PLAY,
         SHOP,
         MAP,
+        BOOSTS,
         MENU
     };
 
     private Canvas interactUI;
     private Canvas shopUI;
     private Canvas mapUI;
+    private Canvas boostsUI;
     private Canvas menuUI;
-    private Canvas playerHUD;
     private Canvas gameUI;
+    
     [SerializeField] private Canvas respawnUI;
 
     public UIInput Input;
@@ -41,7 +43,6 @@ public class UIManager : Singleton<UIManager>
         shopUI = ShopUI.Instance.gameObject.GetComponent<Canvas>();
         mapUI = MapUI.Instance.gameObject.GetComponent<Canvas>();
         menuUI = MenuUI.Instance.gameObject.GetComponent<Canvas>();
-        playerHUD = PlayerHUD.Instance.gameObject.GetComponent<Canvas>();
         gameUI = GameManager.Instance.gameObject.GetComponentInChildren<Canvas>();
 
         state = UIState.PLAY;
@@ -68,6 +69,7 @@ public class UIManager : Singleton<UIManager>
         interactUI.enabled = (state == UIState.PLAY);
         mapUI.enabled = (state == UIState.MAP);
         shopUI.enabled = (state == UIState.SHOP);
+        boostsUI.enabled = (state == UIState.BOOSTS);
         menuUI.enabled = (state == UIState.MENU);
         Cursor.lockState = (state == UIState.PLAY || state == UIState.MAP ? CursorLockMode.Locked : CursorLockMode.None);
         Cursor.visible = (state == UIState.SHOP || state == UIState.MENU);
@@ -75,7 +77,10 @@ public class UIManager : Singleton<UIManager>
 
     public void SwitchState(UIState newState)
     {
-        prevState = (state == UIState.SHOP ? UIState.SHOP : UIState.PLAY);
+        if (!(state == UIState.BOOSTS && newState == UIState.MENU))
+        { // don't override previous state if going from boosts to menu
+            prevState = (state == UIState.SHOP ? UIState.SHOP : UIState.PLAY);
+        }
         state = newState;
         if (state != UIState.PLAY && state != UIState.MAP)
         {
@@ -91,14 +96,17 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void CloseMenu()
+    public void PreviousState()
     {
         state = prevState;
         if (state == UIState.SHOP)
         {
             ShopUI.Instance.ShopOpen();
         }
-        Time.timeScale = 1.0f; // unpause game
+        if (state != UIState.MENU && state != UIState.BOOSTS)
+        {
+            Time.timeScale = 1.0f; // unpause game
+        }
     }
 
     public void OnPlayerDeath(HealthContext healthContext)
@@ -118,6 +126,7 @@ public class UIManager : Singleton<UIManager>
         interactUI.enabled = false;
         shopUI.enabled = false;
         mapUI.enabled = false;
+        boostsUI.enabled = false;
         menuUI.enabled = false;
         respawnUI.enabled = false;
     }

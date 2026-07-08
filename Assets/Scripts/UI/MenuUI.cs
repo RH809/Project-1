@@ -41,7 +41,7 @@ public class MenuUI : Singleton<MenuUI>
         });
         howToPlayButton.onClick.AddListener(() => currentPage = Page.HOW_TO_PLAY);
         quitButton.onClick.AddListener(QuitGame);
-        menuCloseButton.onClick.AddListener(() => UIManager.Instance.CloseMenu());
+        menuCloseButton.onClick.AddListener(() => UIManager.Instance.PreviousState());
         settingsBackButton.onClick.AddListener(() => currentPage = Page.MENU);
         howToPlayBackButton.onClick.AddListener(() => currentPage = Page.MENU);
 
@@ -78,7 +78,7 @@ public class MenuUI : Singleton<MenuUI>
         {
             if (currentPage == Page.MENU)
             {
-                UIManager.Instance.CloseMenu();
+                UIManager.Instance.PreviousState();
             }
             else
             {
