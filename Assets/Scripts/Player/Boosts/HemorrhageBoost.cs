@@ -13,6 +13,7 @@ public class HemorrhageBoost : Boost
             $"Increase bleed damage from {bleedDamage} to {bleedDamage + bleedDamageIncrement} over time."); }
     public override void Select()
     {
+        Debug.Log("Selected Hemorrhage");
         bleedDamage += bleedDamageIncrement;
         level++;
     }

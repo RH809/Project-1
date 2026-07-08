@@ -7,43 +7,56 @@ using UnityEngine;
 public class BleedVictim : MonoBehaviour
 {
     private Health health;
-    private float bleedDamage;
-    private int bleedTicks = 0;
-    private Queue<KeyValuePair<float, int>> bleedQueue;
+    private List<BleedInfo> bleeds;
     [SerializeField] private float bleedInterval = 0.5f;
     private float countdown;
 
     void Start()
     {
-        bleedQueue = new Queue<KeyValuePair<float, int>>();
+        bleeds = new List<BleedInfo>();
+        health = GetComponent<Health>();
     }
 
     void Update()
     {
-        if (bleedTicks == 0)
+        if (countdown <= 0)
         {
-            if (bleedQueue.Count > 0)
+            if (bleeds.Count > 0)
             {
-                KeyValuePair<float, int> nextBleed = bleedQueue.Dequeue();
-                bleedDamage = nextBleed.Key;
-                bleedTicks = nextBleed.Value;
+                float bleedDamage = 0;
+                for (int i = bleeds.Count - 1; i >= 0; i--)
+                {
+                    bleedDamage += bleeds[i].damage;
+                    bleeds[i].ticksRemaining--;
+                    if (bleeds[i].ticksRemaining <= 0)
+                    {
+                        bleeds.RemoveAt(i);
+                    }
+                }
+                health.TakeDamage(bleedDamage / 4.0f, Player.Instance.gameObject);
+                countdown = bleedInterval;
             }
         }
         else
         {
             countdown -= Time.deltaTime;
-            if (countdown >= 0)
-            {
-                health.TakeDamage(bleedDamage / 4, Player.Instance.gameObject);
-                bleedTicks--;
-                countdown = bleedInterval;
-            }
         }
     }
 
     public void Bleed(float bleedDamage)
     {
-        this.bleedDamage = Mathf.Max(bleedDamage, this.bleedDamage);
-        bleedQueue.Enqueue(new KeyValuePair<float, int>(bleedDamage, 4 - bleedTicks));
+        bleeds.Add(new BleedInfo(bleedDamage));
+        if (bleeds.Count == 1) countdown = bleedInterval;
+    }
+}
+class BleedInfo
+{
+    public float damage;
+    public int ticksRemaining;
+
+    public BleedInfo(float damage)
+    {
+        this.damage = damage;
+        this.ticksRemaining = 4;
     }
 }

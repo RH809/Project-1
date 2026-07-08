@@ -92,16 +92,18 @@ public class Bullet : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("Collided with " + other);
+        //Debug.Log("Bullet Collided with " + other);
         ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
         if (bodyPart != null)
         {
             if (!hits.Contains(bodyPart.Zombie))
             {
+                
                 hits.Add(bodyPart.Zombie);
                 // If it hit a zombie's body part, deal the damage
                 bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
                 pierceAmount--;
+                Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
                 if (pierceAmount <= 0) Destroy(gameObject);
             }
 

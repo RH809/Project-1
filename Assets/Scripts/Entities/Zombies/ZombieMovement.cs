@@ -298,7 +298,7 @@ public class ZombieMovement : MonoBehaviour
             
         }
         bool changed = false;
-        if (playerDist <= closestDist || attack.GetNumAttachedArms() == 0) // if no arms, follow player
+        if (playerDist <= closestDist || (attack.GetNumAttachedArms() == 0 && player.GetComponent<Health>().IsAlive)) // if no arms, follow player
         {
             changed = (target == null || !target.Equals(player));
             target = player;

@@ -233,6 +233,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &27622851
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!1 &66699368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8431768321655436250, guid: 66213f1ff3e7ffd46939620903ffa8c8, type: 3}
@@ -265,6 +322,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5571513773260291441, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
   m_PrefabInstance: {fileID: 4747847542453959847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &177023236
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!114 &237377080 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
@@ -707,6 +821,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &594519569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!114 &724144922 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
@@ -953,6 +1124,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1779565402759048510, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
   m_PrefabInstance: {fileID: 4747847542453959847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &965401706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!1 &1015799324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8082071620513655853, guid: 56d44b1bec842b54385c659afbedbadc, type: 3}
@@ -1156,6 +1384,120 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3683110926100149522, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
   m_PrefabInstance: {fileID: 5170403548368877777}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1494389350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+--- !u!1001 &1560215599
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!1 &1602824157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1635,63 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &1644408206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!95 &1658476527 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1644641789591390061, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
@@ -1777,6 +2176,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1001 &1847822353
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!1 &1951494632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,6 +2350,63 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 3608956615489140475, guid: 0492417a50509424d974d9d61a857888, type: 3}
   m_PrefabInstance: {fileID: 5632878513873387458}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2052603476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.12022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833108580892124626, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392723032507366284, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
+      propertyPath: m_Name
+      value: Tank Zombie Parent (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b6ebe747f038864d8750b5b71087ad2, type: 3}
 --- !u!1 &2122634399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7602304757884550476, guid: 5eed69462360e8145b23369879fd9c59, type: 3}
@@ -3060,10 +3573,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7430570195882210720}
     - target: {fileID: 1676579888054811220, guid: ef808400a6b978049991b7a104b44717, type: 3}
-      propertyPath: baseSpawnTime
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1676579888054811220, guid: ef808400a6b978049991b7a104b44717, type: 3}
       propertyPath: spawnTimeText
       value: 
       objectReference: {fileID: 479682197}
@@ -3358,26 +3867,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: paydayBoostBase
-      value: 
-      objectReference: {fileID: 11400000, guid: 609295ad1d6684446baffec8bc5cbc69, type: 2}
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: boostWaveInterval
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: collectorBoostBase
-      value: 
-      objectReference: {fileID: 11400000, guid: c502142bb99d6df419183ee7e1ab3170, type: 2}
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: acceleratedAscensionBoostBase
-      value: 
-      objectReference: {fileID: 11400000, guid: 75f81cfef4634c746a76e6e5492091bb, type: 2}
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: technologicalAdvancementBoostBase
-      value: 
-      objectReference: {fileID: 11400000, guid: 844ba933ed6a49040953d9c9e1ea3aaf, type: 2}
     - target: {fileID: 2196699293173105311, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 
@@ -4360,6 +4849,15 @@ SceneRoots:
   - {fileID: 6376847136431151051}
   - {fileID: 6785301236506808055}
   - {fileID: 1007615607332124411}
+  - {fileID: 1560215599}
+  - {fileID: 594519569}
+  - {fileID: 1847822353}
+  - {fileID: 27622851}
+  - {fileID: 1644408206}
+  - {fileID: 1494389350}
+  - {fileID: 965401706}
+  - {fileID: 177023236}
+  - {fileID: 2052603476}
   - {fileID: 7546817741119750786}
   - {fileID: 1672110936}
   - {fileID: 5629644001931995650}

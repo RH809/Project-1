@@ -14,6 +14,7 @@ public class AcceleratedAscensionBoost : Boost
 
     public override void Select()
     {
+        Debug.Log("Selected Accelerated Ascension");
         cooldownDecrease += cooldownDecreaseIncrement;
         PowerUpManager.Instance.DecreaseSpawnTime(cooldownDecreaseIncrement);
         level++;

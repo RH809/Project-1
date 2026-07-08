@@ -374,7 +374,7 @@ Transform:
   m_GameObject: {fileID: 3747109356667862211}
   serializedVersion: 2
   m_LocalRotation: {x: -0.052353077, y: -0.12846097, z: 0.0050009037, w: 0.9903192}
-  m_LocalPosition: {x: -1.1900063, y: 7.869991, z: 16.01}
+  m_LocalPosition: {x: -0.71, y: 7.58, z: 11.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2490,10 +2490,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c9568000e7e5d41ba08472171de538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBoosts
+  boostWaveInterval: 1
   hemorrhageBoostBase: {fileID: 11400000, guid: 365045ae541a9ef4da4b9694ee8ecb0a, type: 2}
   piercingBoostBase: {fileID: 11400000, guid: 5e24462296293a64a940301f3dd01cc3, type: 2}
-  hemorrhageBoost: {fileID: 0}
-  piercingBoost: {fileID: 0}
+  paydayBoostBase: {fileID: 11400000, guid: 609295ad1d6684446baffec8bc5cbc69, type: 2}
+  collectorBoostBase: {fileID: 11400000, guid: c502142bb99d6df419183ee7e1ab3170, type: 2}
+  acceleratedAscensionBoostBase: {fileID: 11400000, guid: 75f81cfef4634c746a76e6e5492091bb, type: 2}
+  technologicalAdvancementBoostBase: {fileID: 11400000, guid: 844ba933ed6a49040953d9c9e1ea3aaf, type: 2}
+  Hemorrhage: {fileID: 0}
+  Piercing: {fileID: 0}
+  Payday: {fileID: 0}
+  Collector: {fileID: 0}
+  AcceleratedAscension: {fileID: 0}
+  TechnologicalAdvancement: {fileID: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

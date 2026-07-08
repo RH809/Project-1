@@ -57,8 +57,16 @@ public class Aim : MonoBehaviour
             }
             // Calculate angle to raycast hit
             Vector3 path = hit.point - from.transform.position;
-            aimRotation = Quaternion.LookRotation(path, Vector3.up);
-            Debug.DrawRay(from.transform.position, path, Color.blue);
+            if (path.magnitude < 0.5f)
+            { // do default path if too close
+                Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
+                aimRotation = Quaternion.LookRotation(end - from.transform.position, Vector3.up);
+            }
+            else
+            {
+                aimRotation = Quaternion.LookRotation(path, Vector3.up);
+                Debug.DrawRay(from.transform.position, path, Color.blue);
+            }
         }
         else
         {
