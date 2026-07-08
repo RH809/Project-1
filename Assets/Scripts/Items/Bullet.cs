@@ -2,6 +2,7 @@
 /// This script handles the movement and collision of the bullets.
 /// </summary>
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,25 +12,30 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float maxRange = 50f;
     [SerializeField] private float bulletRadius = 0.01f;
     [SerializeField] private LayerMask collisionMask;
+    private int pierceAmount;
 
     private GameObject[] disruptors;
+    private HashSet<GameObject> hits;
 
     private Rigidbody rb;
-    private bool hasHit = false;
     private bool isCrit = false;
     private float damageMultiplier; // damage multiplier for power up
 
     private Vector3 startPos;
-    void Start() {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
+        hits = new HashSet<GameObject>();
         startPos = transform.position;
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
+        pierceAmount = Player.Instance.Boosts.piercingBoost.PierceAmount;
         if (isCrit) Debug.Log("Bullet will crit");
     }
 
-    public void SetDisruptors(GameObject[] disruptors) {
+    public void SetDisruptors(GameObject[] disruptors)
+    {
         this.disruptors = disruptors;
     }
 
@@ -77,7 +83,7 @@ public class Bullet : MonoBehaviour
     /// <param name="other">The GameObject it collided with</param>
     /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
-        if (hasHit) return;
+        if (pierceAmount <= 0) return;
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
@@ -90,10 +96,21 @@ public class Bullet : MonoBehaviour
         ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
         if (bodyPart != null)
         {
-            // If it hit a zombie's body part, deal the damage
-            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
+            if (!hits.Contains(bodyPart.Zombie))
+            {
+                hits.Add(bodyPart.Zombie);
+                // If it hit a zombie's body part, deal the damage
+                bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
+                pierceAmount--;
+                if (pierceAmount <= 0) Destroy(gameObject);
+            }
+
         }
-        hasHit = true;
-        Destroy(gameObject);
+        else
+        { // Didn't hit zombie so instantly destroy (no piercing)
+            pierceAmount = 0;
+            Destroy(gameObject);
+        }
+        
     }
 }

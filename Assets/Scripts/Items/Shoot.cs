@@ -63,52 +63,11 @@ public class Shoot : MonoBehaviour
     /// instantiates the bullet.
     /// </summary>
     private void ShootBullet() {
-        /*
-        RaycastHit hit;
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        
-        Quaternion aimRotation = Quaternion.identity;
-        if (Physics.Raycast(ray, out hit, 50f, targetMask)) // Raycast to see if there is any target being aimed at
-        {
-            GameObject hitObject = hit.collider.gameObject;
-            foreach (GameObject obj in disruptors)
-            {
-                // Handle lower hitbox of dead disruptors
-                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight)
-                {
-                    bool hitSomething = true;
-                    do {
-                        Vector3 rayDir = ray.direction;
-                        ray = new Ray(hit.point, rayDir);
-                        hitSomething = Physics.Raycast(ray, out hit, 50f, targetMask);
-                        hitObject = hit.collider.gameObject;
-                    } while (hitSomething && obj.Equals(hitObject) && hit.point.y > adjustedDisruptorHeight);
-
-                    if (!hitSomething)
-                    {
-                        Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
-                        aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
-                    }
-                }
-            }
-            // Calculate angle to raycast hit
-            Vector3 path = hit.point - bulletExit.transform.position;
-            aimRotation = Quaternion.LookRotation(path, Vector3.up);
-            Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
-        }
-        else
-        {
-            // Calculate angle based on default range
-            Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
-            aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
-        }
-        */
-        //Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        //Quaternion aimRotation = GetTargetRotation(ray);
 
         Quaternion aimRotation = aim.GetTargetRotation(bulletExit);
         GameObject newBullet = Instantiate(bullet, bulletExit.position, aimRotation);
         newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
+
     }
 
     public void ShootStart() {
