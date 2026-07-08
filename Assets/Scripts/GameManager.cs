@@ -102,6 +102,10 @@ public class GameManager : Singleton<GameManager>
             AddAnnouncement("New Wave Spawning");
             leftZombieSpawner.SpawnWave();
             rightZombieSpawner.SpawnWave();
+            if (waveNum % Player.Instance.Boosts.BoostWaveInterval == 0)
+            {
+                UIManager.Instance.SwitchState(UIManager.UIState.BOOSTS);
+            }
         }
     }
 

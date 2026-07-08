@@ -10,7 +10,7 @@ public class HemorrhageBoost : Boost
     private float bleedDamage = 0;
     public float BleedDamage { get => bleedDamage; }
     public override string Description { get => (level == 0 ? boostDescription :
-            $"Increase bleed damage from {bleedDamage} to {bleedDamage + bleedDamageIncrement} over time"); }
+            $"Increase bleed damage from {bleedDamage} to {bleedDamage + bleedDamageIncrement} over time."); }
     public override void Select()
     {
         bleedDamage += bleedDamageIncrement;

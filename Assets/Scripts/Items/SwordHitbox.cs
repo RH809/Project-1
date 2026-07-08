@@ -77,9 +77,9 @@ public class SwordHitbox : MonoBehaviour
 
                 hits.Add(bodyPart.Zombie); // add the zombie to hit list so that it is not hit again in the same swing
                 bodyPart.TakeDamage(Shop.Instance.swordDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
-                if (Player.Instance.Boosts.hemorrhageBoost.IsActive)
+                if (Player.Instance.Boosts.Hemorrhage.IsActive)
                 {
-                    bodyPart.Zombie.GetComponent<BleedVictim>().Bleed(Player.Instance.Boosts.hemorrhageBoost.BleedDamage * damageMultiplier);
+                    bodyPart.Zombie.GetComponent<BleedVictim>().Bleed(Player.Instance.Boosts.Hemorrhage.BleedDamage * damageMultiplier);
                 }
                 //Debug.Log("Hit: " + c.name);
             }

@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Boost : ScriptableObject
 {
     [SerializeField] protected string boostName;
-    public virtual string Name { get => boostName + " " + NumToRomanNumeral(level + 1); }
+    public virtual string Name { get => (levelCap != -1 ? boostName + " " + NumToRomanNumeral(level + 1) : boostName); }
     [SerializeField] protected string boostDescription;
     public virtual string Description { get => boostDescription; }
     [SerializeField] protected int levelCap;

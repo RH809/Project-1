@@ -6,20 +6,55 @@ using UnityEngine;
 
 public class PlayerBoosts : MonoBehaviour
 {
+    [SerializeField] private int boostWaveInterval;
+    public int BoostWaveInterval { get => boostWaveInterval; }
+
     [SerializeField] private HemorrhageBoost hemorrhageBoostBase;
     [SerializeField] private PiercingBoost piercingBoostBase;
+    [SerializeField] private PaydayBoost paydayBoostBase;
+    [SerializeField] private CollectorBoost collectorBoostBase;
+    [SerializeField] private AcceleratedAscensionBoost acceleratedAscensionBoostBase;
+    [SerializeField] private TechnologicalAdvancementBoost technologicalAdvancementBoostBase;
 
-    [HideInInspector] public HemorrhageBoost hemorrhageBoost;
-    [HideInInspector] public PiercingBoost piercingBoost;
+    [HideInInspector] public HemorrhageBoost Hemorrhage;
+    [HideInInspector] public PiercingBoost Piercing;
+    [HideInInspector] public PaydayBoost Payday;
+    [HideInInspector] public CollectorBoost Collector;
+    [HideInInspector] public AcceleratedAscensionBoost AcceleratedAscension;
+    [HideInInspector] public TechnologicalAdvancementBoost TechnologicalAdvancement;
 
     private List<Boost> boosts;
 
     void Awake()
     {
-        hemorrhageBoost = Instantiate(hemorrhageBoostBase);
-        piercingBoost = Instantiate(piercingBoostBase);
+        Hemorrhage = Instantiate(hemorrhageBoostBase);
+        Piercing = Instantiate(piercingBoostBase);
+        Payday = Instantiate(paydayBoostBase);
+        Collector = Instantiate(collectorBoostBase);
+        AcceleratedAscension = Instantiate(acceleratedAscensionBoostBase);
+        TechnologicalAdvancement = Instantiate(technologicalAdvancementBoostBase);
 
-        boosts.Add(hemorrhageBoost);
-        boosts.Add(piercingBoost);
+        boosts = new List<Boost>();
+        boosts.Add(Hemorrhage);
+        boosts.Add(Piercing);
+        boosts.Add(Payday);
+        boosts.Add(Collector);
+        boosts.Add(AcceleratedAscension);
+        boosts.Add(TechnologicalAdvancement);
+    }
+
+    public Boost[] GetBoosts()
+    {
+        int[] indices = { -1, -1, -1 };
+        for (int i = 0; i < 3; i++)
+        {
+            int index = -1;
+            do
+            {
+                index = Random.Range(0, boosts.Count);
+            } while (indices[0] == index || indices[1] == index || boosts[index].IsMaxedOut);
+            indices[i] = index;
+        }
+        return new Boost[] { boosts[indices[0]], boosts[indices[1]], boosts[indices[2]] };
     }
 }

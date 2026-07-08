@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
-        pierceAmount = Player.Instance.Boosts.piercingBoost.PierceAmount;
+        pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
         if (isCrit) Debug.Log("Bullet will crit");
     }
 

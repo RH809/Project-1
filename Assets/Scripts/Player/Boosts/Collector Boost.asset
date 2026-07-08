@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1753dc5c553014f8165515d5729238, type: 3}
+  m_Name: Collector Boost
+  m_EditorClassIdentifier: Assembly-CSharp::CollectorBoost
+  boostName: Collector
+  boostDescription: Money drops from killing zombies grant a bonus 33.33%.
+  levelCap: 3
+  collectorIncrement: 0.33333334

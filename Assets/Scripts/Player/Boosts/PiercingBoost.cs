@@ -11,7 +11,7 @@ public class PiercingBoost : Boost
     public int PierceAmount { get => pierceAmount; }
 
     public override string Description { get => (level == 0 ? boostDescription :
-        $"Increase number of zombies the bullets can piece from {pierceAmount} to {pierceAmount * piercingMultiplier}"); }
+        $"Increase number of zombies the bullets can piece from {pierceAmount} to {pierceAmount * piercingMultiplier}."); }
 
     public override void Select()
     {

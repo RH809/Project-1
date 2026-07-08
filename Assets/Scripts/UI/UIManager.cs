@@ -42,6 +42,7 @@ public class UIManager : Singleton<UIManager>
         interactUI = Player.Instance.gameObject.GetComponentInChildren<Canvas>();
         shopUI = ShopUI.Instance.gameObject.GetComponent<Canvas>();
         mapUI = MapUI.Instance.gameObject.GetComponent<Canvas>();
+        boostsUI = BoostsUI.Instance.gameObject.GetComponent<Canvas>();
         menuUI = MenuUI.Instance.gameObject.GetComponent<Canvas>();
         gameUI = GameManager.Instance.gameObject.GetComponentInChildren<Canvas>();
 
@@ -72,7 +73,7 @@ public class UIManager : Singleton<UIManager>
         boostsUI.enabled = (state == UIState.BOOSTS);
         menuUI.enabled = (state == UIState.MENU);
         Cursor.lockState = (state == UIState.PLAY || state == UIState.MAP ? CursorLockMode.Locked : CursorLockMode.None);
-        Cursor.visible = (state == UIState.SHOP || state == UIState.MENU);
+        Cursor.visible = (state == UIState.SHOP || state == UIState.MENU || state == UIState.BOOSTS);
     }
 
     public void SwitchState(UIState newState)
@@ -90,9 +91,13 @@ public class UIManager : Singleton<UIManager>
         {
             ShopUI.Instance.ShopOpen();
         }
-        if (state == UIState.MENU)
+        else if (state == UIState.MENU)
         {
             MenuUI.Instance.MenuOpen();
+        }
+        else if (state == UIState.BOOSTS)
+        {
+            BoostsUI.Instance.Open();
         }
     }
 
