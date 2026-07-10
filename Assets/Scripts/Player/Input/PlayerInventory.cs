@@ -426,7 +426,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("On cooldown");
+            //Debug.Log("On cooldown");
         }
     }
 

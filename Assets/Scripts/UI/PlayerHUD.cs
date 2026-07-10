@@ -97,7 +97,6 @@ public class PlayerHUD : Singleton<PlayerHUD>
         TextMeshProUGUI count = newPanel.transform.Find("Count").GetComponent<TextMeshProUGUI>();
         count.text = "1";
         counts.Add(count);
-        Debug.Log(hotbarLayout);
         hotbarLayout.spacing = spacings[panels.Count - 1];
     }
 
