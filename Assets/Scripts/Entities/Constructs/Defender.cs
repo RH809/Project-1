@@ -71,7 +71,7 @@ public abstract class Defender : Construct
     {
         if (!Repairable)
         {
-            Debug.Log("Not repairable");
+            //Debug.Log("Not repairable");
             return;
         }
         // Respawn or heal by half health

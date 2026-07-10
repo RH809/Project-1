@@ -52,7 +52,6 @@ public class TitleScreenUI : MonoBehaviour
 
     public void OnEscapePerformed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("escape");
         settingsPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
     }

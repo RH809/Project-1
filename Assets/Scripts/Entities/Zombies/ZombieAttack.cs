@@ -32,10 +32,6 @@ public class ZombieAttack : MonoBehaviour
 
     protected void Update()
     {
-        if (Input.GetKeyDown("q"))
-        {
-            Attack(Player.Instance.GetComponent<ZombieTarget>());
-        }
         if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;

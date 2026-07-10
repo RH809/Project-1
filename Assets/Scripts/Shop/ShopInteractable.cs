@@ -1,3 +1,6 @@
+/// <summary>
+/// This is the interface for the shop interactable.
+/// </summary>
 using UnityEngine;
 
 public class ShopInteractable : MonoBehaviour, IInteractable
@@ -10,7 +13,7 @@ public class ShopInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Opening shop...");
+        //Debug.Log("Opening shop...");
         UIManager.Instance.SwitchState(UIManager.UIState.SHOP);
     }
 }

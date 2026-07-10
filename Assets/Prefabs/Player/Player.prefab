@@ -2490,7 +2490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c9568000e7e5d41ba08472171de538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBoosts
-  boostWaveInterval: 1
+  boostWaveInterval: 3
   hemorrhageBoostBase: {fileID: 11400000, guid: 365045ae541a9ef4da4b9694ee8ecb0a, type: 2}
   piercingBoostBase: {fileID: 11400000, guid: 5e24462296293a64a940301f3dd01cc3, type: 2}
   paydayBoostBase: {fileID: 11400000, guid: 609295ad1d6684446baffec8bc5cbc69, type: 2}

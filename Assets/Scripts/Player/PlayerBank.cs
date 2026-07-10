@@ -13,7 +13,7 @@ public class PlayerBank : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("m"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("m"))
         {
             AddMoney(100);
         }

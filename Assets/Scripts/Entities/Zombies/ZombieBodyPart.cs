@@ -25,7 +25,7 @@ public class ZombieBodyPart : MonoBehaviour
 
     public void TakeDamage(float damage, GameObject attacker)
     {
-        Debug.Log(gameObject + " taking damage");
+        //Debug.Log(gameObject + " taking damage");
         health.TakeDamage(damage * damageMultiplier, attacker);
         if (arm != null)
         {

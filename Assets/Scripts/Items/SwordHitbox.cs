@@ -79,7 +79,7 @@ public class SwordHitbox : MonoBehaviour
                 bodyPart.TakeDamage(Shop.Instance.swordDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
                 if (Player.Instance.Boosts.Hemorrhage.IsActive)
                 {
-                    Debug.Log("Hemorrhaging...");
+                    //Debug.Log("Hemorrhaging...");
                     bodyPart.Zombie.GetComponent<BleedVictim>().Bleed(Player.Instance.Boosts.Hemorrhage.BleedDamage * damageMultiplier);
                 }
                 //Debug.Log("Hit: " + c.name);

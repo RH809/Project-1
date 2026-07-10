@@ -51,7 +51,7 @@ public class Respawn : Singleton<Respawn>
     /// </summary>
     IEnumerator RespawnRoutine()
     {
-        Debug.Log("Player died. Waiting 5 seconds for respawn...");
+        //Debug.Log("Player died. Waiting 5 seconds for respawn...");
         // Move player to respawn location
         Player.Instance.gameObject.transform.position = respawnTransform.position;
         Player.Instance.gameObject.transform.rotation = respawnTransform.rotation;
@@ -68,7 +68,7 @@ public class Respawn : Singleton<Respawn>
 
         //yield return new WaitForSeconds(respawnTime);
 
-        Debug.Log("Player respawned!");
+        //Debug.Log("Player respawned!");
         // Enable player and switch cameras
         Camera.gameObject.SetActive(false);
         Player.Instance.gameObject.SetActive(true);

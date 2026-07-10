@@ -15,7 +15,7 @@ public class PiercingBoost : Boost
 
     public override void Select()
     {
-        Debug.Log("Selected Piercing");
+        //Debug.Log("Selected Piercing");
         pierceAmount *= piercingMultiplier;
         level++;
     }

@@ -51,15 +51,15 @@ public class ZombieSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("l"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("l"))
         {
             SpawnRegularZombie();
         }
-        if (Input.GetKeyDown("k"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("k"))
         {
             SpawnMiniZombie();
         }
-        if (Input.GetKeyDown("j"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("j"))
         {
             SpawnTankZombie();
         }

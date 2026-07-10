@@ -13,7 +13,7 @@ public class CollectorBoost : Boost
             $"Increase bonus money drop from {((multiplier - 1.0f) * 100):0.##}% to {((multiplier + collectorIncrement - 1.0f) * 100):0.##}%."); }
     public override void Select()
     {
-        Debug.Log("Selected Collector");
+        //Debug.Log("Selected Collector");
         multiplier += collectorIncrement;
         level++;
     }

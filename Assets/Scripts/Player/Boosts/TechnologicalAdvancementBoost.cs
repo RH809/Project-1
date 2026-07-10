@@ -14,7 +14,7 @@ public class TechnologicalAdvancementBoost : Boost
 
     public override void Select()
     {
-        Debug.Log("Selected Technological Advancement");
+        //Debug.Log("Selected Technological Advancement");
         cooldownDecrease += cooldownDecreaseIncrement;
         DisruptorManager.Instance.DecreaseRespawnTimes(cooldownDecreaseIncrement);
         level++;

@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
-        if (isCrit) Debug.Log("Bullet will crit");
+        //if (isCrit) Debug.Log("Bullet will crit");
     }
 
     public void SetDisruptors(GameObject[] disruptors)
@@ -103,7 +103,7 @@ public class Bullet : MonoBehaviour
                 // If it hit a zombie's body part, deal the damage
                 bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
                 pierceAmount--;
-                Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
+                //Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
                 if (pierceAmount <= 0) Destroy(gameObject);
             }
 

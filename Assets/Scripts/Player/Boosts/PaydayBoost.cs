@@ -10,7 +10,7 @@ public class PaydayBoost : Boost
 
     public override void Select()
     {
-        Debug.Log("Selected Payday");
+        //Debug.Log("Selected Payday");
         Player.Instance.Bank.AddMoney(payAmount);
     }
 }

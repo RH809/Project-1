@@ -42,12 +42,12 @@ public class Zombie : MonoBehaviour
     {
         if (healthCtx.target == gameObject)
         {
-            Debug.Log("Zombie killed");
+            //Debug.Log("Zombie killed");
             if (healthCtx.source == Player.Instance.gameObject)
             {
                 int moneyDrop = Mathf.CeilToInt(killReward * Player.Instance.Boosts.Collector.Multiplier);
                 Player.Instance.Bank.AddMoney(moneyDrop);
-                Debug.Log("Creating money popup");
+                //Debug.Log("Creating money popup");
                 if (SettingsManager.Instance.ShowMoneyPopup)
                 {
                     GameObject moneyPopup = Instantiate(moneyPopupPrefab, PlayerHUD.Instance.transform);

@@ -89,7 +89,7 @@ public class ShopUI : Singleton<ShopUI>
         }
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
 
-        Debug.Log("Selected: " + selectedItem.itemName);
+        //Debug.Log("Selected: " + selectedItem.itemName);
     }
 
     void Buy()
@@ -136,7 +136,7 @@ public class ShopUI : Singleton<ShopUI>
         }
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
         selectedButton.Select();
-        Debug.Log("Bought: " + selectedItem.itemName);
+        //Debug.Log("Bought: " + selectedItem.itemName);
     }
 
     public void ShopOpen()

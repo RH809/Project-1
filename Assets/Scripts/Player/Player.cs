@@ -50,7 +50,7 @@ public class Player : Singleton<Player>
 
     private void Update()
     {
-        if (Input.GetKeyDown("y"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("y"))
         {
             if (this.Health.IsAlive)
             {

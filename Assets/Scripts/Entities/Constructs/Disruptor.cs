@@ -35,7 +35,7 @@ public class Disruptor : Construct
 
     protected override void Update()
     {
-        if (Input.GetKeyDown("o"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("o"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
             else Respawn(1f);
@@ -52,7 +52,7 @@ public class Disruptor : Construct
         else if (healthContext.target.Equals(defender.gameObject))
         {
 
-            Debug.Log("defender died; setting active");
+            //Debug.Log("defender died; setting active");
             Activate();
         }
     }

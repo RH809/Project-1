@@ -35,7 +35,7 @@ public class Beacon : Construct
             Deactivate();
         }
 
-        if (Input.GetKeyDown("u"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("u"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
         }

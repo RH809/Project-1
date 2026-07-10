@@ -42,17 +42,4 @@ public class ZombieAttackCollider : MonoBehaviour
             hit.GetComponent<Health>().TakeDamage(damage * attack.GetNumAttachedArms(), gameObject);
         }
     }
-
-    /*
-    void OnTriggerStay(Collider other)
-    {
-        GameObject hit = other.gameObject;
-        Debug.Log("Hit: " + hit);
-        if (!hits.Contains(hit))
-        {
-            hits.Add(hit);
-            hit.GetComponent<Health>().TakeDamage(damage * attack.GetNumAttachedArms(), this.gameObject);
-        }
-    }
-    */
 }
