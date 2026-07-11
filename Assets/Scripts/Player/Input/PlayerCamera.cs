@@ -49,8 +49,8 @@ public class PlayerCamera : MonoBehaviour
     {
         if ((UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) ||
             (lockedCamera && enableCameraLock) || GameManager.Instance.GameOver) return;
-        float mouseX = lookInput.x * sensitivity * Time.deltaTime;
-        float mouseY = lookInput.y * sensitivity * Time.deltaTime;
+        float mouseX = lookInput.x * sensitivity * SettingsManager.Instance.LookSensitivity * Time.deltaTime;
+        float mouseY = lookInput.y * sensitivity * SettingsManager.Instance.LookSensitivity * Time.deltaTime;
 
         // Rotate player left/right
         transform.Rotate(Vector3.up * mouseX);

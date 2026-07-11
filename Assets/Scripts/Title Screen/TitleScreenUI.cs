@@ -21,13 +21,18 @@ public class TitleScreenUI : MonoBehaviour
     [SerializeField] private Button settingsCloseButton;
     [SerializeField] private Button howToPlayCloseButton;
 
+    [SerializeField] private Settings settings;
+
     void Awake()
     {
         input = new TitleScreenInput();
         Debug.Log(input);
 
         playButton.onClick.AddListener(Play);
-        settingsButton.onClick.AddListener(() => settingsPanel.SetActive(true));
+        settingsButton.onClick.AddListener(() => {
+            settings.OpenSettings();
+            settingsPanel.SetActive(true);
+        });
         howToPlayButton.onClick.AddListener(() =>  howToPlayPanel.SetActive(true));
         quitButton.onClick.AddListener(QuitGame);
 

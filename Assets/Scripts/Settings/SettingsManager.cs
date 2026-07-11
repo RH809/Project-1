@@ -11,12 +11,20 @@ public class SettingsManager : Singleton<SettingsManager>
     [SerializeField] private bool defaultDeathParticlesSetting;
     [SerializeField] private bool defaultHealthbarValuesSetting;
     [SerializeField] private int defaultCrosshairSize;
+    [SerializeField] private float defaultLookSensitivity;
     public int DefaultCrosshairSize { get => defaultCrosshairSize; }
 
     [SerializeField] private int minCrosshairSize = 20;
     public int MinCrosshairSize { get => minCrosshairSize; }
     [SerializeField] private int maxCrosshairSize = 80;
     public int MaxCrosshairSize { get => maxCrosshairSize; }
+
+    public float DefaultLookSensitivity { get => defaultLookSensitivity; }
+
+    [SerializeField] private float minLookSensitivity = 0.01f;
+    public float MinLookSensitivity { get => minLookSensitivity; }
+    [SerializeField] private float maxLookSensitivity = 4.0f;
+    public float MaxLookSensitivity { get => maxLookSensitivity; }
 
     private bool showVignette;
     public bool ShowVignette { get => showVignette; }
@@ -30,6 +38,11 @@ public class SettingsManager : Singleton<SettingsManager>
 
     private int crosshairSize;
     public int CrosshairSize { get => crosshairSize; }
+
+    
+
+    private float lookSensitivity;
+    public float LookSensitivity { get => lookSensitivity; }
     protected override void Awake()
     {
         base.Awake();
@@ -46,6 +59,7 @@ public class SettingsManager : Singleton<SettingsManager>
         showDeathParticles = defaultDeathParticlesSetting;
         showHealthbarValues = defaultHealthbarValuesSetting;
         crosshairSize = defaultCrosshairSize;
+        lookSensitivity = defaultLookSensitivity;
     }
 
     public void ToggleVignette(bool show)
@@ -71,6 +85,11 @@ public class SettingsManager : Singleton<SettingsManager>
     public void SetCrosshairSize(int crosshairSize)
     {
         this.crosshairSize = crosshairSize;
+    }
+
+    public void SetLookSensitivity(float lookSensitivity)
+    {
+        this.lookSensitivity = lookSensitivity;
     }
 
 }

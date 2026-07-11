@@ -49,5 +49,8 @@ MonoBehaviour:
   defaultDeathParticlesSetting: 1
   defaultHealthbarValuesSetting: 1
   defaultCrosshairSize: 50
+  defaultLookSensitivity: 1
   minCrosshairSize: 20
   maxCrosshairSize: 150
+  minLookSensitivity: 0.01
+  maxLookSensitivity: 4
