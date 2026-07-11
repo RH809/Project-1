@@ -56,7 +56,7 @@ public class PlayerHUD : Singleton<PlayerHUD>
     void Update()
     {
         healthbar.value = Player.Instance.Health.CurrentHealth;
-        healthText.text = Player.Instance.Health.CurrentHealth.ToString() + "/" + Player.Instance.Health.MaxHealth.ToString();
+        healthText.text = Player.Instance.Health.CurrentHealth.ToString("0.##") + "/" + Player.Instance.Health.MaxHealth.ToString();
         staminaBar.value = Player.Instance.Stamina.CurrentStamina;
         staminaFill.color = (Player.Instance.Stamina.SprintDisabled ? sprintDisabledColor : sprintEnabledColor);
 

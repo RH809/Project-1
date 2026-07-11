@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hemorrhage Boost
   m_EditorClassIdentifier: Assembly-CSharp::HemorrhageBoost
   boostName: Hemorrhage
-  boostDescription: Sword attacks now cause zombies to bleed, taking 5 damage over
+  boostDescription: Sword attacks now cause zombies to bleed, taking 10 damage over
     time.
   levelCap: 4
-  bleedDamageIncrement: 5
+  bleedDamageIncrement: 10

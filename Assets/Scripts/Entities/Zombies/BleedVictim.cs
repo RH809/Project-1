@@ -34,6 +34,10 @@ public class BleedVictim : MonoBehaviour
                     }
                 }
                 health.TakeDamage(bleedDamage / 4.0f, Player.Instance.gameObject);
+                if (Player.Instance.Boosts.VampiricBlade.IsActive)
+                {
+                    Player.Instance.Health.Heal(bleedDamage * Player.Instance.Boosts.VampiricBlade.LifestealPercentage);
+                }
                 countdown = bleedInterval;
             }
         }

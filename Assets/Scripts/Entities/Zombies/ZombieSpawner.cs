@@ -109,9 +109,12 @@ public class ZombieSpawner : MonoBehaviour
         {
             zombies.Add(Zombie.ZombieType.MINI);
         }
-        for (int i = 0; i < numTankZombies + disruptorDeaths * tankZombieDisruptorIncrease; i++)
+        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0)
         {
-            zombies.Add(Zombie.ZombieType.TANK);
+            for (int i = 0; i < numTankZombies + disruptorDeaths * tankZombieDisruptorIncrease; i++)
+            {
+                zombies.Add(Zombie.ZombieType.TANK);
+            }
         }
     }
 

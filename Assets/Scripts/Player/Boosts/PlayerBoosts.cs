@@ -15,6 +15,7 @@ public class PlayerBoosts : MonoBehaviour
     [SerializeField] private CollectorBoost collectorBoostBase;
     [SerializeField] private AcceleratedAscensionBoost acceleratedAscensionBoostBase;
     [SerializeField] private TechnologicalAdvancementBoost technologicalAdvancementBoostBase;
+    [SerializeField] private VampiricBladeBoost vampiricBladeBoostBase;
 
     [HideInInspector] public HemorrhageBoost Hemorrhage;
     [HideInInspector] public PiercingBoost Piercing;
@@ -22,6 +23,7 @@ public class PlayerBoosts : MonoBehaviour
     [HideInInspector] public CollectorBoost Collector;
     [HideInInspector] public AcceleratedAscensionBoost AcceleratedAscension;
     [HideInInspector] public TechnologicalAdvancementBoost TechnologicalAdvancement;
+    [HideInInspector] public VampiricBladeBoost VampiricBlade;
 
     private List<Boost> boosts;
 
@@ -33,6 +35,7 @@ public class PlayerBoosts : MonoBehaviour
         Collector = Instantiate(collectorBoostBase);
         AcceleratedAscension = Instantiate(acceleratedAscensionBoostBase);
         TechnologicalAdvancement = Instantiate(technologicalAdvancementBoostBase);
+        VampiricBlade = Instantiate(vampiricBladeBoostBase);
 
         boosts = new List<Boost>();
         boosts.Add(Hemorrhage);
@@ -41,6 +44,12 @@ public class PlayerBoosts : MonoBehaviour
         boosts.Add(Collector);
         boosts.Add(AcceleratedAscension);
         boosts.Add(TechnologicalAdvancement);
+        boosts.Add(VampiricBlade);
+
+        if (GameManager.Instance.DEBUG)
+        {
+            //VampiricBlade.Select();
+        }
     }
 
     public Boost[] GetBoosts()

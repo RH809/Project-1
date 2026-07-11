@@ -40,7 +40,7 @@ public class Healthbar : MonoBehaviour
             fill.color = Color.Lerp(minColor, maxColor, health.CurrentHealth / health.MaxHealth);
             slider.value = health.CurrentHealth;
             healthText.enabled = SettingsManager.Instance.ShowHealthbarValues;
-            healthText.text = health.CurrentHealth.ToString() + "/" + health.MaxHealth.ToString();
+            healthText.text = health.CurrentHealth.ToString("0.##") + "/" + health.MaxHealth.ToString();
             // Update rotation to face player or respawn camera
             if (Player.Instance.Health.IsAlive)
             {
