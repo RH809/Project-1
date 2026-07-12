@@ -17,6 +17,6 @@ public class AcceleratedAscensionBoost : Boost
         //Debug.Log("Selected Accelerated Ascension");
         cooldownDecrease += cooldownDecreaseIncrement;
         PowerUpManager.Instance.DecreaseSpawnTime(cooldownDecreaseIncrement);
-        level++;
+        base.Select();
     }
 }

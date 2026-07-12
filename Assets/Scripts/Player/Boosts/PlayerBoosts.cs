@@ -28,6 +28,7 @@ public class PlayerBoosts : MonoBehaviour
     [HideInInspector] public StunGunBoost StunGun;
 
     private List<Boost> boosts;
+    private List<Boost> selectedBoosts;
 
     void Awake()
     {
@@ -50,6 +51,8 @@ public class PlayerBoosts : MonoBehaviour
         boosts.Add(VampiricBlade);
         boosts.Add(StunGun);
 
+        selectedBoosts = new List<Boost>();
+
         if (GameManager.Instance.DEBUG)
         {
             //VampiricBlade.Select();
@@ -69,5 +72,21 @@ public class PlayerBoosts : MonoBehaviour
             indices[i] = index;
         }
         return new Boost[] { boosts[indices[0]], boosts[indices[1]], boosts[indices[2]] };
+    }
+
+    public void SelectNewBoost(Boost boost)
+    {
+        if (boost.IsPermanent) selectedBoosts.Add(boost);
+    }
+
+    public string GetBoostList()
+    {
+        if (selectedBoosts.Count == 0) return "None";
+        string list = "";
+        foreach (Boost boost in selectedBoosts)
+        {
+            list += boost.CurrentName + "\n";
+        }
+        return list;
     }
 }

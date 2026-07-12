@@ -15,6 +15,6 @@ public class HemorrhageBoost : Boost
     {
         //Debug.Log("Selected Hemorrhage");
         bleedDamage += bleedDamageIncrement;
-        level++;
+        base.Select();
     }
 }

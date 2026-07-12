@@ -17,6 +17,6 @@ public class StunGunBoost : Boost
     public override void Select()
     {
         stunDuration += stunDurationIncrement;
-        level++;
+        base.Select();
     }
 }

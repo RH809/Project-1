@@ -15,6 +15,6 @@ public class CollectorBoost : Boost
     {
         //Debug.Log("Selected Collector");
         multiplier += collectorIncrement;
-        level++;
+        base.Select();
     }
 }

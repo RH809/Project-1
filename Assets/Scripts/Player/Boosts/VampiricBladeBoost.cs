@@ -16,6 +16,6 @@ public class VampiricBladeBoost : Boost
     public override void Select()
     {
         lifestealPercentage *= lifestealMultiplier;
-        level++;
+        base.Select();
     }
 }

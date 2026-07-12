@@ -17,6 +17,6 @@ public class TechnologicalAdvancementBoost : Boost
         //Debug.Log("Selected Technological Advancement");
         cooldownDecrease += cooldownDecreaseIncrement;
         DisruptorManager.Instance.DecreaseRespawnTimes(cooldownDecreaseIncrement);
-        level++;
+        base.Select();
     }
 }

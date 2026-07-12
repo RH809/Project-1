@@ -17,7 +17,7 @@ public class PiercingBoost : Boost
     {
         //Debug.Log("Selected Piercing");
         pierceAmount *= piercingMultiplier;
-        level++;
+        base.Select();
     }
 
 }
