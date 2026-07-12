@@ -102,6 +102,10 @@ public class Bullet : MonoBehaviour
                 hits.Add(bodyPart.Zombie);
                 // If it hit a zombie's body part, deal the damage
                 bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
+                if (Player.Instance.Boosts.StunGun.IsActive)
+                {
+                    bodyPart.Zombie.GetComponent<StunVictim>().Stun(Player.Instance.Boosts.StunGun.StunDuration);
+                }
                 pierceAmount--;
                 //Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
                 if (pierceAmount <= 0) Destroy(gameObject);

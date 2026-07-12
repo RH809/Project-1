@@ -427,6 +427,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4773892032149922023}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4426056902100374994}
     - targetCorrespondingSourceObject: {fileID: -3820366374065145986, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3123671248373872691}
@@ -945,6 +948,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BleedVictim
   bleedInterval: 0.5
+--- !u!114 &4426056902100374994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242966883076387515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a2d762f76a1dc45a0e4b306cc3f520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StunVictim
+  animator: {fileID: 4555739962168164116}
 --- !u!1 &4551096456191142936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 651856647223862258, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}

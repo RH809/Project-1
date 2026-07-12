@@ -30,7 +30,7 @@ public class ZombieMovement : MonoBehaviour
 
     protected ZombieAttack attack;
     protected Rigidbody rb;
-
+    protected StunVictim stunVictim;
     
     protected GameObject player;
     protected GameObject[] constructTargets; // Given by spawner
@@ -44,11 +44,14 @@ public class ZombieMovement : MonoBehaviour
     protected bool rbRotation = true;
     private bool wasMoving = false;
 
+    protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
         agent = GetComponent<NavMeshAgent>();
+        stunVictim = GetComponent<StunVictim>();
         agent.updateRotation = false;
         agent.updatePosition = true;
         agent.speed = moveSpeed;
@@ -60,7 +63,11 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     protected void FixedUpdate()
     {
-        if (!initialized) return; // check that targets have been initialized
+        if (!initialized || stunVictim.Stunned)
+        {
+            agent.ResetPath();
+            return; // check that targets have been initialized
+        }
         bool changedTarget = HandleAttack();
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
         if (moveEnabled)
@@ -181,7 +188,8 @@ public class ZombieMovement : MonoBehaviour
         // rotate arms and head to point toward target
         if (zombieTarget)
         {
-            Vector3 targetPoint = zombieTarget.GetZombieTarget();
+            Vector3 targetPoint = (stunVictim.Stunned ? prevTargetPos : zombieTarget.GetZombieTarget());
+            prevTargetPos = targetPoint;
             Vector3 direction = targetPoint - head.position;
             Debug.DrawRay(head.position, direction);
             float targetPitch = -Mathf.Atan2(

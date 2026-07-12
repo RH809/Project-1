@@ -2498,6 +2498,7 @@ MonoBehaviour:
   acceleratedAscensionBoostBase: {fileID: 11400000, guid: 75f81cfef4634c746a76e6e5492091bb, type: 2}
   technologicalAdvancementBoostBase: {fileID: 11400000, guid: 844ba933ed6a49040953d9c9e1ea3aaf, type: 2}
   vampiricBladeBoostBase: {fileID: 11400000, guid: 677b08dee557b874e9499b3c4326b07d, type: 2}
+  stunGunBoostBase: {fileID: 11400000, guid: bde6f393240bcba499c4cd86e1329c52, type: 2}
   Hemorrhage: {fileID: 0}
   Piercing: {fileID: 0}
   Payday: {fileID: 0}
@@ -2505,6 +2506,7 @@ MonoBehaviour:
   AcceleratedAscension: {fileID: 0}
   TechnologicalAdvancement: {fileID: 0}
   VampiricBlade: {fileID: 0}
+  StunGun: {fileID: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}
