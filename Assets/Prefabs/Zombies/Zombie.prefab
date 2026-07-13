@@ -961,6 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StunVictim
   animator: {fileID: 4555739962168164116}
+  attackCollider: {fileID: 7501052050577930817}
 --- !u!1 &4551096456191142936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 651856647223862258, guid: 5f5a68175b41ebe4dac877b79c033ce6, type: 3}

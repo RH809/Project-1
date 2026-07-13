@@ -116,7 +116,7 @@ public class Health : MonoBehaviour
         if (hasHealthbar)
         {
             healthbar.SetActive(false);
-            if(mapHealthbar) mapHealthbar.SetActive(false);
+            if (mapHealthbar) mapHealthbar.SetActive(false);
         }
     }
 
@@ -138,6 +138,11 @@ public class Health : MonoBehaviour
         {
             Destroy(healthbar);
         }
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
     }
     
 }

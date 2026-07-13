@@ -72,4 +72,16 @@ public class ZombieAttack : MonoBehaviour
         attacking = false;
         collisionHandler.EndAttack();
     }
+
+    public void Reset()
+    {
+        leftArm.gameObject.SetActive(true);
+        leftArm.Reset();
+        rightArm.gameObject.SetActive(true);
+        rightArm.Reset();
+        attacking = false;
+        cooldown = 0;
+        zombieAnimator.Rebind();
+        zombieAnimator.Update(0f);
+    }
 }

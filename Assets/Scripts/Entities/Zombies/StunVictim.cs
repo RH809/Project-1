@@ -43,4 +43,14 @@ public class StunVictim : MonoBehaviour
         }
         stunRoutine = null;
     }
+
+    public void Reset()
+    {
+        if (stunRoutine != null)
+        {
+            StopCoroutine(stunRoutine);
+        }
+        stunned = false;
+        animator.speed = 1.0f;
+    }
 }

@@ -30,4 +30,9 @@ public class ZombieArm : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void Reset()
+    {
+        attached = true;
+    }
 }

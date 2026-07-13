@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class TankZombieMovement : ZombieMovement
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         rbRotation = false;
     }
     protected override void LateUpdate()

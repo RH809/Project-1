@@ -11,7 +11,7 @@ public class BleedVictim : MonoBehaviour
     [SerializeField] private float bleedInterval = 0.5f;
     private float countdown;
 
-    void Start()
+    void Awake()
     {
         bleeds = new List<BleedInfo>();
         health = GetComponent<Health>();
@@ -51,6 +51,11 @@ public class BleedVictim : MonoBehaviour
     {
         bleeds.Add(new BleedInfo(bleedDamage));
         if (bleeds.Count == 1) countdown = bleedInterval;
+    }
+
+    public void Reset()
+    {
+        bleeds.Clear();
     }
 }
 class BleedInfo

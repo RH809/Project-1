@@ -5,6 +5,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Zombie : MonoBehaviour
 {
@@ -19,13 +20,27 @@ public class Zombie : MonoBehaviour
     [SerializeField] private int killReward;
     [SerializeField] private GameObject moneyPopupPrefab;
     [SerializeField] private GameObject deathParticles;
+
+    private Rigidbody rb;
+
+    private BleedVictim bleedVictim;
+    private StunVictim stunVictim;
+    private ZombieAttack zombieAttack;
+    private ZombieMovement zombieMovement;
     public ZombieType Type { get => type; }
 
     private Health health;
     private Vector3 contactPos;
-    void Start()
+    private ObjectPool<Zombie> zombiePool;
+    void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+
         health = GetComponent<Health>();
+        bleedVictim = GetComponent<BleedVictim>();
+        stunVictim = GetComponent<StunVictim>();
+        zombieAttack = GetComponent<ZombieAttack>();
+        zombieMovement = GetComponent<ZombieMovement>();
     }
 
     void OnEnable()
@@ -36,6 +51,27 @@ public class Zombie : MonoBehaviour
     void OnDisable()
     {
         Health.OnDie -= Die;
+    }
+
+    public void Spawn(Vector3 position, Quaternion rotation)
+    {
+        //Debug.Log("Spawn...");
+        health.ResetHealth();
+        health.ShowHealthBar();
+        bleedVictim.Reset();
+        stunVictim.Reset();
+        zombieAttack.Reset();
+        zombieMovement.Reset();
+
+        rb.position = position;
+        rb.rotation = rotation;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    public void SetPool(ObjectPool<Zombie> zombiePool)
+    {
+        this.zombiePool = zombiePool;
     }
 
     void Die(HealthContext healthCtx)
@@ -59,14 +95,15 @@ public class Zombie : MonoBehaviour
                     } while (popupRect.anchoredPosition.magnitude < 25);
                 }  
             }
-            health.DestroyHealthbar();
+            health.HideHealthbar();
             if (SettingsManager.Instance.ShowDeathParticles)
             {
                 DefenderTarget defenderTarget = GetComponent<DefenderTarget>();
                 if (!defenderTarget) defenderTarget = GetComponentInChildren<DefenderTarget>();
                 Instantiate(deathParticles, defenderTarget.GetDefenderTarget(), Quaternion.identity);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            zombiePool.Release(this);
         }
     }
 

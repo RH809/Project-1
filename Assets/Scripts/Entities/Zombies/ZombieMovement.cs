@@ -46,7 +46,7 @@ public class ZombieMovement : MonoBehaviour
 
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<ZombieAttack>();
@@ -159,9 +159,9 @@ public class ZombieMovement : MonoBehaviour
         }
 
         // rotate to face target even if not moving
-        //Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
+        Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
         if (!rbRotation) return;
-        Vector3 dir = target.transform.position - rb.transform.position;
+        Vector3 dir = target.transform.position - rb.position;
         dir.y = 0f;
 
         if (dir.sqrMagnitude > 0.001f)
@@ -177,8 +177,8 @@ public class ZombieMovement : MonoBehaviour
             );
             //Debug.Log("Rotating rigidbody " + rb.rotation);
         }
-        Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
-        Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
+        Debug.DrawRay(rb.transform.position, agent.destination - rb.position, Color.red);
+        Debug.DrawRay(rb.transform.position, target.transform.position - rb.position, Color.orange);
 
         
     }
@@ -343,5 +343,13 @@ public class ZombieMovement : MonoBehaviour
         float targetZ = target.transform.position.z;
 
         return Mathf.Sqrt(Mathf.Pow(transform.position.x - targetX, 2) + Mathf.Pow(transform.position.z - targetZ, 2));
+    }
+
+    public void Reset()
+    {
+        agent.ResetPath();
+        target = null;
+        moveEnabled = true;
+        wasMoving = false;
     }
 }
