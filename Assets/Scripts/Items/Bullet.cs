@@ -2,7 +2,9 @@
 /// This script handles the movement and collision of the bullets.
 /// </summary>
 
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,31 +13,55 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float maxRange = 50f;
     [SerializeField] private float bulletRadius = 0.01f;
     [SerializeField] private LayerMask collisionMask;
+    private int pierceAmount;
 
     private GameObject[] disruptors;
+    private HashSet<GameObject> hits;
 
     private Rigidbody rb;
-    private bool hasHit = false;
     private bool isCrit = false;
     private float damageMultiplier; // damage multiplier for power up
 
     private Vector3 startPos;
-    void Start() {
+    private ObjectPool<Bullet> bulletPool;
+
+    void Awake()
+    {
         rb = GetComponent<Rigidbody>();
+        hits = new HashSet<GameObject>();
+        //startPos = transform.position;
+        //float rand = Random.Range(0.0f, 0.9999f);
+        //isCrit = rand < Shop.Instance.gunCritChance.statValue;
+        //damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
+        //pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
+        //if (isCrit) Debug.Log("Bullet will crit");
+    }
+
+    public void Spawn(Vector3 position, Quaternion rotation)
+    {
+        rb.position = position;
+        rb.rotation = rotation;
+        rb.linearVelocity = Vector3.zero;
+        hits.Clear();
         startPos = transform.position;
         float rand = Random.Range(0.0f, 0.9999f);
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
-        if (isCrit) Debug.Log("Bullet will crit");
+        pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
     }
 
-    public void SetDisruptors(GameObject[] disruptors) {
+    public void SetDisruptors(GameObject[] disruptors)
+    {
         this.disruptors = disruptors;
+    }
+
+    public void SetPool(ObjectPool<Bullet> bulletPool)
+    {
+        this.bulletPool = bulletPool;
     }
 
     void FixedUpdate()
     {
-
         Vector3 currentPos = rb.position;
         Vector3 newPos = rb.position + transform.forward * bulletSpeed * Time.fixedDeltaTime;
         // Check for collision along movement
@@ -65,8 +91,10 @@ public class Bullet : MonoBehaviour
         
         rb.MovePosition(newPos);
         Vector3 dist = rb.position - startPos;
-        if (dist.magnitude >= maxRange) { // Destory if past max range
-            Destroy(gameObject);
+        if (dist.magnitude >= maxRange)
+        { // Destory if past max range
+            //Destroy(gameObject);
+            bulletPool.Release(this);
         }
         //transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
@@ -77,7 +105,7 @@ public class Bullet : MonoBehaviour
     /// <param name="other">The GameObject it collided with</param>
     /// <param name="collisionPoint">Where it collided</param>
     void Collide(GameObject other, Vector3 collisionPoint) {
-        if (hasHit) return;
+        if (pierceAmount <= 0) return;
         foreach (GameObject obj in disruptors)
         {
             // Handle lower hitbox of dead disruptors
@@ -86,14 +114,36 @@ public class Bullet : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("Collided with " + other);
+        //Debug.Log("Bullet Collided with " + other);
         ZombieBodyPart bodyPart = other.transform.gameObject.GetComponent<ZombieBodyPart>();
         if (bodyPart != null)
         {
-            // If it hit a zombie's body part, deal the damage
-            bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
+            if (!hits.Contains(bodyPart.Zombie))
+            {
+                
+                hits.Add(bodyPart.Zombie);
+                // If it hit a zombie's body part, deal the damage
+                bodyPart.TakeDamage(Shop.Instance.gunDamage.statValue * (isCrit ? critMultiplier : 1f) * damageMultiplier, Player.Instance.gameObject);
+                if (Player.Instance.Boosts.StunGun.IsActive)
+                {
+                    bodyPart.Zombie.GetComponent<StunVictim>().Stun(Player.Instance.Boosts.StunGun.StunDuration);
+                }
+                pierceAmount--;
+                //Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
+                if (pierceAmount <= 0)
+                {
+                    //Destroy(gameObject);
+                    bulletPool.Release(this);
+                }
+            }
+
         }
-        hasHit = true;
-        Destroy(gameObject);
+        else
+        { // Didn't hit zombie so instantly destroy (no piercing)
+            pierceAmount = 0;
+            //Destroy(gameObject);
+            bulletPool.Release(this);
+        }
+        
     }
 }

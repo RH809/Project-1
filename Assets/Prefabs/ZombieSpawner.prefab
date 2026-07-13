@@ -60,10 +60,10 @@ MonoBehaviour:
   tankZombieBaseSpawns: 0
   regularZombieSpawnIncrease: 1
   regularZombieSpawnIncreaseInterval: 3
-  miniZombieSpawnIncrease: 2
+  miniZombieSpawnIncrease: 1
   miniZombieSpawnIncreaseInterval: 2
   tankZombieSpawnIncrease: 1
   tankZombieSpawnIncreaseInterval: 5
-  regularZombieDisruptorIncrease: 2
+  regularZombieDisruptorIncrease: 1
   miniZombieDisruptorIncrease: 2
   tankZombieDisruptorIncrease: 1

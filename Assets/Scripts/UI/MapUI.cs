@@ -1,6 +1,7 @@
 /// <summary>
 /// This script manages the UI for the map.
 /// </summary>
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class MapUI : Singleton<MapUI>
     [SerializeField] private GameObject playerMapDot;
     [SerializeField] private Camera mapCamera;
     [SerializeField] private RectTransform mapRect;
+
+    [SerializeField] private TextMeshProUGUI boostList;
 
     private float mapWidth;
     private float mapHeight;
@@ -49,6 +52,8 @@ public class MapUI : Singleton<MapUI>
         {
             playerMapDot.SetActive(false);
         }
+
+        boostList.text = Player.Instance.Boosts.GetBoostList();
     }
 
     public void OpenMap(InputAction.CallbackContext ctx)

@@ -19,14 +19,14 @@ public class ZombieArm : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        Debug.Log($"Arm took {damage} damage");
+        //Debug.Log($"Arm took {damage} damage");
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             // Destroy the arm
             attached = false;
             //Destroy(gameObject);
-            Debug.Log("Deactivating arm");
+            //Debug.Log("Deactivating arm");
             gameObject.SetActive(false);
         }
     }

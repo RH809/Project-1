@@ -65,7 +65,7 @@ public class Health : MonoBehaviour
     public void Heal(float healAmount)
     {
         if (!IsAlive || GameManager.Instance.GameOver) return;
-        Debug.Log($"{gameObject} healed {healAmount} health");
+        //Debug.Log($"{gameObject} healed {healAmount} health");
         currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
         healthContext.source = gameObject;
         OnHeal?.Invoke(healthContext);
@@ -80,7 +80,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageAmount, GameObject attacker)
     {
         if (!IsAlive || GameManager.Instance.GameOver) return;
-        Debug.Log($"{gameObject} took {damageAmount} damage from {attacker}");
+        //Debug.Log($"{gameObject} took {damageAmount} damage from {attacker}");
         hitTimer = hitResetTime;
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
         healthContext.source = attacker;
@@ -98,7 +98,7 @@ public class Health : MonoBehaviour
     public void Respawn(float maxHealthProportion, bool showHealthbar)
     {
         currentHealth = maxHealth * maxHealthProportion;
-        Debug.Log($"{gameObject} respawning to {currentHealth} health");
+        //Debug.Log($"{gameObject} respawning to {currentHealth} health");
         regenTimer = regenRate;
         if (showHealthbar)
         {

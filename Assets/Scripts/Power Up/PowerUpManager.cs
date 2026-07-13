@@ -8,23 +8,26 @@ using UnityEngine;
 public class PowerUpManager : Singleton<PowerUpManager>
 {
     [SerializeField] private GameObject powerUp;
-    [SerializeField] private int spawnTime;
+    [SerializeField] private int baseSpawnTime;
+    public int SpawnTime { get => baseSpawnTime - Player.Instance.Boosts.AcceleratedAscension.CooldownDecrease; }
     [SerializeField] private TextMeshProUGUI spawnTimeText;
+    private int t;
+    private Coroutine spawnRoutine;
     void Start()
     {
-        StartCoroutine(SpawnTime());
+        spawnRoutine = StartCoroutine(SpawnRoutine());
     }
 
     public void Respawn()
     {
-        StartCoroutine(SpawnTime());
+        spawnRoutine = StartCoroutine(SpawnRoutine());
     }
 
-    IEnumerator SpawnTime()
+    IEnumerator SpawnRoutine()
     {
         powerUp.SetActive(false);
         spawnTimeText.enabled = true;
-        for (int t = spawnTime; t > 0; t--)
+        for (t = SpawnTime; t > 0; t--)
         {
             spawnTimeText.text = timeToText(t);
             yield return new WaitForSeconds(1);
@@ -32,6 +35,15 @@ public class PowerUpManager : Singleton<PowerUpManager>
         spawnTimeText.enabled = false;
         powerUp.SetActive(true);
         GameManager.Instance.AddAnnouncement("Power Up Spawned");
+        spawnRoutine = null;
+    }
+
+    public void DecreaseSpawnTime(int decreaseAmount)
+    {
+        if (spawnRoutine != null)
+        {
+            t -= decreaseAmount;
+        }
     }
 
     string timeToText(int t)

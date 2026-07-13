@@ -10,9 +10,10 @@ using UnityEngine;
 /// </summary>
 public class Disruptor : Construct
 {
-    [SerializeField] private int respawnTime;
     [SerializeField] private Defender defender;
     [SerializeField] private TextMeshProUGUI respawnTimeText;
+    private int t;
+    private Coroutine respawnRoutine;
 
     protected override void Start()
     {
@@ -34,7 +35,7 @@ public class Disruptor : Construct
 
     protected override void Update()
     {
-        if (Input.GetKeyDown("o"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("o"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
             else Respawn(1f);
@@ -46,12 +47,12 @@ public class Disruptor : Construct
         if (healthContext.target.Equals(gameObject))
         {
             base.Die(healthContext);
-            StartCoroutine(RespawnTime());
+            respawnRoutine = StartCoroutine(RespawnTime());
         }
         else if (healthContext.target.Equals(defender.gameObject))
         {
 
-            Debug.Log("defender died; setting active");
+            //Debug.Log("defender died; setting active");
             Activate();
         }
     }
@@ -66,13 +67,22 @@ public class Disruptor : Construct
 
     IEnumerator RespawnTime() {
         respawnTimeText.enabled = true;
-        for (int t = respawnTime; t > 0; t--)
+        for (t = DisruptorManager.Instance.RespawnTime; t > 0; t--)
         {
             respawnTimeText.text = timeToText(t);
             yield return new WaitForSeconds(1);
         }
         respawnTimeText.enabled = false;
         if (!alive) Respawn(1);
+        respawnRoutine = null;
+    }
+
+    public void DecreaseRespawnTime(int decreaseAmount)
+    {
+        if (respawnRoutine != null)
+        {
+            t -= decreaseAmount;
+        }
     }
 
     string timeToText(int t)

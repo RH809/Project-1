@@ -51,15 +51,15 @@ public class ZombieSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("l"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("l"))
         {
             SpawnRegularZombie();
         }
-        if (Input.GetKeyDown("k"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("k"))
         {
             SpawnMiniZombie();
         }
-        if (Input.GetKeyDown("j"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("j"))
         {
             SpawnTankZombie();
         }
@@ -109,9 +109,12 @@ public class ZombieSpawner : MonoBehaviour
         {
             zombies.Add(Zombie.ZombieType.MINI);
         }
-        for (int i = 0; i < numTankZombies + disruptorDeaths * tankZombieDisruptorIncrease; i++)
+        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0)
         {
-            zombies.Add(Zombie.ZombieType.TANK);
+            for (int i = 0; i < numTankZombies + disruptorDeaths * tankZombieDisruptorIncrease; i++)
+            {
+                zombies.Add(Zombie.ZombieType.TANK);
+            }
         }
     }
 

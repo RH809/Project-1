@@ -81,9 +81,12 @@ public class PlayerInventory : MonoBehaviour
         slotItems.Add(Item.SWORD);
         slotItems.Add(Item.GUN);
         // ==== TESTING ======
-        AddRepairTool();
-        for (int i = 0; i < 5; i++) AddGrenade();
-        AddPotion();
+        if (GameManager.Instance.DEBUG)
+        {
+            AddRepairTool();
+            for (int i = 0; i < 5; i++) AddGrenade();
+            AddPotion();
+        }
         // ===================
         equipQueue = new Queue<Item>();
         equippedItem = Item.SWORD;
@@ -161,14 +164,7 @@ public class PlayerInventory : MonoBehaviour
         switch (value)
         {
             case 0:
-                //playerAnimator.SetTrigger("Equip Sword");
-                //equipQueue.Enqueue(item.SWORD); // add to queue
-                //equippedItem = item.SWORD;
-                //break;
             case 1:
-                //playerAnimator.SetTrigger("Equip Gun");
-                //equipQueue.Enqueue(item.GUN); // add to queue
-                //equippedItem = item.GUN;
             case 2:
             case 3:
             case 4:
@@ -430,7 +426,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("On cooldown");
+            //Debug.Log("On cooldown");
         }
     }
 
@@ -558,7 +554,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (healthContext.target.Equals(Player.Instance.gameObject))
         {
-            Debug.Log("Player respawn inventory...");
             equipQueue.Enqueue(slotItems[equippedIndex]);
             equippedIndex = 0;
             equippedItem = Item.SWORD; // set to default so that animation transition will play on respawn

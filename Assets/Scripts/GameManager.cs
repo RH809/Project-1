@@ -1,10 +1,10 @@
 /// <summary>
 /// This script manages the timing of the wave spawns and the game UI.
 /// </summary>
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 {
 
     public static float GroundY = -0.5f;
+    public bool DEBUG = false;
 
     [SerializeField] private GameObject beacon;
     private bool gameOver = false;
@@ -98,10 +99,14 @@ public class GameManager : Singleton<GameManager>
             }
             leftZombieSpawner.WaveSetup();
             rightZombieSpawner.WaveSetup();
-            Debug.Log("Spawning wave...");
+            //Debug.Log("Spawning wave...");
             AddAnnouncement("New Wave Spawning");
             leftZombieSpawner.SpawnWave();
             rightZombieSpawner.SpawnWave();
+            if (waveNum % Player.Instance.Boosts.BoostWaveInterval == 0)
+            {
+                UIManager.Instance.SwitchState(UIManager.UIState.BOOSTS);
+            }
         }
     }
 

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3033124267135917729}
   - component: {fileID: 8710692444841758062}
+  - component: {fileID: 2454760722136580016}
   m_Layer: 0
-  m_Name: DefenderManager
+  m_Name: ConstructManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,3 +50,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2454760722136580016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560514133121802992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc34a28ebe1d54f4e92f32d5da1837c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisruptorManager
+  baseRespawnTime: 120
+  leftDisruptor: {fileID: 0}
+  rightDisruptor: {fileID: 0}

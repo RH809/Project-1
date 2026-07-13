@@ -12,7 +12,7 @@ public class OuterDefender : Defender
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown("p"))
+        if (GameManager.Instance.DEBUG && Input.GetKeyDown("p"))
         {
             if (alive) health.TakeDamage(health.MaxHealth, gameObject);
             else Repair();

@@ -4,6 +4,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -67,7 +68,8 @@ public class ShopUI : Singleton<ShopUI>
 
     void Update()
     {
-        selectedButton.Select();
+        if (selectedButton.gameObject != EventSystem.current.currentSelectedGameObject) selectedButton.Select();
+        buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
     }
 
     void selectItem(ShopItem item, Button button)
@@ -89,7 +91,7 @@ public class ShopUI : Singleton<ShopUI>
         }
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
 
-        Debug.Log("Selected: " + selectedItem.itemName);
+        //Debug.Log("Selected: " + selectedItem.itemName);
     }
 
     void Buy()
@@ -136,7 +138,7 @@ public class ShopUI : Singleton<ShopUI>
         }
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
         selectedButton.Select();
-        Debug.Log("Bought: " + selectedItem.itemName);
+        //Debug.Log("Bought: " + selectedItem.itemName);
     }
 
     public void ShopOpen()

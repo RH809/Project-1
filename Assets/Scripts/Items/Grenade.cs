@@ -37,7 +37,7 @@ public class Grenade : MonoBehaviour
 
     private void Detonate()
     {
-        Debug.Log("Detonating...");
+        //Debug.Log("Detonating...");
         Instantiate(explosion, transform.position, transform.rotation); // create explosion vfx
         Collider[] hits = Physics.OverlapSphere(transform.position, radius, layerMask);
 
@@ -46,7 +46,7 @@ public class Grenade : MonoBehaviour
             ZombieBodyPart bodyPart;
             if (hit.gameObject.TryGetComponent<ZombieBodyPart>(out bodyPart))
             {
-                Debug.Log("Greande hit: " + hit.name);
+                //Debug.Log("Greande hit: " + hit.name);
                 GameObject zombie = bodyPart.Zombie;
                 if (!hitSet.Contains(zombie))
                 {

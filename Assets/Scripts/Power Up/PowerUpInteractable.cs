@@ -10,7 +10,7 @@ public class PowerUpInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Grabbing Power Up...");
+        //Debug.Log("Grabbing Power Up...");
         Player.Instance.PowerUp.Activate();
         PowerUpManager.Instance.Respawn();
     }

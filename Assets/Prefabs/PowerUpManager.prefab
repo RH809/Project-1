@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManager
   powerUp: {fileID: 0}
-  spawnTime: 120
+  baseSpawnTime: 120
   spawnTimeText: {fileID: 0}

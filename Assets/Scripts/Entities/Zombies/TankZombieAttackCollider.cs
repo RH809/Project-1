@@ -76,7 +76,7 @@ public class TankZombieAttackCollider : MonoBehaviour
             (distToCenter < innerRadius && distToCenter + hitTarget.Radius >= innerRadius) || // check inner edge
             (distToCenter > outerRadius && distToCenter - hitTarget.Radius <= outerRadius)) // check outer edge
         {
-            Debug.Log("(Enter) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
+            //Debug.Log("(Enter) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
             hits.Add(hit);
             hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
         }
@@ -105,7 +105,7 @@ public class TankZombieAttackCollider : MonoBehaviour
             (distToCenter < innerRadius && distToCenter + hitTarget.Radius >= innerRadius) || // check inner edge
             (distToCenter > outerRadius && distToCenter - hitTarget.Radius <= outerRadius)) // check outer edge
         {
-            Debug.Log("(Stay) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
+            //Debug.Log("(Stay) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
             hits.Add(hit);
             hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
         }

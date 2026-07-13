@@ -3,14 +3,16 @@
 /// </summary>
 
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform bulletExit;
 
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private Bullet bullet;
 
     [SerializeField] private GameObject[] disruptors;
+    private ObjectPool<Bullet> bulletPool;
 
     private Aim aim;
     private bool shooting = false;
@@ -18,6 +20,15 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         aim = GetComponent<Aim>();
+        bulletPool = new ObjectPool<Bullet>(
+            CreateBullet,
+            OnTakeBullet,
+            OnReturnBullet,
+            OnDestroyBullet,
+            true,
+            5,
+            20
+        );
     }
 
     void Update()
@@ -63,52 +74,14 @@ public class Shoot : MonoBehaviour
     /// instantiates the bullet.
     /// </summary>
     private void ShootBullet() {
-        /*
-        RaycastHit hit;
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        
-        Quaternion aimRotation = Quaternion.identity;
-        if (Physics.Raycast(ray, out hit, 50f, targetMask)) // Raycast to see if there is any target being aimed at
-        {
-            GameObject hitObject = hit.collider.gameObject;
-            foreach (GameObject obj in disruptors)
-            {
-                // Handle lower hitbox of dead disruptors
-                if (obj.Equals(hitObject) && !obj.GetComponent<Disruptor>().IsAlive && hit.point.y > adjustedDisruptorHeight)
-                {
-                    bool hitSomething = true;
-                    do {
-                        Vector3 rayDir = ray.direction;
-                        ray = new Ray(hit.point, rayDir);
-                        hitSomething = Physics.Raycast(ray, out hit, 50f, targetMask);
-                        hitObject = hit.collider.gameObject;
-                    } while (hitSomething && obj.Equals(hitObject) && hit.point.y > adjustedDisruptorHeight);
-
-                    if (!hitSomething)
-                    {
-                        Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
-                        aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
-                    }
-                }
-            }
-            // Calculate angle to raycast hit
-            Vector3 path = hit.point - bulletExit.transform.position;
-            aimRotation = Quaternion.LookRotation(path, Vector3.up);
-            Debug.DrawRay(bulletExit.transform.position, path, Color.blue);
-        }
-        else
-        {
-            // Calculate angle based on default range
-            Vector3 end = playerCamera.transform.position + ray.direction * defaultRange;
-            aimRotation = Quaternion.LookRotation(end - bulletExit.transform.position, Vector3.up);
-        }
-        */
-        //Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        //Quaternion aimRotation = GetTargetRotation(ray);
 
         Quaternion aimRotation = aim.GetTargetRotation(bulletExit);
-        GameObject newBullet = Instantiate(bullet, bulletExit.position, aimRotation);
-        newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
+        //GameObject newBullet = Instantiate(bullet.gameObject, bulletExit.position, aimRotation);
+        //newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
+        //Debug.Log("Created new bullet");
+        Bullet bullet = bulletPool.Get();
+        bullet.transform.SetPositionAndRotation(bulletExit.position, aimRotation);
+        bullet.Spawn(bulletExit.position, aimRotation);
     }
 
     public void ShootStart() {
@@ -124,5 +97,29 @@ public class Shoot : MonoBehaviour
 
     public bool isShooting() {
         return shooting;
+    }
+
+    private Bullet CreateBullet()
+    {
+        Bullet newBullet = Instantiate(bullet);
+        newBullet.SetDisruptors(disruptors);
+        newBullet.SetPool(bulletPool);
+        return newBullet;
+    }
+
+    private void OnTakeBullet(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void OnReturnBullet(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(false);
+        //Debug.Log("Returning bullet");
+    }
+
+    private void OnDestroyBullet(Bullet bullet)
+    {
+        Destroy(bullet.gameObject);
     }
 }

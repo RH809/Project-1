@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void StopMovement()
     {
-        Debug.Log("Stopping player movement");
+        //Debug.Log("Stopping player movement");
         jumpInput = false;
         sprinting = false;
         moving = false;

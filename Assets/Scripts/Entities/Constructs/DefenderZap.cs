@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class DefenderZap : MonoBehaviour
 {
@@ -9,12 +10,20 @@ public class DefenderZap : MonoBehaviour
     private float damage;
     private bool hasHit = false;
 
+    private ObjectPool<DefenderZap> zapPool;
+
     public void Initialize(GameObject targetObject, DefenderTarget target, float damage)
     {
+        hasHit = false;
         this.targetObject = targetObject;
         targetHealth = targetObject.GetComponent<Health>();
         this.target = target;
         this.damage = damage;
+    }
+
+    public void SetPool(ObjectPool<DefenderZap> zapPool)
+    {
+        this.zapPool = zapPool;
     }
 
     void Update()
@@ -23,21 +32,23 @@ public class DefenderZap : MonoBehaviour
         if (targetObject != null && targetHealth.IsAlive && target != null)
         {
             Vector3 direction = target.GetDefenderTarget() - transform.position;
-            if (direction.magnitude <= speed * Time.fixedDeltaTime)
+            if (direction.magnitude <= speed * Time.deltaTime)
             {
                 transform.position = target.GetDefenderTarget();
                 targetHealth.TakeDamage(damage, gameObject);
                 hasHit = true;
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                zapPool.Release(this);
             }
             else
             {
-                transform.position += direction.normalized * speed * Time.fixedDeltaTime;
+                transform.position += direction.normalized * speed * Time.deltaTime;
             }
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            zapPool.Release(this);
         }
     }
 }

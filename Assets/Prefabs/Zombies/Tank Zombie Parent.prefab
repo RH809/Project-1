@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7403942965941270338}
   - component: {fileID: 5879278959162143161}
   - component: {fileID: 3375704590298713998}
+  - component: {fileID: 4125038774430129319}
+  - component: {fileID: 8637928320600498592}
   m_Layer: 0
   m_Name: Tank Zombie Parent
   m_TagString: Untagged
@@ -169,6 +171,32 @@ NavMeshAgent:
   m_BaseOffset: 1.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4125038774430129319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392723032507366284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fed664c39551894e80c743881082e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BleedVictim
+  bleedInterval: 0.5
+--- !u!114 &8637928320600498592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392723032507366284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a2d762f76a1dc45a0e4b306cc3f520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StunVictim
+  animator: {fileID: 2924449509950619678}
 --- !u!1001 &3548411759585258563
 PrefabInstance:
   m_ObjectHideFlags: 0

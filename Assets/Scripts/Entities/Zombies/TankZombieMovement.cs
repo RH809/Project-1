@@ -18,9 +18,6 @@ public class TankZombieMovement : ZombieMovement
         
         if (!initialized || !moveEnabled || target == null) return; // check that targets have been initialized
         // Rotate toward target during late update since animation rotates body
-        //parentTransform.position += rb.transform.localPosition;
-        //rb.transform.localPosition = Vector3.zero;
-        //parentTransform.position = rb.transform.position;
         Vector3 dir = target.transform.position - rb.transform.position;
         dir.y = 0f;
 
