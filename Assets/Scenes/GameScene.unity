@@ -1341,18 +1341,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
-      propertyPath: zap
-      value: 
-      objectReference: {fileID: 3845844806295042870, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
-    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
-      propertyPath: deathAnnouncement
-      value: Left Inner Defender Destroyed
-      objectReference: {fileID: 0}
-    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
-      propertyPath: respawnAnnouncement
-      value: Left Inner Defender Repaired
-      objectReference: {fileID: 0}
-    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 
       objectReference: {fileID: 66699370}
@@ -2489,6 +2477,10 @@ PrefabInstance:
       propertyPath: mapHealthbar
       value: 
       objectReference: {fileID: 1015799324}
+    - target: {fileID: 4256071692637478080, guid: 312d312d39b00384a9de17831ad87b2f, type: 3}
+      propertyPath: healthbarPrefab
+      value: 
+      objectReference: {fileID: 3225198556543199949, guid: 3e736cb2785518f4aa04b6632491c81a, type: 3}
     - target: {fileID: 6309601696320269130, guid: 312d312d39b00384a9de17831ad87b2f, type: 3}
       propertyPath: m_Name
       value: Beacon

@@ -520,7 +520,7 @@ MonoBehaviour:
   regenRate: 0
   hitResetTime: 0
   hasHealthbar: 1
-  healthbarPrefab: {fileID: 6824034527116237848, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
+  healthbarPrefab: {fileID: 3225198556543199949, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
   mapHealthbar: {fileID: 0}
 --- !u!114 &1946138263728147497
 MonoBehaviour:

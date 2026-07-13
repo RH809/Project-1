@@ -243,21 +243,28 @@ public class ZombieSpawner : MonoBehaviour
     private Zombie CreateRegularZombie()
     {
         Zombie newZombie = Instantiate(regularZombie);
+        newZombie.gameObject.SetActive(false);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets);
         newZombie.SetPool(regularZombiePool);
+        //newZombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        //newZombie.ResetZombie(transform.position, transform.rotation);
         return newZombie;
     }
 
     private void OnTakeRegularZombie(Zombie zombie)
     {
-        zombie.Spawn(transform.position, transform.rotation);
+        zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
         zombie.gameObject.SetActive(true);
-        
+        zombie.Spawn();
     }
 
     private void OnReturnRegularZombie(Zombie zombie)
     {
         zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
     }
 
     private void OnDestroyRegularZombie(Zombie zombie)
@@ -268,20 +275,28 @@ public class ZombieSpawner : MonoBehaviour
     private Zombie CreateMiniZombie()
     {
         Zombie newZombie = Instantiate(miniZombie);
+        newZombie.gameObject.SetActive(false);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets);
         newZombie.SetPool(miniZombiePool);
+        //newZombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        //newZombie.ResetZombie(transform.position, transform.rotation);
         return newZombie;
     }
 
     private void OnTakeMiniZombie(Zombie zombie)
     {
-        zombie.Spawn(transform.position, transform.rotation);
+        zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
         zombie.gameObject.SetActive(true);
+        zombie.Spawn();
     }
 
     private void OnReturnMiniZombie(Zombie zombie)
     {
         zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
     }
 
     private void OnDestroyMiniZombie(Zombie zombie)
@@ -292,20 +307,29 @@ public class ZombieSpawner : MonoBehaviour
     private Zombie CreateTankZombie()
     {
         Zombie newZombie = Instantiate(tankZombie);
+        newZombie.gameObject.SetActive(false);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets);
         newZombie.SetPool(tankZombiePool);
+        //newZombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        //newZombie.ResetZombie(transform.position, transform.rotation);
         return newZombie;
     }
 
     private void OnTakeTankZombie(Zombie zombie)
     {
-        zombie.Spawn(transform.position, transform.rotation);
+        zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
+        
         zombie.gameObject.SetActive(true);
+        zombie.Spawn();
     }
 
     private void OnReturnTankZombie(Zombie zombie)
     {
         zombie.gameObject.SetActive(false);
+        zombie.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        zombie.ResetZombie(transform.position, transform.rotation);
     }
 
     private void OnDestroyTankZombie(Zombie zombie)

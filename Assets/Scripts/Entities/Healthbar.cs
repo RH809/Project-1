@@ -53,4 +53,21 @@ public class Healthbar : MonoBehaviour
             transform.position = entity.transform.position + offset;
         }
     }
+
+    public void Reset()
+    {
+        fill.color = Color.Lerp(minColor, maxColor, health.CurrentHealth / health.MaxHealth);
+        slider.value = health.CurrentHealth;
+        healthText.enabled = SettingsManager.Instance.ShowHealthbarValues;
+        healthText.text = health.CurrentHealth.ToString("0.##") + "/" + health.MaxHealth.ToString();
+        if (Player.Instance.Health.IsAlive)
+        {
+            transform.rotation = Quaternion.LookRotation(transform.position - Player.Instance.Camera.transform.position);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(transform.position - Respawn.Instance.Camera.transform.position);
+        }
+        transform.position = entity.transform.position + offset;
+    }
 }

@@ -347,7 +347,7 @@ public class ZombieMovement : MonoBehaviour
 
     public void Reset()
     {
-        agent.ResetPath();
+        if (agent.hasPath) agent.ResetPath();
         target = null;
         moveEnabled = true;
         wasMoving = false;

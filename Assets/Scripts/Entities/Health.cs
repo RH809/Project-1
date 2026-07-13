@@ -13,8 +13,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float hitResetTime;
     [SerializeField] private bool hasHealthbar = true;
 
-    [SerializeField] private GameObject healthbarPrefab;
-    private GameObject healthbar;
+    [SerializeField] private Healthbar healthbarPrefab;
+    private Healthbar healthbar;
     [SerializeField] private GameObject mapHealthbar;
 
     private float currentHealth;
@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
             // create healthbar
             healthbar = Instantiate(healthbarPrefab);
             healthbar.transform.SetParent(WorldSpaceCanvas.Instance.transform, false);
-            healthbar.GetComponent<Healthbar>().Initialize(this, gameObject);
+            healthbar.Initialize(this, gameObject);
         }
     }
 
@@ -115,7 +115,7 @@ public class Health : MonoBehaviour
     {
         if (hasHealthbar)
         {
-            healthbar.SetActive(false);
+            healthbar.gameObject.SetActive(false);
             if (mapHealthbar) mapHealthbar.SetActive(false);
         }
     }
@@ -124,7 +124,8 @@ public class Health : MonoBehaviour
     {
         if (hasHealthbar)
         {
-            healthbar.SetActive(true);
+            healthbar.Reset();
+            healthbar.gameObject.SetActive(true);
             if (mapHealthbar) mapHealthbar.SetActive(true);
         }
     }

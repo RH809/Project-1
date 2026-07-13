@@ -839,7 +839,7 @@ MonoBehaviour:
   regenRate: 0
   hitResetTime: 0
   hasHealthbar: 1
-  healthbarPrefab: {fileID: 6824034527116237848, guid: caa48693b07d8684cad683773579baf6, type: 3}
+  healthbarPrefab: {fileID: 3225198556543199949, guid: caa48693b07d8684cad683773579baf6, type: 3}
   mapHealthbar: {fileID: 0}
 --- !u!195 &200006572892455932
 NavMeshAgent:

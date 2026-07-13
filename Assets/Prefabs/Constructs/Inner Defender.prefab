@@ -108,7 +108,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: da7f784d439de644d82b9805baafadae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.75
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da7f784d439de644d82b9805baafadae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -360,7 +360,7 @@ MonoBehaviour:
   regenRate: 0
   hitResetTime: 0
   hasHealthbar: 1
-  healthbarPrefab: {fileID: 6824034527116237848, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
+  healthbarPrefab: {fileID: 3225198556543199949, guid: 4f1efe01c1d48254cba4d6dcd701d126, type: 3}
   mapHealthbar: {fileID: 0}
 --- !u!114 &3095698594537783644
 MonoBehaviour:
@@ -376,13 +376,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InnerDefender
   animator: {fileID: 160553607079215295}
   active: 0
-  deathAnnouncement: Right Inner Defender Destroyed
-  respawnAnnouncement: Right Outer Defender Repaired
+  deathAnnouncement: Left Inner Defender Destroyed
+  respawnAnnouncement: Left Inner Defender Repaired
   cooldown: 1.2
   baseDamage: 50
   damageIncrement: 7.5
   range: 4.5
-  zap: {fileID: 301558933894255715, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
+  zap: {fileID: 3845844806295042870, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
   shooter: {fileID: 8653836031678101909}
   disruptors:
   - {fileID: 0}

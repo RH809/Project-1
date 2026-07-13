@@ -82,6 +82,6 @@ public class ZombieAttack : MonoBehaviour
         attacking = false;
         cooldown = 0;
         zombieAnimator.Rebind();
-        zombieAnimator.Update(0f);
+        //zombieAnimator.Update(0f);
     }
 }

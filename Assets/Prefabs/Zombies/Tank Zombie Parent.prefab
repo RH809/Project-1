@@ -147,7 +147,7 @@ MonoBehaviour:
   regenRate: 0
   hitResetTime: 0
   hasHealthbar: 1
-  healthbarPrefab: {fileID: 6824034527116237848, guid: 79ceb0605aaa42d46ae6d0de63990d9b, type: 3}
+  healthbarPrefab: {fileID: 3225198556543199949, guid: 79ceb0605aaa42d46ae6d0de63990d9b, type: 3}
   mapHealthbar: {fileID: 0}
 --- !u!195 &3375704590298713998
 NavMeshAgent:
@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StunVictim
   animator: {fileID: 2924449509950619678}
+  attackCollider: {fileID: 0}
 --- !u!1001 &3548411759585258563
 PrefabInstance:
   m_ObjectHideFlags: 0

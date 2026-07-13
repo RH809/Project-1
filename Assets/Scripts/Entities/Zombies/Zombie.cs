@@ -53,11 +53,10 @@ public class Zombie : MonoBehaviour
         Health.OnDie -= Die;
     }
 
-    public void Spawn(Vector3 position, Quaternion rotation)
+    public void ResetZombie(Vector3 position, Quaternion rotation)
     {
         //Debug.Log("Spawn...");
         health.ResetHealth();
-        health.ShowHealthBar();
         bleedVictim.Reset();
         stunVictim.Reset();
         zombieAttack.Reset();
@@ -67,6 +66,13 @@ public class Zombie : MonoBehaviour
         rb.rotation = rotation;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        rb.WakeUp();
+        Physics.SyncTransforms();
+    }
+
+    public void Spawn()
+    {
+        health.ShowHealthBar();
     }
 
     public void SetPool(ObjectPool<Zombie> zombiePool)
