@@ -3,6 +3,7 @@
 /// which handles their basic behavior.
 /// </summary>
 using UnityEngine;
+using UnityEngine.Pool;
 
 public abstract class Defender : Construct
 {
@@ -11,7 +12,7 @@ public abstract class Defender : Construct
     [SerializeField] protected float damageIncrement;
     [SerializeField] protected float range;
 
-    [SerializeField] private GameObject zap;
+    [SerializeField] private DefenderZap zap;
     [SerializeField] protected Transform shooter;
 
     protected GameObject targetObject;
@@ -20,6 +21,22 @@ public abstract class Defender : Construct
     protected float currentCooldown;
 
     public virtual bool Repairable { get => health.CurrentHealth < health.MaxHealth; }
+
+    private ObjectPool<DefenderZap> zapPool;
+
+    protected override void Start()
+    {
+        base.Start();
+        zapPool = new ObjectPool<DefenderZap>(
+            CreateZap,
+            OnTakeZap,
+            OnReturnZap,
+            OnDestroyZap,
+            true,
+            3,
+            10
+        );
+    }
 
     protected override void Update()
     {
@@ -62,9 +79,12 @@ public abstract class Defender : Construct
 
     protected void Shoot()
     {
-        GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
-        newZap.GetComponent<DefenderZap>().Initialize(targetObject, target, currentDamage);
+        //GameObject newZap = Instantiate(zap, shooter.position, Quaternion.identity);
+        //newZap.GetComponent<DefenderZap>().Initialize(targetObject, target, currentDamage);
         //Debug.Log("Defender shooting...");
+        DefenderZap zap = zapPool.Get();
+        zap.transform.SetPositionAndRotation(shooter.position, Quaternion.identity);
+        zap.Initialize(targetObject, target, currentDamage);
     }
 
     public void Repair()
@@ -94,5 +114,27 @@ public abstract class Defender : Construct
         }
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    private DefenderZap CreateZap()
+    {
+        DefenderZap newZap = Instantiate(zap);
+        newZap.SetPool(zapPool);
+        return newZap;
+    }
+
+    private void OnTakeZap(DefenderZap zap)
+    {
+        zap.gameObject.SetActive(true);
+    }
+
+    private void OnReturnZap(DefenderZap zap)
+    {
+        zap.gameObject.SetActive(false);
+    }
+
+    private void OnDestroyZap(DefenderZap zap)
+    {
+        Destroy(zap.gameObject);
     }
 }

@@ -1341,6 +1341,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
+      propertyPath: zap
+      value: 
+      objectReference: {fileID: 3845844806295042870, guid: 9a18bf7ed8e0f2546ba5f3875d2b6b0c, type: 3}
+    - target: {fileID: 3095698594537783644, guid: 06456325feb896347a02b144cd3cef6e, type: 3}
       propertyPath: deathAnnouncement
       value: Left Inner Defender Destroyed
       objectReference: {fileID: 0}
@@ -2389,7 +2393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: DEBUG
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: beacon

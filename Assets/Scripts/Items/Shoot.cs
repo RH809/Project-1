@@ -3,14 +3,16 @@
 /// </summary>
 
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform bulletExit;
 
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private Bullet bullet;
 
     [SerializeField] private GameObject[] disruptors;
+    private ObjectPool<Bullet> bulletPool;
 
     private Aim aim;
     private bool shooting = false;
@@ -18,6 +20,15 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         aim = GetComponent<Aim>();
+        bulletPool = new ObjectPool<Bullet>(
+            CreateBullet,
+            OnTakeBullet,
+            OnReturnBullet,
+            OnDestroyBullet,
+            true,
+            5,
+            20
+        );
     }
 
     void Update()
@@ -65,9 +76,12 @@ public class Shoot : MonoBehaviour
     private void ShootBullet() {
 
         Quaternion aimRotation = aim.GetTargetRotation(bulletExit);
-        GameObject newBullet = Instantiate(bullet, bulletExit.position, aimRotation);
-        newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
-
+        //GameObject newBullet = Instantiate(bullet.gameObject, bulletExit.position, aimRotation);
+        //newBullet.GetComponent<Bullet>().SetDisruptors(disruptors);
+        //Debug.Log("Created new bullet");
+        Bullet bullet = bulletPool.Get();
+        bullet.transform.SetPositionAndRotation(bulletExit.position, aimRotation);
+        bullet.Spawn(bulletExit.position, aimRotation);
     }
 
     public void ShootStart() {
@@ -83,5 +97,29 @@ public class Shoot : MonoBehaviour
 
     public bool isShooting() {
         return shooting;
+    }
+
+    private Bullet CreateBullet()
+    {
+        Bullet newBullet = Instantiate(bullet);
+        newBullet.SetDisruptors(disruptors);
+        newBullet.SetPool(bulletPool);
+        return newBullet;
+    }
+
+    private void OnTakeBullet(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void OnReturnBullet(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(false);
+        //Debug.Log("Returning bullet");
+    }
+
+    private void OnDestroyBullet(Bullet bullet)
+    {
+        Destroy(bullet.gameObject);
     }
 }

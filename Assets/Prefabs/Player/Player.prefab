@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shoot
   bulletExit: {fileID: 3644543691562497220}
-  bullet: {fileID: 8725346308993570863, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
+  bullet: {fileID: 5780641599831012372, guid: b3a81982d4bad0844a5206297797d4b7, type: 3}
   disruptors:
   - {fileID: 0}
   - {fileID: 0}
