@@ -2,8 +2,6 @@
 /// This script controls the pathfinding of a zombie.
 /// </summary>
 
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,7 +31,7 @@ public class ZombieMovement : MonoBehaviour
     protected StunVictim stunVictim;
     
     protected GameObject player;
-    protected GameObject[] constructTargets; // Given by spawner
+    protected Construct[] constructTargets; // Given by spawner
     protected Collider constructCollider;
 
     protected GameObject target;
@@ -45,6 +43,8 @@ public class ZombieMovement : MonoBehaviour
     private bool wasMoving = false;
 
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
+
+    private int updateOffset;
 
     protected virtual void Start()
     {
@@ -58,6 +58,7 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
+        updateOffset = Random.Range(0, 5);
     }
 
     // Update is called once per frame
@@ -67,6 +68,26 @@ public class ZombieMovement : MonoBehaviour
         {
             agent.ResetPath();
             return; // check that targets have been initialized
+        }
+        if (Time.frameCount % 5 != updateOffset)
+        { // stagger updates to reduce lag, but still rotate so that it isn't clunky
+            if (!rbRotation || target == null) return;
+            Vector3 d = target.transform.position - rb.transform.position;
+            d.y = 0f;
+
+            if (d.sqrMagnitude > 1f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(d);
+
+                rb.MoveRotation(
+                    Quaternion.Slerp(
+                        rb.rotation,
+                        targetRot,
+                        rotationSpeed * Time.fixedDeltaTime
+                    )
+                );
+            }
+            return;
         }
         bool changedTarget = HandleAttack();
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
@@ -164,7 +185,7 @@ public class ZombieMovement : MonoBehaviour
         Vector3 dir = target.transform.position - rb.transform.position;
         dir.y = 0f;
 
-        if (dir.sqrMagnitude > 0.001f)
+        if (dir.sqrMagnitude > 1f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dir);
 
@@ -198,23 +219,24 @@ public class ZombieMovement : MonoBehaviour
             ) * Mathf.Rad2Deg;
             float currentPitch = head.localEulerAngles.x;
             float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
-            Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
-            Quaternion baseHead = head.localRotation;
-            head.localRotation = baseHead * rotation;
-            Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
-            if (leftArm != null)
+            if (pitchDelta > 1f)
             {
-
-                Quaternion baseLeft = leftArm.localRotation;
-                leftArm.localRotation = baseLeft * totalRotation;
-                //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
+                Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
+                Quaternion baseHead = head.localRotation;
+                head.localRotation = baseHead * rotation;
+                Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
+                if (leftArm != null)
+                {
+                    Quaternion baseLeft = leftArm.localRotation;
+                    leftArm.localRotation = baseLeft * totalRotation;
+                    //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
+                }
+                if (rightArm != null)
+                {
+                    Quaternion baseRight = rightArm.localRotation;
+                    rightArm.localRotation = baseRight * totalRotation;
+                }
             }
-            if (rightArm != null)
-            {
-                Quaternion baseRight = rightArm.localRotation;
-                rightArm.localRotation = baseRight * totalRotation;
-            }
-            
             //Debug.Log($"rotating head {rotation} {baseHead} {head.localRotation}");
         }
         
@@ -224,8 +246,8 @@ public class ZombieMovement : MonoBehaviour
     /// Initializes the zombie's targets.
     /// </summary>
     /// <param name="player">Player GameObject</param>
-    /// <param name="constructTargets">List of construct GameObjects</param>
-    public void SetTargets(GameObject[] constructTargets)
+    /// <param name="constructTargets">List of constructs</param>
+    public void SetTargets(Construct[] constructTargets)
     {
         this.constructTargets = constructTargets;
         initialized = true;
@@ -249,7 +271,7 @@ public class ZombieMovement : MonoBehaviour
                 zombieTarget = target.GetComponent<ZombieTarget>();
                 constructCollider = zombieTarget.ConstructCollider;
             }
-            if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
+            if (GetDistanceSquared(target) <= (attackRange + zombieTarget.Radius) * (attackRange + zombieTarget.Radius) &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
                 bool success = attack.Attack(zombieTarget);
@@ -270,30 +292,30 @@ public class ZombieMovement : MonoBehaviour
     {
         GameObject closestConstruct = null;
         float closestDist = float.MaxValue;
-        foreach (GameObject c in constructTargets)
+        foreach (Construct c in constructTargets)
         {
-            if (!c.GetComponent<Health>().IsAlive || !c.GetComponent<Construct>().IsActive) continue;
-            float dist = GetDistance(c);
+            if (!c.IsAlive || !c.IsActive) continue;
+            float dist = GetDistanceSquared(c.gameObject);
             if (dist < closestDist)
             {
-                closestConstruct = c;
+                closestConstruct = c.gameObject;
                 closestDist = dist;
             }
         }
 
         // Player distance
-        float playerDist = GetDistance(player);
-        if (!player.GetComponent<Health>().IsAlive || playerDist > playerPriorityRange)
+        float playerDist = GetDistanceSquared(player);
+        if (!Player.Instance.Health.IsAlive || playerDist > playerPriorityRange)
         {
             playerDist = float.MaxValue;
         }
         else
         {
             // Check kite range (must not be too close to construct target)
-            if (closestDist >= kiteRangeThreshold)
+            if (closestDist >= kiteRangeThreshold * kiteRangeThreshold)
             {
                 // The farther it gets from the construct, the smaller its kite range is
-                float kiteRange = maxKiteRange * (kiteRangeThreshold / closestDist);
+                float kiteRange = maxKiteRange * (kiteRangeThreshold / Mathf.Sqrt(closestDist));
                 if (playerDist > kiteRange)
                 {
                     playerDist = float.MaxValue;
@@ -306,7 +328,7 @@ public class ZombieMovement : MonoBehaviour
             
         }
         bool changed = false;
-        if (playerDist <= closestDist || (attack.GetNumAttachedArms() == 0 && player.GetComponent<Health>().IsAlive)) // if no arms, follow player
+        if (playerDist <= closestDist || (attack.GetNumAttachedArms() == 0 && Player.Instance.Health.IsAlive)) // if no arms, follow player
         {
             changed = (target == null || !target.Equals(player));
             target = player;
@@ -337,11 +359,10 @@ public class ZombieMovement : MonoBehaviour
     /// </summary>
     /// <param name="target">The target to calculate the distance to</param>
     /// <returns>The distance to the target</returns>
-    protected float GetDistance(GameObject target)
+    protected float GetDistanceSquared(GameObject target)
     {
-        float targetX = target.transform.position.x;
-        float targetZ = target.transform.position.z;
-
-        return Mathf.Sqrt(Mathf.Pow(transform.position.x - targetX, 2) + Mathf.Pow(transform.position.z - targetZ, 2));
+        Vector3 delta = target.transform.position - transform.position;
+        delta.y = 0;
+        return delta.sqrMagnitude;
     }
 }

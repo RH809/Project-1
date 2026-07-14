@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] constructTargets;
+    [SerializeField] private Construct[] constructTargets;
     [SerializeField] private GameObject regularZombie;
     [SerializeField] private GameObject miniZombie;
     [SerializeField] private GameObject tankZombie;
