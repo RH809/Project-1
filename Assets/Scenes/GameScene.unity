@@ -2381,7 +2381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: DEBUG
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: beacon
@@ -2711,6 +2711,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: boostWaveInterval
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2196699293173105311, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 

@@ -56,7 +56,6 @@ public class Zombie : MonoBehaviour
     public void ResetZombie(Vector3 position, Quaternion rotation)
     {
         //Debug.Log("Spawn...");
-        health.ResetHealth();
         bleedVictim.Reset();
         stunVictim.Reset();
         zombieAttack.Reset();
@@ -72,6 +71,7 @@ public class Zombie : MonoBehaviour
 
     public void Spawn()
     {
+        health.ResetHealth();
         health.ShowHealthBar();
     }
 
