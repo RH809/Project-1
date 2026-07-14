@@ -19,7 +19,7 @@ public class MiniZombieMovement : ZombieMovement
                 constructCollider = zombieTarget.ConstructCollider;
                 targetConstruct = target.GetComponent<Construct>();
             }
-            if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
+            if (GetDistanceSquared(target) <= (attackRange + zombieTarget.Radius) * (attackRange + zombieTarget.Radius) &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
                 bool success = attack.Attack(zombieTarget);
@@ -31,7 +31,8 @@ public class MiniZombieMovement : ZombieMovement
         }
         else
         {
-            if (!targetHealth.IsAlive || (targetConstruct != null && !targetConstruct.IsActive) || GetDistance(target) > attackRange + zombieTarget.Radius
+            if (!targetHealth.IsAlive || (targetConstruct != null && !targetConstruct.IsActive) ||
+                GetDistanceSquared(target) > (attackRange + zombieTarget.Radius) * (attackRange + zombieTarget.Radius)
                 || attack.GetNumAttachedArms() == 0)
             {
                 // Stop attack

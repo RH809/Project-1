@@ -325,23 +325,23 @@ PrefabInstance:
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[0]'
       value: 
-      objectReference: {fileID: 2122634399}
+      objectReference: {fileID: 5629644001931995651}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[1]'
       value: 
-      objectReference: {fileID: 1689524644}
+      objectReference: {fileID: 1689524645}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[2]'
       value: 
-      objectReference: {fileID: 1745074774}
+      objectReference: {fileID: 1745074775}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[3]'
       value: 
-      objectReference: {fileID: 248307213}
+      objectReference: {fileID: 9154055370233016950}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[4]'
       value: 
-      objectReference: {fileID: 838510202}
+      objectReference: {fileID: 838510209}
     - target: {fileID: 5074775661003962164, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.864
@@ -583,6 +583,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc52d6ec34f1f84c972c8021341023e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+--- !u!114 &838510209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6951444495312434223, guid: 312d312d39b00384a9de17831ad87b2f, type: 3}
+  m_PrefabInstance: {fileID: 4382374447213358065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838510202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0680b9dec13a06d44b262c7568153266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Beacon
 --- !u!1 &956158003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6557b5c97e97a7c41b75b118a6884dc7, type: 3}
@@ -1918,23 +1929,23 @@ PrefabInstance:
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[0]'
       value: 
-      objectReference: {fileID: 1672110938}
+      objectReference: {fileID: 1672110939}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[1]'
       value: 
-      objectReference: {fileID: 66699368}
+      objectReference: {fileID: 66699370}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[2]'
       value: 
-      objectReference: {fileID: 1745074774}
+      objectReference: {fileID: 1745074775}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[3]'
       value: 
-      objectReference: {fileID: 248307213}
+      objectReference: {fileID: 9154055370233016950}
     - target: {fileID: 3525019872273455758, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: 'constructTargets.Array.data[4]'
       value: 
-      objectReference: {fileID: 838510202}
+      objectReference: {fileID: 838510209}
     - target: {fileID: 5074775661003962164, guid: e88b85300e49c854e90624639a74d883, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.864

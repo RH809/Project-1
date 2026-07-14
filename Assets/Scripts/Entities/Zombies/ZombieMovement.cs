@@ -43,8 +43,10 @@ public class ZombieMovement : MonoBehaviour
     private bool wasMoving = false;
 
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
+    private Vector3 lastDestination; // for preventing unnecessary set destinations
 
-    private int updateOffset;
+    private float updateInterval = 0.25f;
+    private float nextUpdateTime;
 
     protected virtual void Start()
     {
@@ -58,7 +60,6 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
-        updateOffset = Random.Range(0, 5);
     }
 
     // Update is called once per frame
@@ -69,7 +70,7 @@ public class ZombieMovement : MonoBehaviour
             agent.ResetPath();
             return; // check that targets have been initialized
         }
-        if (Time.frameCount % 5 != updateOffset)
+        if (Time.time < nextUpdateTime)
         { // stagger updates to reduce lag, but still rotate so that it isn't clunky
             if (!rbRotation || target == null) return;
             Vector3 d = target.transform.position - rb.transform.position;
@@ -88,6 +89,10 @@ public class ZombieMovement : MonoBehaviour
                 );
             }
             return;
+        }
+        else
+        {
+            nextUpdateTime = Time.time + updateInterval;
         }
         bool changedTarget = HandleAttack();
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
@@ -111,6 +116,7 @@ public class ZombieMovement : MonoBehaviour
                 }
                 destination.y = rb.transform.position.y;
                 agent.SetDestination(destination);
+                lastDestination = destination;
                 //Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
                 zombieAnimator.ResetTrigger("Stop Moving");
                 zombieAnimator.SetTrigger("Start Moving");
@@ -124,13 +130,22 @@ public class ZombieMovement : MonoBehaviour
                     destination.y = rb.transform.position.y;
                     //Debug.Log("Updating player tracking");
                     //Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
-                    agent.SetDestination(destination);
+                    if ((destination - lastDestination).sqrMagnitude > 0.25f)
+                    {
+                        agent.SetDestination(destination);
+                        lastDestination = destination;
+                    }
+                    
                 }
                 else if (constructCollider != null)
                 {
                     Vector3 destination = constructCollider.ClosestPoint(rb.position);
                     destination.y = rb.transform.position.y;
-                    agent.SetDestination(destination);
+                    if ((destination - lastDestination).sqrMagnitude > 0.25f)
+                    {
+                        agent.SetDestination(destination);
+                        lastDestination = destination;
+                    }
                 }
                 if (wasMoving)
                 {
@@ -219,23 +234,20 @@ public class ZombieMovement : MonoBehaviour
             ) * Mathf.Rad2Deg;
             float currentPitch = head.localEulerAngles.x;
             float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
-            if (pitchDelta > 1f)
+            Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
+            Quaternion baseHead = head.localRotation;
+            head.localRotation = baseHead * rotation;
+            Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
+            if (leftArm != null)
             {
-                Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
-                Quaternion baseHead = head.localRotation;
-                head.localRotation = baseHead * rotation;
-                Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
-                if (leftArm != null)
-                {
-                    Quaternion baseLeft = leftArm.localRotation;
-                    leftArm.localRotation = baseLeft * totalRotation;
-                    //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
-                }
-                if (rightArm != null)
-                {
-                    Quaternion baseRight = rightArm.localRotation;
-                    rightArm.localRotation = baseRight * totalRotation;
-                }
+                Quaternion baseLeft = leftArm.localRotation;
+                leftArm.localRotation = baseLeft * totalRotation;
+                //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
+            }
+            if (rightArm != null)
+            {
+                Quaternion baseRight = rightArm.localRotation;
+                rightArm.localRotation = baseRight * totalRotation;
             }
             //Debug.Log($"rotating head {rotation} {baseHead} {head.localRotation}");
         }
@@ -338,17 +350,20 @@ public class ZombieMovement : MonoBehaviour
         {
             changed = (target == null || !target.Equals(closestConstruct));
             target = closestConstruct;
-            if (target.GetComponent<Disruptor>() != null)
+            if (changed)
             {
-                agent.stoppingDistance = disruptorStoppingDist;
-            }
-            else if (target.GetComponent<Defender>() != null)
-            {
-                agent.stoppingDistance = defenderStoppingDist;
-            }
-            else if (target.GetComponent<Beacon>() != null)
-            {
-                agent.stoppingDistance = beaconStoppingDist;
+                if (target.GetComponent<Disruptor>() != null)
+                {
+                    agent.stoppingDistance = disruptorStoppingDist;
+                }
+                else if (target.GetComponent<Defender>() != null)
+                {
+                    agent.stoppingDistance = defenderStoppingDist;
+                }
+                else if (target.GetComponent<Beacon>() != null)
+                {
+                    agent.stoppingDistance = beaconStoppingDist;
+                }
             }
         }
         return changed;
