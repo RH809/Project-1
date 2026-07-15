@@ -41,6 +41,7 @@ public class ZombieMovement : MonoBehaviour
     protected bool moveEnabled = true;
     protected bool rbRotation = true;
     private bool wasMoving = false;
+    private bool wasStunned = false;
 
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
     private Vector3 lastDestination; // for preventing unnecessary set destinations
@@ -70,12 +71,18 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     protected void FixedUpdate()
     {
-        if (!initialized || stunVictim.Stunned)
+        if (!initialized) return;
+        if (stunVictim.Stunned)
         {
-            if (agent.hasPath) agent.ResetPath();
-            return; // check that targets have been initialized
+            if (!wasStunned)
+            {
+                agent.ResetPath();
+                wasStunned = true;
+                wasMoving = false;
+            } 
+            return;
         }
-        if (Time.fixedTime < nextUpdateTime)
+        if (Time.fixedTime < nextUpdateTime && !wasStunned)
         { // stagger updates to reduce lag, but still rotate so that it isn't clunky
             if (!rbRotation) return;
             if (target == Player.Instance.gameObject || Time.fixedTime >= nextRotateTime)
@@ -125,18 +132,18 @@ public class ZombieMovement : MonoBehaviour
                     destination.y = rb.position.y;
                     //Debug.Log("Updating player tracking");
                     //Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
-                    if ((destination - lastDestination).sqrMagnitude > 0.25f)
+                    if ((destination - lastDestination).sqrMagnitude > 0.1f || wasStunned)
                     {
                         agent.SetDestination(destination);
                         lastDestination = destination;
                     }
-                    
+
                 }
                 else if (constructCollider != null)
                 {
                     Vector3 destination = constructCollider.ClosestPoint(rb.position);
                     destination.y = rb.position.y;
-                    if ((destination - lastDestination).sqrMagnitude > 0.25f)
+                    if ((destination - lastDestination).sqrMagnitude > 0.1f || wasStunned)
                     {
                         agent.SetDestination(destination);
                         lastDestination = destination;
@@ -188,7 +195,7 @@ public class ZombieMovement : MonoBehaviour
             }
             wasMoving = false;
         }
-
+        wasStunned = false;
         // rotate to face target even if not moving
         //Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
         if (!rbRotation) return;
