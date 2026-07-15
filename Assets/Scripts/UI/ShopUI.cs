@@ -2,7 +2,6 @@
 /// This script manages the UI for the shop.
 /// </summary>
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -10,7 +9,6 @@ using UnityEngine.UI;
 
 public class ShopUI : Singleton<ShopUI>
 {
-
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private Button swordDamage;
@@ -35,6 +33,7 @@ public class ShopUI : Singleton<ShopUI>
 
     private Button selectedButton;
     private ShopItem selectedItem;
+
 
     void OnEnable()
     {
@@ -68,7 +67,8 @@ public class ShopUI : Singleton<ShopUI>
 
     void Update()
     {
-        if (selectedButton.gameObject != EventSystem.current.currentSelectedGameObject) selectedButton.Select();
+        //if (selectedButton.gameObject != EventSystem.current.currentSelectedGameObject) selectedButton.Select();
+        if (EventSystem.current.currentSelectedGameObject == null) selectedButton.Select();
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
     }
 
