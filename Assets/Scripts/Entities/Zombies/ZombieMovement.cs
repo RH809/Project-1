@@ -45,7 +45,7 @@ public class ZombieMovement : MonoBehaviour
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
     private Vector3 lastDestination; // for preventing unnecessary set destinations
 
-    private float updateInterval = 0.25f;
+    private float updateInterval = 0.5f;
     private float nextUpdateTime;
 
     protected virtual void Start()
@@ -60,6 +60,7 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
+        nextUpdateTime = Time.fixedTime + Random.Range(0, updateInterval);
     }
 
     // Update is called once per frame
@@ -67,32 +68,18 @@ public class ZombieMovement : MonoBehaviour
     {
         if (!initialized || stunVictim.Stunned)
         {
-            agent.ResetPath();
+            if (agent.hasPath) agent.ResetPath();
             return; // check that targets have been initialized
         }
-        if (Time.time < nextUpdateTime)
+        if (Time.fixedTime < nextUpdateTime)
         { // stagger updates to reduce lag, but still rotate so that it isn't clunky
-            if (!rbRotation || target == null) return;
-            Vector3 d = target.transform.position - rb.transform.position;
-            d.y = 0f;
-
-            if (d.sqrMagnitude > 1f)
-            {
-                Quaternion targetRot = Quaternion.LookRotation(d);
-
-                rb.MoveRotation(
-                    Quaternion.Slerp(
-                        rb.rotation,
-                        targetRot,
-                        rotationSpeed * Time.fixedDeltaTime
-                    )
-                );
-            }
+            if (!rbRotation) return;
+            RotateTowardTarget();
             return;
         }
         else
         {
-            nextUpdateTime = Time.time + updateInterval;
+            nextUpdateTime = Time.fixedTime + updateInterval;
         }
         bool changedTarget = HandleAttack();
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
@@ -101,7 +88,7 @@ public class ZombieMovement : MonoBehaviour
             // move toward target if necessary and allowed
             //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
             
-            bool stopped = agent.velocity.magnitude < 0.01f;
+            bool stopped = agent.velocity.sqrMagnitude < 0.0001f;
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
             if (changedTarget)
             {
@@ -197,10 +184,20 @@ public class ZombieMovement : MonoBehaviour
         // rotate to face target even if not moving
         //Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
         if (!rbRotation) return;
+        RotateTowardTarget();
+        Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
+        Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
+
+        
+    }
+
+    void RotateTowardTarget()
+    {
+        if (target == null) return;
         Vector3 dir = target.transform.position - rb.transform.position;
         dir.y = 0f;
 
-        if (dir.sqrMagnitude > 1f)
+        if (dir.sqrMagnitude > 0.25f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dir);
 
@@ -213,10 +210,6 @@ public class ZombieMovement : MonoBehaviour
             );
             //Debug.Log("Rotating rigidbody " + rb.rotation);
         }
-        Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
-        Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
-
-        
     }
 
     protected virtual void LateUpdate()
@@ -303,6 +296,7 @@ public class ZombieMovement : MonoBehaviour
     protected bool ChooseTarget()
     {
         GameObject closestConstruct = null;
+        Construct closest = null;
         float closestDist = float.MaxValue;
         foreach (Construct c in constructTargets)
         {
@@ -312,6 +306,7 @@ public class ZombieMovement : MonoBehaviour
             {
                 closestConstruct = c.gameObject;
                 closestDist = dist;
+                closest = c;
             }
         }
 
@@ -352,17 +347,17 @@ public class ZombieMovement : MonoBehaviour
             target = closestConstruct;
             if (changed)
             {
-                if (target.GetComponent<Disruptor>() != null)
+                switch (closest.GetConstructType())
                 {
-                    agent.stoppingDistance = disruptorStoppingDist;
-                }
-                else if (target.GetComponent<Defender>() != null)
-                {
-                    agent.stoppingDistance = defenderStoppingDist;
-                }
-                else if (target.GetComponent<Beacon>() != null)
-                {
-                    agent.stoppingDistance = beaconStoppingDist;
+                    case Construct.Type.DISRUPTOR:
+                        agent.stoppingDistance = disruptorStoppingDist;
+                        break;
+                    case Construct.Type.DEFENDER:
+                        agent.stoppingDistance = defenderStoppingDist;
+                        break;
+                    case Construct.Type.BEACON:
+                        agent.stoppingDistance = beaconStoppingDist;
+                        break;
                 }
             }
         }

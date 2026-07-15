@@ -90,4 +90,9 @@ public class Disruptor : Construct
         return (t / 60).ToString() + ":" + (t % 60).ToString("D2");
     }
 
+    public override Type GetConstructType()
+    {
+        return Type.DISRUPTOR;
+    }
+
 }

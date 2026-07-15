@@ -137,4 +137,9 @@ public abstract class Defender : Construct
     {
         Destroy(zap.gameObject);
     }
+
+    public override Type GetConstructType()
+    {
+        return Type.DEFENDER;
+    }
 }
