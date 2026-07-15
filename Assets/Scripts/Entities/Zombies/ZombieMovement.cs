@@ -50,12 +50,6 @@ public class ZombieMovement : MonoBehaviour
     private float rotateInterval = 0.06f;
     private float nextRotateTime;
 
-    private Quaternion cachedHeadRotation;
-    private Quaternion cachedLeftArmRotation;
-    private Quaternion cachedRightArmRotation;
-    private float lookInterval = 0.3f;
-    private float nextLookTime;
-
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -69,12 +63,8 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
-        cachedHeadRotation = Quaternion.identity;
-        cachedLeftArmRotation = Quaternion.identity;
-        cachedRightArmRotation = Quaternion.identity;
         nextUpdateTime = Time.fixedTime + Random.Range(0, updateInterval);
         nextRotateTime = Time.fixedTime + Random.Range(0, rotateInterval);
-        nextLookTime = Time.time + Random.Range(0, lookInterval);
     }
 
     // Update is called once per frame
@@ -228,8 +218,6 @@ public class ZombieMovement : MonoBehaviour
             );
             //Debug.Log("Rotating rigidbody " + rb.rotation);
         }
-        Debug.Log($"Transform: {transform.rotation.eulerAngles}");
-        Debug.Log($"RB: {rb.rotation.eulerAngles}");
     }
 
     protected virtual void LateUpdate()
@@ -237,49 +225,31 @@ public class ZombieMovement : MonoBehaviour
         // rotate arms and head to point toward target
         if (zombieTarget)
         {
-            if (Time.time >= nextLookTime || attack.IsAttacking)
+            Vector3 targetPoint = (stunVictim.Stunned ? prevTargetPos : zombieTarget.GetZombieTarget());
+            prevTargetPos = targetPoint;
+            Vector3 direction = targetPoint - head.position;
+            Debug.DrawRay(head.position, direction);
+            float targetPitch = -Mathf.Atan2(
+                direction.y,
+                new Vector2(direction.x, direction.z).magnitude
+            ) * Mathf.Rad2Deg;
+            float currentPitch = head.localEulerAngles.x;
+            float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
+            //Debug.Log(currentPitch + " " + targetPitch + " " + pitchDelta);
+            Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
+            Quaternion baseHead = head.localRotation;
+            head.localRotation = baseHead * rotation;
+            Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
+            if (leftArm != null)
             {
-                Vector3 targetPoint = (stunVictim.Stunned ? prevTargetPos : zombieTarget.GetZombieTarget());
-                prevTargetPos = targetPoint;
-                Vector3 direction = targetPoint - head.position;
-                Debug.DrawRay(head.position, direction);
-                float targetPitch = -Mathf.Atan2(
-                    direction.y,
-                    new Vector2(direction.x, direction.z).magnitude
-                ) * Mathf.Rad2Deg;
-                float currentPitch = head.localEulerAngles.x;
-                float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
-                Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
-                Quaternion baseHead = head.localRotation;
-                head.localRotation = baseHead * rotation;
-                cachedHeadRotation = head.localRotation;
-                Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
-                if (leftArm != null)
-                {
-                    Quaternion baseLeft = leftArm.localRotation;
-                    leftArm.localRotation = baseLeft * totalRotation;
-                    cachedLeftArmRotation = leftArm.localRotation;
-                    //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
-                }
-                if (rightArm != null)
-                {
-                    Quaternion baseRight = rightArm.localRotation;
-                    rightArm.localRotation = baseRight * totalRotation;
-                    cachedRightArmRotation = rightArm.localRotation;
-                }
-                if (!attack.IsAttacking) nextLookTime = Time.time + lookInterval;
+                Quaternion baseLeft = leftArm.localRotation;
+                leftArm.localRotation = baseLeft * totalRotation;
+                //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
             }
-            else
+            if (rightArm != null)
             {
-                head.localRotation = cachedHeadRotation;
-                if (leftArm != null)
-                {
-                    leftArm.localRotation = cachedLeftArmRotation;
-                }
-                if (rightArm != null)
-                {
-                    rightArm.localRotation = cachedRightArmRotation;
-                }
+                Quaternion baseRight = rightArm.localRotation;
+                rightArm.localRotation = baseRight * totalRotation;
             }
             
             //Debug.Log($"rotating head {rotation} {baseHead} {head.localRotation}");

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd6720454a4ce614ab816fba055a4995
+guid: 1de620af8cbf61841ad0c26f062a08bb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -55,7 +55,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.4695713
+      - time: 0.46884942
         functionName: ZombieAttackStart
         data: 
         objectReferenceParameter: {instanceID: 0}
