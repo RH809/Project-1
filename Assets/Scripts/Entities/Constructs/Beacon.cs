@@ -45,4 +45,9 @@ public class Beacon : Construct
     {
         return; // beacon cannot respawn
     }
+
+    public override Type GetConstructType()
+    {
+        return Type.BEACON;
+    }
 }

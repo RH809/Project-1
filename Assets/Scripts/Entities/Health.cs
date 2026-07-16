@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
     /// <param name="healAmount">The heal amount</param>
     public void Heal(float healAmount)
     {
-        if (!IsAlive || GameManager.Instance.GameOver) return;
+        if (!IsAlive || GameManager.Instance.GameOver || currentHealth == maxHealth) return;
         //Debug.Log($"{gameObject} healed {healAmount} health");
         currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
         healthContext.source = gameObject;

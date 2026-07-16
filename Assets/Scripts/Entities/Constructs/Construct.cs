@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class Construct : MonoBehaviour
 {
+    public enum Type {
+        DEFENDER,
+        DISRUPTOR,
+        BEACON
+    };
+
     [SerializeField] protected Animator animator;
 
     protected Health health;
@@ -80,4 +86,6 @@ public abstract class Construct : MonoBehaviour
         active = false;
         health.HideHealthbar();
     }
+
+    public abstract Type GetConstructType();
 }

@@ -862,7 +862,7 @@ NavMeshAgent:
   m_Height: 230
   m_BaseOffset: -8
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!114 &5486951027627730823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StunVictim
   animator: {fileID: 3026694912971059461}
+  attackCollider: {fileID: 0}
 --- !u!4 &1792957158343670138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8991180537649632189, guid: c31cfd3e55e05634b82360fd51c35e66, type: 3}

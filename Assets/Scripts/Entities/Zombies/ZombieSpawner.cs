@@ -5,10 +5,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] constructTargets;
+    [SerializeField] private Construct[] constructTargets;
     [SerializeField] private GameObject regularZombie;
     [SerializeField] private GameObject miniZombie;
     [SerializeField] private GameObject tankZombie;
@@ -166,6 +167,18 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject newZombie = Instantiate(regularZombie, transform.position, transform.rotation);
         newZombie.GetComponent<ZombieMovement>().SetTargets(constructTargets); // initialize zombie's targets
+        // ================
+        NavMeshAgent agent = newZombie.GetComponent<NavMeshAgent>();
+        Rigidbody rb = newZombie.GetComponent<Rigidbody>();
+
+        agent.enabled = false;
+
+        rb.rotation = transform.rotation;
+        rb.position = transform.position;
+
+        agent.enabled = true;
+        agent.Warp(transform.position);
+        // ================
         DefenderManager.Instance.AddToZombieList(newZombie);
     }
 

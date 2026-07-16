@@ -2,8 +2,6 @@
 /// This script controls the pathfinding of a zombie.
 /// </summary>
 
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,7 +31,7 @@ public class ZombieMovement : MonoBehaviour
     protected StunVictim stunVictim;
     
     protected GameObject player;
-    protected GameObject[] constructTargets; // Given by spawner
+    protected Construct[] constructTargets; // Given by spawner
     protected Collider constructCollider;
 
     protected GameObject target;
@@ -43,12 +41,20 @@ public class ZombieMovement : MonoBehaviour
     protected bool moveEnabled = true;
     protected bool rbRotation = true;
     private bool wasMoving = false;
+    private bool wasStunned = false;
 
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
+    private Vector3 lastDestination; // for preventing unnecessary set destinations
+
+    private float updateInterval = 0.5f;
+    private float nextUpdateTime;
+    private float rotateInterval = 0.06f;
+    private float nextRotateTime;
 
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
         attack = GetComponent<ZombieAttack>();
         agent = GetComponent<NavMeshAgent>();
         stunVictim = GetComponent<StunVictim>();
@@ -58,24 +64,44 @@ public class ZombieMovement : MonoBehaviour
         player = Player.Instance.gameObject;
 
         headBaseRotation = head.localRotation;
+        nextUpdateTime = Time.fixedTime + Random.Range(0, updateInterval);
+        nextRotateTime = Time.fixedTime + Random.Range(0, rotateInterval);
     }
 
     // Update is called once per frame
     protected void FixedUpdate()
     {
-        if (!initialized || stunVictim.Stunned)
+        if (!initialized) return;
+        if (stunVictim.Stunned)
         {
-            agent.ResetPath();
-            return; // check that targets have been initialized
+            if (!wasStunned)
+            {
+                agent.ResetPath();
+                wasStunned = true;
+                wasMoving = false;
+            } 
+            return;
+        }
+        if (Time.fixedTime < nextUpdateTime && !wasStunned)
+        { // stagger updates to reduce lag, but still rotate so that it isn't clunky
+            if (!rbRotation) return;
+            if (target == player || Time.fixedTime >= nextRotateTime)
+            {
+                RotateTowardTarget();
+                nextRotateTime = Time.fixedTime + rotateInterval;
+            }
+            return;
+        }
+        else
+        {
+            nextUpdateTime = Time.fixedTime + updateInterval;
         }
         bool changedTarget = HandleAttack();
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
         if (moveEnabled)
         {
-            // move toward target if necessary and allowed
-            //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
             
-            bool stopped = agent.velocity.magnitude < 0.01f;
+            bool stopped = agent.velocity.sqrMagnitude < 0.0001f;
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
             if (changedTarget)
             {
@@ -88,8 +114,9 @@ public class ZombieMovement : MonoBehaviour
                 {
                     destination = target.transform.position;
                 }
-                destination.y = rb.transform.position.y;
+                destination.y = rb.position.y;
                 agent.SetDestination(destination);
+                lastDestination = destination;
                 //Debug.Log("Starting movement toward " + destination + " | " + agent.destination);
                 zombieAnimator.ResetTrigger("Stop Moving");
                 zombieAnimator.SetTrigger("Start Moving");
@@ -97,19 +124,28 @@ public class ZombieMovement : MonoBehaviour
             }
             else
             {
-                if (target.Equals(player))
+                if (target == player)
                 {
                     Vector3 destination = player.transform.position;
-                    destination.y = rb.transform.position.y;
+                    destination.y = rb.position.y;
                     //Debug.Log("Updating player tracking");
                     //Debug.Log("Updating player tracking " + destination + " | " + agent.destination);
-                    agent.SetDestination(destination);
+                    if ((destination - lastDestination).sqrMagnitude > 0.1f || wasStunned)
+                    {
+                        agent.SetDestination(destination);
+                        lastDestination = destination;
+                    }
+
                 }
                 else if (constructCollider != null)
                 {
                     Vector3 destination = constructCollider.ClosestPoint(rb.position);
-                    destination.y = rb.transform.position.y;
-                    agent.SetDestination(destination);
+                    destination.y = rb.position.y;
+                    if ((destination - lastDestination).sqrMagnitude > 0.1f || wasStunned)
+                    {
+                        agent.SetDestination(destination);
+                        lastDestination = destination;
+                    }
                 }
                 if (wasMoving)
                 {
@@ -157,14 +193,24 @@ public class ZombieMovement : MonoBehaviour
             }
             wasMoving = false;
         }
-
+        wasStunned = false;
         // rotate to face target even if not moving
         //Debug.Log($"Target: {target}  {target.transform.position}  {agent.destination}");
         if (!rbRotation) return;
-        Vector3 dir = target.transform.position - rb.transform.position;
+        RotateTowardTarget();
+        Debug.DrawRay(rb.position, agent.destination - rb.position, Color.red);
+        Debug.DrawRay(rb.position, target.transform.position - rb.position, Color.orange);
+
+        
+    }
+
+    void RotateTowardTarget()
+    {
+        if (target == null) return;
+        Vector3 dir = target.transform.position - rb.position;
         dir.y = 0f;
 
-        if (dir.sqrMagnitude > 0.001f)
+        if (dir.sqrMagnitude > 0.25f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dir);
 
@@ -177,10 +223,6 @@ public class ZombieMovement : MonoBehaviour
             );
             //Debug.Log("Rotating rigidbody " + rb.rotation);
         }
-        Debug.DrawRay(rb.transform.position, agent.destination - rb.transform.position, Color.red);
-        Debug.DrawRay(rb.transform.position, target.transform.position - rb.transform.position, Color.orange);
-
-        
     }
 
     protected virtual void LateUpdate()
@@ -198,13 +240,13 @@ public class ZombieMovement : MonoBehaviour
             ) * Mathf.Rad2Deg;
             float currentPitch = head.localEulerAngles.x;
             float pitchDelta = Mathf.DeltaAngle(currentPitch, targetPitch);
+            //Debug.Log(currentPitch + " " + targetPitch + " " + pitchDelta);
             Quaternion rotation = Quaternion.Euler(pitchDelta, 0f, 0f);
             Quaternion baseHead = head.localRotation;
             head.localRotation = baseHead * rotation;
             Quaternion totalRotation = head.localRotation * Quaternion.Inverse(headBaseRotation);
             if (leftArm != null)
             {
-
                 Quaternion baseLeft = leftArm.localRotation;
                 leftArm.localRotation = baseLeft * totalRotation;
                 //Debug.Log($"rotating left {rotation} {baseLeft} {leftArm.localRotation}");
@@ -224,8 +266,8 @@ public class ZombieMovement : MonoBehaviour
     /// Initializes the zombie's targets.
     /// </summary>
     /// <param name="player">Player GameObject</param>
-    /// <param name="constructTargets">List of construct GameObjects</param>
-    public void SetTargets(GameObject[] constructTargets)
+    /// <param name="constructTargets">List of constructs</param>
+    public void SetTargets(Construct[] constructTargets)
     {
         this.constructTargets = constructTargets;
         initialized = true;
@@ -249,7 +291,7 @@ public class ZombieMovement : MonoBehaviour
                 zombieTarget = target.GetComponent<ZombieTarget>();
                 constructCollider = zombieTarget.ConstructCollider;
             }
-            if (GetDistance(target) <= attackRange + zombieTarget.Radius &&
+            if (GetDistanceSquared(target) <= (attackRange + zombieTarget.Radius) * (attackRange + zombieTarget.Radius) &&
                     (target != player || (target == player && Player.Instance.Health.IsAlive)))
             {
                 bool success = attack.Attack(zombieTarget);
@@ -269,31 +311,33 @@ public class ZombieMovement : MonoBehaviour
     protected bool ChooseTarget()
     {
         GameObject closestConstruct = null;
+        Construct closest = null;
         float closestDist = float.MaxValue;
-        foreach (GameObject c in constructTargets)
+        foreach (Construct c in constructTargets)
         {
-            if (!c.GetComponent<Health>().IsAlive || !c.GetComponent<Construct>().IsActive) continue;
-            float dist = GetDistance(c);
+            if (!c.IsAlive || !c.IsActive) continue;
+            float dist = GetDistanceSquared(c.gameObject);
             if (dist < closestDist)
             {
-                closestConstruct = c;
+                closestConstruct = c.gameObject;
                 closestDist = dist;
+                closest = c;
             }
         }
 
         // Player distance
-        float playerDist = GetDistance(player);
-        if (!player.GetComponent<Health>().IsAlive || playerDist > playerPriorityRange)
+        float playerDist = GetDistanceSquared(player);
+        if (!Player.Instance.Health.IsAlive || playerDist > playerPriorityRange)
         {
             playerDist = float.MaxValue;
         }
         else
         {
             // Check kite range (must not be too close to construct target)
-            if (closestDist >= kiteRangeThreshold)
+            if (closestDist >= kiteRangeThreshold * kiteRangeThreshold)
             {
                 // The farther it gets from the construct, the smaller its kite range is
-                float kiteRange = maxKiteRange * (kiteRangeThreshold / closestDist);
+                float kiteRange = maxKiteRange * (kiteRangeThreshold / Mathf.Sqrt(closestDist));
                 if (playerDist > kiteRange)
                 {
                     playerDist = float.MaxValue;
@@ -306,7 +350,7 @@ public class ZombieMovement : MonoBehaviour
             
         }
         bool changed = false;
-        if (playerDist <= closestDist || (attack.GetNumAttachedArms() == 0 && player.GetComponent<Health>().IsAlive)) // if no arms, follow player
+        if (playerDist <= closestDist || (attack.GetNumAttachedArms() == 0 && Player.Instance.Health.IsAlive)) // if no arms, follow player
         {
             changed = (target == null || !target.Equals(player));
             target = player;
@@ -316,17 +360,20 @@ public class ZombieMovement : MonoBehaviour
         {
             changed = (target == null || !target.Equals(closestConstruct));
             target = closestConstruct;
-            if (target.GetComponent<Disruptor>() != null)
+            if (changed)
             {
-                agent.stoppingDistance = disruptorStoppingDist;
-            }
-            else if (target.GetComponent<Defender>() != null)
-            {
-                agent.stoppingDistance = defenderStoppingDist;
-            }
-            else if (target.GetComponent<Beacon>() != null)
-            {
-                agent.stoppingDistance = beaconStoppingDist;
+                switch (closest.GetConstructType())
+                {
+                    case Construct.Type.DISRUPTOR:
+                        agent.stoppingDistance = disruptorStoppingDist;
+                        break;
+                    case Construct.Type.DEFENDER:
+                        agent.stoppingDistance = defenderStoppingDist;
+                        break;
+                    case Construct.Type.BEACON:
+                        agent.stoppingDistance = beaconStoppingDist;
+                        break;
+                }
             }
         }
         return changed;
@@ -337,11 +384,10 @@ public class ZombieMovement : MonoBehaviour
     /// </summary>
     /// <param name="target">The target to calculate the distance to</param>
     /// <returns>The distance to the target</returns>
-    protected float GetDistance(GameObject target)
+    protected float GetDistanceSquared(GameObject target)
     {
-        float targetX = target.transform.position.x;
-        float targetZ = target.transform.position.z;
-
-        return Mathf.Sqrt(Mathf.Pow(transform.position.x - targetX, 2) + Mathf.Pow(transform.position.z - targetZ, 2));
+        Vector3 delta = target.transform.position - transform.position;
+        delta.y = 0;
+        return delta.sqrMagnitude;
     }
 }
