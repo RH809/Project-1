@@ -46,7 +46,7 @@ public class ZombieMovement : MonoBehaviour
     protected Vector3 prevTargetPos; // for maintaining same rotation when stunned
     private Vector3 lastDestination; // for preventing unnecessary set destinations
 
-    private float updateInterval = 0.5f;
+    private float updateInterval = 0.25f;
     private float nextUpdateTime;
     private float rotateInterval = 0.06f;
     private float nextRotateTime;
