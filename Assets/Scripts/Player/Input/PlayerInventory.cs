@@ -2,10 +2,7 @@
 /// This script manages the player's held item and handles using the items.
 /// </summary>
 
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
