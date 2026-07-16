@@ -2050,7 +2050,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 238188629830487507, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -30.000061
       objectReference: {fileID: 0}
     - target: {fileID: 424402478155594019, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2070,7 +2070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322375017377965554, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -30.000061
       objectReference: {fileID: 0}
     - target: {fileID: 1827915449671254281, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_Pivot.x
@@ -2242,7 +2242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6700634333918469048, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -30.000061
       objectReference: {fileID: 0}
     - target: {fileID: 6992819751572769528, guid: 064fc69facaa0634aa9a1aecd9fb7419, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2732,7 +2732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: boostWaveInterval
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2196699293173105311, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: 'disruptors.Array.data[0]'

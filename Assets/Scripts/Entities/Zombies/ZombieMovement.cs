@@ -85,7 +85,7 @@ public class ZombieMovement : MonoBehaviour
         if (Time.fixedTime < nextUpdateTime && !wasStunned)
         { // stagger updates to reduce lag, but still rotate so that it isn't clunky
             if (!rbRotation) return;
-            if (target == Player.Instance.gameObject || Time.fixedTime >= nextRotateTime)
+            if (target == player || Time.fixedTime >= nextRotateTime)
             {
                 RotateTowardTarget();
                 nextRotateTime = Time.fixedTime + rotateInterval;
@@ -100,8 +100,6 @@ public class ZombieMovement : MonoBehaviour
         //Debug.Log($"{moveEnabled} {attack.IsAttacking}");
         if (moveEnabled)
         {
-            // move toward target if necessary and allowed
-            //rb.MovePosition(rb.position + rb.transform.forward * moveSpeed * Time.fixedDeltaTime);
             
             bool stopped = agent.velocity.sqrMagnitude < 0.0001f;
             //Debug.Log($"{target} {wasMoving} {agent.isStopped} {stopped} {changedTarget}");
@@ -126,7 +124,7 @@ public class ZombieMovement : MonoBehaviour
             }
             else
             {
-                if (target.Equals(player))
+                if (target == player)
                 {
                     Vector3 destination = player.transform.position;
                     destination.y = rb.position.y;
