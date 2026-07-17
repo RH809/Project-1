@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
 
     private int waveNum;
     public int WaveNum { get => waveNum; }
+    public int TotalWaves { get => waves; }
     private int countdown;
 
     private Coroutine announcementCoroutine;

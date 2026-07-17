@@ -234,6 +234,9 @@ public class PlayerInventory : MonoBehaviour
                         playerAnimator.ResetTrigger("Equip Grenade");
                         playerAnimator.ResetTrigger("Equip Repair Tool");
                         playerAnimator.ResetTrigger("Equip Potion");
+                        playerAnimator.ResetTrigger("Sword Swing 1");
+                        playerAnimator.ResetTrigger("Sword Swing 2");
+                        playerAnimator.ResetTrigger("Sword Swing 3");
                         break;
                     case Item.GUN:
                         //Debug.Log("Equip gun animation");
