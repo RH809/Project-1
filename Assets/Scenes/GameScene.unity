@@ -2738,6 +2738,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6701827658318706554, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_text
+      value: 'Repair [E]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701827658318706554, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_fontSize
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701827658318706554, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 6793713491657405917, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

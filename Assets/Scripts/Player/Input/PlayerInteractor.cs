@@ -31,9 +31,9 @@ public class PlayerInteractor : MonoBehaviour
     private float interactTime;
     private float interactRequirement;
 
-    private const string repairText = "Repair";
-    private const string shopText = "Open Shop";
-    private const string powerUpText = "Grab Power Up";
+    private const string repairText = "Repair [E]";
+    private const string shopText = "Open Shop [E]";
+    private const string powerUpText = "Grab Power Up [E]";
     Ray interactRay;
 
     void Start()
@@ -89,20 +89,20 @@ public class PlayerInteractor : MonoBehaviour
                         {
                             defenderHover = true;
                             interactText.text = repairText;
-                            interactText.fontSize = 36;
+                            interactText.fontSize = 34;
                             interactRequirement = defenderInteractTime;
                         }
                         break;
                     case IInteractable.InteractType.SHOP:
                         shopHover = true;
                         interactText.text = shopText;
-                        interactText.fontSize = 36;
+                        interactText.fontSize = 29;
                         interactRequirement = shopInteractTime;
                         break;
                     case IInteractable.InteractType.POWER_UP:
                         powerUpHover = true;
                         interactText.text = powerUpText;
-                        interactText.fontSize = 28;
+                        interactText.fontSize = 23;
                         interactRequirement = powerUpInteractTime;
                         break;
                 }
