@@ -18,4 +18,4 @@ MonoBehaviour:
   price: 150
   priceIncrement: 0
   purchaseCap: -1
-  description: Repairs destroyed/damage constructs
+  description: Repairs destroyed/damage defenders

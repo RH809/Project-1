@@ -80,6 +80,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         if (healthContext.target.Equals(disruptor))
         {
+            Debug.Log("Disruptor death");
             disruptorDeaths++;
         }
     }
