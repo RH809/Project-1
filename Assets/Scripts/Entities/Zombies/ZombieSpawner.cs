@@ -78,7 +78,7 @@ public class ZombieSpawner : MonoBehaviour
 
     void OnDisruptorDie(HealthContext healthContext)
     {
-        if (healthContext.target.Equals(disruptor))
+        if (healthContext.target.Equals(disruptor.gameObject))
         {
             Debug.Log("Disruptor death");
             disruptorDeaths++;
@@ -103,14 +103,8 @@ public class ZombieSpawner : MonoBehaviour
         {
             numTankZombies += tankZombieSpawnIncrease;
         }
-        for (int i = 0; i < numRegularZombies + disruptorDeaths * regularZombieDisruptorIncrease; i++)
-        {
-            zombies.Add(Zombie.ZombieType.REGULAR);
-        }
-        for (int i = 0; i < numMiniZombies + disruptorDeaths * miniZombieDisruptorIncrease; i++)
-        {
-            zombies.Add(Zombie.ZombieType.MINI);
-        }
+        int regularSpawns = numRegularZombies;
+        int miniSpawns = numMiniZombies;
         int tankSpawns = 0;
         if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0 || GameManager.Instance.WaveNum >= GameManager.Instance.TotalWaves / 2)
         {
@@ -118,7 +112,17 @@ public class ZombieSpawner : MonoBehaviour
         }
         if (!disruptor.IsAlive)
         {
+            regularSpawns += disruptorDeaths * regularZombieDisruptorIncrease;
+            miniSpawns += disruptorDeaths * miniZombieDisruptorIncrease;
             tankSpawns += disruptorDeaths * tankZombieDisruptorIncrease;
+        }
+        for (int i = 0; i < regularSpawns; i++)
+        {
+            zombies.Add(Zombie.ZombieType.REGULAR);
+        }
+        for (int i = 0; i < miniSpawns; i++)
+        {
+            zombies.Add(Zombie.ZombieType.MINI);
         }
         for (int i = 0; i < tankSpawns; i++)
         {

@@ -372,6 +372,7 @@ public class PlayerInventory : MonoBehaviour
                 case Item.SWORD:
                     if (swordHitbox.isSwinging() || IsInSwingAnimation())
                     { // don't use if already in swinging animation
+                        Debug.Log("Already in swinging animation: " + swordHitbox.isSwinging() + " " + IsInSwingAnimation());
                         break;
                     }
                     // Randomly choose between the 3 possible animations
@@ -547,6 +548,8 @@ public class PlayerInventory : MonoBehaviour
         if (healthContext.target.Equals(Player.Instance.gameObject))
         {
             equipQueue.Clear();
+            swordHitbox.SwordAttackEnd(); // end attacks just in case in the middle of animation to prevent locking
+            shoot.ShootEnd();
         }
     }
 
