@@ -2726,6 +2726,10 @@ PrefabInstance:
       propertyPath: 'disruptors.Array.data[1]'
       value: 
       objectReference: {fileID: 1689524644}
+    - target: {fileID: 2434006918805420810, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
+      propertyPath: powerUpTransform
+      value: 
+      objectReference: {fileID: 7430570195882210721}
     - target: {fileID: 6125967248805130087, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3161,6 +3165,11 @@ PrefabInstance:
 --- !u!1 &7430570195882210720 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6385436611172491545, guid: 2338c3d864cbdac47b50278937bdf45d, type: 3}
+  m_PrefabInstance: {fileID: 7430570195882210719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7430570195882210721 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2501749930178026635, guid: 2338c3d864cbdac47b50278937bdf45d, type: 3}
   m_PrefabInstance: {fileID: 7430570195882210719}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7531890619679161490

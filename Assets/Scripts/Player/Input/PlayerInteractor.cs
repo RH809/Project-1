@@ -21,6 +21,8 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator repairToolAnimator;
 
+    [SerializeField] private Transform powerUpTransform;
+
     private bool defenderHover = false;
     private bool shopHover = false;
     private bool powerUpHover = false;
@@ -107,6 +109,13 @@ public class PlayerInteractor : MonoBehaviour
                         break;
                 }
             }
+        }
+        else if ((interactSource.position - powerUpTransform.position).sqrMagnitude <= 0.1f)
+        {
+            powerUpHover = true;
+            interactText.text = powerUpText;
+            interactText.fontSize = 23;
+            interactRequirement = powerUpInteractTime;
         }
         interactTextObject.SetActive(defenderHover || shopHover || powerUpHover);
         if ((!shopHover && !defenderHover && !powerUpHover) || shopTimeout > 0)
