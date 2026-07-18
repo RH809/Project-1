@@ -106,7 +106,11 @@ public class ZombieSpawner : MonoBehaviour
         int regularSpawns = numRegularZombies;
         int miniSpawns = numMiniZombies;
         int tankSpawns = 0;
-        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0 || GameManager.Instance.WaveNum >= GameManager.Instance.TotalWaves / 2)
+        if (GameManager.Instance.WaveNum == GameManager.Instance.TotalWaves / 2)
+        {
+            tankZombieSpawnIncreaseInterval = GameManager.Instance.TotalWaves / 10;
+        }
+        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0)
         {
             tankSpawns += numTankZombies;
         }
