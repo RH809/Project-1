@@ -52,5 +52,9 @@ public class Healthbar : MonoBehaviour
             }
             transform.position = entity.transform.position + offset;
         }
+        if (GameManager.Instance.GameOver)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
