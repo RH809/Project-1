@@ -154,4 +154,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  damage: 150
+  damage: 100
