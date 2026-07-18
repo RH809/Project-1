@@ -37,7 +37,7 @@ public class Disruptor : Construct
     {
         if (GameManager.Instance.DEBUG && Input.GetKeyDown("o"))
         {
-            if (alive) health.TakeDamage(health.MaxHealth, gameObject);
+            if (alive && active) health.TakeDamage(health.MaxHealth, gameObject);
             else Respawn(1f);
         }
     }

@@ -2247,13 +2247,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective: Defend your beacon from 30 waves of invading zombies\n\nGame
     Mechanics:\n> Zombie waves spawn every 30 seconds, each with more zombies\n>
-    More zombies spawn in a lane each time the disruptor is destroyed\n> Disruptors
-    respawn after some time; Defenders require manual repair\n> Headshots deal double
-    damage\n> Zombie arms can be dismembered to reduce damage or prevent attacking
-    \n> Boosts are granted every third wave, which provide bonus effects\n\nGameplay:\n>
-    Kill zombies to collect money\n> Spend money on items and stat upgrades in the
-    shop\n> Grab the power up for a temporary stat boost\n\nControls:\n> WASD to
-    move \n> Space to jump\n> Control to sprint \n> Left Mouse Button to use item/attack\n>
+    More zombies spawn in a lane when the disruptor is destroyed\n> Disruptors respawn
+    after some time; Defenders require manual repair\n> Headshots deal double damage\n>
+    Zombie arms can be dismembered to reduce damage or prevent attacking \n> Boosts
+    are granted every third wave, which provide bonus effects\n\nGameplay:\n> Kill
+    zombies to collect money\n> Spend money on items and stat upgrades in the shop\n>
+    Grab the power up for a temporary stat boost\n\nControls:\n> WASD to move \n>
+    Space to jump\n> Control to sprint \n> Left Mouse Button to use item/attack\n>
     Scroll Wheel or Num Keys 1-5 to switch items\n> E to interact or close shop\n>
     Tab to open map\n> ESC to open/close menu
 

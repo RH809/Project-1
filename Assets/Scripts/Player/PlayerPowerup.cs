@@ -17,6 +17,7 @@ public class PlayerPowerUp : MonoBehaviour
     [SerializeField] private Image powerUpTimer;
 
     private bool active = false;
+    private Coroutine powerUpRoutine;
     public bool Active { get => active; }
 
     void Start()
@@ -24,10 +25,20 @@ public class PlayerPowerUp : MonoBehaviour
         powerUpTimer.fillAmount = 0;
     }
 
+    void OnEnable()
+    {
+        Health.OnDie += OnPlayerDeath;
+    }
+
+    void OnDisable()
+    {
+        Health.OnDie -= OnPlayerDeath;
+    }
+
     public void Activate()
     {
         active = true;
-        StartCoroutine(PowerUpRoutine());
+        powerUpRoutine = StartCoroutine(PowerUpRoutine());
     }
 
     IEnumerator PowerUpRoutine()
@@ -42,5 +53,20 @@ public class PlayerPowerUp : MonoBehaviour
         }
         powerUpTimer.fillAmount = 0;
         active = false;
+        powerUpRoutine = null;
+    }
+
+    void OnPlayerDeath(HealthContext healthContext)
+    {
+        if (healthContext.target == gameObject)
+        {
+            if (powerUpRoutine != null)
+            {
+                StopCoroutine(powerUpRoutine);
+                powerUpRoutine = null;
+            }
+            active = false;
+            powerUpTimer.fillAmount = 0;
+        }
     }
 }
