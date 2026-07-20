@@ -134,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598a149a9ac0a8e4e942c433123edccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieAttackCollider
+  easyDamage: 2.5
+  mediumDamage: 5
+  hardDamage: 7.5
   damage: 5
 --- !u!1001 &3901069692869971946
 PrefabInstance:

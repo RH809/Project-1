@@ -21,6 +21,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lookSensitivityValue;
     [SerializeField] private Button resetLookSensitivityButton;
 
+    [SerializeField] private Button difficultyButton;
+    [SerializeField] private TextMeshProUGUI difficultyText;
+
     void Start()
     {
         crosshairSlider.minValue = SettingsManager.Instance.MinCrosshairSize;
@@ -39,6 +42,14 @@ public class Settings : MonoBehaviour
 
         lookSensitivitySlider.onValueChanged.AddListener(value => UpdateLookSensitivitySettings(value));
         resetLookSensitivityButton.onClick.AddListener(() => UpdateLookSensitivitySettings(SettingsManager.Instance.DefaultLookSensitivity));
+
+        if (difficultyButton != null)
+        {
+            difficultyButton.onClick.AddListener(() => {
+                SettingsManager.Instance.NextDifficulty();
+                SetDifficultyText();
+            });
+        }
     }
 
     public void OpenSettings()
@@ -54,6 +65,7 @@ public class Settings : MonoBehaviour
         lookSensitivitySlider.value = SettingsManager.Instance.LookSensitivity;
         lookSensitivityValue.text = lookSensitivitySlider.value.ToString("0.##");
         resetLookSensitivityButton.interactable = lookSensitivitySlider.value != SettingsManager.Instance.DefaultLookSensitivity;
+        SetDifficultyText();
     }
 
     void UpdateCrosshairSettings(int value)
@@ -71,6 +83,22 @@ public class Settings : MonoBehaviour
         lookSensitivityValue.text = value.ToString("0.##");
         SettingsManager.Instance.SetLookSensitivity(value);
         resetLookSensitivityButton.interactable = lookSensitivitySlider.value != SettingsManager.Instance.DefaultLookSensitivity;
+    }
+
+    void SetDifficultyText()
+    {
+        switch (SettingsManager.Instance.GameDifficulty)
+        {
+            case SettingsManager.Difficulty.EASY:
+                difficultyText.text = "Difficulty: Easy";
+                break;
+            case SettingsManager.Difficulty.MEDIUM:
+                difficultyText.text = "Difficulty: Medium";
+                break;
+            case SettingsManager.Difficulty.HARD:
+                difficultyText.text = "Difficulty: Hard";
+                break;
+        }
     }
 
 

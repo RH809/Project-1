@@ -20,16 +20,12 @@ public class TankZombieMovement : ZombieMovement
         // Rotate toward target during late update since animation rotates body
         Vector3 dir = target.transform.position - rb.transform.position;
         dir.y = 0f;
-
-        if (dir.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(dir);
-            rb.MoveRotation(Quaternion.Slerp(
-                rb.transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            ));
-        }
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
+        rb.MoveRotation(Quaternion.Slerp(
+            rb.transform.rotation,
+            targetRotation,
+            rotationSpeed * Time.deltaTime
+        ));
         
     
     }
