@@ -3,13 +3,28 @@ using UnityEngine;
 
 public class ZombieAttackCollider : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private float easyDamage;
+    [SerializeField] private float mediumDamage;
+    [SerializeField] private float hardDamage;
+    private float damage;
     private HashSet<GameObject> hits;
     private ZombieAttack attack;
 
     void Start()
     {
         hits = new HashSet<GameObject>();
+        switch (SettingsManager.Instance.GameDifficulty)
+        {
+            case SettingsManager.Difficulty.EASY:
+                damage = easyDamage;
+                break;
+            case SettingsManager.Difficulty.MEDIUM:
+                damage = mediumDamage;
+                break;
+            case SettingsManager.Difficulty.HARD:
+                damage = hardDamage;
+                break;
+        }
         attack = GetComponentInParent<ZombieAttack>();
         gameObject.SetActive(false);
     }

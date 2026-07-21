@@ -6,12 +6,19 @@ using UnityEngine;
 
 public class SettingsManager : Singleton<SettingsManager>
 {
+    public enum Difficulty {
+        EASY,
+        MEDIUM,
+        HARD
+    };
+
     [SerializeField] private bool defaultVignetteSetting;
     [SerializeField] private bool defaultMoneyPopupSetting;
     [SerializeField] private bool defaultDeathParticlesSetting;
     [SerializeField] private bool defaultHealthbarValuesSetting;
     [SerializeField] private int defaultCrosshairSize;
     [SerializeField] private float defaultLookSensitivity;
+    [SerializeField] private Difficulty defaultDifficulty;
     public int DefaultCrosshairSize { get => defaultCrosshairSize; }
 
     [SerializeField] private int minCrosshairSize = 20;
@@ -39,6 +46,9 @@ public class SettingsManager : Singleton<SettingsManager>
     private int crosshairSize;
     public int CrosshairSize { get => crosshairSize; }
 
+    private Difficulty difficulty;
+    public Difficulty GameDifficulty { get => difficulty; }
+
     
 
     private float lookSensitivity;
@@ -60,6 +70,7 @@ public class SettingsManager : Singleton<SettingsManager>
         showHealthbarValues = defaultHealthbarValuesSetting;
         crosshairSize = defaultCrosshairSize;
         lookSensitivity = defaultLookSensitivity;
+        difficulty = defaultDifficulty;
     }
 
     public void ToggleVignette(bool show)
@@ -90,6 +101,22 @@ public class SettingsManager : Singleton<SettingsManager>
     public void SetLookSensitivity(float lookSensitivity)
     {
         this.lookSensitivity = lookSensitivity;
+    }
+
+    public void NextDifficulty()
+    {
+        if (difficulty == Difficulty.EASY)
+        {
+            difficulty = Difficulty.MEDIUM;
+        }
+        else if (difficulty == Difficulty.MEDIUM)
+        {
+            difficulty = Difficulty.HARD;
+        }
+        else
+        {
+            difficulty = Difficulty.EASY;
+        }
     }
 
 }

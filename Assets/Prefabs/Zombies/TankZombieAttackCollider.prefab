@@ -136,7 +136,9 @@ MonoBehaviour:
   startOuterRadius: 0.177
   startInnerRadius: 0.143
   height: 0.62
-  damage: 20
+  easyDamage: 15
+  mediumDamage: 20
+  hardDamage: 30
 --- !u!54 &-6206236909113537169
 Rigidbody:
   m_ObjectHideFlags: 0

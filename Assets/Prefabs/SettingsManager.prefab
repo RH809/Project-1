@@ -50,6 +50,7 @@ MonoBehaviour:
   defaultHealthbarValuesSetting: 1
   defaultCrosshairSize: 50
   defaultLookSensitivity: 1
+  defaultDifficulty: 1
   minCrosshairSize: 20
   maxCrosshairSize: 150
   minLookSensitivity: 0.01

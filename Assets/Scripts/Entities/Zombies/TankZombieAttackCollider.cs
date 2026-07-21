@@ -14,7 +14,10 @@ public class TankZombieAttackCollider : MonoBehaviour
     [SerializeField] private float startOuterRadius;
     [SerializeField] private float startInnerRadius;
     [SerializeField] private float height;
-    [SerializeField] private float damage;
+    private float damage;
+    [SerializeField] private float easyDamage;
+    [SerializeField] private float mediumDamage;
+    [SerializeField] private float hardDamage;
 
     private float outerRadius;
     private float innerRadius;
@@ -24,6 +27,18 @@ public class TankZombieAttackCollider : MonoBehaviour
     void Start()
     {
         hits = new HashSet<GameObject>();
+        switch (SettingsManager.Instance.GameDifficulty)
+        {
+            case SettingsManager.Difficulty.EASY:
+                damage = easyDamage;
+                break;
+            case SettingsManager.Difficulty.MEDIUM:
+                damage = mediumDamage;
+                break;
+            case SettingsManager.Difficulty.HARD:
+                damage = hardDamage;
+                break;
+        }
         StartCoroutine(Grow());
     }
 

@@ -209,20 +209,16 @@ public class ZombieMovement : MonoBehaviour
         if (target == null) return;
         Vector3 dir = target.transform.position - rb.position;
         dir.y = 0f;
+        Quaternion targetRot = Quaternion.LookRotation(dir);
 
-        if (dir.sqrMagnitude > 0.25f)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(dir);
-
-            rb.MoveRotation(
-                Quaternion.Slerp(
-                    rb.rotation,
-                    targetRot,
-                    rotationSpeed * Time.fixedDeltaTime
-                )
-            );
-            //Debug.Log("Rotating rigidbody " + rb.rotation);
-        }
+        rb.MoveRotation(
+            Quaternion.Slerp(
+                rb.rotation,
+                targetRot,
+                rotationSpeed * Time.fixedDeltaTime
+            )
+        );
+        //Debug.Log("Rotating rigidbody " + rb.rotation);
     }
 
     protected virtual void LateUpdate()
