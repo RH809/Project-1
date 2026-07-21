@@ -2500,6 +2500,7 @@ MonoBehaviour:
   stunGunBoostBase: {fileID: 11400000, guid: bde6f393240bcba499c4cd86e1329c52, type: 2}
   supplyDropBoostBase: {fileID: 11400000, guid: acccf519feb62174e8049a38959d5941, type: 2}
   bazookaBoostBase: {fileID: 11400000, guid: 07bf9a9ac9d24df4f972ef31253ff634, type: 2}
+  parryBoostBase: {fileID: 11400000, guid: ec4c2171b7839b54eaac577f98e7914d, type: 2}
   Hemorrhage: {fileID: 0}
   Piercing: {fileID: 0}
   Payday: {fileID: 0}
@@ -2510,6 +2511,7 @@ MonoBehaviour:
   StunGun: {fileID: 0}
   SupplyDrop: {fileID: 0}
   Bazooka: {fileID: 0}
+  Parry: {fileID: 0}
 --- !u!4 &6793713491657405917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 290d6ee546c0f6b4d8400670fa2fa334, type: 3}

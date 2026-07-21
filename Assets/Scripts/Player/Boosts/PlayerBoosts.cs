@@ -19,6 +19,7 @@ public class PlayerBoosts : MonoBehaviour
     [SerializeField] private StunGunBoost stunGunBoostBase;
     [SerializeField] private SupplyDropBoost supplyDropBoostBase;
     [SerializeField] private BazookaBoost bazookaBoostBase;
+    [SerializeField] private ParryBoost parryBoostBase;
 
     [HideInInspector] public HemorrhageBoost Hemorrhage;
     [HideInInspector] public PiercingBoost Piercing;
@@ -30,6 +31,7 @@ public class PlayerBoosts : MonoBehaviour
     [HideInInspector] public StunGunBoost StunGun;
     [HideInInspector] public SupplyDropBoost SupplyDrop;
     [HideInInspector] public BazookaBoost Bazooka;
+    [HideInInspector] public ParryBoost Parry;
 
     private List<Boost> boosts;
     private List<Boost> selectedBoosts;
@@ -46,6 +48,7 @@ public class PlayerBoosts : MonoBehaviour
         StunGun = Instantiate(stunGunBoostBase);
         SupplyDrop = Instantiate(supplyDropBoostBase);
         Bazooka = Instantiate(bazookaBoostBase);
+        Parry = Instantiate(parryBoostBase);
 
         boosts = new List<Boost>();
         boosts.Add(Hemorrhage);
@@ -58,6 +61,7 @@ public class PlayerBoosts : MonoBehaviour
         boosts.Add(StunGun);
         boosts.Add(SupplyDrop);
         boosts.Add(Bazooka);
+        boosts.Add(Parry);
 
         selectedBoosts = new List<Boost>();
 

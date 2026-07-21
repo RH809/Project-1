@@ -64,6 +64,8 @@ public class PlayerInventory : MonoBehaviour
     private float cooldownTime = 0.0f;
     private float cooldown;
 
+    public bool CanParry { get => Player.Instance.Boosts.Parry.IsActive && equippedItem == Item.SWORD && swordHitbox.IsSwinging(); }
+
     void Awake()
     {
         //playerControls = new PlayerControls();
@@ -374,11 +376,13 @@ public class PlayerInventory : MonoBehaviour
             switch (equippedItem)
             {
                 case Item.SWORD:
-                    if (swordHitbox.isSwinging() || IsInSwingAnimation())
+                    /*
+                    if (swordHitbox.IsSwinging() || IsInSwingAnimation())
                     { // don't use if already in swinging animation
-                        Debug.Log("Already in swinging animation: " + swordHitbox.isSwinging() + " " + IsInSwingAnimation());
-                        break;
+                        Debug.Log("Already in swinging animation: " + swordHitbox.IsSwinging() + " " + IsInSwingAnimation());
+                        //break;
                     }
+                    */
                     // Randomly choose between the 3 possible animations
                     float rand = Random.Range(0.0f, 1.0f);
                     float animationTime = 0;
@@ -403,10 +407,13 @@ public class PlayerInventory : MonoBehaviour
                     cooldownTime = cooldown;
                     break;
                 case Item.GUN:
-                    if (shoot.isShooting() || IsInShootAnimation())
+                    /*
+                    if (shoot.IsShooting() || IsInShootAnimation())
                     { // don't use if already in shooting animation
-                        break;
+                        Debug.Log("Alreading in shooting animation: " + shoot.IsShooting() + " " + IsInShootAnimation());
+                        //break;
                     }
+                    */
                     cooldown = gunCooldown + (gunShootAnimationTime / (gunAnimationSpeed * playerAnimator.GetFloat("GunAttackSpeed")));
                     cooldownTime = cooldown;
                     playerAnimator.SetTrigger("Shoot");

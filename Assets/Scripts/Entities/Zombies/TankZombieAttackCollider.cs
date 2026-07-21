@@ -93,6 +93,15 @@ public class TankZombieAttackCollider : MonoBehaviour
         {
             //Debug.Log("(Enter) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
             hits.Add(hit);
+            if (hit == Player.Instance.gameObject && Player.Instance.Inventory.CanParry)
+            {   // check for parry
+                float rand = Random.Range(0.0f, 1.0f);
+                if (rand <= Player.Instance.Boosts.Parry.ParryChance)
+                {
+                    Debug.Log("Parried!");
+                    return;
+                }
+            }
             hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
         }
 
@@ -122,6 +131,15 @@ public class TankZombieAttackCollider : MonoBehaviour
         {
             //Debug.Log("(Stay) Hit: " + hit + " " + hitTarget.GetHitboxBottom().y);
             hits.Add(hit);
+            if (hit == Player.Instance.gameObject && Player.Instance.Inventory.CanParry)
+            {   // check for parry
+                float rand = Random.Range(0.0f, 1.0f);
+                if (rand <= Player.Instance.Boosts.Parry.ParryChance)
+                {
+                    Debug.Log("Parried!");
+                    return;
+                }
+            }
             hit.GetComponent<Health>().TakeDamage(damage * numArms, gameObject);
         }
 

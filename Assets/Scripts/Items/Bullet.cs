@@ -49,8 +49,8 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         hits.Clear();
         startPos = transform.position;
-        float rand = Random.Range(0.0f, 0.9999f);
-        isCrit = rand < Shop.Instance.gunCritChance.statValue;
+        float rand = Random.Range(0.0f, 1.0f);
+        isCrit = Shop.Instance.swordCritChance.statValue != 0 && rand <= Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
         bazookaDamage = Player.Instance.Boosts.Bazooka.Damage;

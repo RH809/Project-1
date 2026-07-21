@@ -1,16 +1,21 @@
+/// <summary>
+/// This is the scriptable object for the parry boost.
+/// </summary>
 using UnityEngine;
 
-public class ParryBoost : MonoBehaviour
+[CreateAssetMenu(fileName = "Parry Boost", menuName = "Scriptable Objects/Boosts/Parry")]
+public class ParryBoost : Boost
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float parryChanceIncrement;
+    private float parryChance;
+    public float ParryChance { get => parryChance; }
+    
+    public override string Description { get => (level == 0 ? boostDescription :
+            $"Increase the parry chance from {(parryChance * 100):0.##}% to {((parryChance + parryChanceIncrement) * 100):0.##}%."); }
 
-    // Update is called once per frame
-    void Update()
+    public override void Select()
     {
-        
+        parryChance += parryChanceIncrement;
+        base.Select();
     }
 }
