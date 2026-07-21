@@ -17,6 +17,7 @@ public class PlayerBoosts : MonoBehaviour
     [SerializeField] private TechnologicalAdvancementBoost technologicalAdvancementBoostBase;
     [SerializeField] private VampiricBladeBoost vampiricBladeBoostBase;
     [SerializeField] private StunGunBoost stunGunBoostBase;
+    [SerializeField] private SupplyDropBoost supplyDropBoostBase;
 
     [HideInInspector] public HemorrhageBoost Hemorrhage;
     [HideInInspector] public PiercingBoost Piercing;
@@ -26,6 +27,7 @@ public class PlayerBoosts : MonoBehaviour
     [HideInInspector] public TechnologicalAdvancementBoost TechnologicalAdvancement;
     [HideInInspector] public VampiricBladeBoost VampiricBlade;
     [HideInInspector] public StunGunBoost StunGun;
+    [HideInInspector] public SupplyDropBoost SupplyDrop;
 
     private List<Boost> boosts;
     private List<Boost> selectedBoosts;
@@ -40,6 +42,7 @@ public class PlayerBoosts : MonoBehaviour
         TechnologicalAdvancement = Instantiate(technologicalAdvancementBoostBase);
         VampiricBlade = Instantiate(vampiricBladeBoostBase);
         StunGun = Instantiate(stunGunBoostBase);
+        SupplyDrop = Instantiate(supplyDropBoostBase);
 
         boosts = new List<Boost>();
         boosts.Add(Hemorrhage);
@@ -50,6 +53,7 @@ public class PlayerBoosts : MonoBehaviour
         boosts.Add(TechnologicalAdvancement);
         boosts.Add(VampiricBlade);
         boosts.Add(StunGun);
+        boosts.Add(SupplyDrop);
 
         selectedBoosts = new List<Boost>();
 
