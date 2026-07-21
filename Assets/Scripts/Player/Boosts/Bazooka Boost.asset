@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BazookaBoost
   boostName: Bazooka
   boostDescription: Bullets now explode on collision, dealing 10 damage in an area.
-  levelCap: 4
+  levelCap: 3
   damageIncrement: 10

@@ -18,4 +18,4 @@ MonoBehaviour:
   price: 150
   priceIncrement: 0
   purchaseCap: -1
-  description: 'Repairs a destroyed/damaged defender for half of its health '
+  description: Repairs a destroyed/damaged defender for half of its health.

@@ -104,10 +104,6 @@ public class Shoot : MonoBehaviour
         Bullet newBullet = Instantiate(bullet);
         newBullet.SetDisruptors(disruptors);
         newBullet.SetPool(bulletPool);
-        if (Player.Instance.Boosts.Bazooka.IsActive)
-        {
-            newBullet.SetBazookaDamage(Player.Instance.Boosts.Bazooka.Damage);
-        }
         return newBullet;
     }
 

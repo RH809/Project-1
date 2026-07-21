@@ -11,7 +11,7 @@ public class BazookaBoost : Boost
     public float Damage { get => damage; }
 
     public override string Description { get => (level == 0 ? boostDescription :
-            $"Increase explosion damage from {damage} to {damage + damageIncrement}."); }
+            $"Increase the explosion damage from {damage} to {damage + damageIncrement}."); }
 
     public override void Select()
     {

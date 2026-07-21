@@ -18,4 +18,4 @@ MonoBehaviour:
   price: 50
   priceIncrement: 0
   purchaseCap: -1
-  description: Heals 100 HP
+  description: Heals 100 health.

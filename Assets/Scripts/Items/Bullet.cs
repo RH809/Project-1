@@ -53,6 +53,7 @@ public class Bullet : MonoBehaviour
         isCrit = rand < Shop.Instance.gunCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
+        bazookaDamage = Player.Instance.Boosts.Bazooka.Damage;
     }
 
     public void SetDisruptors(GameObject[] disruptors)
@@ -63,11 +64,6 @@ public class Bullet : MonoBehaviour
     public void SetPool(ObjectPool<Bullet> bulletPool)
     {
         this.bulletPool = bulletPool;
-    }
-
-    public void SetBazookaDamage(float damage)
-    {
-        bazookaDamage = damage;
     }
 
     void FixedUpdate()
