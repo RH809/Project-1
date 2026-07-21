@@ -18,4 +18,4 @@ MonoBehaviour:
   price: 300
   priceIncrement: 0
   purchaseCap: -1
-  description: Blows up zombies
+  description: Deals 100 damage in a large area
