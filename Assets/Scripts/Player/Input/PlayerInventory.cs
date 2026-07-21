@@ -22,6 +22,7 @@ public class PlayerInventory : MonoBehaviour
     private Item equippedItem;
     public Item EquippedItem { get => equippedItem; }
     private int equippedIndex;
+    private int lastInput = -1;
     public int EquippedIndex { get => equippedIndex; }
     private Queue<Item> equipQueue;
     private List<Item> slotItems;
@@ -154,7 +155,7 @@ public class PlayerInventory : MonoBehaviour
         if (UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) return;
         int value = (int)ctx.ReadValue<float>();
         //Debug.Log(value + " " + (int)equippedItem);
-        if (value >= slotItems.Count || slotItems[value] == equippedItem)
+        if (value >= slotItems.Count || (slotItems[value] == equippedItem && equipQueue.Count == 0) || value == lastInput)
         {
             return; // don't do anything if they selected the already-equipped item or out of bounds
         }
@@ -166,6 +167,7 @@ public class PlayerInventory : MonoBehaviour
             case 3:
             case 4:
                 equipQueue.Enqueue(slotItems[value]);
+                lastInput = value;
                 break;
         }
     }
@@ -177,6 +179,7 @@ public class PlayerInventory : MonoBehaviour
         float scroll = ctx.ReadValue<Vector2>().y;
         if (scroll == 0) return;
         int newIndex = equippedIndex + (scroll > 0 ? -1 : 1); // positive scroll = index goes down
+        if (newIndex == lastInput) return;
         if (newIndex < 0)
         {
             newIndex = slotItems.Count - 1;
@@ -186,6 +189,7 @@ public class PlayerInventory : MonoBehaviour
             newIndex = 0;
         }
         equipQueue.Enqueue(slotItems[newIndex]);
+        lastInput = newIndex;
     }
 
     void Update()
@@ -364,7 +368,7 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     void Use()
     {
-        if (IsInSwitchItemAnimation()) return;
+        if (IsInSwitchItemAnimation() || equipQueue.Count > 0) return;
         if (cooldownTime <= 0.0f) // must be off cooldown
         {
             switch (equippedItem)
