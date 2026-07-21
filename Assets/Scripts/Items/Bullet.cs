@@ -25,6 +25,11 @@ public class Bullet : MonoBehaviour
     private Vector3 startPos;
     private ObjectPool<Bullet> bulletPool;
 
+    [SerializeField] private GameObject bazookaExplosion;
+    [SerializeField] private float bazookaRadius;
+    [SerializeField] private LayerMask bazookaLayerMask;
+    private float bazookaDamage;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -58,6 +63,11 @@ public class Bullet : MonoBehaviour
     public void SetPool(ObjectPool<Bullet> bulletPool)
     {
         this.bulletPool = bulletPool;
+    }
+
+    public void SetBazookaDamage(float damage)
+    {
+        bazookaDamage = damage;
     }
 
     void FixedUpdate()
@@ -128,6 +138,10 @@ public class Bullet : MonoBehaviour
                 {
                     bodyPart.Zombie.GetComponent<StunVictim>().Stun(Player.Instance.Boosts.StunGun.StunDuration);
                 }
+                if (Player.Instance.Boosts.Bazooka.IsActive)
+                {
+                    Explosion();
+                }
                 pierceAmount--;
                 //Debug.Log("Bullet hit " + other + " | pierceRemaining: " + pierceAmount);
                 if (pierceAmount <= 0)
@@ -140,10 +154,34 @@ public class Bullet : MonoBehaviour
         }
         else
         { // Didn't hit zombie so instantly destroy (no piercing)
+            if (Player.Instance.Boosts.Bazooka.IsActive)
+            {
+                Explosion();
+            }
             pierceAmount = 0;
             //Destroy(gameObject);
             bulletPool.Release(this);
         }
         
+    }
+
+    void Explosion()
+    {
+        Instantiate(bazookaExplosion, transform.position, transform.rotation);
+        HashSet<GameObject> hitSet = new HashSet<GameObject>();
+        Collider[] explosionHits = Physics.OverlapSphere(transform.position, bazookaRadius, bazookaLayerMask);
+        foreach (Collider hit in explosionHits)
+        {
+            ZombieBodyPart bodyPart;
+            if (hit.gameObject.TryGetComponent<ZombieBodyPart>(out bodyPart))
+            {
+                GameObject zombie = bodyPart.Zombie;
+                if (!hitSet.Contains(zombie))
+                {
+                    hitSet.Add(zombie);
+                    zombie.GetComponent<Health>().TakeDamage(bazookaDamage * damageMultiplier, Player.Instance.gameObject);
+                }
+            }
+        }
     }
 }
