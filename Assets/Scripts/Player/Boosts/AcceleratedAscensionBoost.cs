@@ -9,7 +9,7 @@ public class AcceleratedAscensionBoost : Boost
     [SerializeField] private int cooldownDecreaseIncrement = 30;
     private int cooldownDecrease = 0;
     public int CooldownDecrease { get => cooldownDecrease; }
-    public override string Description { get => $"Decrease power up spawn time by 30 seconds.\n" +
+    public override string Description { get => $"Decrease the power up spawn time by 30 seconds.\n" +
             $"{PowerUpManager.Instance.SpawnTime} => {PowerUpManager.Instance.SpawnTime - cooldownDecreaseIncrement}"; }
 
     public override void Select()

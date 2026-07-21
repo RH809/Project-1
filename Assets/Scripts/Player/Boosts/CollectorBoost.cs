@@ -10,7 +10,7 @@ public class CollectorBoost : Boost
     private float multiplier = 1.0f;
     public float Multiplier { get => multiplier; }
     public override string Description { get => (level == 0 ? boostDescription :
-            $"Increase bonus money drop from {((multiplier - 1.0f) * 100):0.##}% to {((multiplier + collectorIncrement - 1.0f) * 100):0.##}%."); }
+            $"Increase the bonus money drop from {((multiplier - 1.0f) * 100):0.##}% to {((multiplier + collectorIncrement - 1.0f) * 100):0.##}%."); }
     public override void Select()
     {
         //Debug.Log("Selected Collector");

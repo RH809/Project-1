@@ -11,7 +11,7 @@ public class VampiricBladeBoost : Boost
     public float LifestealPercentage { get => lifestealPercentage; }
 
     public override string Description { get => (level == 0 ? boostDescription :
-            $"Increase healing percentage from {(lifestealPercentage * 100)}% to {(lifestealPercentage * lifestealMultiplier * 100)}%."); }
+            $"Increase the healing percentage from {(lifestealPercentage * 100)}% to {(lifestealPercentage * lifestealMultiplier * 100)}%."); }
 
     public override void Select()
     {
