@@ -30,6 +30,7 @@ public abstract class Construct : MonoBehaviour
         if (!active)
         {
             health.HideHealthbar();
+            health.SetImmune(true);
         }
     }
 
@@ -59,6 +60,7 @@ public abstract class Construct : MonoBehaviour
         if (healthContext.target.Equals(gameObject))
         {
             animator.SetTrigger("Die");
+            animator.ResetTrigger("Respawn");
             alive = false;
             GameManager.Instance.AddAnnouncement(deathAnnouncement);
         }
@@ -67,6 +69,7 @@ public abstract class Construct : MonoBehaviour
     protected virtual void Respawn(float maxHealthProportion)
     {
         animator.SetTrigger("Respawn");
+        animator.ResetTrigger("Die");
         health.Respawn(maxHealthProportion, active);
         alive = true;
         GameManager.Instance.AddAnnouncement(respawnAnnouncement);
@@ -75,6 +78,7 @@ public abstract class Construct : MonoBehaviour
     protected virtual void Activate()
     {
         active = true;
+        health.SetImmune(false);
         if (alive)
         {
             health.ShowHealthBar();
@@ -84,6 +88,7 @@ public abstract class Construct : MonoBehaviour
     protected virtual void Deactivate()
     {
         active = false;
+        health.SetImmune(true);
         health.HideHealthbar();
     }
 

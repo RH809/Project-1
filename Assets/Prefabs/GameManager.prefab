@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7414f65e32b0dc42ae8e8f2ad70eacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  DEBUG: 1
+  DEBUG: 0
   beacon: {fileID: 0}
   waves: 30
   waveSpawnInterval: 30

@@ -127,6 +127,11 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 25472
+  bazookaExplosion: {fileID: 5911448441765784680, guid: 3160c0c8166f2614eb93c5c0c2dbee17, type: 3}
+  bazookaRadius: 1
+  bazookaLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!54 &4806560893932355849
 Rigidbody:
   m_ObjectHideFlags: 0

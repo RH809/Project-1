@@ -9,7 +9,7 @@ public class TechnologicalAdvancementBoost : Boost
     [SerializeField] private int cooldownDecreaseIncrement = 30;
     private int cooldownDecrease = 0;
     public int CooldownDecrease { get => cooldownDecrease; }
-    public override string Description { get => $"Decrease disruptor respawn time by 30 seconds.\n" +
+    public override string Description { get => $"Decrease the disruptor respawn time by 30 seconds.\n" +
             $"{DisruptorManager.Instance.RespawnTime} => {DisruptorManager.Instance.RespawnTime - cooldownDecreaseIncrement}"; }
 
     public override void Select()

@@ -53,7 +53,16 @@ public class ZombieAttackCollider : MonoBehaviour
         //Debug.Log("Hit: " + hit);
         if (!hits.Contains(hit))
         {
-            hits.Add(hit);
+            hits.Add(hit); // add before parry check; can't hit again if parried
+            if (attack.Target.gameObject == Player.Instance.gameObject && Player.Instance.Inventory.CanParry)
+            { // check for parry
+                float rand = Random.Range(0.0f, 1.0f);
+                if (rand <= Player.Instance.Boosts.Parry.ParryChance)
+                {
+                    Debug.Log("Parried!");
+                    return;
+                }
+            }
             hit.GetComponent<Health>().TakeDamage(damage * attack.GetNumAttachedArms(), gameObject);
         }
     }

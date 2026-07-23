@@ -31,6 +31,7 @@ public class Health : MonoBehaviour
     public static event Action<HealthContext> OnRespawn;
 
     private HealthContext healthContext;
+    private bool immune = false;
     void Awake()
     {
         currentHealth = maxHealth;
@@ -79,7 +80,7 @@ public class Health : MonoBehaviour
     /// <param name="attacker">The source of the damage</param>
     public void TakeDamage(float damageAmount, GameObject attacker)
     {
-        if (!IsAlive || GameManager.Instance.GameOver) return;
+        if (!IsAlive || GameManager.Instance.GameOver || immune) return;
         //Debug.Log($"{gameObject} took {damageAmount} damage from {attacker}");
         hitTimer = hitResetTime;
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
@@ -120,6 +121,9 @@ public class Health : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Displays the healthbar
+    /// </summary>
     public void ShowHealthBar()
     {
         if (hasHealthbar)
@@ -138,6 +142,11 @@ public class Health : MonoBehaviour
         {
             Destroy(healthbar);
         }
+    }
+
+    public void SetImmune(bool immune)
+    {
+        this.immune = immune;
     }
     
 }

@@ -2257,8 +2257,8 @@ MonoBehaviour:
     zombies to collect money\n> Spend money on items and stat upgrades in the shop\n>
     Grab the power up for a temporary stat boost\n\nControls:\n> WASD to move \n>
     Space to jump\n> Control to sprint \n> Left Mouse Button to use item/attack\n>
-    Scroll Wheel or Num Keys 1-5 to switch items\n> E to interact or close shop\n>
-    Tab to open map\n> ESC to open/close menu
+    Scroll Wheel or Num Keys 1-5 to switch items\n> E to interact or close the shop\n>
+    Tab to open the map\n> ESC to open/close the menu
 
 '
   m_isRightToLeft: 0

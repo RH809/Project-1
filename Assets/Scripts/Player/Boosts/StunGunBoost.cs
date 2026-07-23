@@ -12,7 +12,7 @@ public class StunGunBoost : Boost
     public float StunDuration { get => stunDuration; }
 
     public override string Description { get => (level == 0 ? boostDescription :
-            $"Increase stun duration from {stunDuration} seconds to {stunDuration + stunDurationIncrement} seconds."); }
+            $"Increase the stun duration from {stunDuration} seconds to {stunDuration + stunDurationIncrement} seconds."); }
 
     public override void Select()
     {

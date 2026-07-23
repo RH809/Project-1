@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Payday Boost
   m_EditorClassIdentifier: Assembly-CSharp::PaydayBoost
   boostName: Payday
-  boostDescription: Gain $500.
+  boostDescription: Receive $500.
   levelCap: -1
   payAmount: 500

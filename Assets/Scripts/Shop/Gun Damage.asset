@@ -16,8 +16,9 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 2f3357ef2c36fa04a816063ec5da2d31, type: 3}
   itemName: Gun Attack Damage Upgrade
   price: 100
-  priceIncrement: 50
+  priceIncrement: 75
   purchaseCap: 4
   description: 15 => 18.75
   statValue: 15
   statValueIncrement: 3.75
+  asPercentage: 0

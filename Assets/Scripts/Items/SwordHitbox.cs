@@ -102,8 +102,8 @@ public class SwordHitbox : MonoBehaviour
         //prevBasePos = swordBase.position;
         inAttackSwing = true;
         hits.Clear(); // reset hit list
-        float rand = Random.Range(0.0f, 0.9999f);
-        isCrit = rand < Shop.Instance.swordCritChance.statValue;
+        float rand = Random.Range(0.0f, 1.0f);
+        isCrit = Shop.Instance.swordCritChance.statValue != 0 && rand <= Shop.Instance.swordCritChance.statValue;
         damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
         //if (isCrit) Debug.Log("Sword Attack will crit");
     }
@@ -130,7 +130,7 @@ public class SwordHitbox : MonoBehaviour
         Gizmos.DrawWireSphere(b, r);
     }
 
-    public bool isSwinging() {
+    public bool IsSwinging() {
         return inAttackSwing;
     }
 }

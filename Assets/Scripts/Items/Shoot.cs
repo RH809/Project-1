@@ -95,7 +95,7 @@ public class Shoot : MonoBehaviour
         shooting = false;
     }
 
-    public bool isShooting() {
+    public bool IsShooting() {
         return shooting;
     }
 
