@@ -153,6 +153,7 @@ public class GameManager : Singleton<GameManager>
     {
         gameOver = true;
         Player.Instance.Movement.StopMovement();
+        Player.Instance.Health.SetImmune(true);
         UIManager.Instance.DisableAllUI();
         announcements.Clear();
         Cursor.lockState = CursorLockMode.Locked;
