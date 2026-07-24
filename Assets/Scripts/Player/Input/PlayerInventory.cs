@@ -478,6 +478,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -512,6 +513,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -546,6 +548,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -571,6 +574,7 @@ public class PlayerInventory : MonoBehaviour
             equipQueue.Enqueue(slotItems[equippedIndex]);
             equippedIndex = 0;
             equippedItem = Item.SWORD; // set to default so that animation transition will play on respawn
+            lastInput = 0;
         }
     }
 
