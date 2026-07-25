@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankZombieMovement
   zombieAnimator: {fileID: 2924449509950619678}
-  moveSpeed: 0.75
+  moveSpeed: 0.9
   rotationSpeed: 10
   attackRange: 2
   playerStoppingDist: 1.75

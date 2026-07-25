@@ -2726,10 +2726,6 @@ PrefabInstance:
       propertyPath: 'disruptors.Array.data[1]'
       value: 
       objectReference: {fileID: 1689524644}
-    - target: {fileID: 2323866215633140696, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: gunCooldown
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2434006918805420810, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: powerUpTransform
       value: 
