@@ -410,7 +410,7 @@ public class PlayerInventory : MonoBehaviour
                     /*
                     if (shoot.IsShooting() || IsInShootAnimation())
                     { // don't use if already in shooting animation
-                        Debug.Log("Alreading in shooting animation: " + shoot.IsShooting() + " " + IsInShootAnimation());
+                        Debug.Log("Already in shooting animation: " + shoot.IsShooting() + " " + IsInShootAnimation());
                         //break;
                     }
                     */
