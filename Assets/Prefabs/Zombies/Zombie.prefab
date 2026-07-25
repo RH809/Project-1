@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMovement
   zombieAnimator: {fileID: 4555739962168164116}
-  moveSpeed: 1.25
+  moveSpeed: 1
   rotationSpeed: 10
   attackRange: 0.75
   playerStoppingDist: 0.75
