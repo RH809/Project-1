@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
 
     private GameObject[] disruptors;
     private HashSet<GameObject> hits;
+    private HashSet<GameObject> explosionHits;
 
     private Rigidbody rb;
     private bool isCrit = false;
@@ -34,12 +35,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         hits = new HashSet<GameObject>();
-        //startPos = transform.position;
-        //float rand = Random.Range(0.0f, 0.9999f);
-        //isCrit = rand < Shop.Instance.gunCritChance.statValue;
-        //damageMultiplier = (Player.Instance.PowerUp.Active ? Player.Instance.PowerUp.DamageMultiplier : 1f);
-        //pierceAmount = Player.Instance.Boosts.Piercing.PierceAmount;
-        //if (isCrit) Debug.Log("Bullet will crit");
+        explosionHits = new HashSet<GameObject>();
     }
 
     public void Spawn(Vector3 position, Quaternion rotation)
@@ -48,6 +44,7 @@ public class Bullet : MonoBehaviour
         rb.rotation = rotation;
         rb.linearVelocity = Vector3.zero;
         hits.Clear();
+        explosionHits.Clear();
         startPos = transform.position;
         float rand = Random.Range(0.0f, 1.0f);
         isCrit = Shop.Instance.gunCritChance.statValue != 0 && rand <= Shop.Instance.gunCritChance.statValue;
@@ -164,17 +161,17 @@ public class Bullet : MonoBehaviour
     void Explosion()
     {
         Instantiate(bazookaExplosion, transform.position, transform.rotation);
-        HashSet<GameObject> hitSet = new HashSet<GameObject>();
-        Collider[] explosionHits = Physics.OverlapSphere(transform.position, bazookaRadius, bazookaLayerMask);
-        foreach (Collider hit in explosionHits)
+        
+        Collider[] collisions = Physics.OverlapSphere(transform.position, bazookaRadius, bazookaLayerMask);
+        foreach (Collider hit in collisions)
         {
             ZombieBodyPart bodyPart;
             if (hit.gameObject.TryGetComponent<ZombieBodyPart>(out bodyPart))
             {
                 GameObject zombie = bodyPart.Zombie;
-                if (!hitSet.Contains(zombie))
+                if (!explosionHits.Contains(zombie))
                 {
-                    hitSet.Add(zombie);
+                    explosionHits.Add(zombie);
                     zombie.GetComponent<Health>().TakeDamage(bazookaDamage * damageMultiplier, Player.Instance.gameObject);
                 }
             }
