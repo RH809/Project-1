@@ -1,6 +1,7 @@
 /// <summary>
 /// This script manages the transitions between HUD states.
 /// </summary>
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,14 +29,14 @@ public class UIManager : Singleton<UIManager>
     public UIInput Input;
 
     private UIState state;
-    private UIState prevState;
-    private UIState prevPrevState;
+    private Stack<UIState> previousStates;
     public UIState State { get => state; }
 
     protected override void Awake()
     {
         base.Awake();
         Input = new UIInput();
+        previousStates = new Stack<UIState>();
     }
 
     void Start()
@@ -79,16 +80,10 @@ public class UIManager : Singleton<UIManager>
 
     public void SwitchState(UIState newState)
     {
-        if (!(state == UIState.BOOSTS && newState == UIState.MENU))
-        { // don't override previous state if going from boosts to menu
-            prevState = (state == UIState.SHOP ? UIState.SHOP : UIState.PLAY);
-            prevPrevState = prevState;
-        }
-        else
-        { // keep track of two states back for case of pausing during boost UI
-            prevPrevState = prevState;
-            prevState = UIState.BOOSTS;
-        }
+        if (state != UIState.MAP)
+        { // don't save map
+            previousStates.Push(state);
+        } 
         state = newState;
         if (state != UIState.PLAY && state != UIState.MAP)
         {
@@ -110,8 +105,16 @@ public class UIManager : Singleton<UIManager>
 
     public void PreviousState()
     {
-        state = prevState;
-        prevState = prevPrevState;
+        if (previousStates.Count == 0)
+        {
+            state = UIState.PLAY;
+        }
+        else
+        {
+            state = previousStates.Pop();
+        }
+        //state = prevState;
+        //prevState = prevPrevState;
         if (state == UIState.SHOP)
         {
             ShopUI.Instance.ShopOpen();
