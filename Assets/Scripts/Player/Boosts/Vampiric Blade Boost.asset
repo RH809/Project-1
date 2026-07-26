@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Vampiric Blade Boost
   m_EditorClassIdentifier: Assembly-CSharp::LifestealBoost
   boostName: Vampiric Blade
-  boostDescription: Heal for 2% of the damage dealt by sword attacks.
+  boostDescription: Heal for 5% of the damage dealt by sword attacks.
   levelCap: 4
-  lifestealMultiplier: 2
+  lifestealIncrement: 0.05

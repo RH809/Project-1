@@ -2299,7 +2299,7 @@ MonoBehaviour:
   swordSwing1TransitionTime: 0.25
   swordSwing2AnimationSpeed: 1
   swordSwing3AnimationSpeed: 0.625
-  gunCooldown: 0.25
+  gunCooldown: 0.5
   gunAnimationSpeed: 1.25
   grenadeCooldown: 1
   cooldownIndicator: {fileID: 8724208382501939588}

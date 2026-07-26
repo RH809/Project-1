@@ -137,7 +137,6 @@ MonoBehaviour:
   easyDamage: 2.5
   mediumDamage: 5
   hardDamage: 7.5
-  damage: 5
 --- !u!1001 &3901069692869971946
 PrefabInstance:
   m_ObjectHideFlags: 0

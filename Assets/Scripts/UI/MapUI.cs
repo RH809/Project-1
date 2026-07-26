@@ -16,6 +16,9 @@ public class MapUI : Singleton<MapUI>
 
     private float mapWidth;
     private float mapHeight;
+
+    private UIManager.UIState previousState;
+    public bool CanMove { get => previousState == UIManager.UIState.PLAY; }
     protected override void Awake()
     {
         base.Awake();
@@ -59,8 +62,9 @@ public class MapUI : Singleton<MapUI>
     public void OpenMap(InputAction.CallbackContext ctx)
     {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State == UIManager.UIState.PLAY)
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.SHOP || UIManager.Instance.State == UIManager.UIState.BOOSTS)
         {
+            previousState = UIManager.Instance.State;
             UIManager.Instance.SwitchState(UIManager.UIState.MAP);
         }
     }
@@ -70,7 +74,7 @@ public class MapUI : Singleton<MapUI>
         if (GameManager.Instance.GameOver) return;
         if (UIManager.Instance.State == UIManager.UIState.MAP)
         {
-            UIManager.Instance.SwitchState(UIManager.UIState.PLAY);
+            UIManager.Instance.PreviousState();
         }
     }
 }

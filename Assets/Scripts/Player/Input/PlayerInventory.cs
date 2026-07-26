@@ -154,7 +154,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnSelectItemPerformed(InputAction.CallbackContext ctx) {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY && (UIManager.Instance.State != UIManager.UIState.MAP || !MapUI.Instance.CanMove)) return;
         int value = (int)ctx.ReadValue<float>();
         //Debug.Log(value + " " + (int)equippedItem);
         if (value >= slotItems.Count || (slotItems[value] == equippedItem && equipQueue.Count == 0) || value == lastInput)
@@ -177,7 +177,7 @@ public class PlayerInventory : MonoBehaviour
     private void OnScrollPerformed(InputAction.CallbackContext ctx)
     {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State != UIManager.UIState.PLAY && UIManager.Instance.State != UIManager.UIState.MAP) return;
+        if (UIManager.Instance.State != UIManager.UIState.PLAY && (UIManager.Instance.State != UIManager.UIState.MAP || !MapUI.Instance.CanMove)) return;
         float scroll = ctx.ReadValue<Vector2>().y;
         if (scroll == 0) return;
         int newIndex = equippedIndex + (scroll > 0 ? -1 : 1); // positive scroll = index goes down
@@ -410,7 +410,7 @@ public class PlayerInventory : MonoBehaviour
                     /*
                     if (shoot.IsShooting() || IsInShootAnimation())
                     { // don't use if already in shooting animation
-                        Debug.Log("Alreading in shooting animation: " + shoot.IsShooting() + " " + IsInShootAnimation());
+                        Debug.Log("Already in shooting animation: " + shoot.IsShooting() + " " + IsInShootAnimation());
                         //break;
                     }
                     */
@@ -478,6 +478,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -512,6 +513,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -546,6 +548,7 @@ public class PlayerInventory : MonoBehaviour
                 equippedIndex--;
             }
             equipQueue.Enqueue(slotItems[equippedIndex]);
+            lastInput = equippedIndex;
             UpdateActiveItem();
         }
         else
@@ -571,6 +574,7 @@ public class PlayerInventory : MonoBehaviour
             equipQueue.Enqueue(slotItems[equippedIndex]);
             equippedIndex = 0;
             equippedItem = Item.SWORD; // set to default so that animation transition will play on respawn
+            lastInput = 0;
         }
     }
 

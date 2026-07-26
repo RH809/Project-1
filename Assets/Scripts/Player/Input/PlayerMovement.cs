@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMovePerformed(InputAction.CallbackContext ctx) {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || (UIManager.Instance.State == UIManager.UIState.MAP && MapUI.Instance.CanMove))
         {
             moveInput = ctx.ReadValue<Vector2>();
             moving = true;
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSprintPerformed(InputAction.CallbackContext ctx) {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || (UIManager.Instance.State == UIManager.UIState.MAP && MapUI.Instance.CanMove))
         {
             sprinting = true;
         }
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx) {
         if (GameManager.Instance.GameOver) return;
-        if (UIManager.Instance.State == UIManager.UIState.PLAY || UIManager.Instance.State == UIManager.UIState.MAP)
+        if (UIManager.Instance.State == UIManager.UIState.PLAY || (UIManager.Instance.State == UIManager.UIState.MAP && MapUI.Instance.CanMove))
         {
             jumpInput = true;
         }
