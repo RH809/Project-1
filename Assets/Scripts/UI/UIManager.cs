@@ -80,9 +80,13 @@ public class UIManager : Singleton<UIManager>
 
     public void SwitchState(UIState newState)
     {
+        Debug.Log(state + " " + newState);
         if (state != UIState.MAP)
         { // don't save map
-            previousStates.Push(state);
+            if (!(state == UIState.BOOSTS && BoostsUI.Instance.IsFadingOut))
+            {
+                previousStates.Push(state);
+            }
         } 
         state = newState;
         if (state != UIState.PLAY && state != UIState.MAP)
@@ -115,6 +119,7 @@ public class UIManager : Singleton<UIManager>
         }
         //state = prevState;
         //prevState = prevPrevState;
+        Debug.Log("Switching to previous state: " + state);
         if (state == UIState.SHOP)
         {
             ShopUI.Instance.ShopOpen();
