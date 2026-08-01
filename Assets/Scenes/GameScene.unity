@@ -1298,34 +1298,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 752186772023543316, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 874549558406170192, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1919461537316571395, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1658476527}
-    - target: {fileID: 3283308363100042819, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352978726029863518, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988433638272814706, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4373984756864766985, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1409,22 +1385,6 @@ PrefabInstance:
     - target: {fileID: 5218816013404954138, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: m_Name
       value: ShopUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414530267253463823, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993480215536244316, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200582194726257033, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8897381014864221943, guid: 61c1fee8affef5d459df255585364a10, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2091,10 +2051,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
-      propertyPath: DEBUG
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: beacon
       value: 
       objectReference: {fileID: 838510202}
@@ -2102,10 +2058,6 @@ PrefabInstance:
       propertyPath: leftZombieSpawner
       value: 
       objectReference: {fileID: 237377080}
-    - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
-      propertyPath: waveSpawnInterval
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: rightZombieSpawner
       value: 
@@ -2426,10 +2378,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1434763732722888740, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
-      propertyPath: boostWaveInterval
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2196699293173105311, guid: adb8b3e11ac999c4d84ba2bbb6c5f505, type: 3}
       propertyPath: 'disruptors.Array.data[0]'
       value: 
