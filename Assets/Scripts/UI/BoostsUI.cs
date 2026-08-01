@@ -4,6 +4,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BoostsUI : Singleton<BoostsUI>
@@ -27,6 +28,10 @@ public class BoostsUI : Singleton<BoostsUI>
     private Boost boost3;
 
     private float fadeTime = 1.5f;
+    private bool fadingOut = false;
+    private bool finishedFadingOut = false;
+    public bool IsFadingOut { get => fadingOut; }
+    public bool FinishedFadingOut { get => finishedFadingOut; }
 
     void Start()
     {
@@ -74,6 +79,9 @@ public class BoostsUI : Singleton<BoostsUI>
 
     IEnumerator FadeIn()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        fadingOut = false;
+        finishedFadingOut = false;
         float t = 0;
         canvasGroup.alpha = 0;
         while (t < fadeTime)
@@ -99,6 +107,7 @@ public class BoostsUI : Singleton<BoostsUI>
 
     IEnumerator FadeOut()
     {
+        fadingOut = true;
         float t = 0;
         canvasGroup.alpha = 1;
         while (t < fadeTime)
@@ -108,7 +117,8 @@ public class BoostsUI : Singleton<BoostsUI>
             yield return null;
         }
         canvasGroup.alpha = 0;
-        UIManager.Instance.PreviousState();
+        UIManager.Instance.BoostsPreviousState();
+        finishedFadingOut = true;
         yield return null;
     }
 }

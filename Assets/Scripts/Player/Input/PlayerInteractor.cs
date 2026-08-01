@@ -64,7 +64,7 @@ public class PlayerInteractor : MonoBehaviour
         {
             interacting = false;
             interactProgress.fillAmount = 0;
-            if (UIManager.Instance.State == UIManager.UIState.SHOP)
+            if (UIManager.Instance.State == UIManager.UIState.SHOP || UIManager.Instance.ShopInStack)
             {
                 shopTimeout = 0.05f;
             }
@@ -143,7 +143,7 @@ public class PlayerInteractor : MonoBehaviour
     void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
         if (UIManager.Instance.State != UIManager.UIState.PLAY || GameManager.Instance.GameOver) return;
-        if (!shopHover && !defenderHover && !powerUpHover) return;
+        if ((!shopHover  && !defenderHover && !powerUpHover) || shopTimeout > 0) return;
         if (!interacting)
         {
             interactTime = 0;
