@@ -30,7 +30,10 @@ public class UIManager : Singleton<UIManager>
 
     private UIState state;
     private Stack<UIState> previousStates;
+    public UIState GetPreviousState { get => previousStates.Count == 0 ? UIState.PLAY : previousStates.Peek(); }
     public UIState State { get => state; }
+    private volatile bool shopInStack = false;
+    public bool ShopInStack { get => shopInStack; }
 
     protected override void Awake()
     {
@@ -74,21 +77,26 @@ public class UIManager : Singleton<UIManager>
         shopUI.enabled = (state == UIState.SHOP);
         boostsUI.enabled = (state == UIState.BOOSTS);
         menuUI.enabled = (state == UIState.MENU);
-        Cursor.lockState = (state == UIState.PLAY || state == UIState.MAP ? CursorLockMode.Locked : CursorLockMode.None);
+        Cursor.lockState = (state == UIState.PLAY ? CursorLockMode.Locked : CursorLockMode.None);
         Cursor.visible = (state == UIState.SHOP || state == UIState.MENU || state == UIState.BOOSTS);
     }
 
     public void SwitchState(UIState newState)
     {
-        Debug.Log(state + " " + newState);
-        if (state != UIState.MAP)
+        //Debug.Log(state + " " + newState);
+        if (state != UIState.MAP && newState != UIState.PLAY)
         { // don't save map
-            if (!(state == UIState.BOOSTS && BoostsUI.Instance.IsFadingOut))
+            previousStates.Push(state);
+            if (state == UIState.SHOP)
             {
-                previousStates.Push(state);
+                shopInStack = true;
             }
         } 
         state = newState;
+        if (state == UIState.PLAY)
+        {
+            previousStates.Clear();
+        }
         if (state != UIState.PLAY && state != UIState.MAP)
         {
             Player.Instance.Movement.StopMovement();
@@ -116,17 +124,36 @@ public class UIManager : Singleton<UIManager>
         else
         {
             state = previousStates.Pop();
+            //if (state == UIState.BOOSTS) Debug.Log(BoostsUI.Instance.FinishedFadingOut);
+            if (state == UIState.BOOSTS && BoostsUI.Instance.FinishedFadingOut)
+            {
+                PreviousState();
+            }
         }
         //state = prevState;
         //prevState = prevPrevState;
-        Debug.Log("Switching to previous state: " + state);
+        //Debug.Log("Switching to previous state: " + state);
         if (state == UIState.SHOP)
         {
             ShopUI.Instance.ShopOpen();
+            shopInStack = false;
         }
         if (state != UIState.MENU && state != UIState.BOOSTS)
         {
             Time.timeScale = 1.0f; // unpause game
+        }
+    }
+    
+    // For handling special cases when switching back from boosts
+    public void BoostsPreviousState()
+    {
+        if (state == UIState.BOOSTS)
+        {
+            PreviousState();
+        }
+        else if (state == UIState.MAP)
+        {
+            Time.timeScale = 1.0f;
         }
     }
 

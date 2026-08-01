@@ -28,7 +28,9 @@ public class BoostsUI : Singleton<BoostsUI>
 
     private float fadeTime = 1.5f;
     private bool fadingOut = false;
+    private bool finishedFadingOut = false;
     public bool IsFadingOut { get => fadingOut; }
+    public bool FinishedFadingOut { get => finishedFadingOut; }
 
     void Start()
     {
@@ -77,6 +79,7 @@ public class BoostsUI : Singleton<BoostsUI>
     IEnumerator FadeIn()
     {
         fadingOut = false;
+        finishedFadingOut = false;
         float t = 0;
         canvasGroup.alpha = 0;
         while (t < fadeTime)
@@ -112,11 +115,8 @@ public class BoostsUI : Singleton<BoostsUI>
             yield return null;
         }
         canvasGroup.alpha = 0;
-        if (UIManager.Instance.State != UIManager.UIState.MAP)
-        {
-            UIManager.Instance.PreviousState();
-        }
-        fadingOut = false;
+        UIManager.Instance.BoostsPreviousState();
+        finishedFadingOut = true;
         yield return null;
     }
 }

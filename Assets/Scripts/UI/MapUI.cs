@@ -18,7 +18,8 @@ public class MapUI : Singleton<MapUI>
     private float mapHeight;
 
     private UIManager.UIState previousState;
-    public bool CanMove { get => previousState == UIManager.UIState.PLAY; }
+    public bool CanMove { get => (previousState != UIManager.UIState.BOOSTS || BoostsUI.Instance.FinishedFadingOut) &&
+            !UIManager.Instance.ShopInStack; }
     protected override void Awake()
     {
         base.Awake();
