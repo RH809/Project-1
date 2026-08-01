@@ -1298,10 +1298,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 752186772023543316, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 874549558406170192, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919461537316571395, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2423687845396372509, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1658476527}
+    - target: {fileID: 3283308363100042819, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3352978726029863518, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988433638272814706, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4373984756864766985, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1385,6 +1409,22 @@ PrefabInstance:
     - target: {fileID: 5218816013404954138, guid: 61c1fee8affef5d459df255585364a10, type: 3}
       propertyPath: m_Name
       value: ShopUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414530267253463823, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993480215536244316, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200582194726257033, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897381014864221943, guid: 61c1fee8affef5d459df255585364a10, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2049,6 +2089,10 @@ PrefabInstance:
     - target: {fileID: 3845310270764486410, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
+      propertyPath: DEBUG
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7371973662445515058, guid: f15f8dbd39f2efd4896a90fe75b5dffb, type: 3}
       propertyPath: beacon

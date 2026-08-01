@@ -68,7 +68,12 @@ public class ShopUI : Singleton<ShopUI>
     void Update()
     {
         //if (selectedButton.gameObject != EventSystem.current.currentSelectedGameObject) selectedButton.Select();
-        if (EventSystem.current.currentSelectedGameObject == null) selectedButton.Select();
+        if (UIManager.Instance.State != UIManager.UIState.SHOP) return;
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            Debug.Log(selectedButton);
+            selectedButton.Select();
+        }
         buy.interactable = !selectedItem.reachedCap && Player.Instance.Bank.Amount >= selectedItem.price;
     }
 

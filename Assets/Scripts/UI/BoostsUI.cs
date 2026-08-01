@@ -4,6 +4,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BoostsUI : Singleton<BoostsUI>
@@ -78,6 +79,7 @@ public class BoostsUI : Singleton<BoostsUI>
 
     IEnumerator FadeIn()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         fadingOut = false;
         finishedFadingOut = false;
         float t = 0;
