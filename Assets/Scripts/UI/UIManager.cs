@@ -133,6 +133,7 @@ public class UIManager : Singleton<UIManager>
             {
                 state = UIState.PLAY;
             }
+            previousStates.Clear();
         }
     }
 

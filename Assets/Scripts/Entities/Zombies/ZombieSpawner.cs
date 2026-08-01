@@ -110,7 +110,7 @@ public class ZombieSpawner : MonoBehaviour
         {
             tankZombieSpawnIncreaseInterval = GameManager.Instance.TotalWaves / 10;
         }
-        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0)
+        if (GameManager.Instance.WaveNum % tankZombieSpawnIncreaseInterval == 0 || GameManager.Instance.TotalWaves - GameManager.Instance.WaveNum < tankZombieSpawnIncreaseInterval)
         {
             tankSpawns += numTankZombies;
         }
