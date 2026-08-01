@@ -86,6 +86,14 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
         healthContext.source = attacker;
         OnTakeDamage?.Invoke(healthContext);
+        if (currentHealth > 0 && attacker == Player.Instance.gameObject && Player.Instance.Boosts.Executioner.IsActive)
+        {
+            if (currentHealth / maxHealth <= Player.Instance.Boosts.Executioner.ExecuteThreshold)
+            {
+                //Debug.Log("Execute!");
+                currentHealth = 0; // execute
+            }
+        }
         if (currentHealth == 0)
         {
             HideHealthbar();
